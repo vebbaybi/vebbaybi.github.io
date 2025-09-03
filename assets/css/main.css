@@ -1,4 +1,10 @@
-/* ===== Reset & tokens ===== */
+/* =======================================================================================
+   1807 — MAIN.CSS (Full Replacement)
+   Global reset, tokens, layout shells (header/footer/nav/buttons)
+   Palette: Blue / Light Brown / Black / White
+   ======================================================================================= */
+
+/* ===== Reset ===== */
 *,
 *::before,
 *::after {
@@ -10,42 +16,100 @@ body {
     height: 100%;
 }
 
-.logo {
-    height: 40px;
-    /* Adjust height as needed */
-    width: auto;
-    /* Maintain aspect ratio */
-}
-.dot-o
-
 body {
     margin: 0;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-:root {
-    --bg: #0f0f10;
-    --panel: #1a1a1c;
-    --muted: #9aa0a6;
-    --text: #135ff5;
-    --brand: #ffffff;
-    --accent: #e6e6e6;
-    --accent-2: #d9d9d9;
-    --border: #2a2a2e;
+/* ===== Brand bits ===== */
+.logo {
+    height: 40px;
+    width: auto;
+}
 
+/* removed stray `.dot-o` */
+
+/* ===== Tokens ===== */
+:root {
+    /* Blues */
+    --blue-900: #0b1f4a;
+    --blue-800: #1e40af;
+    --blue-700: #1d4ed8;
+    --blue-600: #2563eb;
+    --blue-400: #60a5fa;
+
+    /* Light brown / tan */
+    --tan-700: #9e7743;
+    --tan-600: #b68b4c;
+    --tan-500: #d6a76a;
+    --tan-100: #f5e9da;
+
+    /* Neutrals */
+    --black-true: #0b0f14;
+    --black: #10151d;
+    --ink: #0f141b;
+    --white: #ffffff;
+    --off-white: #f8fafc;
+
+    /* Surfaces (dark default) */
+    --bg: var(--black-true);
+    --panel: var(--ink);
+    --surface: #121822;
+    --surface-2: #0e131b;
+
+    /* Text */
+    --text: #eaf1ff;
+    --muted: #aab8d3;
+    --accent-2: #c5d0e6;
+
+    /* Accents */
+    --primary: var(--blue-600);
+    --primary-strong: var(--blue-800);
+    --primary-soft: rgba(37, 99, 235, .12);
+    --secondary: var(--tan-600);
+    --secondary-soft: rgba(182, 139, 76, .14);
+
+    /* Lines & effects */
+    --border: rgba(255, 255, 255, .10);
     --radius: 16px;
     --shadow: 0 8px 30px rgba(0, 0, 0, .35);
     --container: 1200px;
+
+    /* Focus */
+    --focus: 2px solid var(--blue-400);
 }
 
-body.theme-dark {
+/* Light theme option */
+body.theme-light {
+    --bg: #ffffff;
+    --panel: #f6f8fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f7;
+
+    --text: #0b1220;
+    --muted: #4a5568;
+    --accent-2: #606b7b;
+
+    --border: rgba(10, 15, 20, .14);
+    --primary-soft: rgba(37, 99, 235, .10);
+    --secondary-soft: rgba(182, 139, 76, .14);
+}
+
+/* ===== Base ===== */
+body.theme-dark,
+body.theme-light {
     background: var(--bg);
     color: var(--text);
 }
 
 a {
-    color: inherit;
+    color: var(--primary);
     text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--blue-400);
 }
 
 img {
@@ -59,6 +123,7 @@ img {
     padding-inline: 20px;
 }
 
+/* Accessibility helpers */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -87,34 +152,39 @@ img {
     width: auto;
     height: auto;
     padding: 8px 12px;
-    background: #000;
+    background: var(--primary);
     color: #fff;
     z-index: 9999;
+    border-radius: 8px;
+    outline: none;
 }
 
-/* ===== Header ===== */
+/* =======================================================================================
+   HEADER
+   ======================================================================================= */
 .site-header {
-    background: white;
-    border-bottom: 2px solid var(--border);
+    background: #ffffff;
+    /* Sticky light header for contrast */
+    border-bottom: 1px solid rgba(15, 20, 27, .10);
     position: sticky;
-    color: black;
     top: 0;
     z-index: 50;
+    color: #0b1220;
 }
 
 .header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 64px;
 }
 
 .brand {
     display: inline-flex;
     align-items: baseline;
     gap: 10px;
-    font-weight: 700;
-    color: black;
+    font-weight: 800;
+    color: #0b1220;
 }
 
 .brand-mark {
@@ -122,11 +192,12 @@ img {
 }
 
 .brand-sub {
-    color: var(--muted);
+    color: #6b7280;
     font-size: .9rem;
     font-weight: 600;
 }
 
+/* Nav */
 .nav {
     position: relative;
 }
@@ -146,9 +217,10 @@ img {
     display: block;
     width: 22px;
     height: 2px;
-    background: skyblue;
+    background: var(--blue-700);
     position: relative;
     margin: 0 auto;
+    border-radius: 2px;
 }
 
 .nav-toggle .nav-toggle-bar::before,
@@ -175,22 +247,66 @@ img {
 }
 
 .nav-list a {
-    color: skyblue;
-    font-weight: 600;
-    opacity: .9;
+    color: var(--blue-700);
+    font-weight: 700;
+    opacity: .92;
+    padding-block: 6px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-list a:hover {
+    color: var(--blue-600);
 }
 
 .nav-list a[aria-current="page"] {
-    color: deepskyblue;
-    opacity: 1;
-    border-bottom: 2px solid deepskyblue;
-    padding-bottom: 2px;
+    color: var(--blue-700);
+    border-bottom-color: var(--blue-600);
 }
 
-/* ===== Footer ===== */
+/* Mobile nav */
+@media (max-width: 960px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        position: absolute;
+        right: 0;
+        top: 64px;
+        background: #ffffff;
+        border: 1px solid rgba(15, 20, 27, .12);
+        border-radius: 12px;
+        padding: 14px;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 180px;
+        display: none;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+    }
+
+    .nav-list.open {
+        display: flex;
+    }
+
+    .nav-list a {
+        border-bottom: 0;
+    }
+
+    .nav-list a[aria-current="page"] {
+        color: var(--blue-700);
+        background: rgba(37, 99, 235, .08);
+        border-radius: 8px;
+        padding: 8px 10px;
+    }
+}
+
+/* =======================================================================================
+   FOOTER
+   ======================================================================================= */
 .site-footer {
     border-top: 1px solid var(--border);
-    background: #1a1a1c;
+    background: var(--panel);
+    color: var(--text);
 }
 
 .footer-inner {
@@ -202,7 +318,7 @@ img {
 }
 
 .footer-right a {
-    color: var(--accent);
+    color: var(--accent-2);
 }
 
 .footer-right .dot {
@@ -210,29 +326,50 @@ img {
     margin-inline: 8px;
 }
 
-/* ===== Buttons ===== */
+/* =======================================================================================
+   BUTTONS (kept minimal; pages.css can further style .btn on specific pages)
+   ======================================================================================= */
 .btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-weight: 700;
-    padding: 14px 18px;
-    border-radius: 10px;
-    border: 1px solid #343438;
-    background: #232325;
+    font-weight: 800;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .06);
+    background: var(--primary);
     color: #fff;
     box-shadow: var(--shadow);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+    background: var(--primary-strong);
+}
+
+.btn:focus-visible {
+    outline: var(--focus);
+    outline-offset: 2px;
 }
 
 .btn.secondary {
     background: transparent;
-    border: 1px solid #3a3a3d;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, .16);
+    box-shadow: none;
+}
+
+.btn.secondary:hover {
+    background: var(--primary-soft);
+    border-color: rgba(255, 255, 255, .28);
 }
 
 .btn .play {
     width: 12px;
     height: 12px;
-    border: 2px solid #fff;
+    border: 2px solid currentColor;
     border-left-color: transparent;
     border-radius: 50%;
     display: inline-grid;
@@ -244,33 +381,11 @@ img {
     content: "";
     border-style: solid;
     border-width: 6px 0 6px 8px;
-    border-color: transparent transparent transparent #fff;
+    border-color: transparent transparent transparent currentColor;
     margin-left: 2px;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 960px) {
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-list {
-        position: absolute;
-        right: 0;
-        top: 60px;
-        background: #1e1f21;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 14px;
-        flex-direction: column;
-        gap: 12px;
-        min-width: 180px;
-        display: none;
-    }
-
-    .nav-list.open {
-        display: flex;
-    }
-}
-
-/* ===== Page shells in pages.css ===== */
+/* =======================================================================================
+   MISC / UTILS
+   ======================================================================================= */
+/* page shells live in pages.css; this file is global chrome only */

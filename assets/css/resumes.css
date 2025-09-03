@@ -1,0 +1,236 @@
+:root {
+  --resume-max: 980px;
+}
+
+body.theme-dark {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.resume-wrap {
+  width: min(100%, var(--resume-max));
+  margin-inline: auto;
+  padding: clamp(16px, 4vw, 28px);
+}
+
+.resume-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  background: linear-gradient(0deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .02)), var(--surface-2);
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+}
+
+.resume-header .id h1 {
+  margin: 0 0 6px 0;
+  font-size: clamp(24px, 4.6vw, 34px);
+  line-height: 1.1;
+  letter-spacing: .2px;
+  font-weight: 900;
+  background: linear-gradient(180deg, #fff 0%, #dbe9ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.resume-header .role {
+  margin: 0;
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+.resume-photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.resume-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.stack-tags .tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: linear-gradient(0deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .02)), var(--surface-2);
+  font-weight: 700;
+  color: var(--text);
+  font-size: .92rem;
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 22px 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: .2px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(255, 255, 255, .06);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+  background: var(--primary-strong);
+}
+
+.btn:focus-visible {
+  outline: var(--focus);
+  outline-offset: 2px;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: none;
+}
+
+.btn.secondary:hover {
+  background: var(--primary-soft);
+  border-color: rgba(255, 255, 255, .26);
+}
+
+.resume-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.resume-card h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.05rem;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+  color: var(--blue-400);
+}
+
+.resume-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.kv {
+  display: grid;
+  gap: 4px;
+}
+
+.kv .k {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .95rem;
+}
+
+.kv .v {
+  color: var(--text);
+}
+
+.item {
+  display: grid;
+  gap: 6px;
+}
+
+.item .title {
+  font-weight: 800;
+}
+
+.item .meta {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.item ul {
+  margin: 6px 0 0 18px;
+}
+
+.item li {
+  margin: 4px 0;
+}
+
+.footer-note {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 12px;
+  font-size: .9rem;
+}
+
+/* Print (A4). Change to Letter if needed. */
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  .site-header,
+  .site-footer,
+  header-placeholder,
+  footer-placeholder,
+  .resume-actions {
+    display: none !important;
+  }
+
+  .resume-wrap {
+    padding: 0;
+  }
+
+  .resume-card,
+  .resume-header {
+    box-shadow: none !important;
+    border: 0 !important;
+    background: #fff !important;
+  }
+
+  .resume-header .id h1,
+  .resume-card h2 {
+    -webkit-text-fill-color: currentColor;
+    color: #000;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+}

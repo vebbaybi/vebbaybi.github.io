@@ -3,14 +3,106 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>1807 — Portfolio</title>
-    <meta name="description" content="webaby — AI • Robotics • Construction portfolio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <title>1807 — Uchenna Anozie (webbaby) | AI • Data • Embedded • Blockchain Portfolio</title>
+
+    <!-- Canonical & SEO (update the domain when final) -->
+    <link rel="canonical" href="https://1807.com/" />
+    <meta name="description"
+        content="Portfolio of Uchenna Anozie (webbaby): AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling. Explore projects, resumes, and research-ready skills for clinical research, fintech, and engineering teams." />
+    <meta name="keywords"
+        content="Uchenna Anozie, webbaby, 1807, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, clinical research, ProPharma, Ottawa" />
     <meta name="theme-color" content="#111111" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="1807 — Uchenna Anozie (webbaby) | AI • Data • Embedded • Blockchain Portfolio" />
+    <meta property="og:description"
+        content="Projects and resumes showcasing AI, Data Science, Embedded Systems, and Blockchain work. Research-ready skills, compliant documentation, and production-quality tooling." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://1807.com/" />
+    <meta property="og:image" content="https://1807.com/assets/images/thedev.webp" />
+    <meta property="og:image:alt" content="Portrait of Uchenna Anozie — AI, Data, Embedded & Blockchain portfolio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="1807 — Uchenna Anozie (webbaby) | AI • Data • Embedded • Blockchain" />
+    <meta name="twitter:description"
+        content="AI, Data Science, Embedded Systems, and Blockchain portfolio with research-ready skills and compliant documentation." />
+    <meta name="twitter:image" content="https://1807.com/assets/images/thedev.webp" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+
+    <!-- Performance -->
     <link rel="preload" href="/assets/css/main.css" as="style" />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
+
+    <!-- Optional: small local styles for eyebrow caret (you can move to pages.css) -->
+    <style>
+        .eyebrow .tw-wrapper {
+            position: relative;
+            white-space: nowrap
+        }
+
+        .eyebrow .tw-caret {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            margin-left: 6px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            vertical-align: -0.15em;
+            animation: tw-caret-blink 1s steps(2, start) infinite
+        }
+
+        @keyframes tw-caret-blink {
+            50% {
+                opacity: 0
+            }
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebSite",
+        "@id":"https://1807.com/#website",
+        "name":"1807 — webbaby",
+        "url":"https://1807.com/",
+        "description":"Portfolio of Uchenna Anozie (webbaby) — AI, Data Science, Embedded Systems, and Blockchain.",
+        "inLanguage":"en"
+      },
+      {
+        "@type":"Person",
+        "@id":"https://1807.com/#person",
+        "name":"Uchenna Emmanuel Anozie",
+        "alternateName":"webbaby",
+        "url":"https://1807.com/",
+        "image":"https://1807.com/assets/images/thedev.webp",
+        "jobTitle":"Computer & Data Scientist",
+        "sameAs":[
+          "https://www.linkedin.com/in/uchenna-anozie-a86143308",
+          "https://www.kaggle.com/eucee00"
+        ],
+        "knowsAbout":[
+          "Artificial Intelligence",
+          "Data Science",
+          "Embedded Systems",
+          "Blockchain",
+          "Clinical Research Data Management"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="theme-dark">
@@ -19,52 +111,92 @@
     <header-placeholder></header-placeholder>
 
     <main id="main" tabindex="-1">
-        <section class="home-hero">
+        <section class="home-hero" aria-labelledby="intro-heading">
             <div class="hero-left">
-                <img class="hero-img" src="/assets/images/thedev.webp" alt="Portrait" loading="eager" />
+                <img class="hero-img" src="/assets/images/thedev.webp" alt="Uchenna Anozie (webbaby)" width="720"
+                    height="900" loading="eager" decoding="async" fetchpriority="high" />
             </div>
 
             <div class="hero-right">
                 <div class="hero-content">
-                    <span class="eyebrow">Welcome to Eighteen-O-Seven-DOT-COM</span>
-                    <h1 class="hero-title">I’m webaby — AI, Automation & Robotics Specialist</h1>
+                    <!-- Eyebrow typewriter (animated, decorative) -->
+                    <div class="eyebrow" aria-hidden="true">
+                        <span class="tw-wrapper">
+                            <span id="eyebrow-rotator" class="tw-line"
+                                data-phrases='["I CODE","I BUILD","I CREATE","FOR THAT I AM","WELCOME TO THE RAIN..."]'>WELCOME
+                                TO THE RAIN...</span>
+                            <span class="tw-caret" aria-hidden="true"></span>
+                        </span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="hero-title" id="intro-heading">
+                        <span>My name is Uchenna — Computer Scientist</span><br />
+                        <span class="subline">Emerging Data Science, AI &amp; Embedded Systems Professional | Blockchain
+                            Enthusiast</span>
+                    </h1>
 
                     <p class="hero-sub">
-                        I build intelligent systems that bridge code, hardware, and real-world impact—spanning AI,
-                        automation,
-                        robotics, blockchain trading tech, and precision construction. This is more than a
-                        portfolio—it's proof I ship
-                        systems that work.
+                        I’m building a broad, adaptable foundation across software, hardware, and data — so I can tackle
+                        complex
+                        problems from multiple angles and deliver real-world impact.
                     </p>
 
-                    <ul class="hero-highlights">
-                        <li><strong>AI &amp; IT:</strong> Python, automation, model pipelines, NLP, data structures
-                            &amp; algorithms</li>
-                        <li><strong>Robotics &amp; Hardware:</strong> Arduino, Raspberry Pi, ESP32, IoT, sensor fusion,
+                    <p class="hero-sub-full">
+                        My core is Computer Science (B.Sc.): algorithms, data structures, and solid programming in
+                        Python, C/C++, and Rust.
+                        I’ve branched into Data Science to design reliable pipelines (cleaning, validation, EDA,
+                        visualization) that power intelligent systems.
+                        In parallel, I self-taught embedded hardware and automation — shipping working prototypes with
+                        Arduino, Raspberry Pi, and ESP32, integrating sensors and IoT logic in embedded C/C++.
+                        I also build practical tooling for blockchain (DEX integrations, smart-contract analysis,
+                        anti-rug heuristics, and Web3 automation).
+                        This breadth shows I learn fast, reason deeply, and execute with discipline — ready to support
+                        research, engineering, or product teams end-to-end.
+                    </p>
+
+                    <ul class="hero-highlights" aria-label="Key capabilities">
+                        <li><strong>Computer Science:</strong> B.Sc.; algorithms, data structures, OOP, design patterns
+                        </li>
+                        <li><strong>AI &amp; IT:</strong> Python (automation, NLP, model pipelines), C/C++, Rust,
+                            PineScript</li>
+                        <li><strong>AI &amp; Data Science:</strong> Data wrangling, cleaning, validation, visualization,
+                            EDA, ML basics, NLP</li>
+                        <li><strong>Embedded Systems &amp; IoT:</strong> Arduino, Raspberry Pi, ESP32, sensor fusion,
                             embedded C/C++</li>
-                        <li><strong>Blockchain &amp; Trading:</strong> DEX integration, smart contract analysis,
-                            anti-rug, Web3 automation</li>
-                        <li><strong>Construction:</strong> Windows/doors, hemlock &amp; siding, painting, site
-                            coordination</li>
+                        <li><strong>Blockchain &amp; Trading:</strong> DEX integrations, smart-contract auditing,
+                            anti-rug heuristics, Web3 scripting</li>
+                        <li><strong>Research &amp; Data Handling:</strong> Data entry, clinical/operational databases,
+                            compliance documentation (IRB/FDA-style), system queries, audit trails</li>
+                        <li><strong>Microsoft Office:</strong> Word, Excel, PowerPoint, Outlook (advanced docs,
+                            reporting, and spreadsheet analysis)</li>
+                        <li><strong>Construction:</strong> Site coordination, workflow organization, precision
+                            installation</li>
                     </ul>
 
                     <div class="hero-ctas">
-                        <a class="btn" href="projects.html">Explore Now</a>
-                        <a class="btn secondary" href="resumes.html">
-                            <span class="play" aria-hidden="true"></span> HIRE WEBABY
+                        <a class="btn" href="projects.html" aria-label="Explore projects">Explore Now</a>
+                        <a class="btn secondary" href="resumes.html" aria-label="View resumes and hire">
+                            <span class="play" aria-hidden="true"></span> Hire webbaby
                         </a>
                     </div>
                 </div>
             </div>
-
-            <div class="page-index">Page | 01</div>
         </section>
+
+        <div class="page-index" aria-hidden="true">Page | 01</div>
     </main>
 
     <footer-placeholder></footer-placeholder>
 
+    <noscript>
+        <div class="noscript-note">
+            JavaScript is disabled. Navigation and placeholders are limited without scripts enabled.
+        </div>
+    </noscript>
+
     <script type="module" src="/assets/js/app.js"></script>
-    <!-- If you add any dynamic logic later, include: <script type="module" src="/assets/js/pages/home.js"></script> -->
+    <script type="module" src="/assets/js/pages/home.js"></script>
 </body>
 
 </html>

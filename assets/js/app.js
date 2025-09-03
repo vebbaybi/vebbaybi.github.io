@@ -9,7 +9,7 @@ import { initHeader } from './ui/components/header.js';
 const pageMeta = {
   '/': { title: 'Home — 1807', desc: 'webaby portfolio' },
   '/index.html': { title: 'Home — 1807', desc: 'webaby portfolio' }, // Alias for root
-  '/projects.html': { title: 'Projects — 1807', desc: 'AI, Robotics, and Blockchain projects' },
+  '/projects.html': { title: 'Projects — 1807', desc: 'AI, Embedded-Systems, and Blockchain projects' },
   '/ai.html': { title: 'AI Projects — 1807', desc: 'Models, pipelines, and production AI systems' },
   '/robotics.html': { title: 'Robotics — 1807', desc: 'Embedded, control, and vision systems' },
   '/chains.html': { title: 'Blockchain — 1807', desc: 'DEX bots, scanners, and tooling' },
