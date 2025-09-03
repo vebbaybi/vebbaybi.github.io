@@ -1,0 +1,92 @@
+1807.com/
+├─ index.html                               # home page (contains <header-placeholder>, <main>, <footer-placeholder>)
+├─ projects.html                            # projects overview page
+├─ ai.html                                  # AI projects page
+├─ robotics.html                            # robotics projects page
+├─ chains.html                              # blockchain projects page
+├─ construction.html                        # construction endeavors page
+├─ resumes.html                             # resumes page (with tabs for IT/AI, Robotics, Construction)
+├─ toolbox.html                             # toolbox page
+├─ roadmap.html                             # roadmap page
+├─ changelog.html                           # changelog page
+├─ presskit.html                            # press kit page
+├─ contact.html                             # contact page
+├─ links.html                               # links page
+├─ blog.html                                # blog page (list view; detail via separate post pages if needed)
+├─ now.html                                 # now page
+├─ faq.html                                 # FAQ page
+├─ legal.html                               # legal page (privacy/terms)
+├─ 404.html                                 # custom 404 error page
+├─ favicon.ico
+├─ robots.txt
+├─ sitemap.xml                              # lists all .html paths for SEO
+├─ manifest.webmanifest                     # optional PWA basics
+│
+├─ partials/
+│  ├─ header.html                           # global nav, logo, theme toggle, etc.
+│  └─ footer.html                           # global footer, socials, copyright
+│
+├─ assets/
+│  ├─ css/
+│  │  ├─ main.css                           # reset, tokens, base layout, typography
+│  │  ├─ components.css                     # cards, chips, lightbox, tabs, badges, grid
+│  │  └─ pages.css                          # page-specific styles (home, ai, robotics, etc.)
+│  │
+│  ├─ js/
+│  │  ├─ app.js                             # bootstraps each page; loads header/footer; initializes page-specific logic
+│  │  ├─ state/
+│  │  │  └─ store.js                        # in-memory cache + localStorage (theme, filters)
+│  │  ├─ meta/
+│  │  │  └─ meta.js                         # updates <title>, description, OG/Twitter based on page data
+│  │  ├─ ui/
+│  │  │  ├─ components/
+│  │  │  │  ├─ header.js                    # injects /partials/header.html into <header-placeholder>
+│  │  │  │  ├─ footer.js                    # injects /partials/footer.html into <footer-placeholder>
+│  │  │  │  ├─ card.js                      # project/resume/service card factory
+│  │  │  │  ├─ lightbox.js                  # image/video modal
+│  │  │  │  ├─ tabs.js                      # tab controller (for resumes etc.)
+│  │  │  │  └─ filters.js                   # chips + search, persists state
+│  │  │  ├─ helpers.js                      # DOM qs/qsa, template, debounce, formatters
+│  │  │  └─ animations.js                   # shared motion, respects prefers-reduced-motion
+│  │  ├─ pages/                             # page-specific JS (loaded via <script> in each .html if needed)
+│  │  │  ├─ home.js
+│  │  │  ├─ ai.js
+│  │  │  ├─ robotics.js
+│  │  │  ├─ chains.js
+│  │  │  ├─ construction.js
+│  │  │  ├─ resumes.js
+│  │  │  ├─ toolbox.js
+│  │  │  ├─ roadmap.js
+│  │  │  ├─ changelog.js
+│  │  │  ├─ presskit.js
+│  │  │  ├─ contact.js
+│  │  │  ├─ links.js
+│  │  │  ├─ blog.js
+│  │  │  ├─ now.js
+│  │  │  ├─ faq.js
+│  │  │  └─ legal.js
+│  │  └─ utils/
+│  │     ├─ fetch.js                        # robust fetch for JSON/text loaders, error handling
+│  │     └─ guardrails.js                   # focus management, error handling
+│  │
+│  ├─ img/
+│  │  ├─ og/                                # Open Graph preview images per page
+│  │  ├─ home/
+│  │  ├─ ai/
+│  │  ├─ robotics/
+│  │  ├─ construction/
+│  │  ├─ resumes/
+│  │  └─ …
+│  │
+│  ├─ media/                                # videos, PDFs, TXT resumes, demo assets
+│  └─ fonts/
+│
+└─ data/                                    # content-only JSON (no code)
+   ├─ site.json                             # nav items, socials, contact, feature flags
+   ├─ projects.json                         # { id, slug, title, type, tags[], status, stack[], links{}, cover, blurb, timeline[], gallery[] }
+   ├─ updates.json                          # for Home + Changelog timelines
+   ├─ resumes.json                          # sections + pointers to /assets/media/*.txt|*.pdf
+   ├─ toolbox.json                          # software, hardware, build tools
+   ├─ roadmap.json                          # backlog|building|shipped
+   ├─ links.json                            # link-in-bio items
+   └─ blog.json                             # optional post list and content or external URLs
