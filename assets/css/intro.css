@@ -1,0 +1,144 @@
+/* ==============================================
+   Intro Puzzle Overlay Styles (3×3 sliding puzzle)
+   Pixel-accurate, accessible, reduced-motion aware
+   ============================================== */
+
+/* Tokens */
+:root{
+  --vb-bg: rgba(6,10,16,.90);
+  --vb-surface: #0b1018;
+  --vb-text: #e6edf3;
+  --vb-muted: #9aa5b1;
+  --vb-accent: #66e3ff;
+  --vb-border: rgba(102,227,255,.25);
+}
+
+/* Fullscreen overlay */
+#vb-intro-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(16px,4vh);          /* prevents edge clipping on small screens */
+  overflow: auto;                   /* safe scroll fallback on tiny viewports */
+  color: var(--vb-text);
+  background: var(--vb-bg);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* Dialog */
+#vb-intro-dialog{
+  width: min(96vw, 1040px);
+  max-height: 92vh;                /* dialog never taller than viewport */
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  row-gap: clamp(12px,1.6vw,18px);
+  background: linear-gradient(180deg,#0f1522,#0b0f18);
+  border: 1px solid var(--vb-border);
+  border-radius: 18px;
+  padding: clamp(16px,2.2vw,24px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+/* Header */
+#vb-intro-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#vb-intro-title{
+  font-size: clamp(18px,2.2vw,24px);
+  font-weight: 650;
+  letter-spacing: .2px;
+}
+
+#vb-intro-meta{
+  display: flex;
+  gap: 14px;
+  color: var(--vb-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Puzzle container (auto-scales to fit viewport without cropping) */
+#vb-puzzle-wrap{
+  place-self: center;
+  width: min(88vw, calc(92vh - 180px)); /* 180px ~ header+controls; keeps full puzzle visible */
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--vb-border);
+  background: #0a0f17;
+}
+
+/* Base image + interactive layer */
+#vb-puzzle-image,
+#vb-puzzle-layer{ position:absolute; inset:0; border-radius: inherit; }
+
+#vb-puzzle-image{ filter: brightness(.95) contrast(1.05); }
+
+/* Tiles (pixel-sliced; sizes set in JS) */
+.vb-tile{
+  position: absolute;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;                /* no seams */
+  background-repeat: no-repeat;
+  background-clip: padding-box;    /* no bleed at edges */
+}
+
+.vb-tile:focus-visible{ box-shadow: 0 0 0 3px rgba(102,227,255,.55); }
+.vb-empty{ opacity: 0; pointer-events: none; }
+
+/* Controls */
+#vb-intro-controls{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#vb-intro-hint{ color: var(--vb-muted); font-size: .95rem; }
+.vb-btns{ display: flex; gap: 10px; }
+
+.vb-btn{
+  background: #0f1726;
+  color: var(--vb-text);
+  border: 1px solid var(--vb-border);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  cursor: pointer;
+}
+.vb-btn.primary{ background: linear-gradient(180deg,#16243b,#131d2f); }
+.vb-btn:hover{ filter: brightness(1.08); }
+
+/* Solved flash */
+#vb-puzzle-image.vb-solved{ animation: vbSolved 650ms ease-out both; }
+@keyframes vbSolved{
+  from{ box-shadow: 0 0 0 0 rgba(102,227,255,0); }
+  to  { box-shadow: 0 0 0 14px rgba(102,227,255,.22); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #vb-intro-overlay{ -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .vb-tile{ transition: none !important; }
+}
+
+/* Mobile tweaks */
+@media (max-width: 520px){
+  #vb-intro-meta{ gap: 10px; font-size: .9rem; }
+  #vb-intro-controls{ flex-direction: column; gap: 12px; align-items: stretch; }
+  .vb-btns{ justify-content: flex-end; }
+}

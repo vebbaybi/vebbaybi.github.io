@@ -7,24 +7,24 @@ import { initHeader } from './ui/components/header.js';
 // Optional: import { initStore } from './state/store.js'; // For theme persistence, etc.
 
 const pageMeta = {
-  '/': { title: 'Home — 1807', desc: 'webaby portfolio' },
-  '/index.html': { title: 'Home — 1807', desc: 'webaby portfolio' }, // Alias for root
-  '/projects.html': { title: 'Projects — 1807', desc: 'AI, Embedded-Systems, and Blockchain projects' },
-  '/ai.html': { title: 'AI Projects — 1807', desc: 'Models, pipelines, and production AI systems' },
-  '/robotics.html': { title: 'Robotics — 1807', desc: 'Embedded, control, and vision systems' },
-  '/chains.html': { title: 'Blockchain — 1807', desc: 'DEX bots, scanners, and tooling' },
-  '/construction.html': { title: 'Construction — 1807', desc: 'Window/door install, siding, painting' },
-  '/resumes.html': { title: 'Resumes — 1807', desc: 'IT/AI, Robotics, and Construction resumes' },
-  '/toolbox.html': { title: 'Toolbox — 1807', desc: 'Software, hardware, and build tools' },
-  '/roadmap.html': { title: 'Roadmap — 1807', desc: 'Backlog, building, shipped' },
-  '/changelog.html': { title: 'Changelog — 1807', desc: 'Project updates and releases' },
-  '/presskit.html': { title: 'Press Kit — 1807', desc: 'Logos, bios, and assets' },
-  '/contact.html': { title: 'Contact — 1807', desc: 'Get in touch' },
-  '/links.html': { title: 'Links — 1807', desc: 'Link-in-bio hub' },
-  '/blog.html': { title: 'Blog — 1807', desc: 'Posts and notes' },
-  '/now.html': { title: 'Now — 1807', desc: 'What I’m focused on now' },
-  '/faq.html': { title: 'FAQ — 1807', desc: 'Frequently asked questions' },
-  '/legal.html': { title: 'Legal — 1807', desc: 'Privacy & Terms' },
+  '/': { title: 'Home — 1807-Chain', desc: 'webaby portfolio' },
+  '/index.html': { title: 'Home — 1807-Chain', desc: 'webaby portfolio' }, // Alias for root
+  '/projects.html': { title: 'Projects — 1807-Chain', desc: 'AI, Embedded-Systems, and Blockchain projects' },
+  '/ai.html': { title: 'AI Projects — 1807-Chain', desc: 'Models, pipelines, and production AI systems' },
+  '/robotics.html': { title: 'Robotics — 1807-Chain', desc: 'Embedded, control, and vision systems' },
+  '/chains.html': { title: 'Blockchain — 1807-Chain', desc: 'DEX bots, scanners, and tooling' },
+  '/construction.html': { title: 'Construction — 1807-Chain', desc: 'Window/door install, siding, painting' },
+  '/resumes.html': { title: 'Resumes — 1807-Chain', desc: 'IT/AI, Robotics, and Construction resumes' },
+  '/toolbox.html': { title: 'Toolbox — 1807-Chain', desc: 'Software, hardware, and build tools' },
+  '/roadmap.html': { title: 'Roadmap — 1807-Chain', desc: 'Backlog, building, shipped' },
+  '/changelog.html': { title: 'Changelog — 1807-Chain', desc: 'Project updates and releases' },
+  '/presskit.html': { title: 'Press Kit — 1807-Chain', desc: 'Logos, bios, and assets' },
+  '/contact.html': { title: 'Contact — 1807-Chain', desc: 'Get in touch' },
+  '/links.html': { title: 'Links — 1807-Chain', desc: 'Link-in-bio hub' },
+  '/blog.html': { title: 'Blog — 1807-Chain', desc: 'Posts and notes' },
+  '/now.html': { title: 'Now — 1807-Chain', desc: 'What I’m focused on now' },
+  '/faq.html': { title: 'FAQ — 1807-Chain', desc: 'Frequently asked questions' },
+  '/legal.html': { title: 'Legal — 1807-Chain', desc: 'Privacy & Terms' },
   // Add 404 or defaults if needed
 };
 
@@ -47,4 +47,9 @@ async function boot() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', boot);
+// Gate app bootstrap behind SITE_READY (puzzle exit/bypass)
+if (window.__SITE_READY__) {
+  boot();
+} else {
+  window.addEventListener('SITE_READY', boot, { once: true });
+}
