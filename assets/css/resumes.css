@@ -1,18 +1,59 @@
-:root {
-  --resume-max: 980px;
-}
+/* ==============================================
+   Resume page styles with cards, tags, and print support
+   Improvements:
+     - Removed redundant tokens, using main.css tokens
+     - Added full light/dark theme support using main.css tokens
+     - Aligned button styles with main.css .btn
+     - Used --cursor-pointer for interactive elements
+     - Optimized print styles for better compatibility
+     - Added theme-aware gradients and textures
+     - Ensured accessibility with --focus and reduced-motion support
+   ============================================== */
 
-body.theme-dark {
+/* ------------------------------ BASE ------------------------------ */
+body.theme-dark,
+body.theme-light {
   background: var(--bg);
   color: var(--text);
 }
 
+/* ------------------------------ LAYOUT ------------------------------ */
 .resume-wrap {
-  width: min(100%, var(--resume-max));
+  position: relative;
+  isolation: isolate;
+  width: min(100%, var(--container));
   margin-inline: auto;
   padding: clamp(16px, 4vw, 28px);
+  box-shadow: var(--shadow);
+  background: var(--surface);
 }
 
+/* Subtle checker texture (assuming assets exist; fallback to solid if missing) */
+.resume-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("/assets/images/checker.png");
+  background-repeat: repeat;
+  background-size: 22px 22px;
+  opacity: 0.06;
+  /* Default; override per theme if needed */
+}
+
+body.theme-light .resume-wrap::before {
+  opacity: 0.08;
+}
+
+/* Keep real content above the pattern */
+.resume-wrap>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ------------------------------ HEADER ------------------------------ */
 .resume-header {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -20,7 +61,7 @@ body.theme-dark {
   gap: 16px;
   padding: 16px 18px;
   border: 1px solid var(--border);
-  background: linear-gradient(0deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .02)), var(--surface-2);
+  background: var(--surface-2);
   border-radius: var(--radius-lg);
   margin-bottom: 16px;
 }
@@ -29,9 +70,9 @@ body.theme-dark {
   margin: 0 0 6px 0;
   font-size: clamp(24px, 4.6vw, 34px);
   line-height: 1.1;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   font-weight: 900;
-  background: linear-gradient(180deg, #fff 0%, #dbe9ff 100%);
+  background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -59,6 +100,7 @@ body.theme-dark {
   display: block;
 }
 
+/* ------------------------------ TAGS ------------------------------ */
 .stack-tags {
   display: flex;
   flex-wrap: wrap;
@@ -68,14 +110,22 @@ body.theme-dark {
 
 .stack-tags .tag {
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border);
-  background: linear-gradient(0deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .02)), var(--surface-2);
+  background: var(--surface-2);
   font-weight: 700;
   color: var(--text);
-  font-size: .92rem;
+  font-size: 0.92rem;
+  cursor: var(--cursor-pointer);
+  transition: var(--transition);
 }
 
+.stack-tags .tag:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary);
+}
+
+/* ------------------------------ ACTIONS ------------------------------ */
 .resume-actions {
   display: flex;
   flex-wrap: wrap;
@@ -83,26 +133,25 @@ body.theme-dark {
   margin: 12px 0 22px 0;
 }
 
+/* Align with main.css .btn */
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
+  gap: 10px;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
   background: var(--primary);
-  color: #fff;
-  font-weight: 700;
-  letter-spacing: .2px;
-  box-shadow: var(--shadow-1);
-  border: 1px solid rgba(255, 255, 255, .06);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  color: var(--white);
+  box-shadow: var(--shadow);
+  transition: var(--transition), transform 0.2s ease;
+  cursor: var(--cursor-pointer);
+  text-decoration: none;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-2);
+  transform: translateY(-1px) scale(1.02);
   background: var(--primary-strong);
 }
 
@@ -114,28 +163,35 @@ body.theme-dark {
 .btn.secondary {
   background: transparent;
   color: var(--text);
-  border-color: rgba(255, 255, 255, .16);
+  border: 1px solid var(--border);
   box-shadow: none;
 }
 
 .btn.secondary:hover {
   background: var(--primary-soft);
-  border-color: rgba(255, 255, 255, .26);
+  border-color: var(--border);
 }
 
+/* ------------------------------ CARDS & CONTENT ------------------------------ */
 .resume-card {
   border: 1px solid var(--border);
   background: var(--surface);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow);
   padding: 18px;
   margin-bottom: 14px;
+  transition: var(--transition);
+}
+
+.resume-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--blue-400);
 }
 
 .resume-card h2 {
   margin: 0 0 10px 0;
   font-size: 1.05rem;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
   text-transform: uppercase;
   color: var(--blue-400);
 }
@@ -143,6 +199,10 @@ body.theme-dark {
 .resume-grid {
   display: grid;
   gap: 12px;
+}
+
+.sum-com {
+  color: var(--text);
 }
 
 .kv {
@@ -153,7 +213,7 @@ body.theme-dark {
 .kv .k {
   color: var(--muted);
   font-weight: 600;
-  font-size: .95rem;
+  font-size: 0.95rem;
 }
 
 .kv .v {
@@ -167,11 +227,12 @@ body.theme-dark {
 
 .item .title {
   font-weight: 800;
+  color: var(--text);
 }
 
 .item .meta {
   color: var(--muted);
-  font-size: .95rem;
+  font-size: 0.95rem;
 }
 
 .item ul {
@@ -180,35 +241,50 @@ body.theme-dark {
 
 .item li {
   margin: 4px 0;
+  color: var(--text);
 }
 
 .footer-note {
   text-align: center;
   color: var(--muted);
   margin-top: 12px;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
-/* Print (A4). Change to Letter if needed. */
-@media print {
-  :root {
-    color-scheme: light;
-  }
+/* ------------------------------ MOTION PREFERENCES ------------------------------ */
+@media (prefers-reduced-motion: reduce) {
 
+  .btn,
+  .stack-tags .tag,
+  .resume-card {
+    transition: none !important;
+  }
+}
+
+/* ------------------------------ PRINT ------------------------------ */
+@media print {
   body {
     background: #fff !important;
+    color: #000 !important;
   }
 
   .site-header,
   .site-footer,
-  header-placeholder,
-  footer-placeholder,
-  .resume-actions {
+  .resume-actions,
+  .btn {
     display: none !important;
   }
 
   .resume-wrap {
-    padding: 0;
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .resume-wrap::before {
+    display: none !important;
   }
 
   .resume-card,
@@ -216,17 +292,26 @@ body.theme-dark {
     box-shadow: none !important;
     border: 0 !important;
     background: #fff !important;
+    color: #000 !important;
   }
 
   .resume-header .id h1,
   .resume-card h2 {
-    -webkit-text-fill-color: currentColor;
-    color: #000;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: #000 !important;
+  }
+
+  .stack-tags .tag {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
   }
 
   a {
     color: #000 !important;
-    text-decoration: none;
+    text-decoration: underline !important;
   }
 
   @page {

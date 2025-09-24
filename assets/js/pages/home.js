@@ -29,12 +29,18 @@ function mount() {
     const raw = tw.el.getAttribute("data-phrases");
     tw.phrases = raw ? JSON.parse(raw) : [fallbackText()];
   } catch { tw.phrases = [fallbackText()]; }
-
   if (!Array.isArray(tw.phrases) || tw.phrases.length === 0) tw.phrases = [fallbackText()];
 
-  if (tw.isReducedMotion) { tw.el.textContent = tw.phrases[tw.iPhrase] || fallbackText(); return; }
+  // HMR-safe clean state
+  clearLineNode();
+  if (tw.isReducedMotion) {
+    tw.el.textContent = tw.phrases[tw.iPhrase] || fallbackText();
+    return;
+  }
 
-  tw.el.textContent = ""; appendLineNode();
+  // Ensure we have a writable line node
+  let line = getLineNode();
+  if (!line) appendLineNode(); // add child .tw-line if the container itself isn't .tw-line
   tw.iPhrase = 0; tw.iChar = 0; tw.typing = true;
 
   document.addEventListener("visibilitychange", onVisibilityChange);
@@ -44,18 +50,35 @@ function mount() {
 function cleanup() {
   stopTyping();
   document.removeEventListener("visibilitychange", onVisibilityChange);
+  clearLineNode();
 }
 
 function fallbackText() { return "WELCOME TO THE RAIN..."; }
 
+// If container itself already has .tw-line, use it; else look for child .tw-line.
+function getLineNode() {
+  if (!tw.el) return null;
+  if (tw.el.classList.contains("tw-line")) return tw.el;
+  return tw.el.querySelector(".tw-line");
+}
+
+// Remove previous run’s characters/children
+function clearLineNode() {
+  if (!tw.el) return;
+  // If container is .tw-line, clear its children; else clear its first .tw-line child if present.
+  const node = tw.el.classList.contains("tw-line") ? tw.el : tw.el.querySelector(".tw-line");
+  if (node) { node.textContent = ""; }
+  else { tw.el.textContent = ""; }
+}
+
 function appendLineNode() {
   if (!tw.el) return;
+  // Only append if the container itself isn't meant to be the line node
+  if (tw.el.classList.contains("tw-line")) return;
   const line = document.createElement("span");
   line.className = "tw-line";
   tw.el.appendChild(line);
 }
-
-function getLineNode() { return tw.el ? tw.el.querySelector(".tw-line") : null; }
 
 function pickTypingColor() {
   const pool = CONFIG.colors.filter(c => c !== tw.prevColor);
@@ -124,10 +147,11 @@ try {
   }
 } catch { /* no-op */ }
 
+/* Optional render() helper (left intact; hero image path aligned with HTML) */
 export async function render(target) {
   if (!target) return;
   target.setAttribute('aria-busy', 'true');
-  const heroImg = '/assets/images/thedev.webp';
+  const heroImg = '/assets/images/theshark.jpg';
   target.innerHTML = `
     <section class="home-hero">
       <div class="hero-left">

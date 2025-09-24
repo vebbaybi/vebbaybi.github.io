@@ -1,0 +1,1267 @@
+/* ==============================================
+   1807 — SCROLLER.CSS (Uniq-Choreo + Intro Patch)
+   - Sticky scrub video sits BEHIND panels
+   - Consolidated layers (no conflicting z-index)
+   - Per-panel layouts + effect classes
+   - Intro trigger visibility + scoped pause
+   ============================================== */
+
+/* ------------------------------ ROOT TOKENS ------------------------------ */
+:root {
+    --accent-blue: var(--blue-600);
+    --accent-cyan: var(--blue-400);
+    --circle-radius: clamp(120px, 20vw, 180px);
+    --stagger-delay: 0.2s;
+    --animation-duration: 0.6s;
+    --transition-smooth: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --panel-min-h: clamp(68vh, 78vh, 86vh);
+    --panel-max-w: min(900px, 92vw);
+    --media-max-h: 52vh;
+    --media-max-h-sm: 46vh;
+    --media-max-h-xs: 40vh;
+
+    --panel-phase-title: 360ms;
+    --panel-phase-media: 420ms;
+    --panel-phase-text: 460ms;
+    --panel-phase-gap: 120ms;
+
+    --fx-delay: 0ms;
+    --fx-duration: 420ms;
+    --fx-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ------------------------------ ACCESSIBILITY ------------------------------ */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* ------------------------------ BASE ------------------------------ */
+@layer base {
+    html {
+        scroll-padding-top: clamp(56px, 8vh, 96px);
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--surface-2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent-blue);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-cyan);
+    }
+}
+
+/* ------------------------------ HERO ------------------------------ */
+@layer hero {
+
+    .home-hero-1,
+    .home-hero {
+        position: relative;
+        padding: clamp(20px, 4vw, 32px) 0;
+        border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        overflow: hidden;
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+    }
+
+    .hero-content {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: clamp(20px, 4vw, 32px);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpFadeIn 1s ease-out .3s forwards;
+    }
+
+    .eyebrow {
+        color: var(--muted);
+        letter-spacing: .2em;
+        text-transform: uppercase;
+        font-size: var(--font-size-base);
+        margin-bottom: 10px;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        opacity: 0;
+        animation: fadeIn .8s ease-out .6s forwards;
+    }
+
+    .eyebrow::before {
+        content: "";
+        width: 26px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        border-radius: 2px;
+        opacity: .8;
+    }
+
+    .eyebrow .tw-wrapper {
+        position: relative;
+        white-space: nowrap;
+    }
+
+    .eyebrow .tw-caret {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        margin-left: 6px;
+        background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan));
+        vertical-align: -.15em;
+        animation: tw-caret-blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes tw-caret-blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .tw-line {
+        display: inline-block;
+    }
+
+    .tw-char {
+        color: var(--text);
+        transition: color var(--transition);
+    }
+
+    .tw-char.is-typing {
+        color: var(--blue-400);
+    }
+
+    .hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUpFadeIn 1s ease-out .9s forwards;
+    }
+
+    .page-index {
+        text-align: center;
+        color: var(--muted);
+        margin: 2rem 0;
+        font-size: var(--font-size-base);
+        opacity: 0;
+        animation: fadeIn 1s ease-out 1.2s forwards;
+    }
+}
+
+/* ------------------------------ STICKY VIDEO (BEHIND CONTENT) ------------------------------ */
+@layer video {
+    .scrolly-video {
+        position: sticky;
+        top: clamp(56px, 8vh, 96px);
+        /* KEY: keep the video in a LOWER stacking context than panels */
+        z-index: 0;
+        /* behind */
+        max-width: min(1100px, 94vw);
+        margin: clamp(8px, 3vw, 24px) auto;
+        transition: box-shadow .3s ease, transform .3s ease, opacity .3s ease;
+        will-change: transform, box-shadow;
+        opacity: 0;
+        animation: zoomIn 1.2s ease-out 0.6s forwards;
+        /* Don't intercept clicks; panels are above */
+        pointer-events: none;
+    }
+
+    .scrolly-video .hero-video {
+        width: 100%;
+        height: clamp(320px, 65vh, 720px);
+        display: block;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+        box-shadow: var(--shadow);
+        filter: grayscale(20%) contrast(1.05);
+        transform: translateZ(0);
+    }
+
+    body.theme-light .scrolly-video .hero-video {
+        filter: grayscale(10%) contrast(1.02);
+    }
+
+    .scrolly-video.sepia .hero-video {
+        filter: sepia(.6) contrast(1.05) saturate(1.1);
+    }
+
+    .scrolly-video.grayscale .hero-video {
+        filter: grayscale(.85) contrast(1.05);
+    }
+
+    /* Optional overlay image that can fade out */
+    .scrolly-banner {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        /* stays with video (still behind panels) */
+        transition: opacity 0.6s ease;
+        pointer-events: none;
+    }
+
+    .scrolly-banner.fade-out {
+        opacity: 0;
+    }
+}
+
+/* ------------------------------ STORY CONTAINER & PANELS (ABOVE VIDEO) ------------------------------ */
+@layer story {
+    #scrolly-story.scrolly {
+        position: relative;
+        z-index: 2;
+        /* ABOVE video & banner */
+        max-width: var(--panel-max-w);
+        margin: clamp(16px, 4vw, 28px) auto;
+        padding: 0 clamp(16px, 4vw, 24px);
+        /* first panel starts below sticky video */
+        margin-top: calc(clamp(56px, 8vh, 96px) + 16px);
+    }
+
+    .scrolly__panel {
+        position: relative;
+        /* creates local stacking context above video */
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: clamp(14px, 3.2vw, 22px);
+        box-shadow: var(--shadow);
+        margin: clamp(18px, 2.6vw, 28px) 0;
+        scroll-margin-block: calc(clamp(56px, 8vh, 96px) + 16px);
+        transition: opacity .4s ease, transform .4s ease, border-color .3s ease;
+        will-change: opacity, transform;
+        opacity: .85;
+        transform: translateY(10px) scale(.985);
+        min-height: var(--panel-min-h);
+        display: grid;
+        align-content: center;
+        z-index: 1;
+        /* ensures it paints above any descendants of video container */
+    }
+
+    .scrolly__panel.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        border-color: var(--blue-400);
+        box-shadow: 0 8px 24px rgba(96, 165, 250, .25);
+    }
+
+    .scrolly__panel:hover,
+    .scrolly__panel:focus-within {
+        border-color: var(--blue-400);
+        box-shadow: 0 8px 24px rgba(96, 165, 250, .25);
+        transform: translateY(-2px) scale(1.01);
+    }
+
+    .scrolly__panel:focus-visible {
+        outline: var(--focus);
+        outline-offset: 3px;
+    }
+
+    .panel-content {
+        position: relative;
+        display: grid;
+        gap: clamp(.75rem, 1.8vw, 1.25rem);
+        justify-items: center;
+        align-items: center;
+        max-width: var(--panel-max-w);
+        margin-inline: auto;
+        text-align: center;
+    }
+
+    .panel-title {
+        margin: 0 0 .6rem 0;
+        font-size: var(--font-size-h2);
+        line-height: var(--line-height-heading);
+        font-weight: 700;
+        background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: var(--transition-smooth);
+        max-width: 36ch;
+    }
+
+    .panel-text {
+        margin: .25rem 0;
+        color: var(--accent-2);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        opacity: 0;
+        transform: translateX(30px);
+        transition: var(--transition-smooth);
+        max-width: 68ch;
+    }
+
+    .panel-list {
+        list-style: disc;
+        padding-left: 1.25rem;
+        margin: .25rem 0;
+        color: var(--text);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        opacity: 0;
+        transform: translateY(20px) rotate(-5deg);
+        transition: var(--transition-smooth);
+        text-align: left;
+        max-width: 72ch;
+    }
+
+    .panel-figure {
+        margin-top: .5rem;
+        position: relative;
+        opacity: 0;
+        transform: scale(.98);
+        transition: var(--transition-smooth);
+        max-height: var(--media-max-h);
+        width: 100%;
+        display: grid;
+        place-items: center;
+    }
+
+    .panel-img {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        max-height: inherit;
+        display: block;
+        object-fit: contain;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        filter: saturate(1.03) contrast(1.02);
+        transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .scrolly__panel.active .panel-title {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: .08s;
+    }
+
+    .scrolly__panel.active .panel-text {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: .16s;
+    }
+
+    .scrolly__panel.active .panel-list {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+        transition-delay: .24s;
+    }
+
+    .scrolly__panel.active .panel-figure {
+        opacity: 1;
+        transform: scale(1);
+        transition-delay: .28s;
+    }
+
+    /* Navigation (JS toggles .visible) */
+    .scrolly-controls {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 1rem;
+        z-index: 1100;
+        /* above everything */
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all .5s ease;
+    }
+
+    .scrolly-controls.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .scrolly-control {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--accent-blue);
+        color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+        transition: all .3s ease;
+    }
+
+    .scrolly-control:hover {
+        background: var(--accent-cyan);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, .2);
+    }
+
+    .scrolly-control:active {
+        transform: translateY(0);
+    }
+
+    /* Progress bar */
+    .scrolly-progress,
+    #progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        z-index: 1200;
+    }
+
+    .scrolly-progress {
+        background: rgba(0, 0, 0, .1);
+    }
+
+    .scrolly-progress-bar,
+    #progress {
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+        transition: width .3s ease;
+    }
+}
+
+/* ------------------------------ LAYOUT VARIANTS ------------------------------ */
+.layout--centered .panel-content {
+    grid-template-columns: 1fr;
+}
+
+.layout--img-left .panel-content,
+.layout--img-right .panel-content {
+    width: 100%;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+    text-align: left;
+}
+
+.layout--img-left .panel-figure {
+    grid-column: 1;
+}
+
+.layout--img-left .panel-title,
+.layout--img-left .panel-text,
+.layout--img-left .panel-list {
+    grid-column: 2;
+}
+
+.layout--img-right .panel-figure {
+    grid-column: 2;
+}
+
+.layout--img-right .panel-title,
+.layout--img-right .panel-text,
+.layout--img-right .panel-list {
+    grid-column: 1;
+    text-align: right;
+}
+
+.layout--stacked .panel-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.layout--stacked .panel-figure {
+    order: 1;
+}
+
+.layout--stacked .panel-title {
+    order: 2;
+}
+
+.layout--stacked .panel-text,
+.layout--stacked .panel-list {
+    order: 3;
+}
+
+.layout--split-2 .panel-content {
+    grid-template-columns: 1fr minmax(0, 1.2fr) 1fr;
+    gap: clamp(1rem, 2.2vw, 1.5rem);
+    align-items: center;
+    text-align: center;
+}
+
+.split-center-text .panel-title,
+.split-center-text .panel-text,
+.split-center-text .panel-list {
+    grid-column: 2;
+}
+
+.has-split-2 .panel-figure:nth-of-type(1) {
+    grid-column: 1;
+}
+
+.has-split-2 .panel-figure:nth-of-type(2) {
+    grid-column: 3;
+}
+
+/* ring-3 */
+.layout--ring-3 .panel-content {
+    grid-template-columns: 1fr;
+    place-items: center;
+}
+
+.layout--ring-3 .panel-figure {
+    max-height: unset;
+}
+
+.layout--ring-3 .panel-figure--circular {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: calc(var(--circle-radius)*2);
+    height: calc(var(--circle-radius)*2);
+    margin: 1rem auto;
+}
+
+.layout--ring-3 .panel-figure--circular .panel-img {
+    position: absolute;
+    width: calc(var(--circle-radius)* .6);
+    height: calc(var(--circle-radius)* .6);
+    border-radius: 50%;
+    object-fit: cover;
+    transform-origin: center;
+}
+
+/* grid-4 */
+.layout--grid-4 .panel-content {
+    grid-template-columns: 1fr;
+}
+
+.layout--grid-4 .panel-figure {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+    max-height: unset;
+}
+
+.layout--grid-4 .panel-figure .panel-img {
+    max-height: 32vh;
+}
+
+/* ------------------------------ EFFECT CLASSES ------------------------------ */
+/* Titles */
+.fx-title--flash-in.fx--run {
+    animation: fx-flash-in var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-flash-in {
+    from {
+        opacity: 0;
+        transform: scale(.96);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.fx-title--slide-l.fx--run {
+    animation: fx-slide-l var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-slide-l {
+    from {
+        opacity: 0;
+        transform: translateX(-28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fx-title--slide-r.fx--run {
+    animation: fx-slide-r var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-slide-r {
+    from {
+        opacity: 0;
+        transform: translateX(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fx-title--rise.fx--run {
+    animation: fx-rise var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-rise {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fx-title--fade.fx--run {
+    animation: fx-fade var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fx-title--typewriter.fx--run {
+    overflow: hidden;
+    border-right: 2px solid var(--accent-blue);
+    animation: typing var(--fx-duration) steps(30, end) var(--fx-delay) both, blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: var(--accent-blue)
+    }
+}
+
+.fx-title--glitch.fx--run {
+    animation: fx-glitch .6s steps(2, end) var(--fx-delay) 1 both;
+}
+
+@keyframes fx-glitch {
+    0% {
+        transform: translateX(0)
+    }
+
+    20% {
+        transform: translateX(-2px)
+    }
+
+    40% {
+        transform: translateX(2px)
+    }
+
+    60% {
+        transform: translateX(-1px)
+    }
+
+    80% {
+        transform: translateX(1px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}
+
+/* Text */
+.fx-text--fade-stagger.fx--run {
+    animation: fx-fade-up var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.fx-text--slide-up.fx--run {
+    animation: fx-rise var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+.fx-text--reveal-lines.fx--run {
+    position: relative;
+    overflow: hidden;
+}
+
+.fx-text--reveal-lines.fx--run::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--surface);
+    transform: translateX(-101%);
+    animation: fx-reveal-mask var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-reveal-mask {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(101%)
+    }
+}
+
+.fx-text--typewriter.fx--run {
+    animation: typing var(--fx-duration) steps(40, end) var(--fx-delay) both;
+}
+
+/* Media */
+.fx-media--scale-in.fx--run .panel-img,
+.fx-media--scale-in.fx--run {
+    animation: fx-scale-in var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(.92)
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+.fx-media--hover .panel-img {
+    animation: fx-hover 6s ease-in-out .6s infinite alternate;
+}
+
+@keyframes fx-hover {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(-8px)
+    }
+}
+
+.fx-media--bounce.fx--run .panel-img {
+    animation: fx-bounce-in var(--fx-duration) cubic-bezier(.2, .9, .25, 1.25) var(--fx-delay) both;
+}
+
+@keyframes fx-bounce-in {
+    0% {
+        opacity: 0;
+        transform: translateY(18px) scale(.96)
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.02)
+    }
+
+    100% {
+        transform: translateY(0) scale(1)
+    }
+}
+
+.fx-media--tilt .panel-img {
+    transform-style: preserve-3d;
+}
+
+.fx-media--tilt.fx--run .panel-img {
+    animation: fx-tilt var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-tilt {
+    from {
+        transform: rotateX(6deg) rotateY(-6deg) scale(.98);
+        opacity: 0
+    }
+
+    to {
+        transform: rotateX(0) rotateY(0) scale(1);
+        opacity: 1
+    }
+}
+
+.fx-media--parallax .panel-img {
+    will-change: transform;
+}
+
+.fx-media--parallax.fx--run .panel-img {
+    animation: fx-parallax var(--fx-duration) var(--fx-ease) var(--fx-delay) both;
+}
+
+@keyframes fx-parallax {
+    from {
+        transform: translateY(12px)
+    }
+
+    to {
+        transform: translateY(0)
+    }
+}
+
+/* Opposite entrances – shared optimizations + directional hooks */
+.fx-media--opposite {
+    --opposite-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform, opacity;
+    perspective: 800px;
+}
+
+.fx-media--opposite .panel-img {
+    backface-visibility: hidden;
+    transform-origin: center;
+}
+
+.fx-media--from-left {
+    animation: fx-slide-l var(--fx-duration) var(--opposite-ease, var(--fx-ease)) var(--fx-delay) both;
+}
+
+.fx-media--from-right {
+    animation: fx-slide-r var(--fx-duration) var(--opposite-ease, var(--fx-ease)) var(--fx-delay) both;
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .fx-media--opposite .panel-img {
+        will-change: transform;
+    }
+}
+
+.fx-media--spin .panel-figure--circular {
+    animation: fx-spin 14s linear 1.2s infinite;
+}
+
+@keyframes fx-spin {
+    from {
+        transform: rotate(0)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+/* ------------------------------ LEGACY/BASE ANIMS ------------------------------ */
+@layer effects {
+    @keyframes fadeIn {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes slideUpFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px)
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0)
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(.95)
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1)
+        }
+    }
+
+    @keyframes slideInL {
+        from {
+            opacity: 0;
+            transform: translate3d(-28px, 8px, 0) scale(.98)
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1)
+        }
+    }
+
+    @keyframes slideInR {
+        from {
+            opacity: 0;
+            transform: translate3d(28px, 8px, 0) scale(.98)
+        }
+
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1)
+        }
+    }
+
+    @keyframes rollIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px) rotate(-8deg) scale(.96)
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) rotate(0) scale(1)
+        }
+    }
+
+    @keyframes splashIn {
+        0% {
+            opacity: 0;
+            transform: scale(.85);
+            filter: saturate(.9) blur(1px)
+        }
+
+        60% {
+            opacity: 1;
+            transform: scale(1.03)
+        }
+
+        100% {
+            transform: scale(1)
+        }
+    }
+
+    @keyframes ringPulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(96, 165, 250, .35)
+        }
+
+        70% {
+            box-shadow: 0 0 0 18px rgba(96, 165, 250, 0)
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(96, 165, 250, 0)
+        }
+    }
+
+    .anim-slide-left {
+        animation: slideInL .6s ease both;
+    }
+
+    .anim-slide-right {
+        animation: slideInR .6s ease both;
+    }
+
+    .anim-roll-in {
+        animation: rollIn .6s cubic-bezier(.2, .7, .2, 1) both;
+    }
+
+    .anim-splash {
+        animation: splashIn .6s ease-out both;
+    }
+
+    .anim-ring-pulse {
+        animation: ringPulse 1.8s ease-out 1;
+        border-radius: var(--radius-md);
+    }
+}
+
+/* ------------------------------ INTRO TRIGGER + PATCH ------------------------------ */
+/* Scope pause gate to story only */
+#scrolly-story [data-anim-paused="true"] {
+    animation-play-state: paused !important;
+}
+
+/* Ensure hero/eyebrow are never paused */
+.home-hero,
+.home-hero *,
+#hero,
+#hero * {
+    animation-play-state: running !important;
+}
+
+#panel-intro .panel-title.trigger-start {
+    opacity: 1 !important;
+    transform: none !important;
+    background: none !important;
+    color: var(--text) !important;
+    -webkit-text-fill-color: currentColor !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+    /* above everything local */
+}
+
+#sv-scrim {
+    pointer-events: none;
+}
+/* ---------- Overlay banner above video (but below panels) ---------- */
+.scrolly-video {
+    position: sticky;
+    top: clamp(56px, 8vh, 96px);
+    z-index: 0;
+}
+
+.scrolly-video .hero-video {
+    display: block;
+    width: 100%;
+    height: clamp(320px, 65vh, 720px);
+    object-fit: cover;
+}
+
+.scrolly-banner {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    /* ABOVE the video within the container */
+    opacity: 1;
+    transition: opacity .6s ease;
+    pointer-events: none;
+    /* never block clicks */
+}
+
+/* panels and UI stay above */
+#scrolly-story {
+    position: relative;
+    z-index: 2;
+}
+
+.scrolly-controls,
+.scrolly-progress {
+    z-index: 1200;
+}
+
+/* ---------- Click-to-begin → fade banner out ---------- */
+.scrolly-video.playing .scrolly-banner {
+    opacity: 0;
+}
+
+/* optional: fully remove the banner after the fade (if you add a class) */
+.scrolly-video.playing .scrolly-banner.is-gone {
+    display: none;
+}
+
+/* keep your pause scope exactly as before */
+#scrolly-story [data-anim-paused="true"] {
+    animation-play-state: paused !important;
+}
+
+/* Transparent panels so video shows through */
+.scrolly__panel {
+    background: color-mix(in srgb, var(--surface-2) 85%, transparent);
+    /* fallback if color-mix unsupported */
+    background: rgba(var(--surface-2-rgb, 20, 24, 28), 0.85);
+    /* adds glassy feel */
+    -webkit-backdrop-filter: blur(33%);
+    backdrop-filter: blur(33%);
+}
+.scrolly__panel.active {
+    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    backdrop-filter: blur(8px);
+}
+/* ------------------------------ REDUCED MOTION ------------------------------ */
+@layer motion {
+    @media (prefers-reduced-motion: reduce) {
+
+        .scrolly-video,
+        .scrolly-video .hero-video,
+        .scrolly__panel,
+        .scrolly__panel.active,
+        .eyebrow .tw-caret,
+        .panel-title,
+        .panel-text,
+        .panel-list,
+        .panel-img,
+        .anim-slide-left,
+        .anim-slide-right,
+        .anim-roll-in,
+        .anim-splash,
+        .anim-ring-pulse,
+        .scrolly-control,
+        .typewriter,
+        .fx-title--flash-in,
+        .fx-title--slide-l,
+        .fx-title--slide-r,
+        .fx-title--rise,
+        .fx-title--fade,
+        .fx-title--glitch,
+        .fx-text--fade-stagger,
+        .fx-text--slide-up,
+        .fx-text--reveal-lines,
+        .fx-text--typewriter,
+        .fx-media--scale-in,
+        .fx-media--hover,
+        .fx-media--bounce,
+        .fx-media--tilt,
+        .fx-media--parallax,
+        .fx-media--opposite,
+        .fx-media--spin {
+            transition: none !important;
+            animation: none !important;
+            transform: none !important;
+            filter: none !important;
+            opacity: 1 !important;
+        }
+
+        .panel-figure--circular .panel-img {
+            transform: none !important;
+        }
+    }
+}
+
+/* ------------------------------ RESPONSIVE ------------------------------ */
+@layer responsive {
+    @media (max-width:1024px) {
+        :root {
+            --media-max-h: 50vh;
+        }
+    }
+
+    @media (max-width:768px) {
+        :root {
+            --media-max-h: var(--media-max-h-sm);
+        }
+
+        .hero-ctas {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scrolly-controls {
+            bottom: 1rem;
+            right: 1rem;
+        }
+
+        .scrolly-control {
+            width: 44px;
+            height: 44px;
+            font-size: 1rem;
+        }
+
+        .panel-figure--circular {
+            width: calc(var(--circle-radius)*1.5);
+            height: calc(var(--circle-radius)*1.5);
+        }
+
+        .panel-figure--circular .panel-img {
+            width: calc(var(--circle-radius)*.4);
+            height: calc(var(--circle-radius)*.4);
+        }
+
+        .layout--img-left .panel-content,
+        .layout--img-right .panel-content,
+        .layout--split-2 .panel-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .layout--img-right .panel-title,
+        .layout--img-right .panel-text,
+        .layout--img-right .panel-list {
+            text-align: center;
+        }
+    }
+
+    @media (max-width:560px) {
+        :root {
+            --media-max-h: var(--media-max-h-xs);
+        }
+    }
+
+    @media (max-width:600px) {
+        .scrolly__panel {
+            min-height: calc(100vh - 80px);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .panel-content {
+            gap: 1rem;
+        }
+
+        .panel-title {
+            font-size: var(--font-size-h3);
+        }
+
+        .panel-text,
+        .panel-list {
+            font-size: var(--font-size-base);
+        }
+    }
+
+    @media (max-width:480px) {
+        .scrolly__panel {
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .panel-title {
+            font-size: var(--font-size-h3);
+        }
+
+        .scrolly-controls {
+            bottom: .5rem;
+            right: .5rem;
+        }
+    }
+}

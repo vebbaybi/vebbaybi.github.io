@@ -1,0 +1,376 @@
+/* =====================================================
+   1807-chain — robotics.css (v1.1)
+   Page styles for robotics.html
+   - Hero with video banner overlay
+   - Cards grid + chips
+   - Architecture grid
+   - Gallery strip
+   - Docs & Diagrams (PDF viewer)
+   - CTA section
+   - Responsive tiers
+   ===================================================== */
+
+:root {
+    --rbx-gap: clamp(12px, 2.2vw, 20px);
+    --rbx-radius: var(--radius-lg, 16px);
+    --rbx-card-bg: color-mix(in srgb, var(--surface-2, #151a1f) 84%, transparent);
+    --rbx-card-bg-active: color-mix(in srgb, var(--surface-2, #151a1f) 92%, transparent);
+    --rbx-blur: 6px;
+    --rbx-blur-strong: 10px;
+}
+
+/* ------------------------------ HERO ------------------------------ */
+.page-hero {
+    position: relative;
+    padding: clamp(16px, 3vw, 28px) 0;
+    overflow: hidden;
+}
+
+.page-hero__media {
+    position: relative;
+    max-width: min(1100px, 94vw);
+    margin: 0 auto;
+}
+
+.page-hero .scrolly-video {
+    position: sticky;
+    top: clamp(56px, 8vh, 96px);
+    z-index: 0;
+    border-radius: var(--rbx-radius);
+}
+
+.page-hero .scrolly-banner {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: opacity .6s ease;
+    pointer-events: none;
+    border-radius: var(--rbx-radius);
+}
+
+.page-hero .hero-video {
+    display: block;
+    width: 100%;
+    height: clamp(340px, 60vh, 720px);
+    object-fit: cover;
+    border-radius: var(--rbx-radius);
+    border: 1px solid var(--border);
+    filter: grayscale(18%) contrast(1.05);
+}
+
+/* content on top */
+.page-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: clamp(10px, 2.4vw, 18px) auto 0;
+    text-align: center;
+}
+
+.page-title {
+    margin: 0 0 .35em 0;
+    font-size: clamp(1.75rem, 2.6vw, 2.6rem);
+    line-height: 1.15;
+    font-weight: 800;
+    background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+    color: var(--accent-2);
+    max-width: 72ch;
+    margin: 0 auto;
+}
+
+/* ------------------------------ STATS ------------------------------ */
+.section {
+    padding: clamp(28px, 5vw, 56px) 0;
+}
+
+.container {
+    max-width: min(1100px, 92vw);
+    margin: 0 auto;
+    padding: 0 clamp(12px, 2.6vw, 20px);
+}
+
+.section--stats .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--rbx-gap);
+}
+
+.stat {
+    background: var(--rbx-card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--rbx-radius);
+    padding: clamp(14px, 2vw, 18px);
+    text-align: center;
+}
+
+.stat__num {
+    font-size: clamp(1.25rem, 3.2vw, 2rem);
+    font-weight: 800;
+    color: var(--text);
+}
+
+.stat__label {
+    color: var(--muted);
+}
+
+/* ------------------------------ PROJECT CARDS ------------------------------ */
+.section-title {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    margin: 0 0 .75rem 0;
+}
+
+.cards-grid--projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--rbx-gap);
+}
+
+.card {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border-radius: var(--rbx-radius);
+    overflow: clip;
+    border: 1px solid var(--border);
+    background: var(--rbx-card-bg);
+}
+
+.card__media {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) contrast(1.02);
+}
+
+.card__body {
+    padding: clamp(12px, 2vw, 18px);
+    display: grid;
+    gap: .5rem;
+}
+
+.card__title {
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    margin: 0;
+}
+
+.card__desc {
+    color: var(--accent-2);
+    margin: 0;
+}
+
+/* chips */
+.chipset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: .25rem 0 0 0;
+}
+
+.chip {
+    font-size: .85rem;
+    padding: .25rem .5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+}
+
+.card:hover {
+    border-color: var(--blue-400);
+    box-shadow: 0 8px 22px rgba(96, 165, 250, .18);
+}
+
+.card:hover .card__media img {
+    transform: scale(1.02);
+    transition: transform .4s ease;
+}
+
+/* ------------------------------ ARCHITECTURE GRID ------------------------------ */
+.arch-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--rbx-gap);
+}
+
+.arch-card {
+    background: var(--rbx-card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--rbx-radius);
+    padding: clamp(14px, 2vw, 18px);
+    display: grid;
+    gap: .35rem;
+}
+
+.arch-card__title {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.arch-card__text {
+    color: var(--accent-2);
+    margin: 0;
+}
+
+/* ------------------------------ DOCS & DIAGRAMS (PDF) ------------------------------ */
+.doc-card {
+    background: var(--rbx-card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--rbx-radius);
+    box-shadow: var(--shadow);
+    overflow: clip;
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+}
+
+.doc-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: clamp(10px, 1.6vw, 14px) clamp(12px, 2vw, 18px);
+    border-bottom: 1px solid var(--border);
+}
+
+.doc-title {
+    margin: 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+}
+
+.doc-toolbar {
+    display: inline-flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.doc-figure {
+    padding: clamp(8px, 1.4vw, 12px);
+}
+
+.doc-viewer {
+    width: 100%;
+    height: clamp(420px, 70vh, 900px);
+    border: 1px solid var(--border);
+    border-radius: var(--rbx-radius);
+    background: var(--surface);
+}
+
+/* ------------------------------ GALLERY STRIP ------------------------------ */
+.section--gallery {
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface-2) 45%, transparent));
+    padding-top: clamp(12px, 2vw, 18px);
+}
+
+.gallery-strip {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: var(--rbx-gap);
+    overflow-x: auto;
+    padding: 6px var(--rbx-gap) 2px;
+    scroll-snap-type: x mandatory;
+}
+
+.gallery-item {
+    scroll-snap-align: start;
+    border-radius: var(--rbx-radius);
+    overflow: clip;
+    border: 1px solid var(--border);
+    background: var(--rbx-card-bg);
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ------------------------------ CTA ------------------------------ */
+.section--cta .lead {
+    color: var(--accent-2);
+    max-width: 72ch;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ------------------------------ TRANSPARENCY & BLUR ------------------------------ */
+.card,
+.stat,
+.arch-card,
+.gallery-item {
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+}
+
+.card.active,
+.doc-card.active {
+    background: var(--rbx-card-bg-active);
+    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
+    backdrop-filter: blur(var(--rbx-blur-strong));
+}
+
+/* ------------------------------ UTIL ------------------------------ */
+code {
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    padding: .1rem .35rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+/* ------------------------------ RESPONSIVE ------------------------------ */
+@media (max-width: 1024px) {
+    .arch-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 860px) {
+    .cards-grid--projects {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .section--stats .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-hero .hero-video {
+        height: clamp(260px, 48vh, 520px);
+    }
+
+    .doc-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .doc-toolbar {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-strip {
+        grid-auto-columns: minmax(180px, 1fr);
+    }
+}

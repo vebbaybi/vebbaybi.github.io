@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Root / landing -->
+  <url>
+    <loc>https://vebbaybi.github.io/</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Main sections -->
+  <url>
+    <loc>https://vebbaybi.github.io/home.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://vebbaybi.github.io/projects.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Category pages -->
+  <url>
+    <loc>https://vebbaybi.github.io/ai.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://vebbaybi.github.io/robotics.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://vebbaybi.github.io/chains.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Utility pages -->
+  <url>
+    <loc>https://vebbaybi.github.io/resumes.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+  <url>
+    <loc>https://vebbaybi.github.io/contact.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+  <url>
+    <loc>https://vebbaybi.github.io/roadmap.html</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+</urlset>

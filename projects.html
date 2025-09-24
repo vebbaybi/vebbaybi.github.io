@@ -40,13 +40,18 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href="/assets/css/main.css" as="style" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
 </head>
 
 <body class="theme-dark">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header-placeholder></header-placeholder>
+    <header-placeholder>
+        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+    </header-placeholder>
+    
+    <nav-placeholder></nav-placeholder>
 
     <main id="main" tabindex="-1">
         <section id="projects-view" class="view projects" aria-labelledby="projects-heading">
@@ -119,12 +124,12 @@
                             <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 4"
                                 id="slide-1" data-hash="embedded">
                                 <article class="project-card" data-animate>
-                                    <a class="project-media" href="embedded.html" aria-label="Embedded Systems">
+                                    <a class="project-media" href="robotics.html" aria-label="Embedded Systems">
                                         <img src="/assets/images/embedded.webp" alt="Embedded systems projects cover"
                                             loading="lazy" decoding="async" />
                                     </a>
                                     <div class="project-body">
-                                        <h2 class="project-title"><a href="embedded.html">Embedded Systems</a></h2>
+                                        <h2 class="project-title"><a href="robotics.html">Embedded Systems</a></h2>
                                         <p class="project-blurb">
                                             <strong>ACEBot & FieldEye:</strong> Arduino/ESP32/Raspberry Pi stack for
                                             motion tracking: PIR + ultrasonic fusion, pan-servo tracking, UART protocol,
@@ -136,7 +141,7 @@
                                             <span>Raspberry&nbsp;Pi</span> <span class="footer-right dot">•</span>
                                             <span>OpenCV</span>
                                         </div>
-                                        <a class="btn" href="embedded.html">View Embedded Systems</a>
+                                        <a class="btn" href="robotics.html">View Embedded Systems</a>
                                     </div>
                                 </article>
                             </li>
@@ -237,6 +242,8 @@
     <footer-placeholder></footer-placeholder>
 
     <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/ui/theme.js"></script>
+    <script type="module" src="/assets/js/ui/components/nav.js"></script>
     <script type="module" src="/assets/js/pages/projects.js"></script>
 </body>
 
