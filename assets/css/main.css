@@ -346,6 +346,7 @@ textarea {
     align-items: center;
     padding: 24px 20px;
     gap: 16px;
+   max-height: 400px;
 }
 
 .footer-right a {
