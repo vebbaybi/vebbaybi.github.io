@@ -244,12 +244,31 @@
         font-weight: 700;
     }
 
-    .hero-ctas {
+        .hero-ctas {
         display: flex;
         gap: 14px;
         flex-wrap: wrap;
         margin-top: 6px;
     }
+
+    .hero-ctas .btn.with-emoji {
+        position: relative;
+        display: inline-block;
+        align-items: center;
+        padding-left: 45px;
+        /* make space for emoji */
+    }
+
+    .hero-ctas .emoji-icon {
+        position: absolute;
+        left: 33%;
+        top: 77%;
+        transform: translateX(-33%);
+        width: 60px;
+        height: 60px;
+        pointer-events: var(--default-pointer);
+    }
+
 
     .page-index {
         position: absolute;
