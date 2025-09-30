@@ -1,0 +1,495 @@
+/* =======================================================================================
+   SCROLL_PAPER.CSS (DEDICATED, SCOPED)
+   Scope: html[data-page="scroll_paper"] only
+   Depends on tokens from main.css; complements pages.css (projects layer)
+   Implements newspaper-style layout + uniform carousel card sizing on desktop
+   ======================================================================================= */
+
+@layer scroll_paper {
+    html[data-page="scroll_paper"] {
+        /* Local page tokens */
+        --paper-border: var(--border);
+        --paper-bg: var(--surface);
+        --paper-text: var(--text);
+        --paper-muted: var(--accent-2);
+        --paper-radius: var(--radius-md);
+        --paper-shadow: var(--shadow);
+        --paper-column-gap: 24px;
+        --paper-column-rule: 1px solid var(--border);
+
+        /* Carousel sizing */
+        --card-gap: 24px;
+        /* used by track gap */
+        --card-media-ratio: 16 / 9;
+        /* keep a constant media ratio */
+        --card-title-minlines: 2;
+        /* reserve space to keep heights equal */
+        --card-blurb-lines: 3;
+        /* clamp blurb so all cards match */
+        --card-body-min: 0px;
+        /* overridden at ≥1024px for uniform height */
+    }
+
+    /* -------------------------------------
+     PAGE WRAPPER
+  -------------------------------------- */
+    html[data-page="scroll_paper"] body {
+        background: var(--bg);
+        color: var(--paper-text);
+    }
+
+    /* -------------------------------------
+     HEADER & SUBTITLE
+  -------------------------------------- */
+    html[data-page="scroll_paper"] .view-header {
+        padding-block: 16px 8px;
+        border-bottom: 1px solid var(--paper-border);
+    }
+
+    html[data-page="scroll_paper"] #story-heading {
+        font-size: clamp(28px, 5.5vw, 48px);
+        line-height: 1.1;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+        background: linear-gradient(180deg, var(--paper-text) 0%, var(--blue-400) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-direction: row-reverse;
+        /* keep your gif on the right of the text */
+    }
+
+    html[data-page="scroll_paper"] .enjoychain,
+    html[data-page="scroll_paper"] .goated {
+        width: 50px;
+        height: 50px;
+        border-radius: 25%;
+        vertical-align: middle;
+    }
+
+    html[data-page="scroll_paper"] .goated {
+        margin-left: 25px;
+    }
+
+    html[data-page="scroll_paper"] .view-subtitle {
+        margin: 8px 0 0 0;
+        font-size: clamp(15px, 2.4vw, 18px);
+        color: var(--paper-muted);
+        line-height: 1.4;
+        max-width: 60ch;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    html[data-page="scroll_paper"] .view-subtitle::after {
+        content: "";
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        margin-left: 6px;
+        background: linear-gradient(180deg, var(--primary), var(--secondary));
+        vertical-align: -0.15em;
+        animation: caret-blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes caret-blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    /* -------------------------------------
+     CAROUSEL
+  -------------------------------------- */
+    html[data-page="scroll_paper"] .carousel {
+        margin-block: 24px 40px;
+        position: relative;
+        user-select: none;
+    }
+
+    html[data-page="scroll_paper"] .carousel-viewport {
+        overflow: hidden;
+        border-radius: var(--paper-radius);
+        border: 1px solid var(--paper-border);
+        background: var(--paper-bg);
+        outline: none;
+        position: relative;
+    }
+
+    html[data-page="scroll_paper"] .carousel-track {
+        display: flex;
+        gap: var(--card-gap);
+        padding: 16px;
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
+        transition: var(--transition);
+    }
+
+    /* 2-up on desktop; 1-up on mobile (overridden below) */
+    html[data-page="scroll_paper"] .carousel-slide {
+        flex: 0 0 calc(50% - var(--card-gap) / 2);
+        list-style: none;
+        display: flex;
+        /* so the card can stretch to equal height */
+    }
+
+    /* CARD */
+    html[data-page="scroll_paper"] .story-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        /* media + body */
+        background: var(--paper-bg);
+        border-radius: var(--paper-radius);
+        border: 1px solid var(--paper-border);
+        box-shadow: var(--paper-shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        width: 100%;
+    }
+
+    html[data-page="scroll_paper"] .story-card:hover,
+    html[data-page="scroll_paper"] .story-card:focus-within {
+        transform: translateY(-2px);
+        border-color: var(--blue-400);
+    }
+
+    /* MEDIA (constant ratio) */
+    html[data-page="scroll_paper"] .story-media {
+        display: block;
+        aspect-ratio: var(--card-media-ratio);
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+        position: relative;
+        z-index: 1;
+        /* below CTAs */
+    }
+
+    html[data-page="scroll_paper"] .story-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(1.05) contrast(1.02);
+        transform: scale(1.002);
+    }
+
+    /* BODY (flex to pin CTAs at bottom; fixed min-height on desktop later) */
+    html[data-page="scroll_paper"] .story-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px 18px 20px;
+        min-height: var(--card-body-min);
+    }
+
+    /* TITLE (reserve space so lines are consistent) */
+    html[data-page="scroll_paper"] .story-title {
+        margin: 0;
+        font-size: clamp(18px, 2.2vw, 20px);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--paper-text);
+        min-height: calc(var(--card-title-minlines) * 1.2em);
+        display: -webkit-box;
+        line-clamp: var(--card-title-minlines);
+        -webkit-line-clamp: var(--card-title-minlines);
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    html[data-page="scroll_paper"] .story-title a {
+        text-decoration: none;
+        color: inherit;
+        cursor: var(--cursor-pointer);
+    }
+
+    html[data-page="scroll_paper"] .story-title a:hover {
+        color: var(--blue-400);
+    }
+
+    /* BLURB (clamped so all cards match height) */
+    html[data-page="scroll_paper"] .story-blurb {
+        margin: 0;
+        color: var(--paper-muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        display: -webkit-box;
+        line-clamp: var(--card-blurb-lines);
+        -webkit-line-clamp: var(--card-blurb-lines);
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: calc(1.5em * var(--card-blurb-lines));
+    }
+
+    /* CTAs always clickable & pinned to bottom */
+    html[data-page="scroll_paper"] .hero-ctas {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: auto;
+        /* push to bottom */
+    }
+
+    html[data-page="scroll_paper"] .hero-ctas .btn {
+        position: relative;
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    /* CONTROLS */
+    html[data-page="scroll_paper"] .carousel-controls {
+        pointer-events: none;
+    }
+
+    html[data-page="scroll_paper"] .carousel-prev,
+    html[data-page="scroll_paper"] .carousel-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(11, 15, 20, 0.9);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--paper-border);
+        color: var(--paper-text);
+        cursor: var(--cursor-pointer);
+        pointer-events: auto;
+        /* re-enable on the buttons themselves */
+        z-index: 20;
+    }
+
+    html[data-page="scroll_paper"] .carousel-prev {
+        left: 12px;
+    }
+
+    html[data-page="scroll_paper"] .carousel-next {
+        right: 12px;
+    }
+
+    html[data-page="scroll_paper"] .carousel-prev:hover,
+    html[data-page="scroll_paper"] .carousel-next:hover,
+    html[data-page="scroll_paper"] .carousel-prev:focus-visible,
+    html[data-page="scroll_paper"] .carousel-next:focus-visible {
+        background: var(--primary-soft);
+        border-color: var(--blue-400);
+        box-shadow: var(--focus);
+    }
+
+    /* DOTS */
+    html[data-page="scroll_paper"] .carousel-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    html[data-page="scroll_paper"] .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border: 0;
+        opacity: 0.5;
+        cursor: var(--cursor-pointer);
+    }
+
+    html[data-page="scroll_paper"] .carousel-dot[aria-selected="true"] {
+        opacity: 1;
+        box-shadow: var(--focus);
+    }
+
+    html[data-page="scroll_paper"] .carousel-dot:focus-visible {
+        box-shadow: var(--focus);
+        outline: none;
+    }
+
+    /* -------------------------------------
+     NEWSPAPER LAYOUT
+  -------------------------------------- */
+    html[data-page="scroll_paper"] .newspaper {
+        background: var(--paper-bg);
+        border: 1px solid var(--paper-border);
+        border-radius: var(--paper-radius);
+        padding: 20px;
+        box-shadow: var(--paper-shadow);
+    }
+
+    html[data-page="scroll_paper"] .newspaper h2 {
+        font-family: 'Bitcount Grid Double Ink', system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans';
+        font-size: clamp(24px, 4vw, 36px);
+        font-weight: 900;
+        line-height: 1.1;
+        margin: 0 0 16px 0;
+        background: linear-gradient(180deg, var(--paper-text) 0%, var(--blue-400) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article {
+        column-count: 3;
+        column-gap: var(--paper-column-gap);
+        column-rule: var(--paper-column-rule);
+        margin-bottom: 16px;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article article {
+        break-inside: avoid;
+        margin-bottom: 16px;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article h3 {
+        font-size: clamp(18px, 2.2vw, 22px);
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0 0 8px 0;
+        color: var(--paper-text);
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article p {
+        margin: 0 0 8px 0;
+        color: var(--paper-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article ul {
+        margin: 8px 0 0 0;
+        padding-left: 1.2rem;
+        color: var(--paper-text);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article blockquote {
+        margin: 8px 0;
+        padding-left: 12px;
+        border-left: 3px solid var(--blue-400);
+        color: var(--paper-text);
+        font-style: italic;
+        font-size: 0.95rem;
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article a {
+        color: var(--primary);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        transition: var(--transition);
+        cursor: var(--cursor-pointer);
+    }
+
+    html[data-page="scroll_paper"] .newspaper-article a:hover {
+        color: var(--blue-400);
+    }
+
+    /* Back to top button */
+    html[data-page="scroll_paper"] .newspaper .hero-ctas {
+        display: flex;
+        justify-content: center;
+    }
+
+    html[data-page="scroll_paper"] .newspaper .btn {
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    /* -------------------------------------
+     DESKTOP UNIFORM HEIGHTS
+     (activate equalized bodies only on ≥1024px)
+  -------------------------------------- */
+    @media (min-width: 1024px) {
+        html[data-page="scroll_paper"] {
+            --card-body-min: 220px;
+            /* tune if a card still overflows */
+            --card-title-minlines: 2;
+            /* reserve two lines for titles */
+            --card-blurb-lines: 3;
+            /* clamp blurbs to three lines */
+        }
+    }
+
+    @media (min-width: 1280px) {
+        html[data-page="scroll_paper"] {
+            --card-body-min: 240px;
+        }
+    }
+
+    /* -------------------------------------
+     RESPONSIVE
+  -------------------------------------- */
+    @media (max-width: 1024px) {
+        html[data-page="scroll_paper"] .carousel-slide {
+            flex-basis: calc(75% - var(--card-gap) / 2);
+        }
+
+        html[data-page="scroll_paper"] .newspaper-article {
+            column-count: 2;
+        }
+    }
+
+    @media (max-width: 639.98px) {
+        html[data-page="scroll_paper"] .carousel-slide {
+            flex-basis: 100%;
+        }
+
+        html[data-page="scroll_paper"] .newspaper-article {
+            column-count: 1;
+        }
+
+        html[data-page="scroll_paper"] .newspaper {
+            padding: 16px;
+        }
+
+        html[data-page="scroll_paper"] .newspaper h2 {
+            font-size: clamp(20px, 5vw, 28px);
+        }
+    }
+
+    @media (max-width: 420px) {
+
+        html[data-page="scroll_paper"] .carousel-prev,
+        html[data-page="scroll_paper"] .carousel-next {
+            width: 36px;
+            height: 36px;
+        }
+
+        html[data-page="scroll_paper"] #story-heading {
+            font-size: clamp(24px, 6vw, 36px);
+        }
+
+        html[data-page="scroll_paper"] .enjoychain,
+        html[data-page="scroll_paper"] .goated {
+            width: 40px;
+            height: 40px;
+        }
+
+        html[data-page="scroll_paper"] .goated {
+            margin-left: 20px;
+        }
+    }
+
+    /* -------------------------------------
+     REDUCED MOTION
+  -------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+
+        html[data-page="scroll_paper"] .carousel-track,
+        html[data-page="scroll_paper"] .story-card,
+        html[data-page="scroll_paper"] .carousel-prev,
+        html[data-page="scroll_paper"] .carousel-next,
+        html[data-page="scroll_paper"] .carousel-dot,
+        html[data-page="scroll_paper"] .newspaper {
+            transition: none !important;
+        }
+
+        html[data-page="scroll_paper"] .view-subtitle::after {
+            animation: none;
+        }
+    }
+}

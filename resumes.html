@@ -1,45 +1,123 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-app="1807" data-page="resume" data-version="v1.0">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Resume — Uchenna Anozie (webbaby) | 1807</title>
 
-  <link rel="canonical" href="https://vebbaybi.github.io/resume.html" />
+  <title>1807-chain — Uchenna Anozie (webbaby) | Me dignum invenias</title>
+
+  <!-- Canonical & SEO (update the domain when final) -->
+  <link rel="canonical" href="https://vebbaybi.github.io/" />
   <meta name="description"
-    content="Resume of Uchenna Anozie (webbaby) — Computer & Data Scientist: AI, Data, Embedded Systems, Blockchain. Download PDF, DOCX, MD, TXT, JSON, vCard, or print." />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
+    content="Portfolio of Uchenna Anozie (webbaby): AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling. Explore projects, resumes, and research-ready skills for fintech, and engineering teams." />
+  <meta name="keywords"
+    content="Uchenna Anozie, webbaby, 1807-chain, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, research." />
   <meta name="theme-color" content="#111111" />
   <meta name="color-scheme" content="dark light" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <meta property="og:title" content="Resume — Uchenna Anozie (webbaby)" />
-  <meta property="og:description" content="AI • Data • Embedded • Blockchain. Multi-format resume downloads." />
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="https://vebbaybi.github.io/resumes.html" />
+  <!-- Open Graph -->
+  <meta property="og:title"
+    content="1807-chain — Uchenna Anozie (webbaby) | AI • Data • Embedded • Blockchain Portfolio" />
+  <meta property="og:description"
+    content="Projects and resumes showcasing AI, Data Science, Embedded Systems, and Blockchain work. Research-ready skills, compliant documentation, and production-quality tooling." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vebbaybi.github.io/" />
   <meta property="og:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
-  <meta property="og:image:alt" content="Portrait of Uchenna Anozie (webbaby)" />
+  <meta property="og:image:alt" content="Portrait of Uchenna Anozie — AI, Data, Embedded & Blockchain portfolio" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Resume — Uchenna Anozie (webbaby)" />
-  <meta name="twitter:description" content="AI • Data • Embedded • Blockchain. Multi-format downloads." />
+  <meta name="twitter:title" content="1807-chain — Uchenna Anozie (webbaby) | AI • Data • Embedded • Blockchain" />
+  <meta name="twitter:description"
+    content="AI, Data Science, Embedded Systems, and Blockchain portfolio with research-ready skills and compliant documentation." />
   <meta name="twitter:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
 
+  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <!--cursors-->
+  <link rel="preload" href="/assets/cursors/default.png" as="image" />
+  <link rel="preload" href="/assets/cursors/pointer.png" as="image" />
+  <link rel="preload" href="/assets/cursors/editor.png" as="image" />
+  <link rel="preload" href="/assets/cursors/typing.png" as="image" />
 
-  <!-- Your site styles -->
+  <!-- Performance -->
   <link rel="preload" href="/assets/css/main.css" as="style" />
+  <link rel="stylesheet" href="/assets/css/intro.css" />
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
-  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/assets/css/components.css" />
   <link rel="stylesheet" href="/assets/css/resumes.css" />
-</head>
 
-<body class="theme-dark">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header-placeholder></header-placeholder>
+  <!-- Optional: small local styles for eyebrow caret (you can move to pages.css) -->
+  <style>
+    .eyebrow .tw-wrapper {
+      position: relative;
+      white-space: nowrap
+    }
+
+    .eyebrow .tw-caret {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 6px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      vertical-align: -0.15em;
+      animation: tw-caret-blink 1s steps(2, start) infinite
+    }
+
+    @keyframes tw-caret-blink {
+      50% {
+        opacity: 0
+      }
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebSite",
+        "@id":"https://vebbaybi.github.io/#website",
+        "name":"1807-chain — webbaby",
+        "url":"https://vebbaybi.github.io/",
+        "description":"Portfolio of Uchenna Anozie (webbaby) — AI, Data Science, Embedded Systems, and Blockchain.",
+        "inLanguage":"en"
+      },
+      {
+        "@type":"Person",
+        "@id":"https://vebbaybi.github.io/#person",
+        "name":"Uchenna Emmanuel Anozie",
+        "alternateName":"webbaby",
+        "url":"https://vebbaybi.github.io/",
+        "image":"https://vebbaybi.github.io/assets/images/thedev.webp",
+        "jobTitle":"Computer & Data Scientist",
+        "sameAs":[
+          "https://www.linkedin.com/in/uchenna-anozie-a86143308",
+          "https://www.kaggle.com/eucee00"
+        ],
+        "knowsAbout":[
+          "Artificial Intelligence",
+          "Data Science",
+          "Embedded Systems",
+          "Blockchain",
+          "Clinical Research Data Management"
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+  <header-placeholder>
+    <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+  </header-placeholder>
+  
+  <nav-placeholder></nav-placeholder>
 
   <main id="main" class="resume-wrap" tabindex="-1">
     <!-- Header -->
@@ -74,11 +152,22 @@
       <button class="btn secondary" id="print-btn" type="button">🖨️ Print</button>
     </nav>
 
+    <!-- Eyebrow typewriter (animated, decorative) -->
+    <div class="eyebrow" aria-hidden="true">
+      <span class="tw-wrapper">
+        <span id="eyebrow-rotator" class="tw-line"
+          data-phrases='["Proficient in Python: data analysis & automation.", "Merging data science with AI & embedded systems.", "A dedicated, quick learner, and a meticulous documenter.", "Pioneering the symbiosis of human & synthetic intelligence." ]'>
+        </span>
+        <span class="tw-caret" aria-hidden="true"></span>
+      </span>
+    </div>
+
     <!-- Resume Body -->
     <article id="resume" class="resume-card" aria-label="Resume content">
       <section class="resume-card" aria-labelledby="summary">
+        
         <h2 id="summary">Summary</h2>
-        <p>
+        <p class='sum-com'>
           Computer &amp; Data Scientist with a broad foundation across AI, data engineering, and embedded systems.
           Builds reliable model/data pipelines, on-device intelligence, and Web3 tooling. Comfortable with regulated
           documentation and structured data handling. Executes fast with clear documentation and production discipline.
@@ -195,8 +284,11 @@
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
   <!-- Page script -->
-  <script type="module" src="/assets/js/pages/resumes.js"></script>
   <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/ui/theme.js"></script>
+  <script type="module" src="/assets/js/ui/components/nav.js"></script>
+  <script type="module" src="/assets/js/pages/resumes.js"></script>
+
 </body>
 
 </html>

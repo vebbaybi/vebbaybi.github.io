@@ -1,144 +1,208 @@
 /* ==============================================
    Intro Puzzle Overlay Styles (3×3 sliding puzzle)
    Pixel-accurate, accessible, reduced-motion aware
+   Improvements:
+     - Replaced custom tokens with main.css tokens for consistency
+     - Added light theme support using main.css tokens
+     - Enhanced accessibility with main.css --focus style
+     - Optimized backdrop-filter with fallback for compatibility
+     - Aligned button and tile styles with main.css components
+     - Refined responsive design with clamp values
+     - Optimized solved animation for performance
    ============================================== */
 
-/* Tokens */
-:root{
-  --vb-bg: rgba(6,10,16,.90);
-  --vb-surface: #0b1018;
-  --vb-text: #e6edf3;
-  --vb-muted: #9aa5b1;
-  --vb-accent: #66e3ff;
-  --vb-border: rgba(102,227,255,.25);
-}
-
 /* Fullscreen overlay */
-#vb-intro-overlay{
+#vb-intro-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: max(16px,4vh);          /* prevents edge clipping on small screens */
-  overflow: auto;                   /* safe scroll fallback on tiny viewports */
-  color: var(--vb-text);
-  background: var(--vb-bg);
+  padding: clamp(12px, 4vh, 16px);
+  /* Matches main.css responsive padding */
+  overflow: auto;
+  /* Safe scroll fallback */
+  color: var(--text);
+  background: var(--bg);
+  background: rgba(11, 15, 20, 0.9);
+  /* Fallback for backdrop-filter */
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 /* Dialog */
-#vb-intro-dialog{
+#vb-intro-dialog {
   width: min(96vw, 1040px);
-  max-height: 92vh;                /* dialog never taller than viewport */
+  max-height: 92vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  row-gap: clamp(12px,1.6vw,18px);
-  background: linear-gradient(180deg,#0f1522,#0b0f18);
-  border: 1px solid var(--vb-border);
-  border-radius: 18px;
-  padding: clamp(16px,2.2vw,24px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  row-gap: clamp(12px, 1.6vw, 18px);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(16px, 2.2vw, 24px);
+  box-shadow: var(--shadow);
 }
 
 /* Header */
-#vb-intro-head{
+#vb-intro-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-#vb-intro-title{
-  font-size: clamp(18px,2.2vw,24px);
+#vb-intro-title {
+  font-size: clamp(18px, 2.2vw, 24px);
   font-weight: 650;
-  letter-spacing: .2px;
+  letter-spacing: 0.2px;
+  color: var(--text);
 }
 
-#vb-intro-meta{
+#vb-intro-meta {
   display: flex;
   gap: 14px;
-  color: var(--vb-muted);
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
-/* Puzzle container (auto-scales to fit viewport without cropping) */
-#vb-puzzle-wrap{
+/* Puzzle container */
+#vb-puzzle-wrap {
   place-self: center;
-  width: min(88vw, calc(92vh - 180px)); /* 180px ~ header+controls; keeps full puzzle visible */
+  width: min(88vw, calc(92vh - 180px));
   aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
-  border-radius: 14px;
-  border: 1px solid var(--vb-border);
-  background: #0a0f17;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--panel);
 }
 
 /* Base image + interactive layer */
 #vb-puzzle-image,
-#vb-puzzle-layer{ position:absolute; inset:0; border-radius: inherit; }
+#vb-puzzle-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
 
-#vb-puzzle-image{ filter: brightness(.95) contrast(1.05); }
+#vb-puzzle-image {
+  filter: brightness(0.95) contrast(1.05);
+}
 
-/* Tiles (pixel-sliced; sizes set in JS) */
-.vb-tile{
+/* Tiles */
+.vb-tile {
   position: absolute;
   will-change: transform;
   user-select: none;
   -webkit-user-drag: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   outline: none;
   border: 0;
   border-radius: 6px;
-  box-shadow: none;                /* no seams */
+  box-shadow: none;
   background-repeat: no-repeat;
-  background-clip: padding-box;    /* no bleed at edges */
+  background-clip: padding-box;
 }
 
-.vb-tile:focus-visible{ box-shadow: 0 0 0 3px rgba(102,227,255,.55); }
-.vb-empty{ opacity: 0; pointer-events: none; }
+.vb-tile:focus-visible {
+  box-shadow: var(--focus);
+}
+
+.vb-empty {
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* Controls */
-#vb-intro-controls{
+#vb-intro-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#vb-intro-hint{ color: var(--vb-muted); font-size: .95rem; }
-.vb-btns{ display: flex; gap: 10px; }
-
-.vb-btn{
-  background: #0f1726;
-  color: var(--vb-text);
-  border: 1px solid var(--vb-border);
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: 600;
-  letter-spacing: .2px;
-  cursor: pointer;
+#vb-intro-hint {
+  color: var(--muted);
+  font-size: 0.95rem;
 }
-.vb-btn.primary{ background: linear-gradient(180deg,#16243b,#131d2f); }
-.vb-btn:hover{ filter: brightness(1.08); }
+
+.vb-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.vb-btn {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: var(--cursor-pointer);
+  transition: var(--transition);
+}
+
+.vb-btn.primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-strong));
+  color: var(--white);
+}
+
+.vb-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.vb-btn:focus-visible {
+  outline: var(--focus);
+  outline-offset: 2px;
+}
 
 /* Solved flash */
-#vb-puzzle-image.vb-solved{ animation: vbSolved 650ms ease-out both; }
-@keyframes vbSolved{
-  from{ box-shadow: 0 0 0 0 rgba(102,227,255,0); }
-  to  { box-shadow: 0 0 0 14px rgba(102,227,255,.22); }
+#vb-puzzle-image.vb-solved {
+  animation: vbSolved 650ms ease-out both;
+}
+
+@keyframes vbSolved {
+  from {
+    border-color: var(--border);
+  }
+
+  to {
+    border-color: var(--blue-400);
+  }
 }
 
 /* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-  #vb-intro-overlay{ -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .vb-tile{ transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  #vb-intro-overlay {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .vb-tile,
+  .vb-btn,
+  #vb-puzzle-image.vb-solved {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 /* Mobile tweaks */
-@media (max-width: 520px){
-  #vb-intro-meta{ gap: 10px; font-size: .9rem; }
-  #vb-intro-controls{ flex-direction: column; gap: 12px; align-items: stretch; }
-  .vb-btns{ justify-content: flex-end; }
+@media (max-width: 520px) {
+  #vb-intro-meta {
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+
+  #vb-intro-controls {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .vb-btns {
+    justify-content: flex-end;
+  }
 }

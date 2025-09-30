@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en" data-app="1807" data-page="scroll_paper" data-version="v1.1">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Scroll Paper • 1807-chain - Uchenna Anozie (webbaby) | Newspaper Style Story</title>
+
+    <!-- Canonical & SEO -->
+    <link rel="canonical" href="https://vebbaybi.github.io/scroll_paper.html" />
+    <meta name="description"
+        content="Newspaper-style storytelling of Uchenna Anozie's journey: from high school discipline to university grind, family business, teaching, and beyond." />
+    <meta name="keywords"
+        content="Uchenna Anozie, webbaby, Iter, Apo Boys, university journey, family business, teaching practice, construction, volunteer work" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Scroll Paper • 1807-chain - Newspaper Style Story" />
+    <meta property="og:description"
+        content="A newspaper-layout journey through discipline, education, ventures, and growth." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vebbaybi.github.io/scroll_paper.html" />
+    <meta property="og:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
+    <meta property="og:image:alt" content="Newspaper story visuals" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Scroll Paper • 1807-chain - Newspaper Style Story" />
+    <meta name="twitter:description"
+        content="A newspaper-layout journey through discipline, education, ventures, and growth." />
+    <meta name="twitter:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+
+    <!-- Font preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+    <!-- Styles (globals + chains) -->
+    <link rel="preload" href="/assets/css/main.css" as="style" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/pages.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/scroll_paper.css" />
+</head>
+
+<body class="theme-dark">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Header & Nav (partials) -->
+    <header-placeholder>
+        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+    </header-placeholder>
+    <nav-placeholder></nav-placeholder>
+
+    <main id="main" tabindex="-1">
+        <section class="view story container" aria-labelledby="story-heading">
+            <!-- Header -->
+            <header class="view-header" style="margin-block: 18px 8px;">
+                <h1 id="story-heading"
+                    style="font-family:'Bitcount Grid Double Ink',system-ui,-apple-system,'Segoe UI',Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans'; font-weight:700;">
+                    <!-- keep this first so (row-reverse) places it to the RIGHT of the text -->
+                    <img class="enjoychain" src="/assets/images/gif/devspy.gif" alt="Story animation" loading="lazy"
+                        decoding="async">
+                    1 8 0 7
+                    <img class="goated" src="/assets/images/gif/iseeya.gif" alt="you have 2b goated" loading="lazy"
+                        decoding="async">
+                </h1>
+                <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
+                    "Journey through discipline, education, and growth.",
+                    "From high school to university grind.",
+                    "Family ventures and real-world lessons.",
+                    "Teaching, construction, and volunteer work.",
+                    "Blending code, craft, and community."
+                ]'>
+                </p>
+            </header>
+
+            <!-- Carousel -->
+            <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Story chapters">
+                <div class="carousel-viewport" tabindex="0" aria-live="polite">
+                    <ul class="carousel-track" role="list">
+                        <!-- Apo Boys Chapter -->
+                        <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5"
+                            id="slide-0" data-hash="apo-boys">
+                            <article class="story-card" data-animate>
+                                <a class="story-media" href="#apo-boys" aria-label="Apo Boys: High school foundations">
+                                    <img src="/assets/images/img/img001.jpg" alt="FGBC Abuja campus" loading="eager"
+                                        decoding="async" />
+                                </a>
+                                <div class="story-body">
+                                    <h2 class="story-title"><a href="#apo-boys">Apo Boys - High School Foundations</a>
+                                    </h2>
+                                    <p class="story-blurb">
+                                        Discipline from Federal Government Boys' College, Abuja: merit, diversity, and
+                                        survival skills that shaped my approach to life and tech.
+                                    </p>
+                                    <div class="hero-ctas">
+                                        <a class="btn" href="#apo-boys">Chapter Overview</a>
+                                        <a class="btn secondary" href="#apo-boys-detail"
+                                            title="Continue Reading Apo Boys">Continue Reading →</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+
+                        <!-- Bridge to University Chapter -->
+                        <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5"
+                            id="slide-1" data-hash="bridge-university">
+                            <article class="story-card" data-animate>
+                                <a class="story-media" href="#bridge-university"
+                                    aria-label="Bridge: From high school to university">
+                                    <img src="/assets/images/img/img004.jpg" alt="Bridge years toward university"
+                                        loading="lazy" decoding="async" />
+                                </a>
+                                <div class="story-body">
+                                    <h2 class="story-title"><a href="#bridge-university">Bridge - To University</a></h2>
+                                    <p class="story-blurb">
+                                        Choosing computers over medicine, enrolling in pre-degree at Michael Okpara
+                                        University, and earning double degrees in Computer Science and Education.
+                                    </p>
+                                    <div class="hero-ctas">
+                                        <a class="btn" href="#bridge-university">Chapter Overview</a>
+                                        <a class="btn secondary" href="#bridge-university-detail"
+                                            title="Continue Reading Bridge">Continue Reading →</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+
+                        <!-- University Grind Chapter -->
+                        <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5"
+                            id="slide-2" data-hash="university-grind">
+                            <article class="story-card" data-animate>
+                                <a class="story-media" href="#university-grind"
+                                    aria-label="University: Real learning journey">
+                                    <img src="/assets/images/img/img008.jpg" alt="Late-night coding grind"
+                                        loading="lazy" decoding="async" />
+                                </a>
+                                <div class="story-body">
+                                    <h2 class="story-title"><a href="#university-grind">University - The Grind</a></h2>
+                                    <p class="story-blurb">
+                                        Self-taught beyond curriculum: algorithms, AI, blockchain, while balancing
+                                        teaching practice and projects.
+                                    </p>
+                                    <div class="hero-ctas">
+                                        <a class="btn" href="#university-grind">Chapter Overview</a>
+                                        <a class="btn secondary" href="#university-grind-detail"
+                                            title="Continue Reading University">Continue Reading →</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+
+                        <!-- Ventures and Work Chapter -->
+                        <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5"
+                            id="slide-3" data-hash="ventures-work">
+                            <article class="story-card" data-animate>
+                                <a class="story-media" href="#ventures-work"
+                                    aria-label="Ventures: Family business and construction">
+                                    <img src="/assets/images/img/img006.jpg" alt="Krisved storefront and operations"
+                                        loading="lazy" decoding="async" />
+                                </a>
+                                <div class="story-body">
+                                    <h2 class="story-title"><a href="#ventures-work">Ventures - Business & Work</a></h2>
+                                    <p class="story-blurb">
+                                        Co-running family business, construction sites, and volunteer work: building
+                                        skills in sales, logistics, and community service.
+                                    </p>
+                                    <div class="hero-ctas">
+                                        <a class="btn" href="#ventures-work">Chapter Overview</a>
+                                        <a class="btn secondary" href="#ventures-work-detail"
+                                            title="Continue Reading Ventures">Continue Reading →</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+
+                        <!-- Now and Future Chapter -->
+                        <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5"
+                            id="slide-4" data-hash="now-future">
+                            <article class="story-card" data-animate>
+                                <a class="story-media" href="#now-future" aria-label="Now: Blending code and craft">
+                                    <img src="/assets/images/img/img011.jpg" alt="Current life: code and craft"
+                                        loading="lazy" decoding="async" />
+                                </a>
+                                <div class="story-body">
+                                    <h2 class="story-title"><a href="#now-future">Now - Future Vision</a></h2>
+                                    <p class="story-blurb">
+                                        Ongoing growth, values, contact, and future projects in AI, robotics, and
+                                        human-machine symbiosis.
+                                    </p>
+                                    <div class="hero-ctas">
+                                        <a class="btn" href="#now-future">Chapter Overview</a>
+                                        <a class="btn secondary" href="#now-future-detail"
+                                            title="Continue Reading Now">Continue Reading →</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <button type="button" class="carousel-prev" aria-label="Previous slide">&larr;</button>
+                    <button type="button" class="carousel-next" aria-label="Next slide">&rarr;</button>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-pagination" role="tablist" aria-label="Slides">
+                    <button type="button" role="tab" class="carousel-dot" aria-selected="true" aria-controls="slide-0"
+                        data-index="0" tabindex="0">
+                        <span class="sr-only">Go to slide 1</span>
+                    </button>
+                    <button type="button" role="tab" class="carousel-dot" aria-selected="false" aria-controls="slide-1"
+                        data-index="1" tabindex="-1">
+                        <span class="sr-only">Go to slide 2</span>
+                    </button>
+                    <button type="button" role="tab" class="carousel-dot" aria-selected="false" aria-controls="slide-2"
+                        data-index="2" tabindex="-1">
+                        <span class="sr-only">Go to slide 3</span>
+                    </button>
+                    <button type="button" role="tab" class="carousel-dot" aria-selected="false" aria-controls="slide-3"
+                        data-index="3" tabindex="-1">
+                        <span class="sr-only">Go to slide 4</span>
+                    </button>
+                    <button type="button" role="tab" class="carousel-dot" aria-selected="false" aria-controls="slide-4"
+                        data-index="4" tabindex="-1">
+                        <span class="sr-only">Go to slide 5</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- DETAILS: Apo Boys (Newspaper Layout) -->
+        <section id="apo-boys-detail" class="newspaper container" aria-labelledby="apo-boys-title"
+            style="margin-block:24px;">
+            <h2 id="apo-boys-title">Apo Boys - High School Foundations</h2>
+            <div class="newspaper-article">
+                <article>
+                    <h3>Apo-Context: Apo-Boys</h3>
+                    <p>I graduated from the Federal Government Boys' College, Abuja in Nigeria (city and country of
+                        birth). Alumni and students call it Apo-Boiz. It's one of Nigeria's Unity Colleges, built for
+                        merit and diversity. Translation: wake up early, obey the rules already in place, compete hard,
+                        and don't get caught sneaking food, in other words, survive. That discipline-plus-competition
+                        cocktail shaped how I approach both life and tech.</p>
+                </article>
+                <article>
+                    <h3>Apo-Moments: My Graduation - Moments</h3>
+                    <p>Gratitude. Excitement. Curiosity. Nostalgia. On July 24, 2016, I left FGBC with a mindset that
+                        still keeps me set today: show up, do the work, lead when it counts, and learn faster and better
+                        than yesterday. I believe in the Power Law of Practice. Edward Bellamy's Looking Backward
+                        (1888): being in a setting that promoted unity and socialism, I could take my newly earned
+                        traits to join the team that drives technology as a force of social harmony. Following
+                        graduation I read Equality, Bellamy's sequel. I understood that the key was education in proper
+                        beliefs and virtue. I found the blockchain community.</p>
+                    <ul>
+                        <li>Prefects, basketball, computer labs, basically my first systems labs.</li>
+                        <li>Early sparks of computer systems: what if I became one of the leading innovators of a
+                            technology utopia?</li>
+                        <li>I heard the word Dev for the first time in a Discord space: like-minded developers coming
+                            together to actualize dreams.</li>
+                        <li>"It was delusional to ever think of computers when humans are out there and need doctors."
+                            Doctors need computers, Dad.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Apo-Foundations: Independence in Survival</h3>
+                    <p>Boarding house equals bootcamp for independence. You either learned to think for yourself or
+                        became
+                        the joke of the week.</p>
+                    <p>We were like rough stones in a quarry, colliding until something sharper came out. Lux ex labore,
+                        light from labor. Pro Unitate, for unity, is the Latin motto of the Federal Government
+                        colleges. Like a multi-linked list, we comprised different religions and ethnic backgrounds. To
+                        make our country better, we learned to coexist within the four walls of an institution from a
+                        young age. It worked for me.</p>
+                    <ul>
+                        <li>Brotherhood that tested loyalty and patience in equal measure, in every nook and cranny.
+                        </li>
+                        <li>Discipline carved through endless duties and drills.</li>
+                        <li>Friendships that polished away doubt (and sometimes stole your provisions or junk food
+                            supply).</li>
+                        <li>Routine living was the order of the day.</li>
+                        <li>Table-top beat jockeys for the rappers and musicians that entertained me. My BIOT MP3s.</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="hero-ctas" style="margin-top:12px;">
+                <a class="btn" href="#story-heading">Back to top</a>
+            </div>
+        </section>
+
+        <!-- DETAILS: Bridge to University (Newspaper Layout) -->
+        <section id="bridge-university-detail" class="newspaper container" aria-labelledby="bridge-university-title"
+            style="margin-block:24px;">
+            <h2 id="bridge-university-title">Bridge - To University</h2>
+            <div class="newspaper-article">
+                <article>
+                    <h3>The Bridge: From High School to University</h3>
+                    <p>Between secondary school and university, the "medical doctor or nothing" pressure hit. But I
+                        chose my future, knowing computers were the next gods to rule Terra alongside humans. I wanted
+                        in on that golden age not just as a consumer.</p>
+                    <p>In October 2017, I enrolled in a pre-degree program in sciences at Michael Okpara University.
+                        From there, I earned admission into Computer Science with Education, stacking a double degree
+                        (B.Sc. + B.Ed.). That mindset of shaping my future was born in boarding school, many Nigerian
+                        IT experts walked those halls before me. Spending months away from my parents cultivated a way
+                        of thinking that embraced decisions and their outcomes. I learned I could and should show myself
+                        the way and be prepared for any outcome.</p>
+                </article>
+            </div>
+            <div class="hero-ctas" style="margin-top:12px;">
+                <a class="btn" href="#story-heading">Back to top</a>
+            </div>
+        </section>
+
+        <!-- DETAILS: University Grind (Newspaper Layout) -->
+        <section id="university-grind-detail" class="newspaper container" aria-labelledby="university-grind-title"
+            style="margin-block:24px;">
+            <h2 id="university-grind-title">University - The Grind</h2>
+            <div class="newspaper-article">
+                <article>
+                    <h3>Uni-Arrival: Stepping into Higher Education</h3>
+                    <p>I made it into university, but it wasn't the temple of knowledge as I'd imagined. The curriculum
+                        felt shallow, more chalk dust than fundamentals. The system of education wasn't impressive.</p>
+                    <p>By then, I had already taught myself HTML, CSS, and some JavaScript at age 15. So I knew I had to
+                        expand my horizon beyond the lecture hall. I'd attend lectures while contrasting what I was
+                        learning with PDFs from Harvard and other great institutions that publish materials online. I
+                        was right: lectures felt redacted so the low-income lecturer could get home on time, not the
+                        way to teach the future.</p>
+                    <blockquote>I glued myself to PDFs and YouTube.</blockquote>
+                </article>
+                <article>
+                    <h3>Teaching-Practice: Bridging Taught Theory and Real-World Impact</h3>
+                    <p>Double honours meant double duty.</p>
+                    <p>At Ibeku High School, I spent 6 months teaching:</p>
+                    <ul>
+                        <li>SS3 students (16–22): revisions from numbering systems to basics of programming and
+                            internet security.</li>
+                        <li>Younger students (10–18): computer basics, software, operating systems.</li>
+                    </ul>
+                    <p>During my last months, I trained staff at the National Root Crop Research Institute on RFID,
+                        smart cards, and ID card makers, and did a quick flex with Pandas/Numpy automations as they
+                        wanted to see my appraised project. As a carry-over student, I had an extra year (issues from
+                        choosing CS). My web project was an EDA using Python (we were told to use any language, we were
+                        never taught OOP). It argued for the importance of Computer Studies in Nigerian institutions and
+                        how our curriculum compared poorly to others. People said my slides felt like a boardroom deck,
+                        because I did the extra learning required.</p>
+                    <p>Teaching wasn't just duty; it clarified my learning, showed my blind spots, and sharpened my
+                        confidence.</p>
+                </article>
+                <article>
+                    <h3>Uni-Grind: The Real Learning Journey</h3>
+                    <p>Algorithms, data structures, operating systems, databases, these stuck. The prerequisites? I
+                        passed most exams without retaining much.</p>
+                    <p>So I hacked my education:</p>
+                    <ul>
+                        <li>Skipped SED407 and some irrelevant classes to practise Python in my hostel.</li>
+                        <li>Spent time in Discord and X spaces, learning blockchain through materials and interaction
+                            with devs.</li>
+                        <li>By final year (extra year), I was learning AI and machine learning.</li>
+                        <li>Learned to draw and generate NFTs; designed my first SVG NFT for a community in my 5th year
+                            (I spent 6 years).</li>
+                        <li>Realized my Iter was too big for one country; it needed to spark outside Africa. Resources
+                            were too limited.</li>
+                    </ul>
+                    <p>That's when I started planning the move.</p>
+                </article>
+            </div>
+            <div class="hero-ctas" style="margin-top:12px;">
+                <a class="btn" href="#story-heading">Back to top</a>
+            </div>
+        </section>
+
+        <!-- DETAILS: Ventures and Work (Newspaper Layout) -->
+        <section id="ventures-work-detail" class="newspaper container" aria-labelledby="ventures-work-title"
+            style="margin-block:24px;">
+            <h2 id="ventures-work-title">Ventures - Business & Work</h2>
+            <div class="newspaper-article">
+                <article>
+                    <h3>Krisved: Family Business Venture</h3>
+                    <p>From Jan 2022 to Apr 2024, I co-ran KRISVED Global Services with my mom and siblings. Sales,
+                        logistics, and family drama mixed into one venture.</p>
+                    <ul>
+                        <li>Customer service and vendor wrangling.</li>
+                        <li>Logistics and inventory that turned into spreadsheets from hell.</li>
+                        <li>Grassroots marketing and events that actually got traction.</li>
+                        <li>I mastered the art of selling and advertising. Some days, when I felt pumped, I didn't drive
+                            — I'd literally hawk.</li>
+                        <li>The path I was on, the business I managed, and my background made me seem shameless to some.
+                            I only found pride and ego inconsequential.</li>
+                    </ul>
+                    <p>It sharpened my entrepreneurial instincts, egalitarian yet competitive mindset, and communication
+                        skills in ways no class ever could. Vir fiebam.</p>
+                </article>
+                <article>
+                    <h3>Construction: Building Skills on Site</h3>
+                    <p>While coding sharpened my mind and marketing improved my communication, construction hardened
+                        everything else and gave me a handy skill.</p>
+                    <p>At Dantata & Sawoe Construction (Nov 2022–Jun 2023), I was a material handler and flagman. Then
+                        at Straight Forward Contracting, I installed windows, doors, hemlock ceilings, and soffit
+                        siding. Battery-powered tools, tight deadlines, and high-risk zones meant problem-solving of a
+                        different flavour.</p>
+                </article>
+                <article>
+                    <h3>Volunteer: Giving Back to the Community</h3>
+                    <p>In Canada, I gave back while settling in:</p>
+                    <ul>
+                        <li>507 Centre (Oct 2024–Jan 2025): facility maintenance and safety.</li>
+                        <li>Helping with Furniture (Dec 2024–Feb 2025, ongoing): loading and unloading donations,
+                            keeping
+                            workspaces organized.</li>
+                    </ul>
+                    <p>Different roles, same lesson: teamwork plus adaptability always matter.</p>
+                </article>
+            </div>
+            <div class="hero-ctas" style="margin-top:12px;">
+                <a class="btn" href="#story-heading">Back to top</a>
+            </div>
+        </section>
+
+        <!-- DETAILS: Now and Future (Newspaper Layout) -->
+        <section id="now-future-detail" class="newspaper container" aria-labelledby="now-future-title"
+            style="margin-block:24px;">
+            <h2 id="now-future-title">Now - Future Vision</h2>
+            <div class="newspaper-article">
+                <article>
+                    <h3>Now: Blending Code and Craft</h3>
+                    <p>As of 4:52 AM EDT, September 15, 2025, I'm still Iter-ing. A self-taught developer, even after
+                        General Assembly Bootcamp (Python programming), I clock at least
+                        <span class="anim-count" id="p11-count" data-count-target="25" data-counter="true">0</span>
+                        study hours a week, daily
+                        lectures by me, for me. At the same time, I'm working on my projects while job hunting.
+                    </p>
+                    <p>Semper cresco, I am ever-growing. From Nigerian roots to Canadian transitions, I try to balance
+                        my chaos and order.</p>
+                </article>
+                <article>
+                    <h3>Values: Operating Principles</h3>
+                    <p>Iterate and automate. Document it. Ship. I don't chase perfect; I chase progress.</p>
+                    <p>This isn't just workflow; it is my Iter. A time capsule of how I evolved, bridging Nigeria and
+                        Canada, high school drills and ICT dreams, my past and projected future.</p>
+                </article>
+                <article>
+                    <h3>Contact: Let's Build</h3>
+                    <p>If this story resonates and you've got something challenging to build, I'm listening.</p>
+                    <ul>
+                        <li>📧 Email: <a href="mailto:mr.chain@gmail.com">mr.chain@gmail.com</a> or <a
+                                href="mailto:chain@thewebbaby.xyz">chain@thewebbaby.xyz</a></li>
+                        <li>💼 LinkedIn: <a
+                                href="https://www.linkedin.com/in/uchenna-anozie-a86143308/">uchenna-anozie-a86143308</a>
+                        </li>
+                        <li>🐦 X: <a href="https://x.com/webbaby_1807">@webbaby_1807</a></li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Projects: CDFE - Computer Do For Me Programs</h3>
+                    <p>My next chapter is CDFE, "Computer Do For Me." Projects that fuse automation, AI, robotics, and
+                        grit. Born from classrooms, construction sites, and countless hours of iteration, they're my way
+                        of proving that computers don't just compute, they collaborate.</p>
+                    <p>The goal: build an ecosystem where humans and Aethels coexist symbiotically. Neither is supreme;
+                        they are parts of a single cycle. Humans can't achieve the great enlightenment without a logic
+                        that illuminates the path. Without computers, we have a hard time putting our logic to work in
+                        record time.</p>
+                </article>
+            </div>
+            <div class="hero-ctas" style="margin-top:12px;">
+                <a class="btn" href="#story-heading">Back to top</a>
+            </div>
+        </section>
+    </main>
+
+    <footer-placeholder></footer-placeholder>
+    <!-- JS -->
+    <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/ui/theme.js"></script>
+    <script type="module" src="/assets/js/ui/components/nav.js"></script>
+    <script type="module" src="/assets/js/pages/scroll_paper.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,523 @@
+/* =======================================================================================
+   CONSTRUCTION.CSS — Fixed & Upgraded (FINAL)
+   Scope: html[data-page="construction"]
+   - Zero blank space in carousel
+   - 1 / 2 / 3 cards per view at mobile / tablet / desktop
+   - Controls/dots always sit above transformed track (no click-through)
+   - Stable layout; no horizontal overflow on this page
+   - Compatible with main.css / pages.css / components.css tokens
+   ======================================================================================= */
+
+@layer construction {
+
+  /* ------------------------------ PAGE TOKENS ------------------------------ */
+  html[data-page="construction"] {
+    --constr-card-radius: var(--radius-lg);
+    --constr-border: var(--border);
+    --constr-soft: var(--surface-2);
+    --constr-muted: var(--accent-2);
+
+    --constr-gap: 20px;
+    --constr-controls-offset: 14px;
+
+    /* Geometry */
+    --constr-media-ratio: 16 / 9;
+    --constr-card-min-h: 360px;
+    /* desktop baseline */
+    --constr-card-min-h-sm: 300px;
+    /* small screens baseline */
+
+    /* Pagination visuals */
+    --constr-dot-size: 10px;
+    --constr-dot-gap: 10px;
+  }
+
+  /* Kill phantom horizontal scroll only on this page */
+  html[data-page="construction"] .view.story {
+    overflow-x: clip;
+  }
+
+  /* ------------------------------ HEADER BLOCK ------------------------------ */
+  html[data-page="construction"] .view-header {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid var(--constr-border);
+    padding-block: 16px 8px;
+    margin: 0;
+    scroll-margin-top: 84px;
+    /* anchors land below sticky header */
+  }
+
+  /* Wrapper you added around the H1 (avoid duplicate-ID side effects by scoping) */
+  html[data-page="construction"] .view-header-content#story-heading {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 4vw, 32px);
+    margin: 8px 0;
+  }
+
+  /* The H1 inside */
+  html[data-page="construction"] .view-header-content#story-heading .page-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: inherit;
+    margin: 0;
+    line-height: 1.1;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Heading emojis/GIFs — responsive clamp */
+  html[data-page="construction"] .cat,
+  html[data-page="construction"] .goated {
+    width: clamp(44px, 10vw, 66px);
+    height: clamp(44px, 10vw, 66px);
+    object-fit: cover;
+    vertical-align: middle;
+    border-radius: 33%;
+  }
+
+  /* Subtitle rotator stability to avoid width-push on tiny screens */
+  html[data-page="construction"] #subtitle-rotator {
+    display: block;
+    max-inline-size: 42ch;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1.4em;
+  }
+
+  /* ------------------------------ CAROUSEL SHELL ------------------------------ */
+  html[data-page="construction"] .view.story {
+    --card-gap: var(--constr-gap);
+    --controls-offset: var(--constr-controls-offset);
+    --dot-size: var(--constr-dot-size);
+    --dot-gap: var(--constr-dot-gap);
+  }
+
+  html[data-page="construction"] .carousel {
+    position: relative;
+    /* stacking context base */
+    z-index: 0;
+    margin-block: 20px 42px;
+    container-type: inline-size;
+    /* enable fluid calc at component level */
+  }
+
+  html[data-page="construction"] .carousel-viewport {
+    background: var(--constr-soft);
+    border: 1px solid var(--constr-border);
+    border-radius: var(--constr-card-radius);
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    /* keep backdrop/filters local */
+    z-index: 0;
+    /* stay below overlays */
+  }
+
+  html[data-page="construction"] .carousel-viewport:focus {
+    outline: none;
+  }
+
+  html[data-page="construction"] .carousel-viewport:focus-visible {
+    outline: var(--focus);
+    outline-offset: 2px;
+  }
+
+  html[data-page="construction"] .carousel-track {
+    display: flex;
+    gap: var(--constr-gap);
+    padding: 16px;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    touch-action: pan-y;
+    /* avoid horizontal overscroll on touch */
+    position: relative;
+    z-index: 0;
+    /* transformed element has its own context — anchor to base */
+  }
+
+  @media (max-width: 639.98px) {
+    html[data-page="construction"] .carousel-track {
+      padding: 12px;
+    }
+  }
+
+  /* ------------------------------ UNIFORM SLIDES ------------------------------
+     Mobile-first: 1-up, then 2-up, then 3-up.
+     Cards use fixed media aspect ratio + minimum body height.
+     -------------------------------------------------------------------------- */
+  html[data-page="construction"] .carousel-slide {
+    list-style: none;
+    flex: 0 0 100%;
+    min-width: 0;
+    pointer-events: auto;
+    /* clickable ONLY within viewport due to overflow:hidden */
+    position: relative;
+  }
+
+  html[data-page="construction"] .carousel-slide .story-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: var(--constr-card-min-h-sm);
+    background: var(--surface);
+    border: 1px solid var(--constr-border);
+    border-radius: var(--constr-card-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  }
+
+  html[data-page="construction"] .carousel-slide .story-card:hover,
+  html[data-page="construction"] .carousel-slide .story-card:focus-within {
+    transform: translateY(-2px);
+    border-color: var(--blue-400);
+  }
+
+  /* Media region locks the vertical space */
+  html[data-page="construction"] .story-card .story-media {
+    display: block;
+    aspect-ratio: var(--constr-media-ratio);
+    background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+    overflow: hidden;
+  }
+
+  html[data-page="construction"] .story-card .story-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(1.05) contrast(1.02);
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  /* Body content grid keeps titles and blurbs aligned */
+  html[data-page="construction"] .story-card .story-body {
+    padding: 14px 16px 16px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 8px;
+  }
+
+  html[data-page="construction"] .story-card .story-title {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    color: var(--text);
+    word-break: break-word;
+  }
+
+  html[data-page="construction"] .story-card .story-title a {
+    color: inherit;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+  }
+
+  html[data-page="construction"] .story-card .story-title a:hover,
+  html[data-page="construction"] .story-card .story-title a:focus-visible {
+    color: var(--blue-400);
+    text-decoration: underline;
+  }
+
+  /* Clamp blurb lines so cards remain equal height */
+  html[data-page="construction"] .story-card .story-blurb {
+    margin: 0;
+    color: var(--constr-muted);
+    font-size: 0.97rem;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ------------------------------ RESPONSIVE COLUMNS ------------------------------ */
+  /* ≥640px: 2-up */
+  @media (min-width: 640px) {
+    html[data-page="construction"] .carousel-slide {
+      flex: 0 0 calc(50% - var(--constr-gap) / 2);
+    }
+
+    html[data-page="construction"] .carousel-slide .story-card {
+      min-height: var(--constr-card-min-h);
+    }
+  }
+
+  /* ≥1100px: 3-up */
+  @media (min-width: 1100px) {
+    html[data-page="construction"] .carousel-slide {
+      flex: 0 0 calc(33.333% - (2 * var(--constr-gap) / 3));
+    }
+  }
+
+  /* ------------------------------ CONTROLS (ALWAYS ABOVE TRACK) ------------------------------ */
+  html[data-page="construction"] .carousel-controls {
+    position: absolute;
+    inset: 0;
+    /* occupy viewport bounds without reflow */
+    pointer-events: none;
+    /* only buttons receive events */
+    z-index: 20;
+    /* above transformed track */
+  }
+
+  html[data-page="construction"] .carousel-prev,
+  html[data-page="construction"] .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    inline-size: 44px;
+    block-size: 44px;
+    border-radius: 50%;
+    border: 0;
+    background: color-mix(in srgb, var(--black) 88%, transparent);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    cursor: var(--cursor-pointer);
+    pointer-events: auto;
+    /* re-enable on the control itself */
+    display: grid;
+    place-items: center;
+    z-index: 21;
+    /* ensure above everything in the viewport */
+  }
+
+  html[data-page="construction"] .carousel-prev {
+    left: var(--constr-controls-offset);
+  }
+
+  html[data-page="construction"] .carousel-next {
+    right: var(--constr-controls-offset);
+  }
+
+  html[data-page="construction"] .carousel-prev:focus-visible,
+  html[data-page="construction"] .carousel-next:focus-visible {
+    outline: var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 420px) {
+
+    html[data-page="construction"] .carousel-prev,
+    html[data-page="construction"] .carousel-next {
+      inline-size: 38px;
+      block-size: 38px;
+    }
+  }
+
+  /* ------------------------------ DOTS (ABOVE TRACK) ------------------------------ */
+  html[data-page="construction"] .carousel-pagination {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: var(--constr-dot-gap);
+    padding-inline: 8px;
+    overflow: hidden;
+    /* keep to one visual line */
+    white-space: nowrap;
+    position: relative;
+    z-index: 21;
+    /* above transformed track */
+  }
+
+  html[data-page="construction"] .carousel-dot {
+    inline-size: var(--constr-dot-size);
+    block-size: var(--constr-dot-size);
+    border-radius: 50%;
+    border: 0;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0.45;
+    cursor: var(--cursor-pointer);
+  }
+
+  html[data-page="construction"] .carousel-dot[aria-selected="true"] {
+    opacity: 1;
+    box-shadow: var(--focus);
+  }
+
+  html[data-page="construction"] .carousel-dot:focus-visible {
+    outline: var(--focus);
+    outline-offset: 2px;
+  }
+
+  /* ------------------------------ NEWSPAPER LAYOUT ------------------------------ */
+  html[data-page="construction"] .newspaper {
+    background: var(--constr-soft);
+    border: 1px solid var(--constr-border);
+    border-radius: var(--constr-card-radius);
+    padding: clamp(18px, 4vw, 28px);
+    margin-block: 24px;
+    box-shadow: var(--shadow);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    scroll-margin-top: 84px;
+    contain: layout paint style;
+    /* isolates heavy effects */
+  }
+
+  html[data-page="construction"] .newspaper-article {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  html[data-page="construction"] .newspaper-article article {
+    padding: 12px;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--constr-border);
+  }
+
+  html[data-page="construction"] .newspaper-article h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 0 12px 0;
+  }
+
+  html[data-page="construction"] .newspaper-article h3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px 0;
+  }
+
+  html[data-page="construction"] .newspaper-article p {
+    color: var(--constr-muted);
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+  }
+
+  html[data-page="construction"] .newspaper-article ul {
+    margin: 8px 0 0 1.2rem;
+    padding-left: 1rem;
+    color: var(--text);
+    list-style-type: disc;
+  }
+
+  html[data-page="construction"] .newspaper-article ul li {
+    margin-bottom: 6px;
+  }
+
+  html[data-page="construction"] .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  html[data-page="construction"] .hero-ctas .btn {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+
+  /* ------------------------------ MOBILE TUNING ------------------------------ */
+  @media (max-width: 768px) {
+    html[data-page="construction"] .view-header {
+      padding-block: 14px 6px;
+    }
+
+    html[data-page="construction"] .newspaper {
+      padding: 14px;
+      margin-block: 16px;
+    }
+
+    html[data-page="construction"] .newspaper-article {
+      gap: 12px;
+      grid-template-columns: 1fr;
+      /* stack */
+    }
+  }
+
+  @media (max-width: 639.98px) {
+
+    /* reduce gap at phones to minimize rounding-induced gutters */
+    html[data-page="construction"] .view.story {
+      --constr-gap: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    html[data-page="construction"] .newspaper-article h2 {
+      font-size: var(--font-size-h3);
+    }
+
+    html[data-page="construction"] .newspaper-article h3 {
+      font-size: var(--font-size-h4);
+    }
+  }
+}
+
+/* ------------------------------ MOTION PREFERENCES ------------------------------ */
+@layer motion {
+  @media (prefers-reduced-motion: reduce) {
+
+    html[data-page="construction"] .story-card,
+    html[data-page="construction"] .carousel-track,
+    html[data-page="construction"] .newspaper-article article,
+    html[data-page="construction"] .hero-ctas .btn {
+      transition: none !important;
+    }
+  }
+}
+/* --- Fit the Construction heading on narrow screens --- */
+html[data-page="construction"] .view-header {
+  container-type: inline-size;
+}
+
+/* Default sizing tweaks (keeps wrap clean) */
+html[data-page="construction"] .view-header-content#story-heading .page-title {
+  font-size: clamp(28px, 6vw, 56px);
+  text-wrap: balance;
+}
+
+/* Scale with the header’s own width (container queries) */
+@container (max-width: 520px) {
+  html[data-page="construction"] .view-header-content#story-heading .page-title {
+    font-size: clamp(22px, 9cqi, 34px);
+  }
+
+  html[data-page="construction"] .cat,
+  html[data-page="construction"] .goated {
+    width: clamp(36px, 8cqi, 48px);
+    height: clamp(36px, 8cqi, 48px);
+  }
+}
+
+/* Phone-tight fallback if container queries aren’t available */
+@media (max-width: 360px) {
+  html[data-page="construction"] .view-header-content#story-heading .page-title {
+    font-size: clamp(20px, 8vw, 28px);
+  }
+
+  html[data-page="construction"] .cat,
+  html[data-page="construction"] .goated {
+    width: 34px;
+    height: 34px;
+    position: center;
+  }
+
+  /* If space is still too tight, hide the right emoji only */
+  html[data-page="construction"] .goated {
+    display: none;
+  }
+}
+
+/* Keep icons aligned with text on all sizes */
+html[data-page="construction"] .cat,
+html[data-page="construction"] .goated {
+  vertical-align: -0.12em;
+}

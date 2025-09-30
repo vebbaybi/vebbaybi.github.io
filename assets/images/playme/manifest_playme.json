@@ -1,0 +1,88 @@
+{
+  "images": [
+    {
+      "filename": "playme1.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme2.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme3.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme4.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme5.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme6.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme7.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme8.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme9.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme10.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme11.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme12.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme12.jpg",
+      "format": "jpg",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "filename": "playme14.webp",
+      "format": "webp",
+      "width": 300,
+      "height": 300
+    }
+  ]
+}

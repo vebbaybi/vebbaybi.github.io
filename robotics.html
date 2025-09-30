@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" data-app="1807" data-page="robotics" data-version="v1.1">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Robotics • 1807-chain — Uchenna Anozie (webbaby) | computer Scientist| Embedded Systems • Vision • Telemetry</title>
+
+    <!-- Canonical & SEO -->
+    <link rel="canonical" href="https://vebbaybi.github.io/robotics.html" />
+    <meta name="description"
+        content="Embedded systems & robotics by Uchenna Anozie (webbaby): ACEBOT, X-EYE, and VIGI AI Cam. Sensor fusion, state machines, telemetry dashboards — orchestrated by Luna (hive mode)." />
+    <meta name="keywords"
+        content="Uchenna Anozie, webbaby, 1807-chain, robotics, embedded systems, Arduino, ESP32-CAM, telemetry, sensors, ACEBOT, X-EYE, VIGI" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Robotics • 1807-chain — webbaby" />
+    <meta property="og:description"
+        content="ACEBOT, X-EYE, VIGI AI Cam — real-time robotics with sensor fusion, state logic, and telemetry. Powered by Luna hive." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vebbaybi.github.io/robotics.html" />
+    <meta property="og:image" content="https://vebbaybi.github.io/assets/images/robotics/robotics-og.jpg" />
+    <meta property="og:image:alt" content="Robotics montage — sensors, servos, camera, telemetry graphs" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Robotics • 1807-chain — webbaby" />
+    <meta name="twitter:description"
+        content="Sensor fusion, state machines, telemetry dashboards — ACEBOT, X-EYE, VIGI." />
+    <meta name="twitter:image" content="https://vebbaybi.github.io/assets/images/robotics/robotics-og.jpg" />
+
+    <!-- Icons & Preloads -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/css/main.css" as="style" />
+    <link rel="preload" href="/assets/cursors/default.png" as="image" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/pages.css" />
+    <link rel="stylesheet" href="/assets/css/scrolly.css" />
+    <link rel="stylesheet" href="/assets/css/robotics.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://vebbaybi.github.io/robotics.html#webpage",
+        "name": "Robotics — 1807-chain",
+        "url": "https://vebbaybi.github.io/robotics.html",
+        "isPartOf": {"@id": "https://vebbaybi.github.io/#website"},
+        "about": ["Robotics","Embedded Systems","Vision","Telemetry","Arduino","ESP32-CAM"],
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://vebbaybi.github.io/#person",
+        "name": "Uchenna Emmanuel Anozie",
+        "alternateName": "webbaby",
+        "url": "https://vebbaybi.github.io/",
+        "image": "https://vebbaybi.github.io/assets/images/thedev.webp",
+        "jobTitle": "Computer & Data Scientist"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="theme-dark" data-route="robotics">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Header & Nav (hydrated from partials) -->
+    <header-placeholder id="header-host" data-hydrate="header"></header-placeholder>
+    <nav-placeholder id="nav-host" data-hydrate="nav"></nav-placeholder>
+
+    <main id="main" tabindex="-1" data-title="Robotics — Embedded Systems & Vision">
+        <!-- HERO -->
+        <section class="page-hero" aria-labelledby="hero-title">
+            <div class="page-hero__media">
+                <div class="scrolly-video" aria-hidden="true">
+                    <!-- overlay/banner fades on first interaction -->
+                    <img class="scrolly-banner" src="/assets/images/robotics/robo.png"
+                        alt="Robotics banner — sensors, servos, camera rig" />
+                    <video class="hero-video" src="/assets/videos/robotic-scroll.mp4" preload="metadata" muted
+                        playsinline loop></video>
+                </div>
+            </div>
+
+            <div class="page-hero__content container">
+                <h1 id="hero-title" class="page-title">Embedded Systems & Robotics</h1>
+                <p class="page-subtitle">
+                    ACEBOT • X-EYE • VIGI AI Cam — real-time sensing, state machines, and telemetry.
+                    <br /><em>Hive-controlled via <a href="/ai.html#luna-spotlight" class="inline-link">Luna</a>.</em>
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn" href="#projects">See Projects</a>
+                    <a class="btn secondary" href="/ai.html"><span class="play" aria-hidden="true"></span> Luna
+                        (Flagship)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK STATS -->
+        <section class="section section--stats container" aria-label="Quick stats">
+            <ul class="stats-grid" role="list">
+                <li class="stat">
+                    <div class="stat__num">Sensor Fusion</div>
+                    <div class="stat__label">PIR • Ultrasonic • IMU</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">State Logic</div>
+                    <div class="stat__label">Patrol • Track • Alert</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">Telemetry</div>
+                    <div class="stat__label">Serial • Dashboards</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">Hive</div>
+                    <div class="stat__label">Luna Orchestration</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="section container" aria-labelledby="projects-title">
+            <h2 id="projects-title" class="section-title">Projects</h2>
+
+            <div class="cards-grid cards-grid--projects">
+                <!-- ACEBOT -->
+                <article class="card" id="proj-ace">
+                    <figure class="card__media">
+                        <img src="/assets/images/robotics/acebot.png" alt="ACEBOT — patrol robot with servo and sensors"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">ACEBOT — Autonomous Cognitive Evo</h3>
+                        <p class="card__desc">
+                            Voice-aware patrol bot on Arduino Uno R4: PIR + dual ultrasonic, threat scoring, pan-servo
+                            tracking,
+                            LED/buzzer feedback, and optional ESP32-CAM relay. Built with PlatformIO and a clean module
+                            split.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">PIR</li>
+                            <li class="chip">Ultrasonic×2</li>
+                            <li class="chip">Servo</li>
+                            <li class="chip">ESP32-CAM</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- X-EYE -->
+                <article class="card" id="proj-xeye">
+                    <figure class="card__media">
+                        <img src="/assets/images/robotics/xeye.png"
+                            alt="X-EYE — motion detection + orientation telemetry rig" loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">X-EYE — Motion Detection & Telemetry</h3>
+                        <p class="card__desc">
+                            PIR + ultrasonic fusion with MPU6050 orientation (pitch/roll/yaw), servo scanning, SD/serial
+                            logging,
+                            and a Python dashboard (Tkinter + Matplotlib). Modes: console, dashboard, hybrid.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">MPU6050</li>
+                            <li class="chip">Telemetry</li>
+                            <li class="chip">SD Logs</li>
+                            <li class="chip">GUI</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- VIGI AI Cam -->
+                <article class="card" id="proj-vigi">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/vigi-ai.png" alt="VIGI AI Cam — ESP32-CAM with threat scoring"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">VIGI AI Cam — Smart Surveillance</h3>
+                        <p class="card__desc">
+                            ESP32-CAM surveillance tie-in with PIR and dual ultrasonic triangulation, servo targeting,
+                            threat scoring,
+                            IR/Bluetooth control modes, and OTA-style command relays. Lives here and surfaces on AI as
+                            vision/edge.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">ESP32-CAM</li>
+                            <li class="chip">PIR</li>
+                            <li class="chip">HC-SR04×2</li>
+                            <li class="chip">Servo</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE -->
+        <section class="section section--arch container" aria-labelledby="arch-title">
+            <h2 id="arch-title" class="section-title">Architecture Overview</h2>
+            <div class="arch-grid">
+                <article class="arch-card">
+                    <h3 class="arch-card__title">Sensors & Fusion</h3>
+                    <p class="arch-card__text">PIR, ultrasonic, and IMU streams normalized and fused with sanity checks
+                        and debouncing.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">State & Control</h3>
+                    <p class="arch-card__text">Patrol → Tracking → Alert, with threat scores, cooldowns, and watchdogs
+                        for recovery.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">Telemetry & Logs</h3>
+                    <p class="arch-card__text">Serial/BT dashboards, JSON logs with rotation, correlation IDs, and SD
+                        fallbacks.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">Hive via Luna</h3>
+                    <p class="arch-card__text">Robots subscribe to Luna’s policy/tool bus for coordinated actions and
+                        shared limits.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="section section--gallery" aria-label="Hardware gallery">
+            <div class="gallery-strip">
+                <figure class="gallery-item"><img src="/assets/images/unset.jpg" alt="Sensor mast and chassis"
+                        loading="lazy" /></figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.jpg" alt="Wiring & PCB layout"
+                        loading="lazy" /></figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.jpg" alt="Servo scan rig"
+                        loading="lazy" /></figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.jpg" alt="Telemetry dashboard"
+                        loading="lazy" /></figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.jpg" alt="Outdoor test run"
+                        loading="lazy" /></figure>
+            </div>
+        </section>
+
+        <!-- TECH DOCS: VIGI Circuit PDF -->
+        <section class="section container" aria-labelledby="docs-title">
+            <h2 id="docs-title" class="section-title">Technical Docs — VIGI Circuit</h2>
+
+            <article class="arch-card" aria-label="VIGI AI Cam circuit diagram">
+                <p class="arch-card__text" style="margin:0 0 10px 0;">
+                    Schematic for the VIGI AI Cam surveillance module. Use the toolbar to zoom or download the PDF
+                    directly.
+                </p>
+
+                <!-- Accessible, responsive PDF embed -->
+                <figure class="card__media" style="aspect-ratio:auto; height: min(72vh, 960px);">
+                    <object data="/assets/pdf/circuit.pdf#view=FitH" type="application/pdf"
+                        aria-label="VIGI AI Cam circuit diagram PDF" width="100%" height="100%">
+                        <p>
+                            Your browser can’t display the PDF.
+                            <a href="/assets/pdf/circuit.pdf" class="btn secondary">Download circuit.pdf</a>
+                        </p>
+                    </object>
+                </figure>
+
+                <div class="hero-ctas" style="margin-top:12px;">
+                    <a class="btn secondary" href="/assets/pdf/circuit.pdf" download>Download PDF</a>
+                    <a class="btn" href="/ai.html#ai-vigi">See VIGI on AI Page</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- CTA -->
+        <section class="section section--cta container" aria-labelledby="cta-title">
+            <h2 id="cta-title" class="section-title">Robots that coordinate — and recover</h2>
+            <p class="lead">Embedded systems tied together with a hive-minded assistant, observability, and safe
+                defaults.</p>
+            <div class="hero-ctas">
+                <a class="btn" href="/ai.html#luna-spotlight">Learn about Luna Hive</a>
+                <a class="btn secondary" href="mailto:chain@thewebbaby.xyz">chain@thewebbaby.xyz</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (hydrated from partial) -->
+    <footer id="footer-host" data-hydrate="footer"></footer>
+    <footer-placeholder></footer-placeholder>
+
+    <noscript>
+        <div class="noscript-note" id="noscript">JavaScript is disabled. Some UI components will not hydrate.</div>
+    </noscript>
+
+    <!-- JS -->
+    <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/ui/components/nav.js"></script>
+    <script type="module" src="/assets/js/pages/robotics.js"></script>
+</body>
+
+</html>

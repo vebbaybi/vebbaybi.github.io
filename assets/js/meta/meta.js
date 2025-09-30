@@ -1,6 +1,6 @@
 export function updateMeta(route) {
   const title = route?.meta?.title || '1807 — Portfolio';
-  const desc  = route?.meta?.desc  || 'webaby portfolio';
+  const desc  = route?.meta?.desc  || 'Webbaby portfolio';
   document.title = title;
 
   set('meta[name="description"]', 'content', desc);

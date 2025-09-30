@@ -1,290 +1,601 @@
 /* =======================================================================================
-  1807 — Home Page Renderer (+ Eyebrow Typewriter)
-  - Exports: render(target)
-  - Eyebrow typewriter: per-char transient color, then reverts to white
-  - Respects prefers-reduced-motion
-  - Pauses on tab hidden, resumes on visible
-  - Cleans up timers/listeners between re-renders
-  - No auto-mount (works in SPA routers)
-  Author: webbaby
-  ======================================================================================= */
+   1807 — Resume Export Orchestrator + Eyebrow Typewriter
+   - Targets: #resume (content), action buttons in .resume-actions
+   - Outputs: PDF, DOCX, Markdown, TXT, JSON, vCard
+   - Uses CDNs: html2canvas, jsPDF (UMD), docx (UMD)
+   - Robust DOM extraction -> normalized data model -> multi-format exporters
+   - Typewriter: reads data-phrases from #eyebrow-rotator (reduced-motion safe)
+   Author: webbaby (chains.io / vebbaybi.github.io)
+   ======================================================================================= */
 
-const CONFIG = Object.freeze({
-  heroImg: "/assets/images/thedev.webp",
-  phrases: ["I CODE", "I BUILD", "I CREATE", "FOR THAT I AM", "WELCOME TO THE RAIN..."],
-  selector: "#eyebrow-rotator",
-  typeMs: 55,
-  eraseMs: 28,
-  pauseMs: 1200,
-  colors: [
-    "#60a5fa", // blue-400
-    "#93c5fd", // blue-300
-    "#2563eb", // blue-600
-    "#b68b4c", // tan-600
-    "#d6a76a", // tan-500
-    "#f5e9da"  // tan-100
-  ]
-});
+(function () {
+  "use strict";
 
-/** Internal typewriter state (module-scoped so we can clean up between renders) */
-let tw = {
-  el: null,
-  phrases: [],
-  iPhrase: 0,
-  iChar: 0,
-  typing: true,
-  timer: null,
-  prevColor: null,
-  isReducedMotion: false,
-  isPausedByVisibility: false,
-  boundVisibilityHandler: null
-};
+  /** ----------------------------------------------
+   * Utilities
+   * ---------------------------------------------- */
 
-/** Safely stop timers and listeners (called before every render) */
-function cleanupTypewriter() {
-  if (tw.timer) {
-    clearTimeout(tw.timer);
-    tw.timer = null;
-  }
-  if (tw.boundVisibilityHandler) {
-    document.removeEventListener("visibilitychange", tw.boundVisibilityHandler);
-    tw.boundVisibilityHandler = null;
-  }
-  // keep reduces-motion flag; reset the rest
-  tw.el = null;
-  tw.phrases = [];
-  tw.iPhrase = 0;
-  tw.iChar = 0;
-  tw.typing = true;
-  tw.prevColor = null;
-  tw.isPausedByVisibility = false;
-}
+  function $(sel, root = document) { return root.querySelector(sel); }
+  function $all(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
 
-/** Initialize and start the typewriter on the eyebrow within a specific root */
-function startTypewriter(root) {
-  tw.isReducedMotion =
-    typeof matchMedia === "function" &&
-    matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  tw.el = root.querySelector(CONFIG.selector);
-  if (!tw.el) {
-    // This is the core fix: if the element isn't found, wait for a moment and try again.
-    setTimeout(() => startTypewriter(root), 10);
-    return;
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = filename; document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
   }
 
-  // Load phrases (from data-phrases if present, else CONFIG)
-  try {
-    const raw = tw.el.getAttribute("data-phrases");
-    tw.phrases = raw ? JSON.parse(raw) : CONFIG.phrases.slice();
-  } catch {
-    tw.phrases = CONFIG.phrases.slice();
-  }
-  if (!Array.isArray(tw.phrases) || tw.phrases.length === 0) {
-    tw.phrases = CONFIG.phrases.slice();
+  function saveText(text, filename) {
+    downloadBlob(new Blob([text], { type: "text/plain;charset=utf-8" }), filename);
   }
 
-  if (tw.isReducedMotion) {
-    // No animation: show current phrase as plain text
-    tw.el.textContent = tw.phrases[0] || "WELCOME TO THE RAIN...";
-    return;
+  function safeText(node) {
+    return (node?.textContent || "").replace(/\s+\n/g, "\n").replace(/\s+/g, " ").trim();
   }
 
-  // Prepare container
-  tw.el.textContent = "";
-  appendLineNode();
+  function asLines(text) {
+    return text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  }
 
-  tw.iPhrase = 0;
-  tw.iChar = 0;
-  tw.typing = true;
+  function kebab(s) {
+    return String(s || "").toLowerCase().replace(/[^\w]+/g, "-").replace(/^-+|-+$/g, "");
+  }
 
-  tw.boundVisibilityHandler = onVisibilityChange;
-  document.addEventListener("visibilitychange", tw.boundVisibilityHandler);
+  function nowStamp() {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
+  }
 
-  loopTypewriter();
-}
+  /** ----------------------------------------------
+   * DOM → Data Model
+   * ---------------------------------------------- */
 
-function appendLineNode() {
-  if (!tw.el) return;
-  const line = document.createElement("span");
-  line.className = "tw-line";
-  tw.el.appendChild(line);
-}
+  function extractResumeModel() {
+    const root = $("#resume");
+    if (!root) throw new Error("Resume root (#resume) not found.");
 
-function getLineNode() {
-  return tw.el ? tw.el.querySelector(".tw-line") : null;
-}
+    // Header
+    const who = $(".resume-header .id h1");
+    const role = $(".resume-header .role");
+    const img = $(".resume-photo img");
+    const tags = $all(".stack-tags .tag").map(el => safeText(el));
 
-function pickTypingColor() {
-  const pool = CONFIG.colors.filter(c => c !== tw.prevColor);
-  const choice = pool[Math.floor(Math.random() * pool.length)] || CONFIG.colors[0];
-  tw.prevColor = choice;
-  return choice;
-}
+    // Sections
+    const sections = $all("#resume > section.resume-card");
 
-function onVisibilityChange() {
-  if (document.hidden) {
-    tw.isPausedByVisibility = true;
-    if (tw.timer) {
-      clearTimeout(tw.timer);
-      tw.timer = null;
+    const model = {
+      meta: {
+        title: document.title || "Resume",
+        url: location.href,
+        generatedAt: new Date().toISOString(),
+      },
+      identity: {
+        fullName: safeText(who),
+        role: safeText(role),
+        photo: img?.getAttribute("src") || null,
+        tags: tags,
+      },
+      summary: "",
+      skills: [],        // [{k: 'Programming', v: 'Python, C/C++'}]
+      projects: [],      // [{title, meta, bullets:[]}]
+      education: [],     // [{title, meta}]
+      contact: { links: [] } // [{k, v, href}]
+    };
+
+    for (const sec of sections) {
+      const h2 = $("h2", sec);
+      const sectionId = (h2?.id || kebab(safeText(h2))).toLowerCase();
+
+      // Summary
+      if (sectionId.includes("summary")) {
+        const p = $("p", sec);
+        model.summary = safeText(p);
+        continue;
+      }
+
+      // Skills (resume-grid -> .kv .k/.v)
+      if (sectionId.includes("skills")) {
+        const kvs = $all(".resume-grid .kv", sec);
+        model.skills = kvs.map(kv => ({
+          k: safeText($(".k", kv)),
+          v: safeText($(".v", kv)),
+        }));
+        continue;
+      }
+
+      // Projects (.item blocks)
+      if (sectionId.includes("project")) {
+        const items = $all(".item", sec);
+        model.projects = items.map(it => ({
+          title: safeText($(".title", it)),
+          meta: safeText($(".meta", it)),
+          bullets: $all("ul li", it).map(li => safeText(li)),
+        }));
+        continue;
+      }
+
+      // Education
+      if (sectionId.includes("education")) {
+        const items = $all(".item", sec);
+        model.education = items.map(it => ({
+          title: safeText($(".title", it)),
+          meta: safeText($(".meta", it)),
+        }));
+        continue;
+      }
+
+      // Contact (resume-grid -> .kv with link)
+      if (sectionId.includes("contact")) {
+        const kvs = $all(".resume-grid .kv", sec);
+        model.contact.links = kvs.map(kv => {
+          const k = safeText($(".k", kv));
+          const a = $("a", $(".v", kv));
+          return {
+            k,
+            v: safeText($(".v", kv)),
+            href: a?.getAttribute("href") || null,
+          };
+        });
+        continue;
+      }
     }
-  } else if (tw.isPausedByVisibility && !tw.isReducedMotion) {
-    tw.isPausedByVisibility = false;
-    loopTypewriter();
+
+    return model;
   }
-}
 
-function loopTypewriter() {
-  const line = getLineNode();
-  if (!line) return;
+  /** ----------------------------------------------
+   * Exporters
+   * ---------------------------------------------- */
 
-  const phrase = tw.phrases[tw.iPhrase] || "";
+  async function exportPDF() {
+    const resume = $("#resume");
+    if (!resume) throw new Error("#resume not found.");
+    if (!window.jspdf || !window.html2canvas) throw new Error("jsPDF or html2canvas missing.");
 
-  if (tw.typing) {
-    if (tw.iChar < phrase.length) {
-      const ch = phrase[tw.iChar];
-      const span = document.createElement("span");
-      span.className = "tw-char is-typing";
-      span.style.setProperty("--typing-color", pickTypingColor());
-      span.textContent = ch;
-      line.appendChild(span);
+    // Force light theme for print fidelity, without altering screen theme permanently
+    const prevCS = document.documentElement.getAttribute("data-force-print-mode") || "";
+    document.documentElement.setAttribute("data-force-print-mode", "light");
+    const wasDark = document.body.classList.contains("theme-dark");
+    document.body.classList.remove("theme-dark");
 
-      // Revert previous char to default white
-      const prev = line.children[line.children.length - 2];
-      if (prev && prev.classList.contains("tw-char")) prev.classList.remove("is-typing");
+    // Render with html2canvas at higher scale for crisp text
+    const scale = Math.min(2, window.devicePixelRatio || 1.5);
+    const canvas = await window.html2canvas(resume, {
+      scale,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+      windowWidth: document.documentElement.scrollWidth,
+      windowHeight: document.documentElement.scrollHeight,
+    });
 
-      tw.iChar++;
-      tw.timer = setTimeout(loopTypewriter, CONFIG.typeMs);
+    // ✅ Correct jsPDF instantiation
+    const pdf = new window.jspdf.jsPDF("p", "mm", "a4");
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+
+    const imgData = canvas.toDataURL("image/png");
+    const imgW = pageW;
+    const imgH = canvas.height * (imgW / canvas.width); // mm height when scaled to page width
+
+    if (imgH <= pageH) {
+      pdf.addImage(imgData, "PNG", 0, 0, imgW, imgH, undefined, "FAST");
+    } else {
+      // Slice tall canvas into pages
+      const pageHeightPx = canvas.height * (pageH / imgH); // px per page when scaled
+      const pageCanvas = document.createElement("canvas");
+      const pageCtx = pageCanvas.getContext("2d");
+      pageCanvas.width = canvas.width;
+
+      let y = 0;
+      while (y < canvas.height) {
+        const sliceHeight = Math.min(pageHeightPx, canvas.height - y);
+        pageCanvas.height = sliceHeight;
+        pageCtx.clearRect(0, 0, pageCanvas.width, pageCanvas.height);
+        pageCtx.drawImage(canvas, 0, y, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+
+        const sliceData = pageCanvas.toDataURL("image/png");
+        const sliceH = (sliceHeight / canvas.height) * imgH; // mm height for this slice
+
+        pdf.addImage(sliceData, "PNG", 0, 0, imgW, sliceH, undefined, "FAST");
+        y += sliceHeight;
+        if (y < canvas.height) pdf.addPage();
+      }
+    }
+
+    // Restore theme state
+    if (wasDark) document.body.classList.add("theme-dark");
+    if (prevCS) document.documentElement.setAttribute("data-force-print-mode", prevCS);
+    else document.documentElement.removeAttribute("data-force-print-mode");
+
+    const name = kebab(extractResumeModel().identity.fullName) || "resume";
+    pdf.save(`${name}-${nowStamp()}.pdf`);
+  }
+
+  async function exportDOCX() {
+    if (!window.docx) throw new Error("docx library missing.");
+    const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = window.docx;
+
+    const data = extractResumeModel();
+
+    const title = new Paragraph({
+      text: data.identity.fullName || "Resume",
+      heading: HeadingLevel.TITLE,
+      alignment: AlignmentType.CENTER,
+    });
+
+    const role = data.identity.role
+      ? new Paragraph({ text: data.identity.role, alignment: AlignmentType.CENTER })
+      : null;
+
+    const makeHeading = (text) =>
+      new Paragraph({ text, heading: HeadingLevel.HEADING_2 });
+
+    const makeBullets = (arr) =>
+      arr.map(t => new Paragraph({ text: t, bullet: { level: 0 } }));
+
+    const children = [title];
+    if (role) children.push(role);
+
+    // Tags
+    if (data.identity.tags?.length) {
+      children.push(new Paragraph({ text: data.identity.tags.join(" • "), alignment: AlignmentType.CENTER }));
+    }
+
+    // Summary
+    if (data.summary) {
+        children.push(makeHeading("Summary"));
+        asLines(data.summary).forEach(line => children.push(new Paragraph({ text: line })));
+    }
+
+    // Skills
+    if (data.skills?.length) {
+      children.push(makeHeading("Core Skills"));
+      data.skills.forEach(s => {
+        const k = s.k ? `${s.k}: ` : "";
+        children.push(new Paragraph({ children: [new TextRun({ text: k, bold: true }), new TextRun(s.v || "")] }));
+      });
+    }
+
+    // Projects
+    if (data.projects?.length) {
+      children.push(makeHeading("Selected Projects"));
+      data.projects.forEach(p => {
+        if (p.title) children.push(new Paragraph({ text: p.title, heading: HeadingLevel.HEADING_3 }));
+        if (p.meta) children.push(new Paragraph({ text: p.meta }));
+        if (p.bullets?.length) children.push(...makeBullets(p.bullets));
+      });
+    }
+
+    // Education
+    if (data.education?.length) {
+      children.push(makeHeading("Education"));
+      data.education.forEach(e => {
+        const line = e.meta ? `${e.title} — ${e.meta}` : e.title;
+        children.push(new Paragraph({ text: line }));
+      });
+    }
+
+    // Contact
+    if (data.contact?.links?.length) {
+      children.push(makeHeading("Contact"));
+      data.contact.links.forEach(l => {
+        children.push(new Paragraph({ text: `${l.k}: ${l.v}` }));
+      });
+    }
+
+    const doc = new Document({ sections: [{ children }] });
+    const blob = await Packer.toBlob(doc);
+
+    const name = kebab(data.identity.fullName) || "resume";
+    downloadBlob(blob, `${name}-${nowStamp()}.docx`);
+  }
+
+  function exportMarkdown() {
+    const d = extractResumeModel();
+    let md = `# ${d.identity.fullName || "Resume"}\n`;
+    if (d.identity.role) md += `**${d.identity.role}**\n\n`;
+    if (d.identity.tags?.length) md += `${d.identity.tags.join(" • ")}\n\n`;
+
+    if (d.summary) {
+      md += `## Summary\n${d.summary}\n\n`;
+    }
+
+    if (d.skills?.length) {
+      md += `## Core Skills\n`;
+      d.skills.forEach(s => { md += `- **${s.k}**: ${s.v}\n`; });
+      md += `\n`;
+    }
+
+    if (d.projects?.length) {
+      md += `## Selected Projects\n`;
+      d.projects.forEach(p => {
+        md += `### ${p.title}\n`;
+        if (p.meta) md += `*${p.meta}*\n`;
+        if (p.bullets?.length) p.bullets.forEach(b => md += `- ${b}\n`);
+        md += `\n`;
+      });
+    }
+
+    if (d.education?.length) {
+      md += `## Education\n`;
+      d.education.forEach(e => { md += `- ${e.title}${e.meta ? ` — ${e.meta}` : ""}\n`; });
+      md += `\n`;
+    }
+
+    if (d.contact?.links?.length) {
+      md += `## Contact\n`;
+      d.contact.links.forEach(l => {
+        const link = l.href ? `[${l.v}](${l.href})` : l.v;
+        md += `- **${l.k}**: ${link}\n`;
+      });
+      md += `\n`;
+    }
+
+    const name = kebab(d.identity.fullName) || "resume";
+    saveText(md, `${name}-${nowStamp()}.md`);
+  }
+
+  function exportTXT() {
+    const d = extractResumeModel();
+    const lines = [];
+
+    lines.push(d.identity.fullName || "Resume");
+    if (d.identity.role) lines.push(d.identity.role);
+    if (d.identity.tags?.length) lines.push(d.identity.tags.join(" • "));
+    lines.push("");
+
+    if (d.summary) {
+      lines.push("Summary");
+      lines.push(d.summary);
+      lines.push("");
+    }
+
+    if (d.skills?.length) {
+      lines.push("Core Skills");
+      d.skills.forEach(s => lines.push(`- ${s.k}: ${s.v}`));
+      lines.push("");
+    }
+
+    if (d.projects?.length) {
+      lines.push("Selected Projects");
+      d.projects.forEach(p => {
+        lines.push(`* ${p.title}`);
+        if (p.meta) lines.push(`  ${p.meta}`);
+        (p.bullets || []).forEach(b => lines.push(`  - ${b}`));
+        lines.push("");
+      });
+    }
+
+    if (d.education?.length) {
+      lines.push("Education");
+      d.education.forEach(e => lines.push(`- ${e.title}${e.meta ? ` — ${e.meta}` : ""}`));
+      lines.push("");
+    }
+
+    if (d.contact?.links?.length) {
+      lines.push("Contact");
+      d.contact.links.forEach(l => lines.push(`- ${l.k}: ${l.v}`));
+      lines.push("");
+    }
+
+    const name = kebab(d.identity.fullName) || "resume";
+    saveText(lines.join("\n"), `${name}-${nowStamp()}.txt`);
+  }
+
+  function exportJSON() {
+    const d = extractResumeModel();
+    const pretty = JSON.stringify(d, null, 2);
+    const name = kebab(d.identity.fullName) || "resume";
+    downloadBlob(new Blob([pretty], { type: "application/json;charset=utf-8" }), `${name}-${nowStamp()}.json`);
+  }
+
+  function exportVCF() {
+    const d = extractResumeModel();
+    const n = (d.identity.fullName || "").trim();
+    const parts = n.split(/\s+/);
+    const family = parts.slice(-1)[0] || "";
+    const given = parts[0] || "";
+    const fn = n || "Uchenna Anozie";
+
+    // vCard 4.0 minimal; add URLs from contact
+    const lines = [
+      "BEGIN:VCARD",
+      "VERSION:4.0",
+      `N:${family};${given};;;`,
+      `FN:${fn}`,
+      d.identity.role ? `TITLE:${d.identity.role}` : null,
+    ].filter(Boolean);
+
+    // Website / profiles
+    const urls = (d.contact?.links || [])
+      .map(l => l.href || l.v)
+      .filter(Boolean);
+
+    urls.forEach(u => lines.push(`URL:${u}`));
+
+    lines.push("END:VCARD");
+
+    const name = kebab(d.identity.fullName) || "resume";
+    saveText(lines.join("\n"), `${name}-${nowStamp()}.vcf`);
+  }
+
+  /** ----------------------------------------------
+   * Eyebrow Typewriter (reads data-phrases)
+   * ---------------------------------------------- */
+
+  let TW_STATE = { timer: null, reduced: false };
+
+  function initTypewriter() {
+    const host = $("#eyebrow-rotator");
+    if (!host) return;
+
+    TW_STATE.reduced = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+    // Decide target line element:
+    // If host itself has .tw-line, write into host. Otherwise ensure a child .tw-line exists.
+    let line = host;
+    if (!host.classList.contains("tw-line")) {
+      line = host.querySelector(".tw-line");
+      if (!line) {
+        line = document.createElement("span");
+        line.className = "tw-line";
+        host.appendChild(line);
+      }
+    }
+
+    // Parse phrases
+    let phrases;
+    try {
+      const raw = host.getAttribute("data-phrases");
+      phrases = raw ? JSON.parse(raw) : null;
+    } catch { /* ignore */ }
+    if (!Array.isArray(phrases) || phrases.length === 0) phrases = ["WELCOME TO THE RAIN..."];
+
+    // Reduced motion → just show the first phrase
+    if (TW_STATE.reduced) {
+      line.textContent = phrases[0] || "";
       return;
     }
-    // End of phrase: ensure last char reverts
-    const last = line.children[line.children.length - 1];
-    if (last) last.classList.remove("is-typing");
-    tw.typing = false;
-    tw.timer = setTimeout(loopTypewriter, CONFIG.pauseMs);
-    return;
+
+    // Typing loop
+    const colors = ["#60a5fa", "#93c5fd", "#2563eb", "#b68b4c", "#d6a76a", "#f5e9da"];
+    const pickColor = (prev) => {
+      const pool = colors.filter(c => c !== prev);
+      return pool[Math.floor(Math.random() * pool.length)] || colors[0];
+    };
+
+    let ip = 0, ic = 0, typing = true, prevColor = null;
+
+    // Clear any previous content (HMR/soft reload safety)
+    line.textContent = "";
+
+    function step() {
+      const text = phrases[ip] || "";
+      if (typing) {
+        if (ic < text.length) {
+          const span = document.createElement("span");
+          span.className = "tw-char is-typing";
+          const color = pickColor(prevColor); prevColor = color;
+          // Direct style color so it works even if page CSS doesn't define --typing-color rule
+          span.style.color = color;
+          span.textContent = text[ic];
+          line.appendChild(span);
+
+          const prevChar = line.children[line.children.length - 2];
+          if (prevChar && prevChar.classList.contains("tw-char")) prevChar.classList.remove("is-typing");
+
+          ic++;
+          TW_STATE.timer = setTimeout(step, 55);
+          return;
+        }
+        const last = line.lastElementChild;
+        if (last) last.classList.remove("is-typing");
+        typing = false;
+        TW_STATE.timer = setTimeout(step, 1200);
+        return;
+      } else {
+        if (ic > 0) {
+          line.removeChild(line.lastChild);
+          ic--;
+          TW_STATE.timer = setTimeout(step, 28);
+          return;
+        }
+        typing = true; ip = (ip + 1) % phrases.length;
+        TW_STATE.timer = setTimeout(step, 55);
+      }
+    }
+
+    step();
+
+    // Visibility pause/resume (saves CPU)
+    const onVis = () => {
+      if (document.hidden) {
+        if (TW_STATE.timer) { clearTimeout(TW_STATE.timer); TW_STATE.timer = null; }
+      } else if (!TW_STATE.reduced && !TW_STATE.timer) {
+        step();
+      }
+    };
+    document.addEventListener("visibilitychange", onVis);
+
+    // Store cleanup to remove listeners if needed later
+    TW_STATE.cleanup = () => {
+      if (TW_STATE.timer) { clearTimeout(TW_STATE.timer); TW_STATE.timer = null; }
+      document.removeEventListener("visibilitychange", onVis);
+    };
+  }
+
+  /** ----------------------------------------------
+   * Wiring (buttons + typewriter + small retry guard)
+   * ---------------------------------------------- */
+  function bindActions() {
+    const btnPDF = $("#dl-pdf");
+    const btnDOCX = $("#dl-docx");
+    const btnMD = $("#dl-md");
+    const btnTXT = $("#dl-txt");
+    const btnJSON = $("#dl-json");
+    const btnVCF = $("#dl-vcf");
+    const btnPrint = $("#print-btn");
+
+    if (btnPDF) btnPDF.addEventListener("click", async () => {
+      btnPDF.disabled = true;
+      try { await exportPDF(); } catch (e) { console.error(e); alert("PDF export failed."); }
+      finally { btnPDF.disabled = false; }
+    });
+
+    if (btnDOCX) btnDOCX.addEventListener("click", async () => {
+      btnDOCX.disabled = true;
+      try { await exportDOCX(); } catch (e) { console.error(e); alert("DOCX export failed."); }
+      finally { btnDOCX.disabled = false; }
+    });
+
+    if (btnMD) btnMD.addEventListener("click", () => {
+      try { exportMarkdown(); } catch (e) { console.error(e); alert("Markdown export failed."); }
+    });
+
+    if (btnTXT) btnTXT.addEventListener("click", () => {
+      try { exportTXT(); } catch (e) { console.error(e); alert("TXT export failed."); }
+    });
+
+    if (btnJSON) btnJSON.addEventListener("click", () => {
+      try { exportJSON(); } catch (e) { console.error(e); alert("JSON export failed."); }
+    });
+
+    if (btnVCF) btnVCF.addEventListener("click", () => {
+      try { exportVCF(); } catch (e) { console.error(e); alert("vCard export failed."); }
+    });
+
+    if (btnPrint) btnPrint.addEventListener("click", () => window.print());
+  }
+
+  function boot() {
+    bindActions();
+    initTypewriter();
+
+    // If something re-rendered and nuked the eyebrow contents, retry once
+    setTimeout(() => {
+      const host = document.querySelector("#eyebrow-rotator");
+      if (host && !host.textContent.trim()) {
+        if (typeof TW_STATE.cleanup === "function") TW_STATE.cleanup();
+        initTypewriter();
+      }
+    }, 500);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
   } else {
-    // Erase backwards
-    if (tw.iChar > 0) {
-      line.removeChild(line.lastChild);
-      tw.iChar--;
-      tw.timer = setTimeout(loopTypewriter, CONFIG.eraseMs);
-      return;
-    }
-    // Next phrase
-    tw.typing = true;
-    tw.iPhrase = (tw.iPhrase + 1) % tw.phrases.length;
-    tw.timer = setTimeout(loopTypewriter, CONFIG.typeMs);
+    boot();
   }
-}
 
-/* Ensure caret blink keyframes exist once per document (idempotent) */
-function ensureCaretKeyframes() {
-  const STYLE_ID = "tw-caret-style";
-  if (document.getElementById(STYLE_ID)) return;
-  const style = document.createElement("style");
-  style.id = STYLE_ID;
-  style.textContent = `@keyframes tw-caret-blink { 50% { opacity: 0; } }`;
-  document.head.appendChild(style);
-}
-
-/* =======================================================================================
-  PUBLIC: render(target)
-  Renders the hero and wires the eyebrow typewriter (scoped to target).
-  ======================================================================================= */
-export async function render(target) {
-  if (!target) return;
-
-  // Clean up any previous timers/listeners before re-rendering
-  cleanupTypewriter();
-
-  target.setAttribute("aria-busy", "true");
-
-  const phrasesAttr = JSON.stringify(CONFIG.phrases);
-
-  target.innerHTML = `
-    <section class="home-hero" aria-labelledby="intro-heading">
-      <div class="hero-left">
-        <img class="hero-img"
-             src="${CONFIG.heroImg}"
-             alt="Uchenna Anozie (webbaby)"
-             width="720"
-             height="900"
-             loading="eager"
-             decoding="async"
-             fetchpriority="high" />
-      </div>
-
-      <div class="hero-right">
-        <div class="hero-content">
-          <div class="eyebrow" aria-hidden="true">
-            <span class="tw-wrapper" style="position:relative;white-space:nowrap">
-              <span id="eyebrow-rotator"
-                    class="tw-line"
-                    data-phrases='${phrasesAttr}'>WELCOME TO THE RAIN...</span>
-              <span class="tw-caret"
-                    aria-hidden="true"
-                    style="display:inline-block;width:2px;height:1em;margin-left:6px;background:linear-gradient(180deg,var(--primary),var(--secondary));vertical-align:-0.15em;animation:tw-caret-blink 1s steps(2,start) infinite"></span>
-            </span>
-          </div>
-
-          <h1 class="hero-title" id="intro-heading">
-            <span>My name is Uchenna — Computer Scientist</span><br />
-            <span class="subline">Emerging Data Science, AI &amp; Embedded Systems Professional | Blockchain Enthusiast</span>
-          </h1>
-
-          <p class="hero-sub">
-            I’m building a broad, adaptable foundation across software, hardware, and data — so I can tackle complex
-            problems from multiple angles and deliver real-world impact.
-          </p>
-
-          <p class="hero-sub-full">
-            My core is Computer Science (B.Sc.): algorithms, data structures, and solid programming in Python, C/C++, and Rust.
-            I’ve branched into Data Science to design reliable pipelines (cleaning, validation, EDA, visualization) that power intelligent systems.
-            In parallel, I self-taught embedded hardware and automation — shipping working prototypes with Arduino, Raspberry Pi, and ESP32, integrating sensors and IoT logic in embedded C/C++.
-            I also build practical tooling for blockchain (DEX integrations, smart-contract analysis, anti-rug heuristics, and Web3 automation).
-            This breadth shows I learn fast, reason deeply, and execute with discipline — ready to support research, engineering, or product teams end-to-end.
-          </p>
-
-          <ul class="hero-highlights" aria-label="Key capabilities">
-            <li><strong>Computer Science:</strong> B.Sc.; algorithms, data structures, OOP, design patterns</li>
-            <li><strong>AI &amp; IT:</strong> Python (automation, NLP, model pipelines), C/C++, Rust, PineScript</li>
-            <li><strong>AI &amp; Data Science:</strong> Data wrangling, cleaning, validation, visualization, EDA, ML basics, NLP</li>
-            <li><strong>Embedded Systems &amp; IoT:</strong> Arduino, Raspberry Pi, ESP32, sensor fusion, embedded C/C++</li>
-            <li><strong>Blockchain &amp; Trading:</strong> DEX integrations, smart-contract auditing, anti-rug heuristics, Web3 scripting</li>
-            <li><strong>Research &amp; Data Handling:</strong> Data entry, clinical/operational databases, compliance documentation (IRB/FDA-style), system queries, audit trails</li>
-            <li><strong>Microsoft Office:</strong> Word, Excel, PowerPoint, Outlook (advanced docs, reporting, and spreadsheet analysis)</li>
-            <li><strong>Construction:</strong> Site coordination, workflow organization, precision installation</li>
-          </ul>
-
-          <div class="hero-ctas">
-            <a class="btn" href="#/projects" aria-label="Explore projects">Explore Now</a>
-            <a class="btn secondary" href="#/resumes" aria-label="View resumes and hire">
-              <span class="play" aria-hidden="true"></span> Hire webbaby
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="page-index" aria-hidden="true">Page | 01</div>
-    </section>
-  `;
-
-  target.removeAttribute("aria-busy");
-
-  // Start the typewriter after DOM is in place (scoped to this target)
-  startTypewriter(target);
-
-  // Ensure caret keyframes exist
-  ensureCaretKeyframes();
-}
-
-/* ------------------------------ HMR Guard ------------------------------ */
-try {
-  if (import.meta && import.meta.hot) {
-    import.meta.hot.dispose(() => cleanupTypewriter());
-  }
-} catch (_) {
-  /* non-module envs: no-op */
-}
+  /** ----------------------------------------------
+   * Hardening notes
+   * - jsPDF/html2canvas/docx are loaded via <script defer> in the HTML; no dynamic import
+   * - PDF: A4 pagination via canvas slicing; dark mode is temporarily disabled for fidelity
+   * - Model extraction is resilient to missing fields; exports degrade gracefully
+   * - VCF: minimal 4.0 card using FN/TITLE/URL; add TEL/EMAIL when you expose them
+   * - Filenames include timestamp; safe kebab-cased identity
+   * ---------------------------------------------- */
+})();

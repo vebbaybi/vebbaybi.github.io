@@ -1,5 +1,7 @@
 vebbaybi.github.io/
-├─ index.html                               # home page (add <div id="intro-root"> + <div id="ai-widget-root">)
+├─ index.html
+├─ home.html                               # home page
+├─ scroll_paper.html
 ├─ projects.html                            # projects overview
 ├─ ai.html                                  # AI projects page
 ├─ robotics.html                            # robotics projects page
@@ -23,11 +25,21 @@ vebbaybi.github.io/
 ├─ manifest.webmanifest                     # PWA basics
 │
 ├─ partials/
+│  ├─  nav.html
 │  ├─ header.html                           # global nav, logo, theme toggle
 │  └─ footer.html                           # footer, socials, copyright
 │
 ├─ assets/
+│  ├─ cursors/
+│  │  ├─ pointer.svg
+│  │  ├─ pointer-64.png
+│  │  ├─ pointer-32.png
+│  │  ├─ default.svg
+│  │  ├─ default-32.png
+│  │  ├─ default-64.png
 │  ├─ css/
+│  │  ├─ scroll_paper.css
+│  │  ├─ landing.css
 │  │  ├─ main.css                           # reset, base layout, typography
 │  │  ├─ components.css                     # cards, chips, grid, lightbox, tabs
 │  │  ├─ pages.css                          # page-specific styling
@@ -35,8 +47,10 @@ vebbaybi.github.io/
 │  │  └─ ai-widget.css                      # NEW: floating chat widget styles (panel, bubbles, recruiter mode)
 │  │
 │  ├─ js/
+│  │  ├─ scroll_paper.js
 │  │  ├─ app.js                             # main bootstrap; waits for SITE_READY before running page logic
 │  │  ├─ boot.js                            # NEW: first-load controller → mounts puzzle, runs preload, emits SITE_READY
+│  │  ├─ landing.js
 │  │  ├─ state/
 │  │  │  └─ store.js                        # global state; add keys: intro.seen, intro.bestTime, widget.open
 │  │  ├─ meta/

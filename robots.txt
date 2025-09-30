@@ -1,0 +1,10 @@
+# 1807-chain / GitHub Pages
+# If you later move to a custom domain, keep this file at that domain's root too.
+
+User-agent: *
+Allow: /
+
+# Optional: slow down overly-aggressive bots (many ignore this)
+# Crawl-delay: 5
+
+Sitemap: https://vebbaybi.github.io/sitemap.xml

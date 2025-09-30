@@ -1,7 +1,6 @@
 /* =======================================================================================
-   1807 — MAIN.CSS (Full Replacement)
-   Global reset, tokens, layout shells (header/footer/nav/buttons)
-   Palette: Blue / Light Brown / Black / White
+   1807 — MAIN.CSS (UPDATED, COMPLETE)
+   Scope: Reset, tokens, base, layout shells (header/footer), cursors, utilities
    ======================================================================================= */
 
 /* ===== Reset ===== */
@@ -18,7 +17,15 @@ body {
 
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    cursor: var(--cursor-default);
+}
+
+[hidden] {
+    display: none !important;
+    pointer-events: none !important;
 }
 
 /* ===== Brand bits ===== */
@@ -26,8 +33,6 @@ body {
     height: 40px;
     width: auto;
 }
-
-/* removed stray `.dot-o` */
 
 /* ===== Tokens ===== */
 :root {
@@ -70,29 +75,51 @@ body {
     --secondary-soft: rgba(182, 139, 76, .14);
 
     /* Lines & effects */
-    --border: rgba(255, 255, 255, .10);
+    --border: rgba(255, 255, 255, .1);
     --radius: 16px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-pill: 999px;
     --shadow: 0 8px 30px rgba(0, 0, 0, .35);
-    --container: 1200px;
+    --container: 1600px;
+    --transition: all .15s ease;
 
     /* Focus */
-    --focus: 2px solid var(--blue-400);
+    --focus: 0 0 0 3px rgba(37, 99, 235, .4);
+
+    /* Typography */
+    --font-size-base: 16px;
+    --line-height-base: 1.6;
+    --font-size-h1: clamp(2.5rem, 4vw, 4rem);
+    --font-size-h2: clamp(2rem, 3.5vw, 3rem);
+    --font-size-h3: clamp(1.75rem, 3vw, 2.5rem);
+    --font-size-h4: clamp(1.5rem, 2.5vw, 2rem);
+
+    /* Defaults */
+    --panel-default-delay: 5000;
+
+    --cursor-default: url('/assets/cursors/default.png') 6 6, auto;
+    --cursor-pointer: url('/assets/cursors/pointer.png') 6 6, pointer;
+    --cursor-editor: url('/assets/cursors/editor.png') 6 6, text;
+    --cursor-typing: url('/assets/cursors/typing.png') 6 6, text;
 }
 
-/* Light theme option */
+/* Light theme */
 body.theme-light {
-    --bg: #ffffff;
-    --panel: #f6f8fb;
+    --bg: var(--tan-100);
+    --panel: var(--off-white);
     --surface: #ffffff;
-    --surface-2: #eef2f7;
-
+    --surface-2: #f1f3f6;
     --text: #0b1220;
-    --muted: #4a5568;
-    --accent-2: #606b7b;
-
-    --border: rgba(10, 15, 20, .14);
-    --primary-soft: rgba(37, 99, 235, .10);
+    --muted: #374151;
+    --accent-2: #4b5563;
+    --border: rgba(0, 0, 0, .2);
+    --primary-soft: rgba(37, 99, 235, .1);
     --secondary-soft: rgba(182, 139, 76, .14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, .15);
+    --focus: 0 0 0 3px rgba(37, 99, 235, .3);
 }
 
 /* ===== Base ===== */
@@ -106,6 +133,8 @@ a {
     color: var(--primary);
     text-decoration: none;
     text-underline-offset: 3px;
+    transition: var(--transition);
+    cursor: var(--cursor-pointer);
 }
 
 a:hover {
@@ -117,10 +146,26 @@ img {
     display: block;
 }
 
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    cursor: var(--cursor-editor);
+}
+
+input,
+textarea {
+    cursor: var(--cursor-typing);
+}
+
 .container {
-    width: min(100%, var(--container));
+    width: min(100% - 24px, var(--container));
     margin-inline: auto;
-    padding-inline: 20px;
+    padding-inline: 12px;
 }
 
 /* Accessibility helpers */
@@ -153,150 +198,153 @@ img {
     height: auto;
     padding: 8px 12px;
     background: var(--primary);
-    color: #fff;
+    color: var(--white);
     z-index: 9999;
-    border-radius: 8px;
+    border-radius: var(--radius);
     outline: none;
+    cursor: var(--cursor-pointer);
 }
 
 /* =======================================================================================
-   HEADER
+   HEADER (Brand left • Centered links • Actions right)
    ======================================================================================= */
 .site-header {
-    background: #ffffff;
-    /* Sticky light header for contrast */
-    border-bottom: 1px solid rgba(15, 20, 27, .10);
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    z-index: 50;
-    color: #0b1220;
+    z-index: 1000;
+    color: var(--text);
 }
 
 .header-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
-    height: 64px;
+    width: min(100%, var(--container));
+    margin-inline: auto;
+    padding-inline: clamp(16px, 3.5vw, 40px);
+    min-height: 64px;
+    column-gap: clamp(12px, 2.5vw, 28px);
 }
 
+/* Brand (left) */
 .brand {
     display: inline-flex;
-    align-items: baseline;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
     font-weight: 800;
-    color: #0b1220;
+    color: var(--text);
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
 }
 
-.brand-mark {
-    letter-spacing: .5px;
+.brand .logo {
+    height: 28px;
+    width: auto;
 }
 
-.brand-sub {
-    color: #6b7280;
-    font-size: .9rem;
-    font-weight: 600;
+.brand .dot-o {
+    color: var(--accent-2);
+    font-weight: 700;
 }
 
-/* Nav */
-.nav {
-    position: relative;
+/* Animated brand GIF — always visible */
+.brand .logo-animated {
+    height: 22px;
+    width: auto;
+    margin-left: 6px;
+    transform: translateX(2px);
+    display: inline-block;
+    flex-shrink: 0;
+    image-rendering: -webkit-optimize-contrast;
 }
 
-.nav-toggle {
-    display: none;
-    background: none;
-    border: 0;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+@media (max-width:420px) {
+    .brand .logo-animated {
+        height: 18px;
+    }
 }
 
-.nav-toggle .nav-toggle-bar,
-.nav-toggle .nav-toggle-bar::before,
-.nav-toggle .nav-toggle-bar::after {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--blue-700);
-    position: relative;
-    margin: 0 auto;
-    border-radius: 2px;
+/* Centered top navigation (desktop) */
+.top-nav {
+    justify-self: center;
 }
 
-.nav-toggle .nav-toggle-bar::before,
-.nav-toggle .nav-toggle-bar::after {
-    content: "";
-    position: absolute;
-    left: 0;
-}
-
-.nav-toggle .nav-toggle-bar::before {
-    top: -6px;
-}
-
-.nav-toggle .nav-toggle-bar::after {
-    top: 6px;
-}
-
-.nav-list {
+.top-nav__list {
     display: flex;
-    gap: 28px;
+    gap: clamp(16px, 3vw, 36px);
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.nav-list a {
-    color: var(--blue-700);
-    font-weight: 700;
-    opacity: .92;
+.top-nav__list a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
     padding-block: 6px;
     border-bottom: 2px solid transparent;
+    transition: var(--transition);
+    cursor: var(--cursor-pointer);
 }
 
-.nav-list a:hover {
-    color: var(--blue-600);
+.top-nav__list a:hover {
+    color: var(--blue-400);
 }
 
-.nav-list a[aria-current="page"] {
-    color: var(--blue-700);
-    border-bottom-color: var(--blue-600);
+.top-nav__list a[aria-current="page"] {
+    border-bottom-color: var(--blue-400);
 }
 
-/* Mobile nav */
-@media (max-width: 960px) {
-    .nav-toggle {
-        display: block;
+/* Actions (right) */
+.header-actions {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(10px, 1.6vw, 20px);
+}
+
+.iconbtn {
+    display: inline-grid;
+    place-items: center;
+    padding: 8px;
+    border: 0;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    cursor: var(--cursor-pointer);
+    transition: var(--transition);
+}
+
+.iconbtn:hover,
+.iconbtn:focus-visible {
+    background: var(--primary-soft);
+    outline: var(--focus);
+    outline-offset: 2px;
+}
+
+.icon-static {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    object-fit: contain;
+    pointer-events: none;
+    vertical-align: middle;
+}
+
+/* Responsive: show center links only on ≥1024px */
+@media (max-width:1023.98px) {
+    .header-inner {
+        grid-template-columns: 1fr auto;
+        column-gap: 16px;
     }
 
-    .nav-list {
-        position: absolute;
-        right: 0;
-        top: 64px;
-        background: #ffffff;
-        border: 1px solid rgba(15, 20, 27, .12);
-        border-radius: 12px;
-        padding: 14px;
-        flex-direction: column;
-        gap: 12px;
-        min-width: 180px;
+    .top-nav {
         display: none;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
     }
 
-    .nav-list.open {
-        display: flex;
-    }
-
-    .nav-list a {
-        border-bottom: 0;
-    }
-
-    .nav-list a[aria-current="page"] {
-        color: var(--blue-700);
-        background: rgba(37, 99, 235, .08);
-        border-radius: 8px;
-        padding: 8px 10px;
+    .header-actions {
+        justify-self: end;
     }
 }
 
@@ -315,10 +363,16 @@ img {
     align-items: center;
     padding: 24px 20px;
     gap: 16px;
+    max-height: 400px;
 }
 
 .footer-right a {
     color: var(--accent-2);
+    transition: var(--transition);
+}
+
+.footer-right a:hover {
+    color: var(--blue-400);
 }
 
 .footer-right .dot {
@@ -327,65 +381,32 @@ img {
 }
 
 /* =======================================================================================
-   BUTTONS (kept minimal; pages.css can further style .btn on specific pages)
-   ======================================================================================= */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, .06);
-    background: var(--primary);
-    color: #fff;
-    box-shadow: var(--shadow);
-    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
-    background: var(--primary-strong);
-}
-
-.btn:focus-visible {
-    outline: var(--focus);
-    outline-offset: 2px;
-}
-
-.btn.secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid rgba(255, 255, 255, .16);
-    box-shadow: none;
-}
-
-.btn.secondary:hover {
-    background: var(--primary-soft);
-    border-color: rgba(255, 255, 255, .28);
-}
-
-.btn .play {
-    width: 12px;
-    height: 12px;
-    border: 2px solid currentColor;
-    border-left-color: transparent;
-    border-radius: 50%;
-    display: inline-grid;
-    place-items: center;
-    padding: 6px;
-}
-
-.btn .play::after {
-    content: "";
-    border-style: solid;
-    border-width: 6px 0 6px 8px;
-    border-color: transparent transparent transparent currentColor;
-    margin-left: 2px;
-}
-
-/* =======================================================================================
    MISC / UTILS
    ======================================================================================= */
-/* page shells live in pages.css; this file is global chrome only */
+#typing-area {
+    cursor: var(--cursor-typing);
+}
+
+[tabindex="0"],
+[role="button"] {
+    cursor: var(--cursor-pointer);
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .iconbtn,
+    a {
+        transition: none !important;
+    }
+}
+
+/* High-DPI cursors */
+@media (min-resolution: 2dppx) {
+    :root {
+        --cursor-default: url('/assets/cursors/default@2x.png') 6 6, auto;
+        --cursor-pointer: url('/assets/cursors/pointer@2x.png') 6 6, pointer;
+        --cursor-editor: url('/assets/cursors/editor@2x.png') 6 6, text;
+        --cursor-typing: url('/assets/cursors/typing@2x.png') 6 6, text;
+    }
+}

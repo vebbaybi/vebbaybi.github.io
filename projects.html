@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-app="1807" data-page="projects" data-version="v1.0">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Projects — Uchenna Anozie (webbaby) | AI • Embedded Systems • Blockchain • Construction</title>
+    <title>Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded Systems • Blockchain • Construction</title>
 
     <!-- Canonical & Robots -->
     <link rel="canonical" href="https://1807.com/projects.html" />
@@ -13,7 +13,7 @@
 
     <!-- SEO -->
     <meta name="description"
-        content="Projects by Uchenna Anozie (webbaby): Luna (AI assistant), ACEBot & FieldEye (embedded firmware on Arduino/ESP32/Pi), Chains (multi-chain sniper & risk engine), and precision construction workflows." />
+        content="Projects by Uchenna Anozie (webbaby) | Computer Scientist: Luna (AI assistant), ACEBot & FieldEye (embedded firmware on Arduino/ESP32/Pi), Chains (multi-chain sniper & risk engine), and precision construction workflows." />
     <meta name="keywords"
         content="Uchenna Anozie, webbaby, Luna, ACEBot, FieldEye, Chains, AI, Embedded Systems, Arduino, Raspberry Pi, ESP32, Uniswap, Raydium, Jupiter, Telegram bot, Construction, portfolio" />
     <meta name="theme-color" content="#111111" />
@@ -21,7 +21,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title"
-        content="Projects — Uchenna Anozie (webbaby) | AI • Embedded • Blockchain • Construction" />
+        content="Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded • Blockchain • Construction" />
     <meta property="og:description"
         content="Luna (AI), ACEBot/FieldEye (embedded), Chains (blockchain trading stack), and real-world builds." />
     <meta property="og:type" content="website" />
@@ -31,7 +31,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Projects — Uchenna Anozie (webbaby)" />
+    <meta name="twitter:title" content="Projects — Uchenna Anozie (webbaby) | Computer Scientist" />
     <meta name="twitter:description"
         content="Browse Luna, ACEBot/FieldEye, Chains, and precision construction projects." />
     <meta name="twitter:image" content="https://1807.com/assets/images/ai.webp" />
@@ -40,13 +40,18 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href="/assets/css/main.css" as="style" />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
 </head>
 
 <body class="theme-dark">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header-placeholder></header-placeholder>
+    <header-placeholder>
+        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+    </header-placeholder>
+    
+    <nav-placeholder></nav-placeholder>
 
     <main id="main" tabindex="-1">
         <section id="projects-view" class="view projects" aria-labelledby="projects-heading">
@@ -56,21 +61,16 @@
 
                     <!-- Fun, rotating subtitle -->
                     <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
-                                   "Pick a lane… or two. I built the lanes. 🛠️",
-                                   "AI that talks back, firmware that never sleeps, trades that don’t fumble.",
-                                   "If it senses, moves, or trades — I’ve probably wired it.",
-                                   "Short story, long pipeline: Luna • ACEBot • FieldEye • Chains.",
-                                   "Crafting AI that learns, senses, and outsmarts the market.",
-                                   "From sensors to Solana: I code the signals, you see the wins.",
-                                   "Data annotated, circuits integrated, profits automated.",
-                                   "PIR, ultrasonic, or memecoin trades — I make it all tick.",
-                                   "Call me Chains: linking blockchain, code, and chaos into order.",
-                                   "Not a teapot, but I’m brewing smart systems on the web’s edge.",
-                                   "Automation’s my game — emotions spark, I build the arc.",
-                                   "Missing link? Nah, I’m the chain that keeps the workflow sane.",
-                                   "From job-site grit to Solana hits, I code the future, bit by bit."
-                                 ]'>
-                        Pick a lane… or two. I built the lanes. 🛠️
+                        "I build AI, firmware, and financial automation. 🤖",
+                        "Linking embedded systems to secured blockchain solutions. 🔗",
+                        "Coding signals: from sensor data to market trades. 📈",
+                        "Crafting smart systems that learn and integrate. ⚙️",
+                        "Automation: I engineer the autonomous stack.",
+                        "Data integrated. Systems secured. Wins automated. ✅",
+                        "From firmware to Solana: full-stack integration.",
+                        "My lane is deep tech. I build the lanes. 🛠️"
+                    ]'>
+                        I build AI, firmware, and financial automation. 🤖
                     </p>
 
                     <!-- Quick filter links (hash navigation) -->
@@ -119,12 +119,12 @@
                             <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 4"
                                 id="slide-1" data-hash="embedded">
                                 <article class="project-card" data-animate>
-                                    <a class="project-media" href="embedded.html" aria-label="Embedded Systems">
+                                    <a class="project-media" href="robotics.html" aria-label="Embedded Systems">
                                         <img src="/assets/images/embedded.webp" alt="Embedded systems projects cover"
                                             loading="lazy" decoding="async" />
                                     </a>
                                     <div class="project-body">
-                                        <h2 class="project-title"><a href="embedded.html">Embedded Systems</a></h2>
+                                        <h2 class="project-title"><a href="robotics.html">Embedded Systems</a></h2>
                                         <p class="project-blurb">
                                             <strong>ACEBot & FieldEye:</strong> Arduino/ESP32/Raspberry Pi stack for
                                             motion tracking: PIR + ultrasonic fusion, pan-servo tracking, UART protocol,
@@ -136,7 +136,7 @@
                                             <span>Raspberry&nbsp;Pi</span> <span class="footer-right dot">•</span>
                                             <span>OpenCV</span>
                                         </div>
-                                        <a class="btn" href="embedded.html">View Embedded Systems</a>
+                                        <a class="btn" href="robotics.html">View Embedded Systems</a>
                                     </div>
                                 </article>
                             </li>
@@ -237,6 +237,8 @@
     <footer-placeholder></footer-placeholder>
 
     <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/ui/theme.js"></script>
+    <script type="module" src="/assets/js/ui/components/nav.js"></script>
     <script type="module" src="/assets/js/pages/projects.js"></script>
 </body>
 

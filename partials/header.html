@@ -1,26 +1,32 @@
+<!-- partials/header.html -->
 <header class="site-header" role="banner">
     <div class="container header-inner">
-        <a href="index.html" class="brand" href="#/" aria-label="Go to home">
-            <img src="/assets/images/logo.png" alt="1807 logo" class="logo">
+        <!-- Brand -->
+        <a href="index.html" class="brand" aria-label="Go to home">
+            <img src="/assets/images/logo.png" alt="1807 logo" class="logo" />
             <span class="dot-o">Vebbabi</span>
+            <img src="/assets/images/gif/header.gif" alt="Animated logo" class="logo-animated" />
         </a>
 
-
-        <nav class="nav" aria-label="Primary">
-            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" title="Menu">
-                <span class="nav-toggle-bar" aria-hidden="true"></span>
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <ul id="nav-menu" class="nav-list" data-collapsible>
-                <li><a href="/">Home</a></li>
+        <!-- Centered top navigation (desktop only) -->
+        <nav class="top-nav" aria-label="Primary">
+            <ul class="top-nav__list">
+                <li><a href="/home.html">Home</a></li>
                 <li><a href="/projects.html">Projects</a></li>
                 <li><a href="/robotics.html">Embedded-Systems</a></li>
-                <li><a href="/chains.html">Blockchain</a> </li>
-                <li><a href="/construction.html">Handy-Man</a></li>
-                <li><a href="/resumes.html">Resumes</a></li>
-                <li><a href="/roadmap.html">Roadmap</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/chains.html">Blockchain</a></li>
             </ul>
         </nav>
+
+        <!-- Actions on the far right -->
+        <div class="header-actions">
+            <button id="theme-toggle" class="iconbtn" aria-label="Toggle theme" title="Theme">
+                <img class="icon-static" src="/assets/images/icons/theme.png" alt="" width="28" height="28" />
+            </button>
+            <button id="nav-toggle" class="iconbtn" aria-label="Open navigation" aria-controls="side-nav"
+                aria-expanded="false" title="Menu">
+                <img class="icon-static" src="/assets/images/icons/menu.png" alt="" width="28" height="28" />
+            </button>
+        </div>
     </div>
 </header>

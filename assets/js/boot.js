@@ -1,13 +1,25 @@
 /* =========================================================
-   boot.js — Gate orchestrator (no auto-quit, idle prompt)
-   - Random image selection from IMAGE_SOURCES
-   - Respects prefers-reduced-motion
-   - Persists seen state only on solve/skip/reveal
-   - Dev toggles:  ?gate=1   (force gate)
-                    ?cleargate=1 (clear seen flag)
+   boot.js — Gate orchestrator (LANDING → HOME ONLY)
+   - Gates ONLY on /home when:
+       • You arrive FROM a landing page: '/', '/scroll_paper' (kept '/scrolly' for legacy)
+       • OR you hard reload on /home
+   - Skips on all other routes and flows (internal navs not from landing)
+   - Dev params:
+       ?gate=1   → force show once
+       ?bypass=1 → skip once
+   - Requires: window.VBIntroPuzzle.mount (non-module; load BEFORE this)
    ========================================================= */
 (function () {
   'use strict';
+
+  /* ---------- Config ---------- */
+  // Use canonical route KEYS (mirrors app.js routeKey)
+  const HOME_KEYS    = new Set(['/home']);
+  // Updated: include /scroll_paper (keep /scrolly for legacy nav/back button cases)
+  const LANDING_KEYS = new Set(['/', '/scroll_paper']);
+
+  const PUZZLE_DEADLINE_MS = 2000;   // wait up to 2s for engine to appear
+  const IDLE_MS = 90_000;
 
   // Random image pool (yours)
   const IMAGE_SOURCES = [
@@ -27,13 +39,8 @@
     '/assets/images/playme/playme14.webp'
   ];
   const IMAGE_SRC = IMAGE_SOURCES[Math.floor(Math.random() * IMAGE_SOURCES.length)];
-  const SEEN_KEY  = 'vb_intro_seen';
 
-  function siteReady(detail) {
-    window.__SITE_READY__ = true;
-    window.dispatchEvent(new CustomEvent('SITE_READY', { detail }));
-  }
-
+  /* ---------- Utils ---------- */
   function ready(fn) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', fn, { once: true });
@@ -42,13 +49,46 @@
     }
   }
 
+  // Canonical route key (matches app.js):
+  //   '/' for index/index.html
+  //   '/name' for name or name.html
+  function routeKey(pathname) {
+    try {
+      const parts = (pathname || window.location.pathname).split('/').filter(Boolean);
+      if (parts.length === 0) return '/';
+      const last = parts[parts.length - 1].toLowerCase();
+      if (last === 'index' || last === 'index.html') return '/';
+      return last.endsWith('.html') ? `/${last.slice(0, -5)}` : `/${last}`;
+    } catch { return '/'; }
+  }
+
+  function navEntryType() {
+    const entries = performance.getEntriesByType && performance.getEntriesByType('navigation');
+    return entries && entries[0] ? entries[0].type : 'navigate'; // 'navigate' | 'reload' | 'back_forward' | 'prerender'
+  }
+
+  function isHomeRoute() {
+    return HOME_KEYS.has(routeKey(window.location.pathname));
+  }
+
+  function cameFromLanding() {
+    if (!document.referrer) return false; // gate only after landing, not blank/external
+    let refPath = '/';
+    try { refPath = new URL(document.referrer).pathname; } catch {}
+    return LANDING_KEYS.has(routeKey(refPath));
+  }
+
+  function siteReady(detail) {
+    try { window.__SITE_READY__ = true; } catch (_) {}
+    window.dispatchEvent(new CustomEvent('SITE_READY', { detail }));
+  }
+
   function ensureMount() {
     let el = document.getElementById('intro-root');
     if (!el) { el = document.createElement('div'); el.id = 'intro-root'; document.body.appendChild(el); }
     return el;
   }
 
-  // Tiny inline toast (no extra CSS file required)
   function createIdleToast(host, { onContinue, onSkip, onReveal }) {
     const el = document.createElement('div');
     el.setAttribute('role', 'status');
@@ -91,35 +131,58 @@
       container: mount,
       imageSrc: IMAGE_SRC,
       onSolved: ({ elapsedMs, moves }) => {
-        localStorage.setItem(SEEN_KEY, '1');
         if (document.body.contains(mount)) mount.remove();
         siteReady({ solved: true, elapsedMs, moves });
       },
       onSkip: () => {
-        localStorage.setItem(SEEN_KEY, '1');
         if (document.body.contains(mount)) mount.remove();
+        try { sessionStorage.setItem('__vb_gate_done__', '1'); } catch {}
         siteReady({ solved: false, skipped: true });
       }
     });
   }
 
+  /* ---------- Main ---------- */
   ready(function () {
+    // Soft pre-warm the chosen image
+    try { const _img = new Image(); _img.src = IMAGE_SRC; } catch {}
+
     const qp = new URLSearchParams(location.search);
-    if (qp.get('cleargate') === '1') localStorage.removeItem(SEEN_KEY);
     const forceGate = qp.get('gate') === '1';
+    const bypass    = qp.get('bypass') === '1';
 
-    const seen = !forceGate && localStorage.getItem(SEEN_KEY) === '1';
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Optional session guard (kept OFF by default but won't crash when referenced)
+    let alreadyGated = false;
+    /* To enable "gate only once per tab", uncomment:
+    try { alreadyGated = sessionStorage.getItem('__vb_gate_done__') === '1'; } catch {}
+    */
 
-    if (seen || (prefersReduced && !forceGate)) {
-      siteReady({ bypass: true, reason: seen ? 'already_seen' : 'reduced_motion' });
+    const atHome        = isHomeRoute();
+    const type          = navEntryType();
+    const fromLanding   = cameFromLanding();
+    const isHardReload  = type === 'reload';
+
+    let shouldGate = false;
+    if (forceGate) {
+      shouldGate = true;
+    } else if (!bypass && atHome && (fromLanding || isHardReload)) {
+      shouldGate = true;
+    }
+
+    if (!shouldGate) {
+      siteReady({
+        bypass: true,
+        reason: bypass ? 'dev_bypass'
+              : atHome ? (alreadyGated ? 'session_already_gated' : 'not_from_landing')
+              : 'non_home'
+      });
       return;
     }
 
     const mount = ensureMount();
     mount.innerHTML = '<div id="vb-intro-overlay"><div id="vb-intro-dialog"></div></div>';
 
-    const deadline = performance.now() + 2000;
+    const deadline = performance.now() + PUZZLE_DEADLINE_MS;
     (function waitForEngine() {
       if (window.VBIntroPuzzle && typeof window.VBIntroPuzzle.mount === 'function') {
         let game;
@@ -132,14 +195,13 @@
           return;
         }
 
-        // ----- Idle prompt (no auto-quit) -----
+        // Idle prompt (no auto-quit)
         const dialog = mount.querySelector('#vb-intro-dialog') || mount;
         const toast = createIdleToast(dialog, {
           onContinue: resetIdle,
           onSkip: () => {
-            // behave like Skip button
-            localStorage.setItem(SEEN_KEY, '1');
             if (document.body.contains(mount)) mount.remove();
+            try { sessionStorage.setItem('__vb_gate_done__', '1'); } catch {}
             siteReady({ solved: false, skipped: true, idle: true });
           },
           onReveal: () => {
@@ -149,23 +211,17 @@
         });
 
         let idleTimer = null;
-        const IDLE_MS = 90_000;
-
         function resetIdle() {
           toast.hide();
           if (idleTimer) clearTimeout(idleTimer);
           idleTimer = setTimeout(() => toast.show(), IDLE_MS);
         }
 
-        // Any interaction resets idle
         ['pointerdown', 'keydown', 'click', 'focusin'].forEach(ev =>
           mount.addEventListener(ev, resetIdle, { passive: true })
         );
-
-        // Start tracking
         resetIdle();
 
-        // Clean up when puzzle ends anyway
         const cleanup = () => {
           if (idleTimer) clearTimeout(idleTimer);
           toast.remove();

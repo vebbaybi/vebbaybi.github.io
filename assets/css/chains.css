@@ -1,0 +1,185 @@
+/* =======================================================================================
+   1807 — CHAINS.CSS (DEDICATED, SCOPED)
+   Scope: html[data-page="chains"] only
+   Depends on tokens from main.css; complements pages.css (projects layer)
+   ======================================================================================= */
+
+html[data-page="chains"] {
+    /* local page tokens if needed (inherit from main.css by default) */
+    --chains-card-radius: var(--radius-lg);
+    --chains-border: var(--border);
+    --chains-soft: var(--surface-2);
+    --chains-panel: var(--panel);
+    --chains-muted: var(--accent-2);
+}
+
+/* -------------------------------------
+   PAGE WRAPPER
+-------------------------------------- */
+html[data-page="chains"] body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+html[data-page="chains"] .view.projects {
+    /* tighten vertical rhythm slightly on this page */
+    --card-gap: 20px;
+    margin-block: 18px 48px;
+}
+
+/* Header tweaks */
+html[data-page="chains"] .view-header {
+    border-bottom: 1px solid var(--chains-border);
+    padding-block: 12px 4px;
+}
+
+html[data-page="chains"] #chains-heading {
+    margin: 0;
+}
+
+/* Subtitle rotator (keeps height steady) */
+html[data-page="chains"] #subtitle-rotator {
+    min-height: 1.4em;
+    /* reserve line height to avoid layout shift */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* -------------------------------------
+   CHAIN HEADING — YOUR ORIGINAL (REVERTED)
+-------------------------------------- */
+#chains-heading {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.enjoychain {
+    width: 66px;
+    height: 66px;
+    vertical-align: middle;
+    border-radius: 33%;
+}
+
+.goated {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    vertical-align: middle;
+    margin-left: 33px;
+}
+
+/* -------------------------------------
+   CAROUSEL ADJUSTMENTS (scoped)
+-------------------------------------- */
+html[data-page="chains"] .carousel-viewport {
+    background: var(--chains-soft);
+    border: 1px solid var(--chains-border);
+    position: relative;
+    /* ensure local stacking context for controls */
+}
+
+html[data-page="chains"] .carousel-track {
+    padding: 14px;
+}
+
+@media (max-width: 639.98px) {
+    html[data-page="chains"] .carousel-track {
+        padding: 12px;
+    }
+}
+
+/* Controls appearance + clickability on dark backgrounds (desktop safety) */
+html[data-page="chains"] .carousel-controls {
+    position: relative;
+    z-index: 20;
+    /* float controls above any media overlays */
+}
+
+html[data-page="chains"] .carousel-prev,
+html[data-page="chains"] .carousel-next {
+    background: color-mix(in srgb, var(--black) 88%, transparent);
+    z-index: 21;
+    pointer-events: auto;
+}
+
+/* -------------------------------------
+   PROJECT CARD REFINEMENTS
+-------------------------------------- */
+html[data-page="chains"] .project-card {
+    border-radius: var(--chains-card-radius);
+    border: 1px solid var(--chains-border);
+    background: var(--surface);
+}
+
+html[data-page="chains"] .project-media {
+    background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+    z-index: 1;
+    /* Ensure media doesn't overlap buttons */
+    position: relative;
+}
+
+html[data-page="chains"] .project-body {
+    padding: 16px 16px 18px;
+}
+
+html[data-page="chains"] .project-title {
+    margin: 0 0 8px 0;
+}
+
+html[data-page="chains"] .project-blurb {
+    color: var(--chains-muted);
+    margin: 0 0 12px 0;
+}
+
+/* Inline meta dots within project-meta (reuses .footer-right .dot coloring) */
+html[data-page="chains"] .project-body .dot {
+    color: var(--muted);
+    margin-inline: 8px;
+}
+
+/* Button styles to ensure clickability */
+html[data-page="chains"] .hero-ctas .btn {
+    position: relative;
+    z-index: 10;
+    /* Ensure buttons are above project-media */
+    pointer-events: auto;
+}
+
+/* -------------------------------------
+   OPTIONAL BADGES / CHIPS (local)
+-------------------------------------- */
+html[data-page="chains"] .meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+html[data-page="chains"] .meta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--primary-soft);
+    border: 1px solid var(--chains-border);
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: 0.1px;
+}
+
+/* -------------------------------------
+   REDUCED MOTION
+-------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+
+    html[data-page="chains"] .carousel-track,
+    html[data-page="chains"] .project-card {
+        transition: none !important;
+    }
+}

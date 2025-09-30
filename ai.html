@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en" data-app="1807" data-page="ai" data-version="v1.1">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>AI • 1807-chain — Uchenna Anozie (webbaby) | Computer Scientist | Assistants • NLP • Pipelines</title>
+
+    <!-- Canonical & SEO -->
+    <link rel="canonical" href="https://vebbaybi.github.io/ai.html" />
+    <meta name="description"
+        content="AI portfolio by Uchenna Anozie (webbaby) | Computer Scientist: Luna (flagship), NLP tooling, data/model pipelines, and vision/edge tie-ins like VIGI AI Cam. Local-first, production-minded with observability and guardrails." />
+    <meta name="keywords"
+        content="Uchenna Anozie, webbaby, 1807-chain, AI, Luna, assistant, NLP, STT, TTS, RAG, pipelines, observability, guardrails, Python, FastAPI, PyQt, vision" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI • 1807-chain — Uchenna Anozie (webbaby) | Computer Scientist" />
+    <meta property="og:description"
+        content="Luna (flagship assistant), NLP toolkit, pipelines, and vision/edge tie-ins like VIGI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vebbaybi.github.io/ai.html" />
+    <meta property="og:image" content="https://vebbaybi.github.io/assets/images/ai.webp" />
+    <meta property="og:image:alt" content="AI systems montage — assistant UI, pipeline graph, logs" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI • 1807-chain — webbaby" />
+    <meta name="twitter:description"
+        content="On-device assistant and pipelines built with reliability, tracing and guardrails." />
+    <meta name="twitter:image" content="https://vebbaybi.github.io/assets/images/ai.webp" />
+
+    <!-- Icons & Preloads -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="preload" href="/assets/css/main.css" as="style" />
+    <link rel="preload" href="/assets/cursors/default.png" as="image" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/pages.css" />
+    <link rel="stylesheet" href="/assets/css/ai.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://vebbaybi.github.io/ai.html#webpage",
+        "name": "AI — 1807-chain",
+        "url": "https://vebbaybi.github.io/ai.html",
+        "description":"Portfolio of Uchenna Anozie (webbaby) | Computer Scientist | AI, Data Science, Embedded Systems, and Blockchain.",
+        "isPartOf": {"@id": "https://vebbaybi.github.io/#website"},
+        "about": ["Artificial Intelligence","Assistant","NLP","Pipelines","Observability","Guardrails","Vision"],
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://vebbaybi.github.io/#person",
+        "name": "Uchenna Emmanuel Anozie",
+        "alternateName": "webbaby",
+        "url": "https://vebbaybi.github.io/",
+        "image": "https://vebbaybi.github.io/assets/images/thedev.webp",
+        "jobTitle": "Computer & Data Scientist"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="theme-dark" data-route="ai">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header-placeholder id="header-host" data-hydrate="header">
+        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
+    </header-placeholder>
+    <nav-placeholder id="nav-host" data-hydrate="nav"></nav-placeholder>
+
+    <main id="main" tabindex="-1" data-title="AI — Assistants & Pipelines">
+        <!-- HERO -->
+        <section class="page-hero" aria-labelledby="hero-title">
+            <div class="page-hero__media">
+                <div class="scrolly-video" data-pin="sticky" data-pin-offset="10vh" aria-hidden="true">
+                    <img src="/assets/images/ai/ai-banner.png" alt="AI banner" class="scrolly-banner" />
+                    <div class="bg-scrim" aria-hidden="true"></div>
+                    <button id="unmute-btn" class="video-control-btn">Unmute</button>
+                </div>
+            </div>
+            <div class="page-hero__content container">
+                <h1 id="hero-title" class="page-title">AI Systems & NLP</h1>
+                <p class="page-subtitle">Luna (Flagship) • NLP Toolkit • Data/Model Pipelines • Vision & Edge</p>
+                <div class="hero-ctas">
+                    <a class="btn" href="projects.html#ai">Explore AI Projects</a>
+                    <a class="btn secondary" href="resumes.html"><span class="play" aria-hidden="true"></span> Hire
+                        webbaby</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK STATS -->
+        <section class="section section--stats container" aria-label="Quick stats">
+            <ul class="stats-grid" role="list">
+                <li class="stat">
+                    <div class="stat__num">On-Device</div>
+                    <div class="stat__label">First Class</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">Streaming</div>
+                    <div class="stat__label">ASR ↔ TTS</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">RAG</div>
+                    <div class="stat__label">Local Docs</div>
+                </li>
+                <li class="stat">
+                    <div class="stat__num">Traced</div>
+                    <div class="stat__label">Events & Spans</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- LUNA SPOTLIGHT -->
+        <section class="section section--spotlight container" aria-labelledby="luna-spotlight-title">
+            <article class="spotlight spotlight--mega" id="luna-spotlight">
+                <figure class="spotlight__media">
+                    <img src="/assets/images/ai/luna-br.png" alt="Luna — assistant core, embedded hive, on-chain access"
+                        loading="lazy" />
+                </figure>
+                <div class="spotlight__body">
+                    <p class="badge badge--mega" aria-label="Luna is a flagship project">Mega Project</p>
+                    <h2 id="luna-spotlight-title" class="spotlight__title">Luna — Assistant • Hive • Chain</h2>
+                    <p class="spotlight__lead">
+                        A next-gen home/edge assistant that orchestrates devices, powers a robotics hive, and exposes a
+                        full build via on-chain access — with a redacted open-source core for devs.
+                    </p>
+                    <ul class="spotlight__bullets" role="list">
+                        <li><strong>Assistant Core:</strong> streaming ASR/TTS, barge-in, intent & tools, privacy modes,
+                            guardrails.</li>
+                        <li><strong>Embedded Hive:</strong> controls <em>AceBot</em>, <em>X-EYE</em>, <em>VIGI</em>;
+                            shared state bus, policies, watchdogs.</li>
+                        <li><strong>Chain Access:</strong> token/NFT-gated full system (inc. finance modules), community
+                            dev path.</li>
+                        <li><strong>OSS Core:</strong> redacted, production-minded edition for local builds &
+                            extensions.</li>
+                    </ul>
+                    <div class="spotlight__ctas">
+                        <a class="btn" href="#ai-luna">See Luna Modules</a>
+                        <a class="btn secondary" href="/robotics.html" title="Luna ↔ Robotics">Robotics Tie-In</a>
+                        <a class="btn secondary" href="/chains.html" title="On-chain access (coming)">Blockchain
+                            Access</a>
+                        <a class="btn secondary" href="#" aria-disabled="true" tabindex="-1"
+                            title="Repo coming soon">OSS Core (soon)</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SYSTEMS GRID -->
+        <section class="section container" aria-labelledby="systems-title">
+            <h2 id="systems-title" class="section-title">Systems</h2>
+            <div class="cards-grid cards-grid--projects">
+
+                <!-- Luna -->
+                <article class="card card--project" id="ai-luna">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/ai-luna.png" alt="Luna on-device assistant UI" loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">Luna — Voice Assistant</h3>
+                        <p class="card__desc">
+                            Assistant core with tool/intent routing, plus an embedded “hive” mode for robotics. Full
+                            build will be on-chain; a redacted OSS core ships for local devs.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">ASR/TTS</li>
+                            <li class="chip">Intent Router</li>
+                            <li class="chip">Guardrails</li>
+                            <li class="chip">Tracing</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Chailse -->
+                <article class="card card--project" id="ai-chailse">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/chailse.png" alt="Chailse L-system explorer (PyQt)"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title"><a href="https://github.com/vebbaybi/chailse" target="_blank"
+                                rel="noopener">Chailse — Interactive L-Systems</a></h3>
+                        <p class="card__desc">
+                            Define, iterate, and visualize L-systems in 2D/3D with live controls and export (PNG/SVG,
+                            OBJ/STL). Great for procedural design and pedagogy.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">PyQt</li>
+                            <li class="chip">NumPy</li>
+                            <li class="chip">SVG/PNG</li>
+                            <li class="chip">OBJ/STL</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- VIGI on AI (vision/edge tie-in) -->
+                <article class="card card--project" id="ai-vigi">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/vigi-ai.png" alt="VIGI AI Cam — vision/edge tie-in"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title"><a href="/robotics.html#proj-vigi">VIGI AI Cam — Vision & Edge</a></h3>
+                        <p class="card__desc">
+                            PIR + dual ultrasonic + ESP32-CAM with threat scoring and servo targeting. Lives in
+                            Robotics; surfaced here as the assistant’s vision/edge module.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">ESP32-CAM</li>
+                            <li class="chip">PIR</li>
+                            <li class="chip">HC-SR04×2</li>
+                            <li class="chip">Servo</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- NLP Toolkit -->
+                <article class="card card--project" id="ai-nlp">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/ai-nlp.png" alt="NLP toolkit — tokenization and labeling views"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">NLP Toolkit — Text Ops</h3>
+                        <p class="card__desc">
+                            Preprocessing, labeling helpers, prompt libraries, evaluation suites, and a compact RAG for
+                            local docs. Deterministic runs & metrics-first.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">RAG</li>
+                            <li class="chip">Eval</li>
+                            <li class="chip">Determinism</li>
+                            <li class="chip">CLI</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Data Pipeline -->
+                <article class="card card--project" id="ai-data">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/ai-data.png" alt="Data pipeline DAG and checks" loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">Data Pipeline — Clean → Validate → Serve</h3>
+                        <p class="card__desc">
+                            Ingest → schema validation → feature prep → caching → API/IPC. JSON logs with rotation,
+                            correlation IDs, and health checks.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">Validation</li>
+                            <li class="chip">Caching</li>
+                            <li class="chip">API</li>
+                            <li class="chip">Health</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Model Ops -->
+                <article class="card card--project" id="ai-ops">
+                    <figure class="card__media">
+                        <img src="/assets/images/ai/ai-ops.png" alt="Observability dashboard and traces"
+                            loading="lazy" />
+                    </figure>
+                    <div class="card__body">
+                        <h3 class="card__title">Model Ops — Observability & Guardrails</h3>
+                        <p class="card__desc">
+                            Event/span tracing across ASR, NLU, policy, tools, and TTS. Quotas, cooldowns, fail-closed
+                            execution, and exportable session summaries.
+                        </p>
+                        <ul class="chipset" role="list">
+                            <li class="chip">Tracing</li>
+                            <li class="chip">Policies</li>
+                            <li class="chip">Quotas</li>
+                            <li class="chip">QA</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE OVERVIEW -->
+        <section class="section section--arch container" aria-labelledby="arch-title">
+            <h2 id="arch-title" class="section-title">Architecture Overview</h2>
+            <div class="arch-grid">
+                <article class="arch-card">
+                    <h3 class="arch-card__title">I/O & Runtime</h3>
+                    <p class="arch-card__text">Streaming mic capture and TTS playback with barge-in. Crash-safe queues
+                        and offline-first fallbacks.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">NLU & Routing</h3>
+                    <p class="arch-card__text">Intent mapping & slot extraction feed a tool/action layer. Confirmations
+                        for sensitive tasks; deny/allow lists.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">Data & Knowledge</h3>
+                    <p class="arch-card__text">Local embeddings + chunked docs for RAG; deterministic prompt sets for
+                        measurable evaluations.</p>
+                </article>
+                <article class="arch-card">
+                    <h3 class="arch-card__title">Observability</h3>
+                    <p class="arch-card__text">JSON logs, rotation, correlation IDs, per-stage latencies, and session
+                        rollups for QA & regression tracking.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="section section--gallery" aria-label="Build gallery">
+            <div class="gallery-strip">
+                <figure class="gallery-item"><img src="/assets/images/unset.png" alt="Assistant UI" loading="lazy">
+                </figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.png" alt="RAG local docs" loading="lazy">
+                </figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.png" alt="Tracing spans" loading="lazy">
+                </figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.png" alt="Evaluation metrics"
+                        loading="lazy"></figure>
+                <figure class="gallery-item"><img src="/assets/images/unset.png" alt="Policies & guardrails"
+                        loading="lazy"></figure>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section section--cta container" aria-labelledby="cta-title">
+            <h2 id="cta-title" class="section-title">Want an assistant that ships?</h2>
+            <p class="lead">On-device voice, robust NLP, and documented pipelines with observability and guardrails.</p>
+            <div class="hero-ctas">
+                <a class="btn" href="mailto:chain@thewebbaby.xyz">chain@thewebbaby.xyz</a>
+                <a class="btn secondary" href="projects.html#ai">See AI Work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-host" data-hydrate="footer"></footer>
+    <footer-placeholder></footer-placeholder>
+
+    <noscript>
+        <div class="noscript-note" id="noscript">JavaScript is disabled. Some UI components will not hydrate.</div>
+    </noscript>
+
+    <!-- JS (modules) -->
+    <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/ui/components/nav.js"></script>
+    <script type="module" src="/assets/js/pages/ai.js"></script>
+</body>
+
+</html>

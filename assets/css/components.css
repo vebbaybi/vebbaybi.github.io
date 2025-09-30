@@ -1,0 +1,396 @@
+/* ==============================================
+   COMPONENTS.CSS (UPDATED, COMPLETE)
+   Buttons • Navigation (inline + drawer) • Cards • Carousels • Motion
+   Fixes included:
+   - Drawer backdrop truly removed from hit-testing when hidden
+   - Drawer structure & layers corrected (no nested @layer mistakes)
+   - Carousel overlay wrappers are transparent to clicks; only controls/dots are interactive
+   - Card/media links explicitly clickable above siblings
+   ============================================== */
+
+/* ------------------------------ BUTTONS ------------------------------ */
+@layer buttons {
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: var(--radius);
+        text-decoration: none;
+        background: var(--primary);
+        color: var(--white);
+        font-weight: 800;
+        letter-spacing: .2px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: var(--transition), transform .2s ease;
+        cursor: var(--cursor-pointer);
+    }
+
+    .btn:hover {
+        transform: translateY(-1px) scale(1.02);
+        background: var(--primary-strong);
+    }
+
+    .btn:focus-visible {
+        outline: var(--focus);
+        outline-offset: 2px;
+    }
+
+    .btn.secondary {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+        box-shadow: none;
+    }
+
+    .btn.secondary:hover {
+        background: var(--primary-soft);
+    }
+
+    .btn .play {
+        width: 12px;
+        height: 12px;
+        border: 2px solid currentColor;
+        border-left-color: transparent;
+        border-radius: 50%;
+        display: inline-grid;
+        place-items: center;
+        padding: 6px;
+    }
+
+    .btn .play::after {
+        content: "";
+        border-style: solid;
+        border-width: 6px 0 6px 8px;
+        border-color: transparent transparent transparent currentColor;
+        margin-left: 2px;
+    }
+}
+
+/* ------------------------------ NAVIGATION (INLINE + DRAWER) ------------------------------ */
+@layer navigation {
+
+    /* Inline nav lists (headers, footers, section nav) */
+    .nav-list {
+        display: flex;
+        gap: 12px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-list a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: .1px;
+        transition: var(--transition);
+        cursor: var(--cursor-pointer);
+        border: 1px solid transparent;
+        background: transparent;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus-visible {
+        background: var(--primary-soft);
+        color: var(--blue-400);
+        outline: var(--focus);
+        outline-offset: 2px;
+    }
+
+    .nav-list a[aria-current="page"] {
+        border-color: var(--blue-400);
+    }
+
+    /* =================== NAV DRAWER (OFF-CANVAS) =================== */
+    .nav-pane {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1400;
+        width: clamp(140px, 42vw, 180px);
+        background: var(--surface, #0f172a);
+        color: var(--text, #e5e7eb);
+        border-left: 1px solid var(--border, rgba(148, 163, 184, .25));
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .45);
+        transform: translateX(102%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 300ms ease, opacity 200ms ease, visibility 200ms linear;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        padding-right: max(6px, env(safe-area-inset-right));
+    }
+
+    .nav-pane[aria-hidden="false"] {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: max(10px, env(safe-area-inset-top)) 10px 6px 10px;
+        border-bottom: 1px solid var(--border, rgba(148, 163, 184, .2));
+    }
+
+    .nav-close {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+        border-radius: 10px;
+        border: 1px solid var(--border, rgba(148, 163, 184, .25));
+        background: transparent;
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        cursor: var(--cursor-pointer);
+        transition: background .2s ease, transform .15s ease, border-color .2s ease;
+    }
+
+    .nav-close:hover {
+        background: var(--primary-soft);
+    }
+
+    .nav-close:active {
+        transform: scale(.98);
+    }
+
+    .nav-close:focus-visible {
+        outline: var(--focus);
+        outline-offset: 2px;
+    }
+
+    .nav-list.drawer {
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px 8px 12px 8px;
+        height: 100%;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-list.drawer li {
+        width: 100%;
+    }
+
+    .nav-list.drawer a {
+        width: 100%;
+        gap: 10px;
+        padding: 12px 10px;
+        border-radius: 12px;
+        font-size: 1rem;
+        line-height: 1.35;
+        border: 1px solid transparent;
+        background: transparent;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .nav-list.drawer a .icon {
+        font-size: 1.1rem;
+        line-height: 1;
+        width: 1.1rem;
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+
+    .nav-list.drawer a .text {
+        flex: 1 1 auto;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .nav-list.drawer a:hover,
+    .nav-list.drawer a:focus-visible {
+        background: var(--primary-soft, rgba(37, 99, 235, .12));
+        color: var(--blue-400, #60a5fa);
+        border-color: var(--blue-400, #60a5fa);
+        outline: var(--focus);
+        outline-offset: 2px;
+    }
+
+    .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1300;
+        background: rgba(0, 0, 0, .52);
+        -webkit-backdrop-filter: blur(1px);
+        backdrop-filter: blur(1px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 220ms ease, visibility 220ms linear;
+        pointer-events: none;
+        /* default: inert */
+    }
+
+    .nav-backdrop:not([hidden]) {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        /* clickable only when visible */
+    }
+
+    .nav-backdrop[hidden] {
+        display: none !important;
+        /* hard-remove from hit-testing */
+        pointer-events: none !important;
+    }
+
+    /* Lock scroll when drawer open */
+    body:has(#side-nav[aria-hidden="false"]) {
+        overflow: hidden;
+    }
+
+    /* Desktop tuning */
+    @media (min-width: 992px) {
+        .nav-list.drawer a {
+            font-size: 1rem;
+            padding: 12px 14px;
+        }
+    }
+}
+
+/* ------------------------------ CARDS ------------------------------ */
+@layer cards {
+    .project-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: var(--surface);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        position: relative;
+        /* anchor stacking context to card */
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+        border-color: var(--blue-400);
+    }
+
+    .project-media,
+    .story-media {
+        display: block;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+        position: relative;
+        z-index: 2;
+        /* ensure clicks go to the anchor */
+        pointer-events: auto;
+        /* explicitly clickable */
+    }
+
+    .project-media img,
+    .story-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: saturate(1.05) contrast(1.02);
+        transform: scale(1.002);
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
+    .project-body,
+    .story-body {
+        padding: 16px 18px 20px;
+    }
+
+    .project-title,
+    .story-title {
+        margin: 0 0 8px 0;
+        font-size: 1.15rem;
+        line-height: 1.2;
+        color: var(--text);
+    }
+
+    .project-title a,
+    .story-title a {
+        text-decoration: none;
+        color: inherit;
+        cursor: var(--cursor-pointer);
+        position: relative;
+        z-index: 2;
+        /* above decorative layers */
+        pointer-events: auto;
+        /* ensure interactive */
+    }
+
+    .project-title a:hover,
+    .story-title a:hover {
+        color: var(--blue-400);
+    }
+
+    .project-blurb {
+        margin: 0 0 14px 0;
+        color: var(--accent-2);
+    }
+}
+
+/* ------------------------------ CAROUSEL BASE HELPERS ------------------------------ */
+@layer carousels {
+
+    /* Overlay wrappers must not eat clicks; only buttons/dots do */
+    .carousel-controls,
+    .carousel-pagination {
+        position: relative;
+        z-index: 20;
+        /* visually above media */
+        pointer-events: none;
+        /* transparent to clicks by default */
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        pointer-events: auto;
+        /* clickable */
+        position: absolute;
+    }
+
+    .carousel-pagination .carousel-dot {
+        pointer-events: auto;
+        /* clickable dots */
+    }
+}
+
+/* ------------------------------ MOTION PREFERENCES ------------------------------ */
+@layer motion {
+    @media (prefers-reduced-motion: reduce) {
+
+        .btn,
+        .nav-list a,
+        .project-card,
+        .nav-pane,
+        .nav-backdrop {
+            transition: none !important;
+        }
+    }
+
+    @media (prefers-contrast: more) {
+        .nav-list.drawer a {
+            border-color: var(--border, rgba(148, 163, 184, .45));
+        }
+
+        .nav-close {
+            border-color: var(--border, rgba(148, 163, 184, .45));
+        }
+    }
+}
