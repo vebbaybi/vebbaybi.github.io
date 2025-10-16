@@ -1,0 +1,198 @@
+/* contact.css — The 1807 v1.3 */
+
+body.theme-dark {
+    background-color: #0b0f18;
+    color: #eaeaea;
+    font-family: 'Josefin Sans', system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* === HERO SECTION === */
+.contact-hero {
+    padding-block: 6rem 3rem;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    border-radius: 1rem;
+    opacity: 0.9;
+    display: block;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.lead-text {
+    font-size: 1.125rem;
+    color: #b0b0b0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* === GRID LAYOUT === */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding-block: 3rem 5rem;
+}
+
+.contact-method {
+    background: #121826;
+    border: 1px solid #1c2230;
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.contact-method:hover {
+    background: #161d2e;
+    transform: translateY(-4px);
+}
+
+.contact-img {
+    width: 100%;
+    height: max-content;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    opacity: 0.92;
+}
+
+.contact-method h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.contact-method p {
+    color: #c0c3c8;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+#social-img {
+    height: max-content;
+}
+
+/* === BUTTONS === */
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 0.7rem 1.35rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn:hover::after {
+    opacity: 1;
+}
+
+/* === PRIMARY BUTTON === */
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+/* === SECONDARY BUTTON === */
+.btn-secondary {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #e4e4e7;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #334155, #475569);
+    transform: translateY(-2px);
+}
+
+/* === TERTIARY BUTTON === */
+.btn-tertiary {
+    background: #1c1f2b;
+    color: #d1d5db;
+    border: 1px solid #2b2f3a;
+}
+
+.btn-tertiary:hover {
+    background: #272b38;
+    transform: translateY(-2px);
+}
+
+/* === FOCUS / ACCESSIBILITY === */
+.btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* === BUTTON STACK === */
+.card .btn+.btn {
+    margin-top: 0.75rem;
+}
+
+/* === UTILITIES === */
+.small-text {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .contact-hero {
+        padding-block: 4rem 2rem;
+    }
+
+    .grid-4 {
+        gap: 1.5rem;
+    }
+
+    .contact-method {
+        padding: 1.5rem 1rem;
+    }
+
+    .contact-img {
+        height: 140px;
+    }
+}

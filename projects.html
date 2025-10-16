@@ -1,21 +1,22 @@
 <!doctype html>
-<html lang="en" data-app="1807" data-page="projects" data-version="v1.0">
+<html lang="en" data-app="1807" data-page="projects" data-version="v1.2">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded Systems • Blockchain • Construction</title>
+    <title>Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded Systems • Blockchain • Construction
+    </title>
 
     <!-- Canonical & Robots -->
-    <link rel="canonical" href="https://1807.com/projects.html" />
+    <link rel="canonical" href="https://the1807.xyz/projects/" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
 
     <!-- SEO -->
     <meta name="description"
-        content="Projects by Uchenna Anozie (webbaby) | Computer Scientist: Luna (AI assistant), ACEBot & FieldEye (embedded firmware on Arduino/ESP32/Pi), Chains (multi-chain sniper & risk engine), and precision construction workflows." />
+        content="Projects by Uchenna Anozie (webbaby) | Computer Scientist: Ainor (Living House AI), Luna (AI assistant), ACEBot & FieldEye (embedded firmware), Chains (multi-chain sniper), and precision construction workflows." />
     <meta name="keywords"
-        content="Uchenna Anozie, webbaby, Luna, ACEBot, FieldEye, Chains, AI, Embedded Systems, Arduino, Raspberry Pi, ESP32, Uniswap, Raydium, Jupiter, Telegram bot, Construction, portfolio" />
+        content="Uchenna Anozie, webbaby, Ainor, Luna, ACEBot, FieldEye, Chains, AI, Embedded Systems, Arduino, Raspberry Pi, ESP32, Svelte, PyQt5, Blockchain, Construction, portfolio" />
     <meta name="theme-color" content="#111111" />
     <meta name="color-scheme" content="dark light" />
 
@@ -23,20 +24,20 @@
     <meta property="og:title"
         content="Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded • Blockchain • Construction" />
     <meta property="og:description"
-        content="Luna (AI), ACEBot/FieldEye (embedded), Chains (blockchain trading stack), and real-world builds." />
+        content="Ainor (Living AI), Luna (AI), ACEBot/FieldEye (embedded), Chains (blockchain trading stack), and real-world builds." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://1807.com/projects.html" />
-    <meta property="og:image" content="https://1807.com/assets/images/ai.webp" />
+    <meta property="og:url" content="https://the1807.xyz/projects/" />
+    <meta property="og:image" content="https://the1807.xyz/assets/images/ai.webp" />
     <meta property="og:image:alt" content="Collage of AI, Embedded Systems, Blockchain, and Construction projects" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Projects — Uchenna Anozie (webbaby) | Computer Scientist" />
     <meta name="twitter:description"
-        content="Browse Luna, ACEBot/FieldEye, Chains, and precision construction projects." />
-    <meta name="twitter:image" content="https://1807.com/assets/images/ai.webp" />
+        content="Browse Ainor, Luna, ACEBot/FieldEye, Chains, and precision construction projects." />
+    <meta name="twitter:image" content="https://the1807.xyz/assets/images/ai.webp" />
 
-    <!-- Styles -->
+    <!-- Assets -->
     <link rel="icon" href="/favicon.ico" />
     <link rel="preload" href="/assets/css/main.css" as="style" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -50,32 +51,30 @@
     <header-placeholder>
         <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
     </header-placeholder>
-    
+
     <nav-placeholder></nav-placeholder>
 
     <main id="main" tabindex="-1">
         <section id="projects-view" class="view projects" aria-labelledby="projects-heading">
             <div class="container">
-                <header class="view-header" style="margin-block: 18px 8px;">
+                <header class="view-header view-header--compact">
                     <h1 id="projects-heading">Projects</h1>
 
-                    <!-- Fun, rotating subtitle -->
                     <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
-                        "I build AI, firmware, and financial automation. 🤖",
-                        "Linking embedded systems to secured blockchain solutions. 🔗",
-                        "Coding signals: from sensor data to market trades. 📈",
-                        "Crafting smart systems that learn and integrate. ⚙️",
-                        "Automation: I engineer the autonomous stack.",
-                        "Data integrated. Systems secured. Wins automated. ✅",
-                        "From firmware to Solana: full-stack integration.",
-                        "My lane is deep tech. I build the lanes. 🛠️"
-                    ]'>
+            "I build AI, firmware, and financial automation. 🤖",
+            "Linking embedded systems to secured blockchain solutions. 🔗",
+            "Coding signals: from sensor data to market trades. 📈",
+            "Crafting smart systems that learn and integrate. ⚙️",
+            "Automation: I engineer the autonomous stack.",
+            "Data integrated. Systems secured. Wins automated. ✅",
+            "From firmware to Solana: full-stack integration.",
+            "My lane is deep tech. I build the lanes. 🛠️"
+          ]'>
                         I build AI, firmware, and financial automation. 🤖
                     </p>
 
-                    <!-- Quick filter links (hash navigation) -->
-                    <nav aria-label="Project quick filters" style="margin-top: 8px;">
-                        <ul class="nav-list" style="gap: 16px;">
+                    <nav aria-label="Project quick filters" class="quick-filters">
+                        <ul class="nav-list nav-list--pills">
                             <li><a href="#ai">AI</a></li>
                             <li><a href="#embedded">Embedded</a></li>
                             <li><a href="#chains">Blockchain</a></li>
@@ -93,22 +92,24 @@
                                 id="slide-0" data-hash="ai">
                                 <article class="project-card" data-animate>
                                     <a class="project-media" href="ai.html"
-                                        aria-label="AI Projects: Luna and model pipelines">
+                                        aria-label="AI Projects: Ainor, Luna, and model pipelines">
                                         <img src="/assets/images/ai.webp" alt="AI projects cover" loading="eager"
                                             decoding="async" />
                                     </a>
                                     <div class="project-body">
-                                        <h2 class="project-title"><a href="ai.html">AI Projects</a></h2>
+                                        <h2 class="project-title"><a href="ai.html">AI & Cognitive Systems</a></h2>
                                         <p class="project-blurb">
-                                            <strong>Luna:</strong> PyQt5 neural assistant with real-time voice I/O,
-                                            event logging, on-device inference, and a modular pipeline. Includes
-                                            observability hooks and guardrails.
+                                            <strong>Luna (#1):</strong> PyQt5 neural assistant with real-time voice I/O,
+                                            on-device inference, modular event and data pipelines.<br />
+                                            <strong>Ainor (#2):</strong> Living House AI on Raspberry Pi with visual
+                                            cognition, Dream State retraining, and a professional Svelte GUI.<br />
+                                            <em>Control graph:</em> Ainor ↔ Luna (each can control the other). Other
+                                            systems can be controlled by them, but cannot control both.
                                         </p>
-                                        <div class="project-meta" aria-hidden="true"
-                                            style="opacity:.8;margin:8px 0 14px;">
+                                        <div class="project-meta" aria-hidden="true">
                                             <span>• Python</span> <span class="footer-right dot">•</span>
-                                            <span>PyQt5</span> <span class="footer-right dot">•</span>
-                                            <span>NLP/STT</span>
+                                            <span>Computer&nbsp;Vision</span> <span class="footer-right dot">•</span>
+                                            <span>Svelte/PyQt5</span>
                                         </div>
                                         <a class="btn" href="ai.html">View AI Projects</a>
                                     </div>
@@ -130,8 +131,7 @@
                                             motion tracking: PIR + ultrasonic fusion, pan-servo tracking, UART protocol,
                                             watchdogs, SD logging, and systemd services.
                                         </p>
-                                        <div class="project-meta" aria-hidden="true"
-                                            style="opacity:.8;margin:8px 0 14px;">
+                                        <div class="project-meta" aria-hidden="true">
                                             <span>• Arduino/ESP32</span> <span class="footer-right dot">•</span>
                                             <span>Raspberry&nbsp;Pi</span> <span class="footer-right dot">•</span>
                                             <span>OpenCV</span>
@@ -152,14 +152,13 @@
                                     <div class="project-body">
                                         <h2 class="project-title"><a href="chains.html">Blockchain</a></h2>
                                         <p class="project-blurb">
-                                            <strong>Chains:</strong> Multi-chain sniper & risk engine with
-                                            Uniswap/Raydium/Jupiter clients, anti-rug heuristics, portfolio/PnL,
-                                            Telegram bot, and indexer with ABIs/filters.
+                                            <strong>Chains:</strong> Multi-chain sniper and risk engine with
+                                            Uniswap/Raydium/Jupiter clients, anti-rug heuristics, portfolio and PnL,
+                                            Telegram bot, and indexer with ABIs and filters.
                                         </p>
-                                        <div class="project-meta" aria-hidden="true"
-                                            style="opacity:.8;margin:8px 0 14px;">
-                                            <span>• EVM/Solana</span> <span class="footer-right dot">•</span> <span>DEX
-                                                APIs</span> <span class="footer-right dot">•</span>
+                                        <div class="project-meta" aria-hidden="true">
+                                            <span>• EVM/Solana</span> <span class="footer-right dot">•</span>
+                                            <span>DEX APIs</span> <span class="footer-right dot">•</span>
                                             <span>Telegram</span>
                                         </div>
                                         <a class="btn" href="chains.html">View Blockchain</a>
@@ -178,12 +177,11 @@
                                     <div class="project-body">
                                         <h2 class="project-title"><a href="construction.html">Construction</a></h2>
                                         <p class="project-blurb">
-                                            Precision installs (windows/doors), siding, and site coordination — plus
+                                            Precision installs (windows and doors), siding, and site coordination - plus
                                             custom time-sheet tooling and quoting helpers to keep the crew honest and
                                             the hours tight.
                                         </p>
-                                        <div class="project-meta" aria-hidden="true"
-                                            style="opacity:.8;margin:8px 0 14px;">
+                                        <div class="project-meta" aria-hidden="true">
                                             <span>• Workflow</span> <span class="footer-right dot">•</span>
                                             <span>Tooling</span> <span class="footer-right dot">•</span>
                                             <span>Organization</span>
@@ -217,15 +215,12 @@
                                 4</span></button>
                     </div>
 
-                    <!-- Extras: autoplay toggle + progress + live announcer -->
-                    <div class="carousel-extras" style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+                    <!-- Autoplay + progress + announcer -->
+                    <div class="carousel-extras">
                         <button type="button" class="btn secondary" id="autoplay-toggle" aria-pressed="true"
-                            title="Pause/Play autoplay">⏸️ Autoplay</button>
-                        <div id="carousel-progress"
-                            style="flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;">
-                            <div id="carousel-progress-bar"
-                                style="height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--secondary));">
-                            </div>
+                            title="Pause or play autoplay">⏸️ Autoplay</button>
+                        <div id="carousel-progress" class="progress">
+                            <div id="carousel-progress-bar" class="progress__bar"></div>
                         </div>
                         <span aria-live="polite" id="carousel-announcer" class="sr-only"></span>
                     </div>
@@ -236,6 +231,7 @@
 
     <footer-placeholder></footer-placeholder>
 
+    <!-- Scripts -->
     <script type="module" src="/assets/js/app.js"></script>
     <script type="module" src="/assets/js/ui/theme.js"></script>
     <script type="module" src="/assets/js/ui/components/nav.js"></script>

@@ -1,10 +1,10 @@
-<!--partials\footer.html-->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
         <div class="footer-left">
-            <a href="index.html"><strong>vebbabi.github.io</strong></a> — portfolio by webbaby
-            <span class="year" aria-hidden="true"></span>
+            <a href="/" rel="home"><strong>the1807.xyz</strong></a> — portfolio by webbaby
+            <span class="year" id="footer-year"></span>
         </div>
+
         <div class="footer-right">
             <span class="dot">•</span>
             <a href="/404.html">Roadmap</a>
@@ -23,4 +23,8 @@
             <span class="dot">•</span>
         </div>
     </div>
+    <script>
+        // update year automatically
+        document.getElementById('footer-year').textContent = `© ${new Date().getFullYear()}`;
+    </script>
 </footer>

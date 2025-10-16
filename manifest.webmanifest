@@ -1,0 +1,54 @@
+{
+  "name": "1807-chain — Uchenna Anozie (webbaby)",
+  "short_name": "1807-chain",
+  "description": "Uchenna Anozie's portfolio: Computer Science, AI, Robotics, and Embedded Systems projects.",
+  "start_url": "/home.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#111111",
+  "theme_color": "#0099ff",
+  "icons": [
+    {
+      "src": "/assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Flagship (Luna)",
+      "short_name": "Luna AI",
+      "description": "Explore the Luna AI assistant and projects.",
+      "url": "/ai.html",
+      "icons": [{ "src": "/assets/icons/shortcut-ai.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Robotics Projects",
+      "short_name": "Robotics",
+      "description": "View Embedded Systems & Robotics work.",
+      "url": "/robotics.html",
+      "icons": [{ "src": "/assets/icons/shortcut-robo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "My Resumes",
+      "short_name": "Resumes",
+      "description": "Quick access to all professional resumes.",
+      "url": "/resumes.html",
+      "icons": [{ "src": "/assets/icons/shortcut-resume.png", "sizes": "96x96" }]
+    }
+  ],
+  "lang": "en-US",
+  "prefer_related_applications": false
+}

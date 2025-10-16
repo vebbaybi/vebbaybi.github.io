@@ -1,0 +1,193 @@
+/* -------------------------------------------------------------------------
+ * TDI Feed Styles: assets/css/tdi.css
+ * Styles for the Djehuty Institute live feed page.
+ * ------------------------------------------------------------------------- */
+
+/* --- Theme Variables and Base Colors (Adapt to your site's main.css if needed) --- */
+:root {
+    --color-background: #f8f8f8;
+    --color-surface: #ffffff;
+    --color-text: #1a1a1a;
+    --color-muted: #6b7280;
+    --color-accent: #1e40af;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    --border-radius: 12px;
+}
+
+.theme-dark {
+    --color-background: #111827;
+    --color-surface: #1f2937;
+    --color-text: #f3f4f6;
+    --color-muted: #9ca3af;
+    --color-accent: #60a5fa;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Layout Containers --- */
+
+.tdi-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+}
+
+.tdi-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-surface);
+}
+
+.tdi-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tdi-meta {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+/* --- Grid Layout (Responsive Columns) --- */
+
+.tdi-grid {
+    display: grid;
+    gap: 2rem;
+
+    /* Default: 1 column for small screens */
+    grid-template-columns: 1fr;
+}
+
+/* Tablet (md) and up: 2 columns */
+@media (min-width: 768px) {
+    .tdi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (lg) and up: 3 columns */
+@media (min-width: 1024px) {
+    .tdi-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- Individual Card Styles --- */
+
+.tdi-card {
+    background-color: var(--color-surface);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.tdi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card), 0 0 0 2px var(--color-accent);
+}
+
+/* --- Media Section --- */
+
+.tdi-media {
+    width: 100%;
+    /* Max height to prevent excessively tall images */
+    max-height: 300px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.tdi-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Card Body and Text --- */
+
+.tdi-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensures body takes up remaining space in flex container */
+}
+
+.tdi-time {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.tdi-msg {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    /* Limit the message height for a uniform card look */
+    max-height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Styling for linkified elements created by the JS fetcher */
+.tdi-msg a,
+.tdi-actions .tdi-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tdi-msg a:hover,
+.tdi-actions .tdi-link:hover {
+    text-decoration: underline;
+}
+
+.tdi-hashtag {
+    color: var(--color-accent);
+    opacity: 0.8;
+}
+
+.tdi-mention {
+    color: var(--color-accent);
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+/* --- Actions/Link --- */
+
+.tdi-actions {
+    margin-top: auto;
+    /* Pushes actions to the bottom */
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(150, 150, 150, 0.1);
+}
+
+.tdi-link {
+    display: inline-block;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* --- Empty/Loading State --- */
+
+.tdi-empty {
+    display: none;
+    /* Hidden by default, shown by JS on empty data/error */
+    text-align: center;
+    padding: 4rem 1rem;
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    border: 2px dashed var(--color-muted);
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+}

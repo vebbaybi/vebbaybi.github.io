@@ -1,55 +1,64 @@
-<!-- app/templates/index.html -->
 <!DOCTYPE html>
-<html lang="en" data-app="1807" data-page="index" data-version="v1.0">
+<html lang="en" data-app="1807" data-page="index" data-version="v1.1">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>1807-chain • Uchenna Anozie (webbaby) | Computer Scientist | AI • Data • Embedded • Blockchain Portfolio</title>
+  <title>Welcome to The 1807 | Uchenna Anozie</title>
 
-  <!-- Canonical & SEO (update the domain when final) -->
-  <link rel="canonical" href="https://vebbaybi.github.io/" />
+  <!-- Canonical & SEO -->
+  <link rel="canonical" href="https://the1807.xyz/" />
   <meta name="description"
-    content="Portfolio of Uchenna Anozie (webbaby) | Computer Scientist: AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling. Explore projects, resumes, and research-ready skills for clinical research, fintech, and engineering teams." />
+    content="Explore Uchenna Anozie’s (webbaby) portfolio of AI, Data Science, Embedded Systems, and Blockchain projects. Discover innovative solutions and research-ready skills." />
   <meta name="keywords"
-    content="Uchenna Anozie, webbaby, 1807-chain, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, clinical research, ProPharma, Ottawa" />
+    content="Uchenna Anozie, webbaby, The 1807, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, Ottawa" />
   <meta name="theme-color" content="#111111" />
   <meta name="color-scheme" content="dark light" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
   <!-- Open Graph -->
-  <meta property="og:title"
-    content="1807-chain • Uchenna Anozie (webbaby) | Computer Scientist | AI • Data • Embedded • Blockchain Portfolio" />
+  <meta property="og:title" content="Welcome to The 1807 | Uchenna Anozie" />
   <meta property="og:description"
-    content="Projects and resumes showcasing AI, Data Science, Embedded Systems, and Blockchain work. Research-ready skills, compliant documentation, and production-quality tooling." />
+    content="Explore AI, Data Science, Embedded Systems, and Blockchain projects by Uchenna Anozie (webbaby)." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vebbaybi.github.io/" />
-  <meta property="og:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
-  <meta property="og:image:alt" content="Portrait of Uchenna Anozie • AI, Data, Embedded & Blockchain portfolio" />
+  <meta property="og:url" content="https://the1807.xyz/" />
+  <meta property="og:image" content="https://the1807.xyz/assets/images/thedev.webp" />
+  <meta property="og:image:alt" content="Portrait of Uchenna Anozie | AI, Data, Embedded & Blockchain portfolio" />
+  <meta property="og:site_name" content="The 1807" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="1807-chain • Uchenna Anozie (webbaby) | Computer Scientist | AI • Data • Embedded • Blockchain" />
+  <meta name="twitter:title" content="Welcome to The 1807 | Uchenna Anozie" />
   <meta name="twitter:description"
-    content="AI, Data Science, Embedded Systems, and Blockchain portfolio with research-ready skills and compliant documentation." />
-  <meta name="twitter:image" content="https://vebbaybi.github.io/assets/images/thedev.webp" />
+    content="Discover Uchenna Anozie’s portfolio of AI, Data Science, Embedded Systems, and Blockchain projects." />
+  <meta name="twitter:image" content="https://the1807.xyz/assets/images/thedev.webp" />
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
-  <!--cursors-->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+
+  <!-- Cursors (preload) -->
   <link rel="preload" href="/assets/cursors/default.png" as="image" />
   <link rel="preload" href="/assets/cursors/pointer.png" as="image" />
   <link rel="preload" href="/assets/cursors/editor.png" as="image" />
   <link rel="preload" href="/assets/cursors/typing.png" as="image" />
-  <!-- Performance -->
-   <!--gif preloading-->
-  <link rel="preload" href="/assets/images/gif/theme.gif" as="image">
-  <link rel="preload" href="/assets/images/gif/menu.gif" as="image">
 
+  <!-- Performance -->
+  <link rel="preload" href="/assets/images/gif/theme.gif" as="image" />
+  <link rel="preload" href="/assets/images/gif/menu.gif" as="image" />
   <link rel="preload" href="/assets/css/main.css" as="style" />
+
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/intro.css" />
   <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
@@ -57,17 +66,33 @@
   <link rel="stylesheet" href="/assets/css/landing.css?v=1.0.0" />
 </head>
 
-<body>
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header-placeholder></header-placeholder>
+  <nav-placeholder></nav-placeholder>
+
+  <main id="main" tabindex="-1">
     <div class="runway">
       <div id="TTGM-010" class="YVhW">
-        <img class="top-img" src="assets/images/YHWH.png" alt="Unus" fetchpriority="high" decoding="async" />
+        <img class="top-img" src="/assets/images/YHWH.png" alt="The 1807 splash image" fetchpriority="high"
+          decoding="async" />
       </div>
-    
+
       <section class="landing-wrap" role="region" aria-label="Introduction">
         <div id="typing-area" aria-live="polite" role="status"></div>
         <div id="explosion" aria-hidden="true"></div>
+        <a class="btn" href="/home.html" aria-label="Continue to portfolio">Enter Portfolio</a>
       </section>
     </div>
+  </main>
+
+  <footer-placeholder></footer-placeholder>
+
+  <!-- JS -->
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/ui/theme.js"></script>
+  <script type="module" src="/assets/js/ui/components/nav.js"></script>
   <script src="/assets/js/landing.js?v=1.0.0" defer></script>
 </body>
 
