@@ -1,0 +1,533 @@
+/* /assets/css/pages/home.css — FINAL (PNG, container-scaled, single-line desktop)
+   Layers: home (all rules) + overrides (desktop single-line and z-index assertions)
+*/
+
+@layer home {
+
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Tokens */
+    :root {
+        --background: #111111;
+        --foreground: #fafafa;
+        --text: #ffffff;
+        --muted: #aaaaaa;
+        --primary: #ff004c;
+
+        --nav-color: var(--foreground);
+        --nav-color-hover: var(--primary);
+        --nav-opacity: 0.85;
+        --nav-opacity-hover: 1;
+
+        --edge-inset: clamp(16px, 4vw, 60px);
+        --frame-gap: clamp(24px, 8vw, 160px);
+        --overlay-pad: clamp(12px, 3vw, 48px);
+        --nav-vertical-gap: clamp(20px, 8vh, 120px);
+        --mobile-nav-gap: 24px;
+
+        --image-transition: 0.6s cubic-bezier(.25, .46, .45, .94);
+        --typewriter-transition: 0.5s cubic-bezier(.25, .46, .45, .94);
+
+        --font-body: 'Josefin Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        --font-display: 'Bitcount Grid Double Ink', 'Playfair Display', system-ui, sans-serif;
+        --font-header: 'Avenir Next', system-ui, sans-serif;
+    }
+
+    /* Base */
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden !important;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-body);
+    }
+
+    .page-root {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background);
+        overflow: hidden;
+        touch-action: pan-y pinch-zoom;
+    }
+
+    /* Links */
+    .nav-link {
+        text-decoration: none;
+        color: var(--nav-color);
+        opacity: var(--nav-opacity);
+        transition: all .3s ease;
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+        color: var(--nav-color-hover);
+        opacity: var(--nav-opacity-hover);
+        transform: translateY(-2px);
+    }
+
+    .nav-text {
+        font-family: var(--font-body);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .2em;
+        font-size: clamp(.75rem, 2vw, 1.1rem);
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    /* Nav rails */
+    .navigation-links-full {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        pointer-events: none;
+    }
+
+    .nav-vertical {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: var(--nav-vertical-gap);
+        pointer-events: auto;
+    }
+
+    .nav-vertical.nav-left {
+        left: var(--edge-inset);
+    }
+
+    .nav-vertical.nav-right {
+        right: var(--edge-inset);
+    }
+
+    .nav-vertical .nav-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        padding: 8px 4px;
+        font-size: clamp(.9rem, 2vw, 1.1rem);
+        font-weight: 700;
+    }
+
+    .nav-horizontal.nav-bottom {
+        position: fixed;
+        left: 50%;
+        bottom: var(--edge-inset);
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: clamp(1.5em, 3vw, 2.5em);
+        pointer-events: auto;
+        z-index: 20;
+        font-size: clamp(.9rem, 2vw, 1.1rem);
+        font-weight: 700;
+    }
+
+    .nav-separator {
+        color: var(--muted);
+        opacity: .6;
+    }
+
+    /* Mobile nav (hidden by default here) */
+    .mobile-nav-toggle {
+        display: none;
+    }
+
+    .mobile-nav-vertical {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 90;
+        pointer-events: none;
+        flex-direction: column;
+        gap: var(--mobile-nav-gap);
+        width: min(90%, 300px);
+    }
+
+    .mobile-nav-vertical.active {
+        display: flex;
+        pointer-events: auto;
+    }
+
+    .mobile-nav-vertical .nav-link {
+        background: rgba(17, 17, 17, .9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, .1);
+        padding: 16px 24px;
+        border-radius: 8px;
+        transition: all .3s ease;
+    }
+
+    .mobile-nav-vertical .nav-link:hover,
+    .mobile-nav-vertical .nav-link:focus-visible {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+        box-shadow: 0 4px 20px rgba(255, 0, 76, .3);
+    }
+
+    .mobile-nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .8);
+        backdrop-filter: blur(5px);
+        z-index: 80;
+        opacity: 0;
+        transition: opacity .3s ease;
+    }
+
+    .mobile-nav-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Hero image container */
+    .image-container-centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        width: min(calc(100vw - (var(--frame-gap) * 2)), 1320px);
+        height: min(calc(100vh - (var(--frame-gap) * 2)), 740px);
+        aspect-ratio: 16 / 9;
+        background-color: var(--background);
+        overflow: hidden;
+        border-radius: 2px;
+    }
+
+    .image-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .image-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, .55);
+        z-index: 2;
+    }
+
+    .image-layer {
+        position: absolute;
+        inset: 0;
+        background-size: contain;
+        /* change to cover if you want no letterbox */
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        transition: opacity var(--image-transition);
+        z-index: 1;
+    }
+
+    .image-layer.active {
+        opacity: 1;
+    }
+
+    /* PNG sources */
+    .image-default {
+        background-image: url('/assets/images/home/default.png');
+    }
+
+    .image-ai {
+        background-image: url('/assets/images/home/ai.png');
+    }
+
+    .image-data {
+        background-image: url('/assets/images/home/data.png');
+    }
+
+    .image-embedded {
+        background-image: url('/assets/images/home/embedded.png');
+    }
+
+    .image-blockchain {
+        background-image: url('/assets/images/home/blockchain.png');
+    }
+
+    .image-about {
+        background-image: url('/assets/images/home/about.png');
+    }
+
+    .image-contact {
+        background-image: url('/assets/images/home/contact.png');
+    }
+
+    .image-tdi {
+        background-image: url('/assets/images/home/tdi.png');
+    }
+
+    /* Typewriter overlay */
+    .typewriter-overlay-centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 30;
+        pointer-events: none;
+        width: min(calc(100vw - (var(--frame-gap) * 2)), 1320px);
+        height: min(calc(100vh - (var(--frame-gap) * 2)), 740px);
+        aspect-ratio: 16 / 9;
+        container-type: inline-size;
+        /* enables cqi scaling */
+    }
+
+    .typewriter-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .typewriter-line-split {
+        position: absolute;
+        inset: 0;
+        font-family: var(--font-display);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        font-size: clamp(22px, 8cqi, 88px);
+        /* fluid by container */
+        line-height: .9;
+        text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+        opacity: 0;
+        transition: opacity var(--typewriter-transition);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-inline: clamp(8px, 2cqi, 24px);
+    }
+
+    .typewriter-line-split.active {
+        opacity: 1;
+    }
+
+    .typewriter-part-large {
+        white-space: nowrap;
+        /* enforced for desktop in overrides; mobile relaxes */
+        opacity: 0;
+        transition: transform var(--typewriter-transition), opacity var(--typewriter-transition);
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Desktop split placement */
+    .typewriter-line-split.active .typewriter-part-large:first-child {
+        position: absolute;
+        left: var(--overlay-pad);
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1;
+        text-align: left;
+    }
+
+    .typewriter-line-split.active .typewriter-part-large:last-child {
+        position: absolute;
+        right: var(--overlay-pad);
+        top: calc(50% + 5%);
+        transform: translateY(-50%);
+        opacity: 1;
+        text-align: right;
+    }
+
+    /* Hide empty first span in TDI */
+    .typewriter-line-split[data-section="tdi"].active .typewriter-part-large:first-child:empty {
+        display: none;
+    }
+
+    /* Page index */
+    .page-index {
+        position: fixed;
+        right: var(--edge-inset);
+        bottom: var(--edge-inset);
+        color: var(--muted);
+        font-size: clamp(.7rem, 2vw, .85rem);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        z-index: 40;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1024px) {
+        :root {
+            --frame-gap: clamp(32px, 6vw, 80px);
+            --nav-vertical-gap: clamp(40px, 10vh, 80px);
+        }
+
+        .nav-vertical .nav-text,
+        .nav-horizontal.nav-bottom {
+            font-size: clamp(.8rem, 1.5vw, 1rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+
+        .nav-vertical,
+        .nav-horizontal.nav-bottom {
+            display: none;
+        }
+
+        .mobile-nav-toggle {
+            display: block;
+        }
+
+        .mobile-nav-vertical {
+            display: flex;
+        }
+
+        .image-container-centered,
+        .typewriter-overlay-centered {
+            width: calc(100vw - (var(--frame-gap) * 1.5));
+            height: calc(100vh - (var(--frame-gap) * 2.5));
+            max-width: none;
+            max-height: none;
+        }
+
+        /* Mobile: allow wrapping and stacked layout */
+        .typewriter-line-split {
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            font-size: clamp(18px, 12vw, 44px);
+        }
+
+        .typewriter-line-split.active .typewriter-part-large {
+            position: static;
+            transform: none;
+            text-align: center;
+            opacity: 1;
+            white-space: normal;
+            max-width: 96%;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+            letter-spacing: .02em;
+        }
+
+        .page-index {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        :root {
+            --edge-inset: 12px;
+            --frame-gap: 20px;
+            --mobile-nav-gap: 16px;
+        }
+
+        .mobile-nav-vertical .nav-link {
+            padding: 14px 20px;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        :root {
+            --edge-inset: 80px;
+            --frame-gap: clamp(120px, 12vw, 220px);
+        }
+
+        .image-container-centered,
+        .typewriter-overlay-centered {
+            max-width: 1600px;
+            max-height: 880px;
+        }
+    }
+
+    @media screen and (orientation: portrait) and (max-width: 768px) {
+
+        .image-container-centered,
+        .typewriter-overlay-centered {
+            width: 90vw;
+            height: 50vh;
+            aspect-ratio: 16/9;
+        }
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        .image-layer {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :root {
+            --image-transition: .1s ease;
+            --typewriter-transition: .1s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            transform: none;
+        }
+    }
+
+    .nav-link:focus-visible,
+    .mobile-nav-toggle:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: 4px;
+    }
+}
+
+/* Overrides: desktop single-line text and z-index safety below header/footer */
+@layer overrides {
+
+    /* Keep overlay content below fixed header and footer defined in main.css */
+    body[data-page="home"] .navigation-links-full,
+    body[data-page="home"] .image-container-centered,
+    body[data-page="home"] .typewriter-overlay-centered {
+        z-index: 1000;
+    }
+
+    /* Desktop and tablets: force single-line halves */
+    @media (min-width: 769px) {
+        .typewriter-line-split {
+            font-size: clamp(22px, 7cqi, 72px);
+            /* tighter cap so it fits in one row */
+            line-height: .9;
+        }
+
+        .typewriter-part-large {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            /* switch to ellipsis if you prefer */
+            max-width: none;
+            word-break: normal;
+            overflow-wrap: normal;
+            hyphens: manual;
+            letter-spacing: .03em;
+        }
+
+        .typewriter-line-split.active .typewriter-part-large:first-child {
+            left: max(var(--overlay-pad), 24px);
+            right: auto;
+        }
+
+        .typewriter-line-split.active .typewriter-part-large:last-child {
+            right: max(var(--overlay-pad), 24px);
+            left: auto;
+            letter-spacing: .02em;
+        }
+    }
+}

@@ -1,119 +1,105 @@
 <!doctype html>
-<html lang="en" data-app="1807" data-page="home" data-version="v1.1">
+<html lang="en" role="root" data-app="1807" data-page="home" data-version="v1.3">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>Portfolio | The 1807 | Uchenna Anozie (webbaby)</title>
+  <title>Uchenna Anozie (webbaby) Portfolio | Computer Scientist & AI/Data Specialist | The 1807</title>
 
-  <!-- Canonical & SEO -->
   <link rel="canonical" href="https://the1807.xyz/home/" />
   <meta name="description"
-    content="Portfolio of Uchenna Anozie (webbaby) | Computer Scientist: AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling. Explore projects, resumes, and research-ready skills for research, fintech, and engineering teams." />
+    content="Portfolio of Uchenna Anozie (webbaby), a Computer Scientist specializing in AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling. Explore projects, resumes, and research-ready skills." />
   <meta name="keywords"
-    content="Uchenna Anozie, webbaby, The 1807, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, clinical research, ProPharma, Ottawa" />
+    content="Uchenna Anozie, webbaby, The 1807, portfolio, Computer Scientist, AI, Data Science, Embedded Systems, Blockchain, Python, Rust, fintech, engineering" />
+
   <meta name="theme-color" content="#111111" />
   <meta name="color-scheme" content="dark light" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="format-detection" content="telephone=no" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Portfolio | The 1807 | Uchenna Anozie (webbaby)" />
+  <meta property="og:title" content="Uchenna Anozie (webbaby) Portfolio | AI, Data, Embedded & Blockchain" />
   <meta property="og:description"
-    content="Projects and resumes showcasing AI, Data Science, Embedded Systems, and Blockchain work. Research-ready skills, compliant documentation, and production-quality tooling." />
+    content="Computer Scientist portfolio showcasing production-quality AI, Data Science, Embedded Systems, and Blockchain work with research-ready skills." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://the1807.xyz/home/" />
   <meta property="og:image" content="https://the1807.xyz/assets/images/thedev.webp" />
-  <meta property="og:image:alt" content="Portrait of Uchenna Anozie | AI, Data, Embedded and Blockchain portfolio" />
+  <meta property="og:image:alt"
+    content="Portrait of Uchenna Anozie | Computer Scientist and Specialist in AI, Data, Embedded and Blockchain" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="The 1807" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Portfolio | The 1807 | Uchenna Anozie (webbaby)" />
+  <meta name="twitter:title" content="Uchenna Anozie (webbaby) Portfolio | AI, Data, Embedded & Blockchain" />
   <meta name="twitter:description"
-    content="AI, Data Science, Embedded Systems, and Blockchain portfolio with research-ready skills and compliant documentation." />
+    content="Computer Scientist portfolio showcasing production-quality AI, Data Science, Embedded Systems, and Blockchain work with research-ready skills." />
   <meta name="twitter:image" content="https://the1807.xyz/assets/images/thedev.webp" />
 
-  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:ital,wght@0,300..700;1,300..700&family=Lobster&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
 
-  <!-- Cursors -->
   <link rel="preload" href="/assets/cursors/default.png" as="image" />
   <link rel="preload" href="/assets/cursors/pointer.png" as="image" />
   <link rel="preload" href="/assets/cursors/editor.png" as="image" />
   <link rel="preload" href="/assets/cursors/typing.png" as="image" />
 
-  <!-- Performance -->
   <link rel="preload" href="/assets/css/main.css" as="style" />
-  <link rel="stylesheet" href="/assets/css/intro.css" />
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/intro.css" />
   <link rel="stylesheet" href="/assets/css/pages.css" />
+  <link rel="stylesheet" href="/assets/css/home.css" />
   <link rel="stylesheet" href="/assets/css/components.css" />
 
-  <!-- Small local styles for eyebrow caret -->
-  <style>
-    .eyebrow .tw-wrapper {
-      position: relative;
-      white-space: nowrap;
-    }
+  <link rel="preload" as="image" href="/assets/images/home/default.webp"
+    imagesrcset="/assets/images/home/default.webp 1200w, /assets/images/home/default@2x.webp 2000w"
+    imagesizes="(max-width: 1200px) 100vw, 1200px" fetchpriority="high" />
 
-    .eyebrow .tw-caret {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      margin-left: 6px;
-      background: linear-gradient(180deg, var(--primary), var(--secondary));
-      vertical-align: -0.15em;
-      animation: tw-caret-blink 1s steps(2, start) infinite;
-    }
+  <link rel="modulepreload" href="/assets/js/app.js" />
+  <link rel="modulepreload" href="/assets/js/pages/home.js" />
+  <link rel="modulepreload" href="/assets/js/ui/theme.js" />
+  <link rel="modulepreload" href="/assets/js/ui/components/nav.js" />
 
-    @keyframes tw-caret-blink {
-      50% {
-        opacity: 0;
-      }
-    }
-  </style>
-
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@graph":[
+    "@context": "https://schema.org",
+    "@graph": [
       {
-        "@type":"WebSite",
-        "@id":"https://the1807.xyz/#website",
-        "name":"The 1807 | webbaby",
-        "url":"https://the1807.xyz/",
-        "description":"Portfolio of Uchenna Anozie (webbaby) | Computer Scientist | AI, Data Science, Embedded Systems, and Blockchain.",
-        "inLanguage":"en"
+        "@type": "WebSite",
+        "@id": "https://the1807.xyz/#website",
+        "name": "Uchenna Anozie Portfolio | The 1807",
+        "url": "https://the1807.xyz/",
+        "description": "Portfolio of Uchenna Anozie (webbaby), a Computer Scientist specializing in AI, Data Science, Embedded Systems, and Blockchain.",
+        "inLanguage": "en"
       },
       {
-        "@type":"Person",
-        "@id":"https://the1807.xyz/#person",
-        "name":"Uchenna Emmanuel Anozie",
-        "alternateName":"webbaby",
-        "url":"https://the1807.xyz/",
-        "image":"https://the1807.xyz/assets/images/thedev.webp",
-        "jobTitle":"Computer and Data Scientist",
-        "sameAs":[
+        "@type": "Person",
+        "@id": "https://the1807.xyz/#person",
+        "name": "Uchenna Emmanuel Anozie",
+        "alternateName": "webbaby",
+        "url": "https://the1807.xyz/home/",
+        "image": "https://the1807.xyz/assets/images/thedev.webp",
+        "jobTitle": "Computer and Data Scientist",
+        "sameAs": [
           "https://www.linkedin.com/in/uchenna-anozie-a86143308",
-          "https://www.kaggle.com/eucee00"
+          "https://www.kaggle.com/eucee00",
+          "https://github.com/vebbaybi",
+          "https://the1807.xyz/"
         ],
-        "knowsAbout":[
+        "knowsAbout": [
           "Artificial Intelligence",
           "Data Science",
           "Embedded Systems",
-          "Blockchain"
+          "Blockchain",
+          "Software Engineering"
         ]
       }
     ]
@@ -121,116 +107,118 @@
   </script>
 </head>
 
-<body class="theme-dark">
+<body class="theme-dark no-scroll">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header-placeholder></header-placeholder>
   <nav-placeholder></nav-placeholder>
 
-  <main id="main" tabindex="-1">
-    <div id="intro-root"></div>
+  <main id="main" tabindex="-1" class="page-root"
+    aria-label="Uchenna Anozie's Portfolio Introduction and Technology Focus">
 
-    <section class="home-hero" aria-labelledby="intro-heading">
-      <div class="hero-left">
-        <img class="hero-img" src="/assets/images/theshark.jpg" alt="Uchenna Anozie (webbaby) | Computer Scientist"
-          width="720" height="900" loading="eager" decoding="async" fetchpriority="high" />
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-controls="mobile-nav" aria-expanded="false"
+      aria-label="Toggle mobile navigation">Menu</button>
+
+    <nav class="navigation-links-full" aria-label="Primary Technology and Utility Sections">
+      <div class="nav-vertical nav-left">
+        <a href="/ai.html" class="nav-link nav-link-ai" data-section="ai"
+          aria-label="View Artificial Intelligence projects"><span class="nav-text">A I</span></a>
+        <a href="/scroll_paper.html" class="nav-link nav-link-about" data-section="about"
+          aria-label="Read about The 1807 and Uchenna Anozie"><span class="nav-text">ABOUT</span></a>
       </div>
 
-      <div class="hero-right">
-        <div class="hero-content">
-          <!-- Eyebrow typewriter (animated, decorative) -->
-          <div class="eyebrow" aria-hidden="true">
-            <span class="tw-wrapper">
-              <span id="eyebrow-rotator" class="tw-line" data-phrases='[
-                  "Artes meas struo. Creo. Ita natus sum.",
-                  "Certa sum AI esse perfectum lapidem ad",
-                  "novum mundum introducendum.",
-                  "Intellegentis mundi forma",
-                  "Scio me nihil scire, sed scribo.",
-                  "Sapiens Qui Prospicit.",
-                  "GRATUS IN PLUVIAM...WELCOME TO THE RAIN..."
-                ]'></span>
-              <span class="tw-caret" aria-hidden="true"></span>
-            </span>
-          </div>
+      <div class="nav-vertical nav-right">
+        <a href="/robotics.html" class="nav-link nav-link-embedded" data-section="embedded"
+          aria-label="View Embedded Systems and Robotics projects"><span class="nav-text">E M B E D D E D</span></a>
+        <a href="/chains.html" class="nav-link nav-link-blockchain" data-section="blockchain"
+          aria-label="View Blockchain and Decentralized Web projects"><span class="nav-text">B L O C K C H A I
+            N</span></a>
+      </div>
 
-          <!-- Headline -->
-          <h1 class="hero-title" id="intro-heading">
-            <span>Hi There, I’m Uchenna (Webbaby) | Computer Scientist</span><br />
-            <span class="subline"
-              style="font-family:'Bitcount Grid Double Ink',system-ui,-apple-system,'Segoe UI',Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans'; font-weight:700;">
-              Data Science • AI &amp; Embedded Systems Developer • Full-Stack &amp; DevOps in Progress
-            </span>
-          </h1>
+      <div class="nav-horizontal nav-bottom">
+        <a href="/projects.html#data" class="nav-link nav-link-data" data-section="data"
+          aria-label="View Data Science and Data Pipeline projects"><span class="nav-text">D A T A</span></a>
+        <span class="nav-separator" aria-hidden="true">|</span>
+        <a href="/contact.html" class="nav-link nav-link-contact" data-section="contact"
+          aria-label="Get in touch for professional inquiries"><span class="nav-text">C O N T A C T</span></a>
+        <span class="nav-separator" aria-hidden="true">|</span>
+        <a href="/tdi.html" class="nav-link nav-link-tdi" data-section="tdi"
+          aria-label="Learn about The Djehuty project"><span class="nav-text">T H E D J E H U T Y</span></a>
+      </div>
+    </nav>
 
-          <p class="hero-sub"
-            style="font-family: 'Lobster', cursive, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans'; font-weight: 400;">
-            I am building a versatile foundation across software, hardware, and data to tackle
-            complex problems from multiple angles and deliver solutions with real-world impact.
-          </p>
-
-          <p class="hero-sub-full"
-            style="font-family: 'Lobster', cursive, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans'; font-weight: 400;">
-            My foundation is a B.Sc. in Computer Science, giving me essential grounding in algorithms, data
-            structures, and core languages like Python, C/C++, and Rust.
-            My current work is focused on creating full-stack cognitive systems by merging
-            intelligent data analysis with physical automation.
-            I combine Data Science skills (from exploratory analysis to modeling the system lifecycle) with Embedded
-            Engineering expertise, programming MPU/MCU platforms like Arduino, Raspberry Pi, and ESP32 for real-time
-            control.
-            The goal is to build adaptable systems that possess genuine cognitive ability: acquiring knowledge from
-            data, and executing complex tasks across both software logic and physical hardware.
-            This interdisciplinary approach is geared toward engineering the next generation of autonomous and
-            responsive systems.
-          </p>
-
-          <ul class="hero-highlights"
-            style="font-family: 'Lobster', cursive, system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans'; font-weight: 400;"
-            aria-label="Key capabilities">
-            <li><strong>Computer Science:</strong> B.Sc.; algorithms, data structures, OOP, design patterns</li>
-            <li><strong>Data Science / AI Programming:</strong> Python (automation, wrangling, validation,
-              visualization, EDA, ML foundations, NLP, pipelines, NFT generative art), C/C++, Rust, PineScript<strong>
-                (in progress)</strong></li>
-            <li><strong>Embedded &amp; IoT:</strong> Arduino, Raspberry Pi, ESP32, sensor fusion, automation</li>
-            <li><strong>Blockchain:</strong> DEX integrations, smart contract development for NFTs,
-              anti-rug heuristics, Web3 scripting, market scanners</li>
-            <li><strong>Research &amp; Data Handling:</strong> Databases, compliance docs (IRB/FDA), audit trails,
-              queries</li>
-            <li><strong>Productivity Tools:</strong> Microsoft Office Suite, VSCode, Git, etc.</li>
-            <li><strong>Construction &amp; Coordination:</strong> Site workflow organization, precision installation,
-              project support</li>
-          </ul>
-
-          <div class="hero-ctas">
-            <a class="btn with-emoji" href="scroll_paper.html" aria-label="Explore projects">
-              <img src="/assets/images/gif/spidy.gif" alt="Spidy icon" class="emoji-icon">
-              About Me
-            </a>
-            <a class="btn secondary" href="/resumes.html" aria-label="View resumes and hire">
-              <span class="play" aria-hidden="true"></span> Hire webbaby
-            </a>
-          </div>
+    <div class="image-container-centered" aria-hidden="true">
+      <div class="image-stage">
+        <div class="image-layer image-default" data-section="default" role="img" aria-label="Default portfolio image">
+        </div>
+        <div class="image-layer image-ai" data-section="ai" role="img"
+          aria-label="Image for Artificial Intelligence section"></div>
+        <div class="image-layer image-data" data-section="data" role="img" aria-label="Image for Data Science section">
+        </div>
+        <div class="image-layer image-embedded" data-section="embedded" role="img"
+          aria-label="Image for Embedded Systems section"></div>
+        <div class="image-layer image-blockchain" data-section="blockchain" role="img"
+          aria-label="Image for Blockchain section"></div>
+        <div class="image-layer image-about" data-section="about" role="img" aria-label="Image for About section"></div>
+        <div class="image-layer image-contact" data-section="contact" role="img" aria-label="Image for Contact section">
+        </div>
+        <div class="image-layer image-tdi" data-section="tdi" role="img" aria-label="Image for The Djehuty section">
         </div>
       </div>
-    </section>
+    </div>
 
-    <div class="page-index" aria-hidden="true">Page | 01</div>
+    <div class="typewriter-overlay-centered" role="status" aria-live="polite" aria-atomic="true">
+      <div class="typewriter-container">
+        <div class="typewriter-line-split" data-section="ai"><span class="typewriter-part-large">AI ASSISTANTS</span>
+        </div>
+        <div class="typewriter-line-split" data-section="data"><span class="typewriter-part-large">DATA ANALYSIS</span>
+        </div>
+        <div class="typewriter-line-split" data-section="embedded"><span class="typewriter-part-large">EMBEDDED
+            SYSTEMS</span></div>
+        <div class="typewriter-line-split" data-section="blockchain"><span
+            class="typewriter-part-large">BLOCKCHAIN</span></div>
+        <div class="typewriter-line-split" data-section="about"><span class="typewriter-part-large">THE</span><span
+            class="typewriter-part-large">1807</span></div>
+        <div class="typewriter-line-split" data-section="contact"><span class="typewriter-part-large">CON</span><span
+            class="typewriter-part-large">TACT</span></div>
+        <div class="typewriter-line-split" data-section="tdi">
+          <span class="typewriter-part-large"></span>
+          <span class="typewriter-part-large">THE DJEHUTY</span>
+        </div>
+        <div class="typewriter-caret" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
+
+    <nav class="mobile-nav-vertical" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="/ai.html" class="nav-link nav-link-ai" data-section="ai"><span class="nav-text">A I</span></a>
+      <a href="/scroll_paper.html" class="nav-link nav-link-about" data-section="about"><span
+          class="nav-text">ABOUT</span></a>
+      <a href="/robotics.html" class="nav-link nav-link-embedded" data-section="embedded"><span class="nav-text">E M B E
+          D D E D</span></a>
+      <a href="/chains.html" class="nav-link nav-link-blockchain" data-section="blockchain"><span class="nav-text">B L O
+          C K C H A I N</span></a>
+      <a href="/projects.html#data" class="nav-link nav-link-data" data-section="data"><span class="nav-text">D A T
+          A</span></a>
+      <a href="/contact.html" class="nav-link nav-link-contact" data-section="contact"><span class="nav-text">C O N T A
+          C T</span></a>
+      <a href="/tdi.html" class="nav-link nav-link-tdi" data-section="tdi"><span class="nav-text">T H E D J E H U T
+          Y</span></a>
+    </nav>
   </main>
 
   <footer-placeholder></footer-placeholder>
 
   <noscript>
-    <div class="noscript-note">
-      JavaScript is disabled. Navigation and placeholders are limited without scripts enabled.
+    <div class="noscript-note" role="alert">
+      Attention: JavaScript is disabled. This portfolio is a dynamic experience, and without scripts, the main
+      navigation and interactive content will not function as intended.
     </div>
   </noscript>
 
-  <!-- Engine FIRST (non-module) -->
   <script defer src="/assets/js/ui/components/puzzle.js"></script>
-  <!-- Orchestrator SECOND (non-module) -->
   <script defer src="/assets/js/boot.js"></script>
-
-  <!-- App modules -->
   <script type="module" src="/assets/js/app.js"></script>
   <script type="module" src="/assets/js/pages/home.js"></script>
   <script type="module" src="/assets/js/ui/theme.js"></script>

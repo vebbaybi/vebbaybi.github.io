@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Portfolio | The 1807 | Uchenna Anozie (webbaby)</title>
+    <meta name="description" content="Portfolio of Uchenna Anozie (webbaby) | Computer Scientist: AI assistants, data pipelines, embedded firmware/IoT, and blockchain tooling." />
+    <meta name="keywords" content="Uchenna Anozie, webbaby, The 1807, portfolio, AI, Data Science, Embedded Systems, Blockchain" />
+    <meta name="theme-color" content="#111111" />
+    
+    <meta property="og:title" content="Portfolio | The 1807 | Uchenna Anozie (webbaby)" />
+    <meta property="og:description" content="Projects and resumes showcasing AI, Data Science, Embedded Systems, and Blockchain work." />
+    <meta property="og:type" content="website" />
+    
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="portfolio-container">
+        <!-- Background Image Container with Inset Frame -->
+        <div class="background-frame">
+            <div class="background-container">
+                <div class="background-image" id="backgroundImage"></div>
+                <div class="background-overlay"></div>
+            </div>
+        </div>
+
+        <!-- Content Layer -->
+        <div class="content-layer">
+            <!-- Left Navigation - Desktop -->
+            <nav class="nav-left" aria-label="Primary navigation">
+                <button class="nav-button" data-section="ai" data-testid="link-nav-ai" aria-label="View AI section">
+                    <span class="nav-text-vertical">AI</span>
+                </button>
+                <button class="nav-button" data-section="data" data-testid="link-nav-data" aria-label="View DATA section">
+                    <span class="nav-text-vertical">DATA</span>
+                </button>
+            </nav>
+
+            <!-- Right Navigation - Desktop -->
+            <nav class="nav-right" aria-label="Secondary navigation">
+                <button class="nav-button" data-section="embedded" data-testid="link-nav-embedded" aria-label="View EMBEDDED section">
+                    <span class="nav-text-vertical">EMBEDDED</span>
+                </button>
+                <button class="nav-button" data-section="blockchain" data-testid="link-nav-blockchain" aria-label="View BLOCKCHAIN section">
+                    <span class="nav-text-vertical">BLOCKCHAIN</span>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation - Top -->
+            <nav class="nav-mobile" aria-label="Primary navigation mobile">
+                <button class="nav-button-mobile" data-section="ai" data-testid="link-nav-ai-mobile" aria-label="View AI section">AI</button>
+                <button class="nav-button-mobile" data-section="data" data-testid="link-nav-data-mobile" aria-label="View DATA section">DATA</button>
+                <button class="nav-button-mobile" data-section="embedded" data-testid="link-nav-embedded-mobile" aria-label="View EMBEDDED section">EMBEDDED</button>
+                <button class="nav-button-mobile" data-section="blockchain" data-testid="link-nav-blockchain-mobile" aria-label="View BLOCKCHAIN section">BLOCKCHAIN</button>
+                <button class="nav-button-mobile" data-section="about" data-testid="link-nav-about-mobile" aria-label="View ABOUT section">ABOUT</button>
+                <button class="nav-button-mobile" data-section="contact" data-testid="link-nav-contact-mobile" aria-label="View CONTACT section">CONTACT</button>
+                <button class="nav-button-mobile" data-section="link" data-testid="link-nav-link-mobile" aria-label="View LINK section">LINK</button>
+            </nav>
+
+            <!-- Bottom Navigation -->
+            <nav class="nav-bottom" aria-label="Footer navigation">
+                <button class="nav-button-bottom" data-section="about" data-testid="link-nav-about" aria-label="View ABOUT section">ABOUT</button>
+                <span class="nav-separator">|</span>
+                <button class="nav-button-bottom" data-section="contact" data-testid="link-nav-contact" aria-label="View CONTACT section">CONTACT</button>
+                <span class="nav-separator">|</span>
+                <button class="nav-button-bottom" data-section="link" data-testid="link-nav-link" aria-label="View LINK section">LINK</button>
+            </nav>
+
+            <!-- Hero Typography -->
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-left" data-testid="text-hero-left">
+                        <h1>THE</h1>
+                    </div>
+                    <div class="hero-right" data-testid="text-hero-right">
+                        <h1>1807</h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typewriter Subtitle -->
+            <div class="typewriter-container">
+                <div class="typewriter-content" data-testid="text-typewriter">
+                    <p id="typewriterText"></p>
+                </div>
+            </div>
+
+            <!-- Page Indicator -->
+            <div class="page-indicator" data-testid="text-page-indicator">01</div>
+        </div>
+
+        <!-- Custom Cursor -->
+        <div class="cursor-dot" id="cursorDot"></div>
+        <div class="cursor-ring" id="cursorRing"></div>
+
+        <!-- Skip Link for Accessibility -->
+        <a href="#main-content" class="skip-link">Skip to content</a>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
