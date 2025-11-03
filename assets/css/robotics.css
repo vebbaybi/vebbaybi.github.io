@@ -1,13 +1,12 @@
 /* =====================================================
-   1807-chain — robotics.css (v1.1)
-   Page styles for robotics.html
-   - Hero with video banner overlay
-   - Cards grid + chips
-   - Architecture grid
-   - Gallery strip
-   - Docs & Diagrams (PDF viewer)
-   - CTA section
-   - Responsive tiers
+   1807-chain — robotics.css (v2.0 – FINAL)
+   Scoped styles for Robotics page
+   - Banner → fade → video (play once) → revert to banner
+   - Sticky hero with no clipping
+   - Responsive grids
+   - Intersection .active states
+   - Gallery strip with snap scroll
+   - Mobile-safe, accessible
    ===================================================== */
 
 :root {
@@ -19,39 +18,69 @@
     --rbx-blur-strong: 10px;
 }
 
-/* ------------------------------ HERO ------------------------------ */
-.page-hero {
-    position: relative;
-    padding: clamp(16px, 3vw, 28px) 0;
-    overflow: hidden;
+/* ------------------------------ GLOBAL SCOPES ------------------------------ */
+#main .container {
+    max-width: min(1100px, 92vw);
+    margin: 0 auto;
+    padding: 0 clamp(12px, 2.6vw, 20px);
 }
 
-.page-hero__media {
+#main .section {
+    padding: clamp(28px, 5vw, 56px) 0;
+}
+
+#main .section-title {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    margin: 0 0 .75rem 0;
+    font-weight: 700;
+}
+
+/* ------------------------------ HERO SECTION ------------------------------ */
+#main .page-hero {
+    position: relative;
+    padding: clamp(16px, 3vw, 28px) 0;
+    overflow: visible !important;
+}
+
+#main .page-hero__media {
     position: relative;
     max-width: min(1100px, 94vw);
     margin: 0 auto;
+    overflow: visible !important;
 }
 
-.page-hero .scrolly-video {
+#main .page-hero .scrolly-video {
     position: sticky;
     top: clamp(56px, 8vh, 96px);
     z-index: 0;
     border-radius: var(--rbx-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
-.page-hero .scrolly-banner {
+#main .page-hero .scrolly-banner {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    transition: opacity .6s ease;
+    opacity: 1;
+    transition: opacity 0.7s ease;
     pointer-events: none;
     border-radius: var(--rbx-radius);
 }
 
-.page-hero .hero-video {
+#main .page-hero .scrolly-banner.fade-out {
+    opacity: 0;
+}
+
+#main .page-hero .scrolly-banner.is-gone {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#main .page-hero .hero-video {
     display: block;
     width: 100%;
     height: clamp(340px, 60vh, 720px);
@@ -59,18 +88,26 @@
     border-radius: var(--rbx-radius);
     border: 1px solid var(--border);
     filter: grayscale(18%) contrast(1.05);
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    background: #000;
 }
 
-/* content on top */
-.page-hero__content {
+#main .scrolly-video.playing .hero-video {
+    opacity: 1;
+}
+
+/* Hero content */
+#main .page-hero__content {
     position: relative;
     z-index: 2;
     max-width: 980px;
     margin: clamp(10px, 2.4vw, 18px) auto 0;
     text-align: center;
+    padding: 0 clamp(12px, 2vw, 20px);
 }
 
-.page-title {
+#main .page-title {
     margin: 0 0 .35em 0;
     font-size: clamp(1.75rem, 2.6vw, 2.6rem);
     line-height: 1.15;
@@ -82,295 +119,385 @@
     -webkit-text-fill-color: transparent;
 }
 
-.page-subtitle {
+#main .page-subtitle {
     color: var(--accent-2);
     max-width: 72ch;
     margin: 0 auto;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.5;
 }
 
-/* ------------------------------ STATS ------------------------------ */
-.section {
-    padding: clamp(28px, 5vw, 56px) 0;
+#main .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: clamp(14px, 2vw, 20px);
 }
 
-.container {
-    max-width: min(1100px, 92vw);
-    margin: 0 auto;
-    padding: 0 clamp(12px, 2.6vw, 20px);
-}
-
-.section--stats .stats-grid {
+/* ------------------------------ STATS GRID ------------------------------ */
+#main .section--stats .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--rbx-gap);
 }
 
-.stat {
+#main .stat {
     background: var(--rbx-card-bg);
     border: 1px solid var(--border);
     border-radius: var(--rbx-radius);
     padding: clamp(14px, 2vw, 18px);
     text-align: center;
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+    transition: all 0.3s ease;
 }
 
-.stat__num {
+#main .stat.active {
+    background: var(--rbx-card-bg-active);
+    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
+    backdrop-filter: blur(var(--rbx-blur-strong));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#main .stat__num {
     font-size: clamp(1.25rem, 3.2vw, 2rem);
     font-weight: 800;
     color: var(--text);
+    margin-bottom: 0.25rem;
 }
 
-.stat__label {
+#main .stat__label {
     color: var(--muted);
+    font-size: 0.875rem;
 }
 
 /* ------------------------------ PROJECT CARDS ------------------------------ */
-.section-title {
-    font-size: clamp(1.4rem, 2.2vw, 2rem);
-    margin: 0 0 .75rem 0;
-}
-
-.cards-grid--projects {
+#main .cards-grid--projects {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--rbx-gap);
 }
 
-.card {
+#main .card {
     position: relative;
     display: grid;
     grid-template-rows: auto 1fr;
     border-radius: var(--rbx-radius);
-    overflow: clip;
+    overflow: hidden;
     border: 1px solid var(--border);
     background: var(--rbx-card-bg);
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+    transition: all 0.4s ease;
 }
 
-.card__media {
+#main .card__media {
     aspect-ratio: 16/9;
     overflow: hidden;
+    background: #000;
 }
 
-.card__media img {
+#main .card__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
     filter: saturate(1.05) contrast(1.02);
+    transition: transform 0.4s ease;
 }
 
-.card__body {
+#main .card__body {
     padding: clamp(12px, 2vw, 18px);
     display: grid;
     gap: .5rem;
 }
 
-.card__title {
+#main .card__title {
     font-size: clamp(1.05rem, 1.6vw, 1.25rem);
     margin: 0;
+    font-weight: 600;
 }
 
-.card__desc {
+#main .card__desc {
     color: var(--accent-2);
     margin: 0;
+    font-size: 0.925rem;
+    line-height: 1.5;
 }
 
-/* chips */
-.chipset {
+/* Chips */
+#main .chipset {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin: .25rem 0 0 0;
 }
 
-.chip {
-    font-size: .85rem;
+#main .chip {
+    font-size: .8rem;
     padding: .25rem .5rem;
     border-radius: 999px;
     border: 1px solid var(--border);
     background: color-mix(in srgb, var(--surface-2) 78%, transparent);
+    color: var(--accent-2);
+    font-weight: 500;
 }
 
-.card:hover {
+/* Hover & Active */
+#main .card:hover {
     border-color: var(--blue-400);
     box-shadow: 0 8px 22px rgba(96, 165, 250, .18);
+    transform: translateY(-2px);
 }
 
-.card:hover .card__media img {
-    transform: scale(1.02);
-    transition: transform .4s ease;
+#main .card:hover .card__media img {
+    transform: scale(1.03);
+}
+
+#main .card.active {
+    background: var(--rbx-card-bg-active);
+    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
+    backdrop-filter: blur(var(--rbx-blur-strong));
+    border-color: var(--blue-400);
 }
 
 /* ------------------------------ ARCHITECTURE GRID ------------------------------ */
-.arch-grid {
+#main .arch-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--rbx-gap);
 }
 
-.arch-card {
+#main .arch-card {
     background: var(--rbx-card-bg);
     border: 1px solid var(--border);
     border-radius: var(--rbx-radius);
     padding: clamp(14px, 2vw, 18px);
     display: grid;
     gap: .35rem;
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+    transition: all 0.3s ease;
 }
 
-.arch-card__title {
+#main .arch-card.active {
+    background: var(--rbx-card-bg-active);
+    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
+    backdrop-filter: blur(var(--rbx-blur-strong));
+    transform: translateY(-2px);
+}
+
+#main .arch-card__title {
     font-size: 1rem;
     margin: 0;
+    font-weight: 600;
+    color: var(--text);
 }
 
-.arch-card__text {
+#main .arch-card__text {
     color: var(--accent-2);
     margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
-/* ------------------------------ DOCS & DIAGRAMS (PDF) ------------------------------ */
-.doc-card {
+/* ------------------------------ DOCS & PDF ------------------------------ */
+#main .doc-card {
     background: var(--rbx-card-bg);
     border: 1px solid var(--border);
     border-radius: var(--rbx-radius);
     box-shadow: var(--shadow);
-    overflow: clip;
+    overflow: hidden;
     -webkit-backdrop-filter: blur(var(--rbx-blur));
     backdrop-filter: blur(var(--rbx-blur));
+    transition: all 0.4s ease;
 }
 
-.doc-head {
+#main .doc-card.active {
+    background: var(--rbx-card-bg-active);
+    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
+    backdrop-filter: blur(var(--rbx-blur-strong));
+}
+
+#main .doc-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     padding: clamp(10px, 1.6vw, 14px) clamp(12px, 2vw, 18px);
     border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
 }
 
-.doc-title {
+#main .doc-title {
     margin: 0;
     font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    font-weight: 600;
 }
 
-.doc-toolbar {
+#main .doc-toolbar {
     display: inline-flex;
     gap: 8px;
     flex-wrap: wrap;
 }
 
-.doc-figure {
-    padding: clamp(8px, 1.4vw, 12px);
-}
-
-.doc-viewer {
+#main .card__media object {
+    display: block;
     width: 100%;
-    height: clamp(420px, 70vh, 900px);
-    border: 1px solid var(--border);
-    border-radius: var(--rbx-radius);
-    background: var(--surface);
+    height: 100%;
+    border: none;
 }
 
 /* ------------------------------ GALLERY STRIP ------------------------------ */
-.section--gallery {
+#main .section--gallery {
     background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface-2) 45%, transparent));
-    padding-top: clamp(12px, 2vw, 18px);
+    padding: clamp(12px, 2vw, 18px) 0;
 }
 
-.gallery-strip {
+#main .gallery-strip {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(220px, 1fr);
     gap: var(--rbx-gap);
     overflow-x: auto;
-    padding: 6px var(--rbx-gap) 2px;
+    padding: 6px var(--rbx-gap) 12px;
     scroll-snap-type: x mandatory;
+    scroll-padding: var(--rbx-gap);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
 }
 
-.gallery-item {
+#main .gallery-strip::-webkit-scrollbar {
+    height: 8px;
+}
+
+#main .gallery-strip::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#main .gallery-strip::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+#main .gallery-item {
     scroll-snap-align: start;
     border-radius: var(--rbx-radius);
-    overflow: clip;
+    overflow: hidden;
     border: 1px solid var(--border);
     background: var(--rbx-card-bg);
+    -webkit-backdrop-filter: blur(var(--rbx-blur));
+    backdrop-filter: blur(var(--rbx-blur));
+    aspect-ratio: 4/3;
 }
 
-.gallery-item img {
+#main .gallery-item img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-/* ------------------------------ CTA ------------------------------ */
-.section--cta .lead {
+#main .gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ------------------------------ CTA SECTION ------------------------------ */
+#main .section--cta {
+    text-align: center;
+}
+
+#main .section--cta .lead {
     color: var(--accent-2);
     max-width: 72ch;
+    margin: 0 auto 1.25rem auto;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.6;
 }
 
-.hero-ctas {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+#main .section--cta .hero-ctas {
+    justify-content: center;
 }
 
-/* ------------------------------ TRANSPARENCY & BLUR ------------------------------ */
-.card,
-.stat,
-.arch-card,
-.gallery-item {
-    -webkit-backdrop-filter: blur(var(--rbx-blur));
-    backdrop-filter: blur(var(--rbx-blur));
-}
-
-.card.active,
-.doc-card.active {
-    background: var(--rbx-card-bg-active);
-    -webkit-backdrop-filter: blur(var(--rbx-blur-strong));
-    backdrop-filter: blur(var(--rbx-blur-strong));
-}
-
-/* ------------------------------ UTIL ------------------------------ */
-code {
+/* ------------------------------ UTILITIES ------------------------------ */
+#main code {
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
     padding: .1rem .35rem;
     border-radius: 6px;
     border: 1px solid var(--border);
+    font-size: 0.85em;
 }
 
 /* ------------------------------ RESPONSIVE ------------------------------ */
 @media (max-width: 1024px) {
-    .arch-grid {
+
+    #main .arch-grid,
+    #main .section--stats .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 860px) {
-    .cards-grid--projects {
+    #main .cards-grid--projects {
         grid-template-columns: 1fr;
+    }
+
+    #main .page-hero .hero-video {
+        height: clamp(300px, 55vh, 600px);
     }
 }
 
 @media (max-width: 640px) {
-    .section--stats .stats-grid {
+    #main .section--stats .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: calc(var(--rbx-gap) * 0.8);
     }
 
-    .page-hero .hero-video {
-        height: clamp(260px, 48vh, 520px);
-    }
-
-    .doc-head {
+    #main .doc-head {
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
     }
 
-    .doc-toolbar {
+    #main .doc-toolbar {
         justify-content: flex-start;
+    }
+
+    #main .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main .page-hero .scrolly-video {
+        top: clamp(48px, 7vh, 80px);
     }
 }
 
 @media (max-width: 480px) {
-    .gallery-strip {
+    #main .gallery-strip {
         grid-auto-columns: minmax(180px, 1fr);
+    }
+
+    #main .stat {
+        padding: 12px;
+    }
+
+    #main .card__body,
+    #main .arch-card {
+        padding: 14px;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+
+    #main .card,
+    #main .arch-card,
+    #main .stat,
+    #main .doc-card {
+        border-width: 2px;
     }
 }

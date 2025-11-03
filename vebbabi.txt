@@ -8,6 +8,7 @@ vebbaybi.github.io/
 ├─ chains.html                              # blockchain projects page
 ├─ construction.html                        # construction endeavors page
 ├─ resumes.html                             # resumes hub (with tabs)
+├─ resume.html
 ├─ toolbox.html                             # toolbox showcase
 ├─ roadmap.html                             # roadmap timeline
 ├─ changelog.html                           # changelog view

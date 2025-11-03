@@ -4,16 +4,9 @@
 
 @layer home {
 
-    /* Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     /* Tokens */
     :root {
-        --background: #111111;
+        --background: #0b0b0be1;
         --foreground: #fafafa;
         --text: #ffffff;
         --muted: #aaaaaa;
@@ -36,6 +29,9 @@
         --font-body: 'Josefin Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         --font-display: 'Bitcount Grid Double Ink', 'Playfair Display', system-ui, sans-serif;
         --font-header: 'Avenir Next', system-ui, sans-serif;
+        /* Cursors */
+
+
     }
 
     /* Base */
@@ -47,6 +43,11 @@
         background: var(--background);
         color: var(--foreground);
         font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        cursor: var(--cursor-default);
+        
+        
     }
 
     .page-root {
@@ -69,6 +70,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: var(--cursor-pointer);
     }
 
     .nav-link:hover,
@@ -76,6 +78,7 @@
         color: var(--nav-color-hover);
         opacity: var(--nav-opacity-hover);
         transform: translateY(-2px);
+        cursor: var(--cursor-pointer);
     }
 
     .nav-text {
@@ -86,6 +89,7 @@
         font-size: clamp(.75rem, 2vw, 1.1rem);
         line-height: 1.2;
         text-align: center;
+        cursor: var(--cursor-pointer);
     }
 
     /* Nav rails */
@@ -93,7 +97,8 @@
         position: fixed;
         inset: 0;
         z-index: 20;
-        pointer-events: none;
+        pointer-events: visible;
+        cursor: var(--cursor-default);
     }
 
     .nav-vertical {
@@ -229,7 +234,7 @@
     .image-layer {
         position: absolute;
         inset: 0;
-        background-size: contain;
+        background-size: auto 100%;
         /* change to cover if you want no letterbox */
         background-position: center;
         background-repeat: no-repeat;

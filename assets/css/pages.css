@@ -1,24 +1,37 @@
-/* ==============================================
-   PAGES.CSS (UPDATED, TRIMMED — SCROLLY REMOVED)
-   Depends on tokens from main.css
-   ============================================== */
+/* =======================================================================================
+  PAGES.CSS (UPDATED, TRIMMED — SCROLLY REMOVED)
+  Scope: Page-specific layouts (Home Hero, Projects View)
+  Status: Fully integrated with Day/Night semantic theme variables.
+  ======================================================================================= */
+
+@layer home, projects, motion;
 
 /* ------------------------------ HOME (HERO) ------------------------------ */
 @layer home {
+
+    /* Adding a radius variable that was used but not defined in main.css */
+    :root {
+        --radius-xl: 32px;
+    }
+    .page-root {
+        padding-top: var(--header-height);
+    }
     .home-hero {
         display: grid;
         grid-template-columns: 1.1fr 1fr;
         min-height: clamp(560px, 70vh, 780px);
         gap: 0;
         position: relative;
-        background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface) 100%);
+        /* Using semantic theme variables */
+        background: linear-gradient(90deg, var(--secondary-bg) 0%, var(--primary-bg) 100%);
         border-radius: 0 0 var(--radius-xl) var(--radius-xl);
         overflow-y: visible;
         border-bottom: 1px solid var(--border);
     }
 
     .home-hero .hero-left {
-        background: linear-gradient(180deg, var(--primary-soft) 0%, var(--secondary-soft) 100%), var(--surface);
+        /* Using semantic theme variables for background gradient */
+        background: linear-gradient(180deg, var(--primary-soft) 0%, var(--primary-soft) 100%), var(--secondary-bg);
         display: grid;
         place-items: stretch;
         overflow: hidden;
@@ -34,10 +47,11 @@
     }
 
     .home-hero .hero-right {
+        /* Using semantic theme variables for background gradient */
         background:
             radial-gradient(900px 400px at 80% 10%, var(--primary-soft) 0%, transparent 60%),
-            radial-gradient(800px 360px at 10% 90%, var(--secondary-soft) 0%, transparent 60%),
-            var(--panel);
+            radial-gradient(800px 360px at 10% 90%, var(--primary-soft) 0%, transparent 60%),
+            var(--primary-bg);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -49,7 +63,8 @@
     }
 
     .home-hero .eyebrow {
-        color: var(--muted);
+        /* Using semantic theme variable for muted text */
+        color: var(--secondary-text);
         letter-spacing: .2em;
         text-transform: uppercase;
         font-size: .85rem;
@@ -63,7 +78,7 @@
         content: "";
         width: 26px;
         height: 2px;
-        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        background: linear-gradient(90deg, var(--primary) 0%, var(--primary-strong) 100%);
         border-radius: 2px;
         opacity: .8;
     }
@@ -74,7 +89,8 @@
         font-weight: 800;
         letter-spacing: .4px;
         margin: 8px 0 16px 0;
-        background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
+        /* Using semantic theme variables for gradient */
+        background: linear-gradient(180deg, var(--primary-text) 0%, var(--accent-color) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -83,19 +99,22 @@
     .hero-title .subline {
         font-size: clamp(18px, 2.2vw, 24px);
         font-weight: 600;
-        color: var(--text);
+        /* Using semantic theme variable for text */
+        color: var(--primary-text);
         -webkit-text-fill-color: currentColor;
     }
 
     .hero-sub {
-        color: var(--accent-2);
+        /* Using semantic theme variable for muted text */
+        color: var(--secondary-text);
         margin: 0 0 18px 0;
         max-width: 58ch;
         font-size: 1.02rem;
     }
 
     .hero-sub-full {
-        color: var(--text);
+        /* Using semantic theme variable for text */
+        color: var(--primary-text);
         opacity: .9;
         margin: 0 0 26px 0;
         max-width: 68ch;
@@ -111,13 +130,16 @@
 
     .hero-highlights li {
         padding: 10px 12px;
-        border-radius: var(--radius-md);
-        background: var(--surface-2);
+        border-radius: var(--radius);
+        /* Using existing --radius */
+        /* Using semantic theme variables for background and border */
+        background: var(--secondary-bg);
         border: 1px solid var(--border);
     }
 
     .hero-highlights strong {
-        color: var(--blue-400);
+        /* Using semantic accent variable */
+        color: var(--accent-color);
         font-weight: 700;
     }
 
@@ -142,14 +164,16 @@
         transform: translateX(-33%);
         width: 60px;
         height: 60px;
-        pointer-events: var(--default-pointer);
+        pointer-events: var(--cursor-default);
+        /* Used default cursor variable as fallback */
     }
 
     .page-index {
         position: absolute;
         right: 20px;
         bottom: 20px;
-        color: var(--muted);
+        /* Using semantic theme variable for muted text */
+        color: var(--secondary-text);
         font-size: .85rem;
         letter-spacing: .08em;
     }
@@ -193,7 +217,7 @@
     width: 2px;
     height: 1em;
     margin-left: 6px;
-    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    background: linear-gradient(180deg, var(--primary), var(--primary-strong));
     vertical-align: -0.15em;
     animation: tw-caret-blink 1s steps(2, start) infinite;
 }
@@ -219,7 +243,8 @@
         line-height: 1.05;
         font-weight: 900;
         letter-spacing: .2px;
-        background: linear-gradient(180deg, var(--text) 0%, var(--blue-400) 100%);
+        /* Using semantic theme variables for gradient */
+        background: linear-gradient(180deg, var(--primary-text) 0%, var(--accent-color) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -227,7 +252,8 @@
 
     .view-header .view-subtitle {
         margin: 0;
-        color: var(--text);
+        /* Using semantic theme variable for text */
+        color: var(--primary-text);
         opacity: .95;
         font-size: clamp(14px, 2.2vw, 18px);
         line-height: 1.5;
@@ -242,7 +268,7 @@
         width: 2px;
         height: 1.1em;
         margin-left: 6px;
-        background: linear-gradient(180deg, var(--primary), var(--secondary));
+        background: linear-gradient(180deg, var(--primary), var(--primary-strong));
         vertical-align: -0.15em;
         animation: caret-blink 1s steps(2, start) infinite;
     }
@@ -271,10 +297,13 @@
     .view-header nav .nav-list a {
         display: inline-block;
         padding: 8px 12px;
-        border-radius: var(--radius-pill);
+        border-radius: var(--radius);
+        /* Assuming a token like --radius-pill is meant to be --radius */
         border: 1px solid var(--border);
-        background: var(--surface-2);
-        color: var(--text);
+        /* Using semantic theme variable for background */
+        background: var(--secondary-bg);
+        /* Using semantic theme variable for text */
+        color: var(--primary-text);
         font-weight: 700;
         letter-spacing: .1px;
         cursor: var(--cursor-pointer);
@@ -283,7 +312,8 @@
 
     .view-header nav .nav-list a:hover,
     .view-header nav .nav-list a:focus-visible {
-        border-color: var(--blue-400);
+        /* Using semantic accent variable */
+        border-color: var(--accent-color);
         background: var(--primary-soft);
         box-shadow: var(--focus);
         outline: none;
@@ -308,9 +338,11 @@
     .carousel-viewport {
         overflow: hidden;
         outline: none;
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius);
+        /* Assuming --radius-lg is meant to be --radius */
         border: 1px solid var(--border);
-        background: var(--surface-2);
+        /* Using semantic theme variable for background */
+        background: var(--secondary-bg);
     }
 
     .carousel-track {
@@ -347,7 +379,8 @@
         -webkit-backdrop-filter: blur(6px);
         backdrop-filter: blur(6px);
         box-shadow: var(--shadow);
-        color: var(--text);
+        /* Using semantic theme variable for text (as icon color) */
+        color: var(--primary-text);
         cursor: var(--cursor-pointer);
         z-index: 5;
         pointer-events: auto;
@@ -389,7 +422,7 @@
         height: var(--dot-size);
         border-radius: 50%;
         border: 0;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        background: linear-gradient(90deg, var(--primary), var(--primary-strong));
         opacity: var(--dot-opacity);
         cursor: var(--cursor-pointer);
     }

@@ -1,13 +1,104 @@
 /* =======================================================================================
-   SCROLL_PAPER.CSS (DEDICATED, SCOPED)
-   Scope: html[data-page="scroll_paper"] only
-   Depends on tokens from main.css; complements pages.css (projects layer)
-   Implements newspaper-style layout + uniform carousel card sizing on desktop
-   ======================================================================================= */
+    SCROLL_PAPER.CSS (DEDICATED, SCOPED)
+    Scope: html[data-page="scroll_paper"]
+    ======================================================================================= */
+.ibekume-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.tpman-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.dsa-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.kgs-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.cons-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.volunteer-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.now-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.values-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+    margin-top: 16px;
+}
+.scrolly-paper-wrap {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, var(--container));
+    margin-inline: auto;
+    padding: clamp(16px, 4vw, 28px);
+    box-shadow: var(--shadow);
+    background: var(--surface);
+}
+
+.scrolly-paper-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("/assets/images/checker.png");
+    background-repeat: repeat;
+    background-size: 22px 22px;
+    opacity: 0.06;
+}
+
+body.theme-light .scrolly-paper-wrap::before {
+    opacity: 0.08;
+}
+
+.scrolly-paper-wrap>* {
+    position: relative;
+    z-index: 1;
+}
+
+.umudyke {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--paper-radius);
+    box-shadow: var(--paper-shadow);
+}
 
 @layer scroll_paper {
     html[data-page="scroll_paper"] {
-        /* Local page tokens */
         --paper-border: var(--border);
         --paper-bg: var(--surface);
         --paper-text: var(--text);
@@ -16,31 +107,19 @@
         --paper-shadow: var(--shadow);
         --paper-column-gap: 24px;
         --paper-column-rule: 1px solid var(--border);
-
-        /* Carousel sizing */
         --card-gap: 24px;
-        /* used by track gap */
-        --card-media-ratio: 16 / 9;
-        /* keep a constant media ratio */
+        --card-media-ratio: 16/9;
         --card-title-minlines: 2;
-        /* reserve space to keep heights equal */
         --card-blurb-lines: 3;
-        /* clamp blurb so all cards match */
         --card-body-min: 0px;
-        /* overridden at ≥1024px for uniform height */
     }
 
-    /* -------------------------------------
-     PAGE WRAPPER
-  -------------------------------------- */
     html[data-page="scroll_paper"] body {
         background: var(--bg);
         color: var(--paper-text);
+        gap: 24px;
     }
 
-    /* -------------------------------------
-     HEADER & SUBTITLE
-  -------------------------------------- */
     html[data-page="scroll_paper"] .view-header {
         padding-block: 16px 8px;
         border-bottom: 1px solid var(--paper-border);
@@ -51,15 +130,13 @@
         line-height: 1.1;
         font-weight: 900;
         letter-spacing: 0.2px;
-        background: linear-gradient(180deg, var(--paper-text) 0%, var(--blue-400) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        display: flex;
+        background-image: linear-gradient(180deg, var(--paper-text) 0%, var(--blue-400) 100%);
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
         align-items: center;
         gap: 0.5rem;
         flex-direction: row-reverse;
-        /* keep your gif on the right of the text */
     }
 
     html[data-page="scroll_paper"] .enjoychain,
@@ -102,9 +179,6 @@
         }
     }
 
-    /* -------------------------------------
-     CAROUSEL
-  -------------------------------------- */
     html[data-page="scroll_paper"] .carousel {
         margin-block: 24px 40px;
         position: relative;
@@ -129,19 +203,15 @@
         transition: var(--transition);
     }
 
-    /* 2-up on desktop; 1-up on mobile (overridden below) */
     html[data-page="scroll_paper"] .carousel-slide {
         flex: 0 0 calc(50% - var(--card-gap) / 2);
         list-style: none;
         display: flex;
-        /* so the card can stretch to equal height */
     }
 
-    /* CARD */
     html[data-page="scroll_paper"] .story-card {
         display: grid;
         grid-template-rows: auto 1fr;
-        /* media + body */
         background: var(--paper-bg);
         border-radius: var(--paper-radius);
         border: 1px solid var(--paper-border);
@@ -157,7 +227,6 @@
         border-color: var(--blue-400);
     }
 
-    /* MEDIA (constant ratio) */
     html[data-page="scroll_paper"] .story-media {
         display: block;
         aspect-ratio: var(--card-media-ratio);
@@ -165,18 +234,16 @@
         background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
         position: relative;
         z-index: 1;
-        /* below CTAs */
     }
 
     html[data-page="scroll_paper"] .story-media img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         filter: saturate(1.05) contrast(1.02);
         transform: scale(1.002);
     }
 
-    /* BODY (flex to pin CTAs at bottom; fixed min-height on desktop later) */
     html[data-page="scroll_paper"] .story-body {
         display: flex;
         flex-direction: column;
@@ -185,7 +252,6 @@
         min-height: var(--card-body-min);
     }
 
-    /* TITLE (reserve space so lines are consistent) */
     html[data-page="scroll_paper"] .story-title {
         margin: 0;
         font-size: clamp(18px, 2.2vw, 20px);
@@ -210,7 +276,6 @@
         color: var(--blue-400);
     }
 
-    /* BLURB (clamped so all cards match height) */
     html[data-page="scroll_paper"] .story-blurb {
         margin: 0;
         color: var(--paper-muted);
@@ -224,13 +289,11 @@
         min-height: calc(1.5em * var(--card-blurb-lines));
     }
 
-    /* CTAs always clickable & pinned to bottom */
     html[data-page="scroll_paper"] .hero-ctas {
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
         margin-top: auto;
-        /* push to bottom */
     }
 
     html[data-page="scroll_paper"] .hero-ctas .btn {
@@ -239,7 +302,6 @@
         pointer-events: auto;
     }
 
-    /* CONTROLS */
     html[data-page="scroll_paper"] .carousel-controls {
         pointer-events: none;
     }
@@ -259,7 +321,6 @@
         color: var(--paper-text);
         cursor: var(--cursor-pointer);
         pointer-events: auto;
-        /* re-enable on the buttons themselves */
         z-index: 20;
     }
 
@@ -280,7 +341,6 @@
         box-shadow: var(--focus);
     }
 
-    /* DOTS */
     html[data-page="scroll_paper"] .carousel-pagination {
         display: flex;
         justify-content: center;
@@ -308,9 +368,6 @@
         outline: none;
     }
 
-    /* -------------------------------------
-     NEWSPAPER LAYOUT
-  -------------------------------------- */
     html[data-page="scroll_paper"] .newspaper {
         background: var(--paper-bg);
         border: 1px solid var(--paper-border);
@@ -388,7 +445,79 @@
         color: var(--blue-400);
     }
 
-    /* Back to top button */
+    html[data-page="scroll_paper"] .apoboiz-img,
+    html[data-page="scroll_paper"] .graduation-img {
+        width: 100%;
+        height: auto;
+        margin-top: 8px;
+        border-radius: var(--paper-radius);
+        box-shadow: var(--paper-shadow);
+    }
+
+    /* =========================
+       FIX: mokutme fills desktop width
+       ========================= */
+    html[data-page="scroll_paper"] .newspaper-article .mokutme {
+        /* Make the article escape the newspaper columns and take full row width */
+        column-span: all;
+        break-inside: avoid;
+        width: 100%;
+
+        /* Two-column content layout on desktop */
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        /* text | media */
+        gap: 24px;
+        align-items: start;
+
+        padding: 16px;
+        border: 1px solid var(--paper-border);
+        border-radius: var(--paper-radius);
+        background: var(--paper-bg);
+        box-shadow: var(--paper-shadow);
+        max-width: 100%;
+    }
+
+    html[data-page="scroll_paper"] .mokutme-text-wrap,
+    html[data-page="scroll_paper"] .mokutme-img-wrap {
+        display: block;
+    }
+
+    html[data-page="scroll_paper"] .mokutme-text-wrap h3 {
+        margin: 0 0 8px 0;
+        font-size: clamp(18px, 2.2vw, 22px);
+        font-weight: 800;
+        line-height: 1.2;
+        color: var(--paper-text);
+    }
+
+    html[data-page="scroll_paper"] .mokutme-text-wrap p {
+        margin: 0 0 8px 0;
+        color: var(--paper-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        max-width: 75ch;
+        /* pleasant measure even when stretched */
+    }
+
+    html[data-page="scroll_paper"] .mokutme-img-wrap {
+        border-radius: var(--paper-radius);
+        overflow: hidden;
+        align-self: start;
+    }
+
+    html[data-page="scroll_paper"] .mokutme-img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4/3;
+        /* balanced, prevents collapse */
+        object-fit: cover;
+        /* fill without letterboxing */
+        border-radius: var(--paper-radius);
+        box-shadow: var(--paper-shadow);
+        display: block;
+    }
+
     html[data-page="scroll_paper"] .newspaper .hero-ctas {
         display: flex;
         justify-content: center;
@@ -399,18 +528,11 @@
         pointer-events: auto;
     }
 
-    /* -------------------------------------
-     DESKTOP UNIFORM HEIGHTS
-     (activate equalized bodies only on ≥1024px)
-  -------------------------------------- */
     @media (min-width: 1024px) {
         html[data-page="scroll_paper"] {
             --card-body-min: 220px;
-            /* tune if a card still overflows */
             --card-title-minlines: 2;
-            /* reserve two lines for titles */
             --card-blurb-lines: 3;
-            /* clamp blurbs to three lines */
         }
     }
 
@@ -418,11 +540,14 @@
         html[data-page="scroll_paper"] {
             --card-body-min: 240px;
         }
+
+        /* Give the text a little more room on very wide screens */
+        html[data-page="scroll_paper"] .newspaper-article .mokutme {
+            grid-template-columns: 7fr 5fr;
+            /* ~58% | 42% */
+        }
     }
 
-    /* -------------------------------------
-     RESPONSIVE
-  -------------------------------------- */
     @media (max-width: 1024px) {
         html[data-page="scroll_paper"] .carousel-slide {
             flex-basis: calc(75% - var(--card-gap) / 2);
@@ -430,6 +555,15 @@
 
         html[data-page="scroll_paper"] .newspaper-article {
             column-count: 2;
+        }
+
+        html[data-page="scroll_paper"] .newspaper-article .mokutme {
+            grid-template-columns: 1fr;
+            /* stack */
+        }
+
+        html[data-page="scroll_paper"] .mokutme-img {
+            aspect-ratio: 16/9;
         }
     }
 
@@ -448,6 +582,10 @@
 
         html[data-page="scroll_paper"] .newspaper h2 {
             font-size: clamp(20px, 5vw, 28px);
+        }
+
+        html[data-page="scroll_paper"] .mokutme {
+            padding: 10px;
         }
     }
 
@@ -474,9 +612,6 @@
         }
     }
 
-    /* -------------------------------------
-     REDUCED MOTION
-  -------------------------------------- */
     @media (prefers-reduced-motion: reduce) {
 
         html[data-page="scroll_paper"] .carousel-track,

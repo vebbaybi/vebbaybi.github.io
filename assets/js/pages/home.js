@@ -47,6 +47,7 @@ class PortfolioOverlay {
     this.navLinks.forEach(link => {
       link.removeEventListener("mouseenter", this._handleLinkEvent);
       link.removeEventListener("mouseleave", this._handleLinkEvent);
+      link.addEventListener('click', this._handleLinkEvent);
       link.removeEventListener("focus", this._handleLinkEvent);
       link.removeEventListener("blur", this._handleLinkEvent);
       link.removeEventListener("click", this._handleLinkEvent);
@@ -72,7 +73,7 @@ class PortfolioOverlay {
   }
 
   cacheElements() {
-    this.navLinks = document.querySelectorAll(".navigation-links-full .nav-link");
+    this.navLinks = document.querySelectorAll(".navigation-links-full .nav-link, .mobile-nav-vertical .nav-link");
     this.typewriterOverlay = document.querySelector(".typewriter-overlay-centered");
 
     // Mobile UI
@@ -164,7 +165,10 @@ class PortfolioOverlay {
       }
     } else if (e.type === "click") {
       this.activateSection(section);
-      // allow navigation
+      // allow navigation effect on mobile 
+      if (e.currentTarget.closest('.mobile-nav-vertical')) {
+        this.setMobileOpen(false);
+      }
     }
   }
 

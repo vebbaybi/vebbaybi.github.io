@@ -1,12 +1,163 @@
 /* ==============================================
-   COMPONENTS.CSS (UPDATED, COMPLETE)
-   Buttons • Navigation (inline + drawer) • Cards • Carousels • Motion
-   Fixes included:
-   - Drawer backdrop truly removed from hit-testing when hidden
-   - Drawer structure & layers corrected (no nested @layer mistakes)
-   - Carousel overlay wrappers are transparent to clicks; only controls/dots are interactive
-   - Card/media links explicitly clickable above siblings
-   ============================================== */
+ COMPONENTS.CSS — FINAL (FIXED)
+ Scope: Header, Footer, Buttons, Navigation (inline + drawer), Cards, Carousels, Motion
+ Depends on: Tokens from main.css
+ CONTRACT: Header/Footer elements now use HIGH CONTRAST text colors against their blue backgrounds.
+================================================= */
+
+@layer components, buttons, navigation, cards, carousels, motion;
+
+/* ------------------------------ HEADER AND FOOTER ------------------------------ */
+@layer components {
+
+    .site-header,
+    .site-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 2000 !important;
+        pointer-events: auto;
+        width: 100%;
+        /* Background is set to secondary-bg (a shade of blue/navy in your theme) */
+        background: var(--secondary-bg);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        will-change: transform, backdrop-filter;
+    }
+
+    .site-header {
+        top: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+        min-height: var(--header-height);
+    }
+
+    .site-footer {
+        bottom: 0;
+        border-top: 1px solid var(--border);
+        min-height: var(--footer-height);
+        /* FIX: Set base text color to high-contrast primary text for readability */
+        color: var(--primary-text);
+    }
+
+    /* Inner shells */
+    .header-inner,
+    .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: clamp(10px, 2vw, 24px);
+        height: var(--header-height);
+    }
+
+    .footer-inner {
+        height: var(--footer-height);
+        gap: 16px;
+        font-size: .875rem;
+    }
+
+    /* Brand block */
+    .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        /* FIX: Ensure brand text is high contrast against the blue header background */
+        color: var(--primary-text);
+        text-decoration: none;
+        cursor: var(--cursor-pointer);
+        font-size: 1.125rem;
+        line-height: 1;
+    }
+
+    .brand .logo {
+        height: 32px;
+        width: auto;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    .brand .logo-animated {
+        height: 24px;
+        margin-left: 6px;
+        transform: translateY(-2px);
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    .brand .dot-o {
+        font-weight: 700;
+        letter-spacing: .02em;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 2vw, 20px);
+    }
+
+    .footer-left {
+        /* FIX: Ensure footer plain text is high contrast (primary-text) */
+        color: var(--primary-text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        line-height: 1.2;
+    }
+
+    .footer-left a {
+        /* FIX: Force specific footer link to use primary text color */
+        color: var(--primary-text);
+    }
+
+    .footer-left a:hover {
+        /* Use the accent blue hover state */
+        color: var(--blue-400);
+    }
+
+    .footer-right {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+        line-height: 1.2;
+    }
+
+    .footer-right a {
+        /* FIX: Ensure footer links are high contrast against the blue footer background */
+        color: var(--primary-text);
+        transition: var(--transition);
+        text-decoration: none;
+    }
+
+    .footer-right a:hover {
+        /* Use the accent blue hover state */
+        color: var(--blue-400);
+    }
+
+    .footer-right .dot {
+        /* FIX: Ensure separator dots are high contrast */
+        color: var(--primary-text);
+        font-weight: 300;
+    }
+
+    @media (max-width: 480px) {
+        .brand .logo-animated {
+            height: 18px;
+        }
+
+        .footer-inner {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            font-size: .8rem;
+            gap: 8px;
+        }
+
+        .footer-right .dot {
+            margin-inline: 4px;
+        }
+    }
+}
 
 /* ------------------------------ BUTTONS ------------------------------ */
 @layer buttons {
@@ -17,19 +168,21 @@
         padding: 12px 16px;
         border-radius: var(--radius);
         text-decoration: none;
-        background: var(--primary);
-        color: var(--white);
+        background: var(--primary-strong);
+        color: #ffffff;
         font-weight: 800;
         letter-spacing: .2px;
         box-shadow: var(--shadow);
         border: 1px solid var(--border);
         transition: var(--transition), transform .2s ease;
         cursor: var(--cursor-pointer);
+        font-size: .95rem;
+        line-height: 1.1;
     }
 
     .btn:hover {
         transform: translateY(-1px) scale(1.02);
-        background: var(--primary-strong);
+        background: #a71035;
     }
 
     .btn:focus-visible {
@@ -39,7 +192,8 @@
 
     .btn.secondary {
         background: transparent;
-        color: var(--text);
+        /* Secondary buttons in header/footer must also be high contrast */
+        color: var(--primary-text);
         border: 1px solid var(--border);
         box-shadow: none;
     }
@@ -57,6 +211,7 @@
         display: inline-grid;
         place-items: center;
         padding: 6px;
+        line-height: 0;
     }
 
     .btn .play::after {
@@ -66,18 +221,52 @@
         border-color: transparent transparent transparent currentColor;
         margin-left: 2px;
     }
+
+    /* Icon buttons (header actions) */
+    .iconbtn {
+        padding: 10px;
+        border-radius: var(--radius-md);
+        cursor: var(--cursor-pointer);
+        transition: var(--transition);
+        background: transparent;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        /* FIX: Ensure icons are primary text color */
+        color: var(--primary-text);
+    }
+
+    .iconbtn:hover {
+        /* Compatible hover effect using primary text color with slight transparency */
+        background: color-mix(in srgb, var(--primary-text) 8%, transparent);
+    }
+
+    .iconbtn:focus-visible {
+        outline: var(--focus);
+        outline-offset: 2px;
+    }
+
+    .iconbtn img {
+        width: 28px;
+        height: 28px;
+        display: block;
+        pointer-events: none;
+    }
 }
 
 /* ------------------------------ NAVIGATION (INLINE + DRAWER) ------------------------------ */
 @layer navigation {
 
-    /* Inline nav lists (headers, footers, section nav) */
+    /* Inline lists (header, footer, sections) */
     .nav-list {
         display: flex;
         gap: 12px;
         list-style: none;
         margin: 0;
         padding: 0;
+        flex-wrap: wrap;
     }
 
     .nav-list a {
@@ -86,7 +275,8 @@
         gap: 8px;
         padding: 8px 12px;
         border-radius: var(--radius);
-        color: var(--text);
+        color: var(--primary-text);
+        /* Use high contrast text */
         text-decoration: none;
         font-weight: 600;
         letter-spacing: .1px;
@@ -94,6 +284,8 @@
         cursor: var(--cursor-pointer);
         border: 1px solid transparent;
         background: transparent;
+        font-size: .875rem;
+        line-height: 1.1;
     }
 
     .nav-list a:hover,
@@ -108,7 +300,7 @@
         border-color: var(--blue-400);
     }
 
-    /* =================== NAV DRAWER (OFF-CANVAS) =================== */
+    /* Off-canvas drawer */
     .nav-pane {
         position: fixed;
         top: 0;
@@ -116,9 +308,9 @@
         right: 0;
         z-index: 1400;
         width: clamp(140px, 42vw, 180px);
-        background: var(--surface, #0f172a);
-        color: var(--text, #e5e7eb);
-        border-left: 1px solid var(--border, rgba(148, 163, 184, .25));
+        background: var(--secondary-bg);
+        color: var(--primary-text);
+        border-left: 1px solid var(--border);
         box-shadow: 0 20px 45px rgba(0, 0, 0, .45);
         transform: translateX(102%);
         opacity: 0;
@@ -126,7 +318,8 @@
         transition: transform 300ms ease, opacity 200ms ease, visibility 200ms linear;
         display: grid;
         grid-template-rows: auto 1fr;
-        padding-right: max(6px, env(safe-area-inset-right));
+        padding-right: max(6px, env(safe-area-inset-right, 0));
+        font-family: system-ui, -apple-system, sans-serif;
     }
 
     .nav-pane[aria-hidden="false"] {
@@ -139,8 +332,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: max(10px, env(safe-area-inset-top)) 10px 6px 10px;
-        border-bottom: 1px solid var(--border, rgba(148, 163, 184, .2));
+        padding: max(10px, env(safe-area-inset-top, 0)) 10px 6px 10px;
+        border-bottom: 1px solid var(--border);
     }
 
     .nav-close {
@@ -149,13 +342,14 @@
         min-width: 44px;
         min-height: 44px;
         border-radius: 10px;
-        border: 1px solid var(--border, rgba(148, 163, 184, .25));
+        border: 1px solid var(--border);
         background: transparent;
-        color: var(--text);
-        display: grid;
-        place-items: center;
+        color: var(--primary-text);
         cursor: var(--cursor-pointer);
         transition: background .2s ease, transform .15s ease, border-color .2s ease;
+        font-size: 1.25rem;
+        font-weight: 300;
+        line-height: 1;
     }
 
     .nav-close:hover {
@@ -195,7 +389,8 @@
         border: 1px solid transparent;
         background: transparent;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        color: var(--primary-text);
     }
 
     .nav-list.drawer a .icon {
@@ -214,13 +409,14 @@
 
     .nav-list.drawer a:hover,
     .nav-list.drawer a:focus-visible {
-        background: var(--primary-soft, rgba(37, 99, 235, .12));
-        color: var(--blue-400, #60a5fa);
-        border-color: var(--blue-400, #60a5fa);
+        background: var(--primary-soft);
+        color: var(--blue-400);
+        border-color: var(--blue-400);
         outline: var(--focus);
         outline-offset: 2px;
     }
 
+    /* Backdrop */
     .nav-backdrop {
         position: fixed;
         inset: 0;
@@ -232,32 +428,40 @@
         visibility: hidden;
         transition: opacity 220ms ease, visibility 220ms linear;
         pointer-events: none;
-        /* default: inert */
     }
 
     .nav-backdrop:not([hidden]) {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        /* clickable only when visible */
     }
 
     .nav-backdrop[hidden] {
         display: none !important;
-        /* hard-remove from hit-testing */
         pointer-events: none !important;
     }
 
-    /* Lock scroll when drawer open */
+    /* Lock body scroll when drawer open */
     body:has(#side-nav[aria-hidden="false"]) {
         overflow: hidden;
     }
 
-    /* Desktop tuning */
+    /* Responsive tuning */
     @media (min-width: 992px) {
         .nav-list.drawer a {
             font-size: 1rem;
             padding: 12px 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .nav-pane {
+            width: clamp(120px, 50vw, 160px);
+        }
+
+        .nav-list.drawer a {
+            font-size: .9rem;
+            padding: 10px 8px;
         }
     }
 }
@@ -267,20 +471,19 @@
     .project-card {
         display: grid;
         grid-template-rows: auto 1fr;
-        background: var(--surface);
+        background: var(--secondary-bg);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         overflow: hidden;
         transition: var(--transition);
         border: 1px solid var(--border);
         position: relative;
-        /* anchor stacking context to card */
     }
 
     .project-card:hover,
     .project-card:focus-within {
         transform: translateY(-2px);
-        box-shadow: var(--shadow);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
         border-color: var(--blue-400);
     }
 
@@ -289,12 +492,10 @@
         display: block;
         aspect-ratio: 16/9;
         overflow: hidden;
-        background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+        background: linear-gradient(135deg, var(--primary-soft), var(--primary-strong));
         position: relative;
         z-index: 2;
-        /* ensure clicks go to the anchor */
         pointer-events: auto;
-        /* explicitly clickable */
     }
 
     .project-media img,
@@ -319,7 +520,7 @@
         margin: 0 0 8px 0;
         font-size: 1.15rem;
         line-height: 1.2;
-        color: var(--text);
+        color: var(--primary-text);
     }
 
     .project-title a,
@@ -329,9 +530,7 @@
         cursor: var(--cursor-pointer);
         position: relative;
         z-index: 2;
-        /* above decorative layers */
         pointer-events: auto;
-        /* ensure interactive */
     }
 
     .project-title a:hover,
@@ -341,33 +540,66 @@
 
     .project-blurb {
         margin: 0 0 14px 0;
-        color: var(--accent-2);
+        /* FIX: Changed from secondary-text to primary-text for better contrast against secondary-bg */
+        color: var(--primary-text);
+        font-size: .9rem;
     }
 }
 
-/* ------------------------------ CAROUSEL BASE HELPERS ------------------------------ */
+/* ------------------------------ CAROUSEL HELPERS ------------------------------ */
 @layer carousels {
 
-    /* Overlay wrappers must not eat clicks; only buttons/dots do */
     .carousel-controls,
     .carousel-pagination {
         position: relative;
         z-index: 20;
-        /* visually above media */
         pointer-events: none;
-        /* transparent to clicks by default */
     }
 
     .carousel-prev,
     .carousel-next {
         pointer-events: auto;
-        /* clickable */
         position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, .7);
+        color: white;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        cursor: var(--cursor-pointer);
+        transition: var(--transition);
+    }
+
+    .carousel-prev:hover,
+    .carousel-next:hover {
+        background: rgba(0, 0, 0, 1);
+    }
+
+    .carousel-prev {
+        left: 12px;
+    }
+
+    .carousel-next {
+        right: 12px;
     }
 
     .carousel-pagination .carousel-dot {
         pointer-events: auto;
-        /* clickable dots */
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, .4);
+        border-radius: 50%;
+        margin: 0 4px;
+        transition: var(--transition);
+    }
+
+    .carousel-pagination .carousel-dot.active {
+        background: white;
+        transform: scale(1.2);
     }
 }
 
@@ -379,18 +611,40 @@
         .nav-list a,
         .project-card,
         .nav-pane,
-        .nav-backdrop {
+        .nav-backdrop,
+        .iconbtn,
+        .carousel-prev,
+        .carousel-next {
             transition: none !important;
+            transform: none !important;
         }
     }
 
     @media (prefers-contrast: more) {
-        .nav-list.drawer a {
-            border-color: var(--border, rgba(148, 163, 184, .45));
+
+        .nav-list.drawer a,
+        .nav-close {
+            border-color: var(--border) !important;
         }
 
-        .nav-close {
-            border-color: var(--border, rgba(148, 163, 184, .45));
+        .btn {
+            border: 2px solid var(--border) !important;
+        }
+    }
+}
+
+/* ------------------------------ HIGH-DPI AND SAFE AREAS ------------------------------ */
+@layer components {
+    @media (min-resolution: 2dppx) {
+        .iconbtn img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+    }
+
+    @supports not (padding: env(safe-area-inset-top)) {
+        .nav-pane {
+            padding-top: 10px;
         }
     }
 }

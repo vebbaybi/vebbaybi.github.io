@@ -1,24 +1,37 @@
 /* =========================================================
-   RESUME.CSS - 1807 Resume Layout
-   - Responsive, print safe, tokenized
-   - No inline styles
-   - No external frameworks
-   - GIF background via #gif-bg-canvas with safe contrast
-   - True light theme with correct tokens
-   ========================================================= */
+    RESUME.CSS — 1807 Resume Layout (scoped to <main>)
+    CONTRACT: Content surfaces are now SEMI-TRANSPARENT to reveal the page background image.
+    ========================================================= */
 
-/* Dark mode defaults */
-:root {
-    --bg: var(--black-true, #0b0f14);
-    --surface: var(--ink, #0f141b);
-    --surface-2: var(--surface-2-dark, #0e131b);
-    --text: var(--text-high, #eaf1ff);
-    --muted: var(--text-muted, #aab8d3);
-    --primary: var(--blue-600, #2563eb);
-    --accent: var(--accent-emerald, #7ef0d2);
-    --border: var(--border-dark, rgba(255, 255, 255, 0.10));
-    --primary-soft: rgba(37, 99, 235, 0.12);
+/* ---------- Local tokens (inherit sensible defaults from main.css) ---------- */
+main#main {
+    /* * NEW: Transparent Base Colors (75% opacity)
+     * These will be the foundation for the transparent resume blocks.
+     */
+    --transp-bg-light: rgba(255, 255, 255, 0.90);
+    /* Near-opaque white for high contrast */
+    --transp-bg-dark: rgba(10, 25, 47, 0.90);
+    /* Near-opaque navy for high contrast */
 
+    /*
+     * Color Mapping: Use the established high-contrast text and border colors.
+     * Backgrounds now use the semi-transparent versions.
+     */
+    --bg: var(--transp-bg-dark);
+    /* Default (Dark) */
+    --surface: var(--transp-bg-dark);
+    --surface-2: rgba(10, 25, 47, 0.82);
+    /* Slightly darker for content blocks */
+
+    --text: var(--primary-text);
+    /* Retain high contrast text from main.css */
+    --muted: var(--muted, #aab8d3);
+    --primary: var(--primary, #2489f6);
+    --accent: #00bcd4;
+    --border: var(--border);
+    --primary-soft: rgba(36, 137, 246, .12);
+
+    /* Layout + type */
     --radius: 12px;
     --radius-sm: 8px;
     --pad: 20px;
@@ -29,399 +42,336 @@
     --h2: clamp(18px, 2.6vw, 22px);
     --h3: clamp(16px, 2.4vw, 18px);
     --body: 16px;
+
+    /* Respect sticky header/footer defined in main.css */
+    --header-h: var(--header-height, 70px);
+    --footer-h: var(--footer-height, 60px);
+
+    color: var(--text);
+    line-height: var(--line);
+    font-size: var(--body);
+    scroll-padding-top: var(--header-h);
 }
 
-/* Light theme tokens */
-html[data-theme="light"],
-body.theme-light {
-    --bg: var(--white-true, #ffffff);
-    --surface: var(--surface-light, #ffffff);
-    --surface-2: var(--surface-2-light, #f7f8fb);
-    --text: var(--ink-900, #0e1116);
-    --muted: var(--ink-600, #4b5563);
-    --primary: var(--blue-700, #1d4ed8);
-    --accent: var(--teal-500, #14b8a6);
-    --border: var(--border-light, rgba(17, 24, 39, 0.12));
-    --primary-soft: rgba(29, 78, 216, 0.12);
+#container-wrapper {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, var(--container));
+    margin-inline: auto;
+    padding: clamp(16px, 4vw, 28px);
+    box-shadow: var(--shadow);
+    /* NEW: Now uses the transparent surface */
+    background: var(--surface);
 }
 
-@layer base {
+#container-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("/assets/images/checker.png");
+    background-repeat: repeat;
+    background-size: 22px 22px;
+    opacity: 0.06;
+}
 
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
+/* True light theme (when body.theme-light is active in main.css) */
+html[data-theme="light"] main#main,
+body.theme-light main#main {
+    /* UI Improvement: Ensure surfaces are distinct light colors */
+    --bg: var(--transp-bg-light);
+    --surface: var(--transp-bg-light);
+    --surface-2: rgba(255, 255, 255, 0.673);
+
+    --text: var(--color-text-dark, #1f1f1f);
+    --muted: #4b5563;
+    --primary: #1d4ed8;
+    --accent: #0584b1;
+    --border: rgba(17, 24, 39, .12);
+    --primary-soft: rgba(29, 78, 216, .12);
+}
+
+/* Box sizing scoped to main only (Safari safe) */
+main#main,
+main#main *,
+main#main *::before,
+main#main *::after {
+    box-sizing: border-box;
+}
+
+/* Links inside main only */
+main#main a {
+    color: var(--primary);
+    text-decoration: none;
+    text-underline-offset: 2px;
+}
+
+main#main a:hover,
+main#main a:focus-visible {
+    text-decoration: underline;
+    outline: none;
+}
+
+/* Container: keep centered; no global background bleed */
+main#main.container {
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--pad);
+    padding-block: 12px;
+
+    /* REAPPLIED TRANSPARENT BACKGROUND */
+    background: var(--surface);
+}
+
+/* Respect page header/footer so nothing hides underneath on Safari iOS */
+main#main.container {
+    padding-top: max(12px, calc(var(--header-h) - 8px));
+    padding-bottom: max(12px, calc(var(--footer-h) - 8px));
+}
+
+/* Sections */
+main#main .section {
+    margin-top: 28px;
+    padding: 22px;
+    /* UI IMPROVEMENT: Uses the semi-transparent content block color */
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+main#main .section-title {
+    margin: 0 0 12px 0;
+    font-size: var(--h2);
+}
+
+main#main .summary-text {
+    margin: 0;
+    color: var(--text);
+}
+
+/* Skills */
+main#main .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+}
+
+main#main .skill-group {
+    /* UI IMPROVEMENT: Slightly lighter block for skill groups (surface) */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+}
+
+main#main .group-title {
+    margin: 0 0 10px 0;
+    /* UI IMPROVEMENT: Uses the distinct accent color */
+    color: var(--accent);
+    font-size: var(--h3);
+}
+
+main#main .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+main#main .tag-list li {
+    border: 1px solid var(--border);
+    padding: 4px 8px;
+    border-radius: 999px;
+    /* UI IMPROVEMENT: Subtle distinction for tags */
+    background: var(--primary-soft);
+    color: var(--text);
+    font-size: 13px;
+}
+
+/* Experience/Projects items */
+main#main .item {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    /* Matches section background (surface-2) */
+    background: var(--surface-2);
+    margin-top: 14px;
+}
+
+main#main .item-head {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: baseline;
+    gap: var(--gap);
+}
+
+main#main .item-title {
+    margin: 0;
+    font-size: var(--h3);
+}
+
+main#main .item-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    justify-items: end;
+}
+
+main#main .item-bullets {
+    margin: 12px 0 0 18px;
+}
+
+main#main .item-bullets li {
+    margin: 4px 0;
+}
+
+main#main .item-tech {
+    margin: 10px 0 0;
+}
+
+/* Flat list (certs) */
+main#main .list-flat {
+    margin: 0;
+    padding-left: 18px;
+}
+
+main#main .list-flat li {
+    margin: 4px 0;
+}
+
+/* Actions */
+main#main .resume-actions {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+main#main .resume-actions .btn {
+    border: 1px solid var(--border);
+    /* UI IMPROVEMENT: Consistent use of secondary-bg for contrast */
+    background: var(--secondary-bg);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+main#main .resume-actions .btn:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-soft) inset;
+}
+
+main#main .resume-actions .btn.secondary {
+    /* UI IMPROVEMENT: Use soft primary color for secondary button background */
+    background: var(--primary-soft);
+}
+
+/* Meta footer inside main */
+main#main .meta {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+main#main .meta-grid {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    padding: 10px 2px 40px;
+    border-top: 1px dashed var(--border);
+    margin-top: 20px;
+}
+
+/* ---------- Responsive (scoped) ---------- */
+@media (max-width: 980px) {
+    main#main .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    html,
-    body {
-        height: 100%;
-        background: var(--bg);
-        color: var(--text);
+    main#main .item-head {
+        grid-template-columns: 1fr;
     }
 
-    body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-        font-size: var(--body);
-        line-height: var(--line);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+    main#main .item-meta {
+        grid-template-columns: 1fr;
+        justify-items: start;
     }
 
-    a {
-        color: var(--primary);
-        text-decoration: none;
+    main#main.container {
+        /* Removed backdrop filters for mobile */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
+@media (max-width: 560px) {
+    main#main .skills-grid {
+        grid-template-columns: 1fr;
     }
 
-    a:hover,
-    a:focus {
-        text-decoration: underline;
-    }
-
-    .container {
-        max-width: var(--maxw);
-        margin-inline: auto;
-        padding-inline: var(--pad);
-        background: color-mix(in srgb, var(--surface) 78%, transparent);
-        backdrop-filter: blur(6px);
-    }
-
-    /* GIF Background container */
-    #gif-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1;
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    /* Canvas element replacing prior img solution */
-    #gif-bg-canvas {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        opacity: 0.5;
-        filter: brightness(0.8);
-        transition: opacity 0.15s ease;
-    }
-
-    /* Light theme tuning for GIF canvas */
-    html[data-theme="light"] #gif-bg-canvas,
-    body.theme-light #gif-bg-canvas {
-        opacity: 0.3;
-        filter: brightness(0.8);
-    }
-
-    .site-header {
-        position: sticky;
-        top: 0;
-        background: color-mix(in srgb, var(--surface) 88%, transparent);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid var(--border);
-        z-index: 10;
-    }
-
-    .header-inner {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        align-items: center;
-        gap: var(--gap);
-        min-height: 84px;
-    }
-
-    .identity .name {
-        margin: 0;
-        font-size: var(--h1);
-        letter-spacing: 0.2px;
-    }
-
-    .identity .title {
-        margin: 4px 0 0;
-        color: var(--muted);
-    }
-
-    .contacts {
-        display: grid;
-        gap: 8px;
-        justify-items: end;
-    }
-
-    .contact-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 14px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        justify-content: flex-end;
-    }
-
-    .actions {
-        display: flex;
-        gap: 10px;
-    }
-
-    .btn {
-        border: 1px solid var(--border);
-        background: color-mix(in srgb, var(--surface-2) 90%, transparent);
-        color: var(--text);
-        padding: 8px 12px;
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        border-color: var(--primary);
-        box-shadow: 0 0 0 2px var(--primary-soft) inset;
-    }
-
-    .btn.secondary {
-        background: color-mix(in srgb, var(--primary) 10%, var(--surface-2));
-    }
-
-    .btn-ghost {
-        background: transparent;
-        border-color: var(--border);
-    }
-
-    .section {
-        margin-top: 28px;
-        padding: 22px;
-        background: color-mix(in srgb, var(--surface) 92%, transparent);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-    }
-
-    .section-title {
-        margin: 0 0 12px 0;
-        font-size: var(--h2);
-    }
-
-    .summary-text {
-        margin: 0;
-        color: var(--text);
-    }
-
-    /* Skills */
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: var(--gap);
-    }
-
-    .skill-group {
-        background: color-mix(in srgb, var(--surface-2) 92%, transparent);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 14px;
-    }
-
-    .group-title {
-        margin: 0 0 10px 0;
-        color: var(--accent);
-        font-size: var(--h3);
-    }
-
-    .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .tag-list li {
-        border: 1px solid var(--border);
-        padding: 4px 8px;
-        border-radius: 999px;
-        background: color-mix(in srgb, var(--surface-2) 96%, transparent);
-        color: var(--text);
-        font-size: 13px;
-    }
-
-    /* Items */
-    .item {
+    main#main .section {
         padding: 16px;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        background: color-mix(in srgb, var(--surface-2) 94%, transparent);
-        margin-top: 14px;
+        /* UI: Slightly softer background on small screens */
+        background: var(--surface-2);
     }
 
-    .item-head {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        align-items: baseline;
-        gap: var(--gap);
+    main#main .item {
+        padding: 12px;
+        background: var(--surface-2);
     }
 
-    .item-title {
-        margin: 0;
-        font-size: var(--h3);
+    main#main .resume-actions {
+        gap: 8px;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    main#main * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ---------- Print (scoped) ---------- */
+@media print {
+    main#main {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-2: #ffffff;
+        --text: #000000;
+        --muted: #333333;
+        --border: #bdbdbd;
+        color: var(--text);
     }
 
-    .item-meta {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-        color: var(--muted);
-        font-size: 14px;
-        justify-items: end;
+    main#main.container {
+        max-width: 100%;
+        padding-inline: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        background: #ffffff;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
     }
 
-    .item-bullets {
-        margin: 12px 0 0 18px;
+    main#main .section,
+    main#main .item {
+        border-color: #bdbdbd;
+        background: #ffffff;
+        page-break-inside: avoid;
     }
 
-    .item-bullets li {
-        margin: 4px 0;
-    }
-
-    .item-tech {
-        margin: 10px 0 0;
-    }
-
-    .list-flat {
-        margin: 0;
-        padding-left: 18px;
-    }
-
-    .list-flat li {
-        margin: 4px 0;
-    }
-
-    /* Meta footer block */
-    .meta {
-        background: transparent;
-        border: none;
-        padding: 0;
-    }
-
-    .meta-grid {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        padding: 10px 2px 40px;
-        border-top: 1px dashed var(--border);
-        margin-top: 20px;
-    }
-
-    .site-footer {
-        border-top: 1px solid var(--border);
-        padding: 16px 0 40px;
-        background: color-mix(in srgb, var(--surface) 90%, transparent);
-    }
-
-    .footer-inner {
-        display: flex;
-        justify-content: center;
-    }
-
-    /* Responsive */
-    @media (max-width: 980px) {
-        .header-inner {
-            grid-template-columns: 1fr;
-            justify-items: start;
-        }
-
-        .contacts {
-            justify-items: start;
-        }
-
-        .skills-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .item-head {
-            grid-template-columns: 1fr;
-        }
-
-        .item-meta {
-            grid-template-columns: 1fr;
-            justify-items: start;
-        }
-    }
-
-    @media (max-width: 560px) {
-        .skills-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .contact-list {
-            gap: 8px 12px;
-        }
-
-        .section {
-            padding: 16px;
-            background: color-mix(in srgb, var(--surface) 88%, transparent);
-        }
-
-        .item {
-            padding: 12px;
-            background: color-mix(in srgb, var(--surface-2) 88%, transparent);
-        }
-
-        /* Mobile GIF canvas opacity */
-        #gif-bg-canvas {
-            opacity: 0.25;
-        }
-
-        .container {
-            backdrop-filter: none;
-        }
-    }
-
-    /* Print */
-    @media print {
-        :root {
-            --bg: #ffffff;
-            --surface: #ffffff;
-            --surface-2: #ffffff;
-            --text: #000000;
-            --muted: #333333;
-            --border: #bdbdbd;
-        }
-
-        .site-header,
-        .actions,
-        .site-footer,
-        #gif-background,
-        #gif-bg-canvas {
-            display: none !important;
-        }
-
-        body {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .section,
-        .item {
-            border-color: #bdbdbd;
-            background: #ffffff;
-        }
-
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 100%;
-            padding-inline: 0;
-            background: #ffffff;
-            backdrop-filter: none;
-        }
-
-        .section,
-        .item {
-            page-break-inside: avoid;
-        }
+    main#main a {
+        color: #000000;
+        text-decoration: none;
     }
 }

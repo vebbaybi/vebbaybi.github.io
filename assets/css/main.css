@@ -1,11 +1,10 @@
 /* =======================================================================================
-   1807 - MAIN.CSS (UPDATED, COMPLETE)
-   Scope: Reset, tokens, base, layout shells (header and footer), cursors, utilities
-   FIX: Home page header snap removed and footer forced visible under no-scroll layout
-   ======================================================================================= */
+    1807 - MAIN.CSS (FINAL — THEMED FOUNDATION)
+    Scope: Reset, Color Tokens, Theme Logic, Base Typography, Global Layout Fixes
+    (REVISED: OPAQUE BLUE THEME, FOCUSED ON MAIN CONTENT READABILITY)
+    ======================================================================================= */
 
-/* ---- Global layer order (controls priority across ALL stylesheets) ---- */
-@layer reset, base, components, navigation, cards, carousels, ai, robotics, home, projects, pages, motion, overrides;
+@layer reset, base, components, navigation, motion, overrides;
 
 /* ===== Reset ===== */
 @layer reset {
@@ -21,179 +20,123 @@
     }
 
     body {
-        /* General pages use flex layout */
         min-height: 100vh;
         margin: 0;
         display: flex;
         flex-direction: column;
     }
-
-    /* Full screen context placeholders must not create scroll or intercept clicks */
-    header-placeholder,
-    footer-placeholder {
-        display: block;
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        pointer-events: none;
-        height: 0;
-        /* make sure they do not affect layout height */
-    }
-
-    header-placeholder {
-        top: 0;
-    }
-
-    footer-placeholder {
-        bottom: 0;
-    }
-
-    [hidden] {
-        display: none !important;
-        pointer-events: none !important;
-    }
 }
 
-/* ===== Tokens (unlayered so variables are always available) ===== */
+
+/* ===== Tokens & Theme Variables (OPAQUE BLUE THEME) ===== */
 :root {
-    /* Blues */
-    --blue-900: #0b1f4a;
-    --blue-800: #1e40af;
-    --blue-700: #1d4ed8;
-    --blue-600: #2563eb;
-    --blue-400: #60a5fa;
+    /* -------------------------------------
+     * 1. BASE COLOR PALETTE (Blue Theme, Opaque Backgrounds)
+     * ------------------------------------- */
 
-    /* Light brown / tan */
-    --tan-700: #9e7743;
-    --tan-600: #b68b4c;
-    --tan-500: #d6a76a;
-    --tan-100: #f5e9da;
+    --color-accent: #2489f6;
+    --color-text-day: #1f1f1f;
+    --color-text-night: #f0f0f0;
+    --color-bg-day: #f8f8f8;
+    --color-bg-night: #0a192f;
+    --color-secondary-night: #172a46;
 
-    /* Neutrals and base colors */
-    --quiet-cream: #F2F1EF;
-    --quiet-sand: #EADACE;
-    --quiet-mocha: #3F0D0C;
-    --quiet-sage: #617246;
+    /* Mapped Variables (Simplified) */
+    --color-1: var(--color-accent);
+    --color-2: var(--color-accent);
+    --color-3: var(--color-accent);
+    --color-4: var(--color-text-day);
+    --color-5: var(--color-bg-day);
+    --color-6: var(--color-text-night);
+    --color-7: var(--color-text-day);
+    --color-8: var(--color-bg-night);
 
-    --black-true: var(--quiet-mocha);
-    --black: var(--quiet-mocha);
-    --ink: var(--quiet-mocha);
-    --white: #ffffff;
-    --off-white: var(--quiet-cream);
+    /* -------------------------------------
+     * 2. SEMANTIC VARIABLES (Day Theme Default - Focus on Contrast)
+     * ------------------------------------- */
+    --primary-bg: var(--color-5);
+    --secondary-bg: var(--color-2);
+    --primary-text: var(--color-4);
+    --secondary-text: var(--color-1);
+    --accent-color: var(--color-3);
 
-    /* Surfaces - light theme default for Quiet Luxury */
-    --bg: var(--quiet-cream);
-    --panel: var(--quiet-cream);
-    --surface: var(--quiet-sand);
-    --surface-2: #ffffff;
-
-    /* Text */
-    --text: var(--quiet-mocha);
-    --muted: #8D827B;
-    --accent-2: var(--quiet-sage);
-
-    /* Accents */
-    --primary: var(--quiet-sage);
-    --primary-strong: #3B5824;
-    --primary-soft: rgba(97, 114, 70, .12);
-    --secondary: var(--quiet-sage);
-    --secondary-soft: rgba(97, 114, 70, .14);
-
-    /* Lines and effects */
-    --border: rgba(63, 13, 12, .1);
-    --radius: 16px;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 20px;
-    --radius-pill: 999px;
+    --primary-strong: #be123c;
+    --primary-soft: rgba(225, 29, 72, .12);
+    --border: rgba(30, 30, 30, .12);
     --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
+    --blue-400: #60a5fa;
+    --primary: var(--color-accent);
+    --muted: #808080;
+
+    /* -------------------------------------
+     * 3. LAYOUT & UTILITY TOKENS
+     * ------------------------------------- */
+    --header-height: 70px;
+    --footer-height: 60px;
+
+    --radius: 16px;
+    --radius-md: 10px;
+    --radius-lg: 20px;
+    --radius-xl: 30px;
+    --radius-pill: 9999px;
+
     --container: 1600px;
     --transition: all .15s ease;
+    --focus: 0 0 0 3px rgba(36, 137, 246, .45);
+    /* Adjusted focus to accent blue */
 
-    /* Focus */
-    --focus: 0 0 0 3px rgba(97, 114, 70, .4);
-
-    /* Typography */
     --font-size-base: 16px;
     --line-height-base: 1.6;
-    --font-size-h1: clamp(2.5rem, 4vw, 4rem);
-    --font-size-h2: clamp(2rem, 3.5vw, 3rem);
-    --font-size-h3: clamp(1.75rem, 3vw, 2.5rem);
-    --font-size-h4: clamp(1.5rem, 2.5vw, 2rem);
 
-    /* Defaults */
-    --panel-default-delay: 5000;
-
+    /* Cursor definitions */
     --cursor-default: url('/assets/cursors/default.png') 6 6, auto;
     --cursor-pointer: url('/assets/cursors/pointer.png') 6 6, pointer;
     --cursor-editor: url('/assets/cursors/editor.png') 6 6, text;
     --cursor-typing: url('/assets/cursors/typing.png') 6 6, text;
 }
 
-/* Dark theme tokens */
+/* ===== Theme Logic (JS-Controlled Dark Mode) ===== */
 @layer base {
+
+    /*
+     * NIGHT THEME OVERRIDES (Deep Navy Blue Theme)
+     */
     body.theme-dark {
-        --bg: #111111;
-        --panel: #111111;
-        --surface: #1e1e1e;
-        --surface-2: #282828;
-        --text: #ffffff;
-        --muted: #aaaaaa;
-        --accent-2: #eeeeee;
-        --border: rgba(255, 255, 255, .1);
-        --primary-soft: rgba(235, 37, 99, .1);
-        --secondary-soft: rgba(76, 139, 182, .14);
+        --primary-bg: var(--color-8);
+        --secondary-bg: var(--color-secondary-night);
+        --primary-text: var(--color-6);
+        --secondary-text: var(--color-1);
+        --border: rgba(255, 255, 255, .12);
         --shadow: 0 4px 20px rgba(0, 0, 0, .4);
-        --focus: 0 0 0 3px rgba(235, 37, 99, .4);
-
-        /* remap */
-        --quiet-mocha: #ffffff;
-        --quiet-cream: #111111;
-        --quiet-sand: #1e1e1e;
-        --quiet-sage: #ff004c;
-
-        --text: var(--quiet-mocha);
-        --bg: var(--quiet-cream);
-        --panel: var(--quiet-cream);
-        --primary: var(--quiet-sage);
-        --primary-strong: #cc003c;
+        --primary-soft: rgba(225, 29, 72, .1);
+        --focus: 0 0 0 3px rgba(36, 137, 246, .5);
     }
 }
 
-/* Light theme tokens */
-@layer base {
-    body.theme-light {
-        --bg: var(--tan-100);
-        --panel: var(--off-white);
-        --surface: #ffffff;
-        --surface-2: #f1f3f6;
-        --text: #0b1220;
-        --muted: #374151;
-        --accent-2: #4b5563;
-        --border: rgba(0, 0, 0, .2);
-        --primary-soft: rgba(37, 99, 235, .1);
-        --secondary-soft: rgba(182, 139, 76, .14);
-        --shadow: 0 4px 20px rgba(0, 0, 0, .15);
-        --focus: 0 0 0 3px rgba(37, 99, 235, .3);
-    }
-}
-
-/* ===== Base ===== */
+/* ===== Base Styles ===== */
 @layer base {
     body {
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
         font-size: var(--font-size-base);
         line-height: var(--line-height-base);
-        background: var(--bg);
-        color: var(--text);
+        /* Now uses OPAQUE background colors */
+        background: var(--primary-bg);
+        /* Focus is here: High contrast text colors for main content */
+        color: var(--primary-text);
         cursor: var(--cursor-default);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
     }
 
     main {
         flex: 1 0 auto;
         width: 100%;
+
+        padding-top: var(--header-height);
+        padding-bottom: var(--footer-height);
+
+        scroll-padding-top: var(--header-height);
     }
 
     a {
@@ -232,12 +175,7 @@
     .container {
         width: min(100% - 24px, var(--container));
         margin-inline: auto;
-        padding-inline: 12px;
-    }
-
-    .logo {
-        height: 40px;
-        width: auto;
+        padding-inline: auto;
     }
 
     .sr-only {
@@ -269,7 +207,7 @@
         height: auto;
         padding: 8px 12px;
         background: var(--primary);
-        color: var(--white);
+        color: #fff;
         z-index: 9999;
         border-radius: var(--radius);
         outline: none;
@@ -277,165 +215,7 @@
     }
 }
 
-/* ===== Header (layout component) ===== */
-@layer components {
-    .site-header {
-        background: var(--panel);
-        border-bottom: none;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-
-        /* Fixed to avoid sticky snap on non-scrolling layouts */
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1100;
-        pointer-events: auto;
-        color: var(--text);
-        flex-shrink: 0;
-    }
-
-    .header-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: min(100%, var(--container));
-        margin-inline: auto;
-        padding: 18px clamp(16px, 3.5vw, 40px);
-        min-height: 70px;
-    }
-
-    .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 800;
-        color: var(--text);
-        text-decoration: none;
-        cursor: var(--cursor-pointer);
-        font-size: 1.125rem;
-    }
-
-    .brand .logo {
-        height: 32px;
-        width: auto;
-    }
-
-    .brand .dot-o {
-        color: var(--text);
-        font-weight: 700;
-        letter-spacing: 0.02em;
-    }
-
-    .brand .logo-animated {
-        height: 24px;
-        width: auto;
-        margin-left: 6px;
-        transform: translateY(-2px);
-        display: inline-block;
-        flex-shrink: 0;
-        image-rendering: -webkit-optimize-contrast;
-    }
-
-    .top-nav {
-        display: none !important;
-    }
-
-    .header-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: clamp(16px, 2vw, 24px);
-    }
-
-    .iconbtn {
-        padding: 10px;
-        border-radius: var(--radius-md);
-        cursor: var(--cursor-pointer);
-        transition: var(--transition);
-    }
-
-    @media (max-width:420px) {
-        .brand .logo-animated {
-            height: 18px;
-        }
-    }
-}
-
-/* ===== Footer (layout component) ===== */
-@layer components {
-    .site-footer {
-        background: var(--panel);
-        border-top: 1px solid var(--border);
-        color: var(--text);
-        flex-shrink: 0;
-
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1100;
-        pointer-events: auto;
-        width: 100%;
-    }
-
-    .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 24px 20px;
-        gap: 16px;
-        width: min(100%, var(--container));
-        margin-inline: auto;
-        padding-inline: clamp(16px, 3.5vw, 40px);
-    }
-
-    .footer-right a {
-        color: var(--accent-2);
-        transition: var(--transition);
-    }
-
-    .footer-right a:hover {
-        color: var(--blue-400);
-    }
-
-    .footer-right .dot {
-        color: var(--muted);
-        margin-inline: 8px;
-    }
-
-    @media (max-width: 768px) {
-        .footer-inner {
-            flex-direction: column;
-            text-align: center;
-            gap: 12px;
-            padding: 20px;
-        }
-
-        .footer-right .dot {
-            margin-inline: 6px;
-        }
-    }
-}
-
-/* ===== Home Page Specific (structure only) ===== */
-@layer home {
-    body[data-page="home"] {
-        display: block;
-        min-height: 100vh;
-        overflow: hidden !important;
-        /* force no scrolling */
-        background: var(--bg);
-    }
-
-    body[data-page="home"] main {
-        flex: none;
-        height: 100vh;
-        position: relative;
-        width: 100%;
-    }
-}
-
-/* ===== Misc and Utils ===== */
+/* ===== Utils ===== */
 @layer base {
     #typing-area {
         cursor: var(--cursor-typing);
@@ -447,18 +227,29 @@
     }
 }
 
-/* ===== Motion prefs ===== */
+/* ===== Responsive Layout Adjustments ===== */
+@layer base {
+
+    @media (max-width: 768px) {
+        :root {
+            --header-height: 56px;
+            --footer-height: 48px;
+        }
+    }
+}
+
+/* ===== Motion & DPI ===== */
 @layer motion {
     @media (prefers-reduced-motion: reduce) {
 
-        .iconbtn,
-        a {
+        *,
+        *::before,
+        *::after {
             transition: none !important;
         }
     }
 }
 
-/* ===== High-DPI cursors ===== */
 @layer base {
     @media (min-resolution: 2dppx) {
         :root {
@@ -468,28 +259,4 @@
             --cursor-typing: url('/assets/cursors/typing@2x.png') 6 6, text;
         }
     }
-}
-
-/* ===== Overrides ===== */
-@layer overrides {
-
-    /* Home uses a no-scroll, full-viewport hero.
-       Ensure header and footer sit above all home layers and never snap. */
-    body[data-page="home"] .site-header,
-    body[data-page="home"] .site-footer {
-        position: fixed !important;
-        z-index: 2000 !important;
-        will-change: transform;
-    }
-
-    /* Make sure any fixed hero or rails in home.css render below header and footer.
-       Those elements typically use z-index around 1 to 50. We assert header and footer win. */
-    body[data-page="home"] .navigation-links-full,
-    body[data-page="home"] .image-container-centered,
-    body[data-page="home"] .typewriter-overlay-centered {
-        z-index: 1000;
-    }
-
-    /* Extra breathing room is handled inside home.css via --frame-gap.
-       Nothing else is needed here for spacing since header and footer are fixed. */
 }
