@@ -1,53 +1,70 @@
 /* =======================================================================================
    1807 — CHAINS.CSS (DEDICATED, SCOPED)
+   Goal: Apply the desired TDI/Feed card UI to the Chains page while retaining Chains' layout structure.
    Scope: html[data-page="chains"] only
-   Depends on tokens from main.css; complements pages.css (projects layer)
    ======================================================================================= */
 
+/* --- Theme Variables and Base Colors (Adopting TDI's color scheme) --- */
 html[data-page="chains"] {
-    /* local page tokens if needed (inherit from main.css by default) */
-    --chains-card-radius: var(--radius-lg);
+    --color-background: var(--bg);
+    --color-surface: var(--surface);
+    --color-text: var(--text);
+    --color-muted: var(--muted);
+    --color-accent: var(--accent);
+    --chains-card-radius: 12px;
     --chains-border: var(--border);
-    --chains-soft: var(--surface-2);
-    --chains-panel: var(--panel);
-    --chains-muted: var(--accent-2);
+    --chains-shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    --chains-shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    --chains-shadow: var(--chains-shadow-light);
+}
+
+.theme-dark[data-page="chains"] {
+    --chains-shadow: var(--chains-shadow-dark);
 }
 
 /* -------------------------------------
    PAGE WRAPPER
 -------------------------------------- */
 html[data-page="chains"] body {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--color-background);
+    color: var(--color-text);
 }
 
 html[data-page="chains"] .view.projects {
-    /* tighten vertical rhythm slightly on this page */
-    --card-gap: 20px;
     margin-block: 18px 48px;
 }
 
 /* Header tweaks */
 html[data-page="chains"] .view-header {
+    /* Retain TDI-like divider */
     border-bottom: 1px solid var(--chains-border);
-    padding-block: 12px 4px;
+    padding-bottom: 1rem;
+    /* Added padding to match TDI's header space */
+    margin-bottom: 2rem;
+    /* Added margin to match TDI's header space */
 }
 
 html[data-page="chains"] #chains-heading {
     margin: 0;
+    font-size: 2.5rem;
+    /* Matched TDI's h1 font size */
+    margin-bottom: 0.5rem;
 }
 
-/* Subtitle rotator (keeps height steady) */
+/* Subtitle rotator (keeps height steady and uses muted color) */
 html[data-page="chains"] #subtitle-rotator {
     min-height: 1.4em;
-    /* reserve line height to avoid layout shift */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.9rem;
+    /* Matched TDI's meta font size */
+    color: var(--color-muted);
+    /* Matched TDI's muted color */
 }
 
 /* -------------------------------------
-   CHAIN HEADING — YOUR ORIGINAL (REVERTED)
+   CHAIN HEADING — GIFS
 -------------------------------------- */
 #chains-heading {
     display: inline-flex;
@@ -75,27 +92,27 @@ html[data-page="chains"] #subtitle-rotator {
    CAROUSEL ADJUSTMENTS (scoped)
 -------------------------------------- */
 html[data-page="chains"] .carousel-viewport {
-    background: var(--chains-soft);
+    /* Used to be a soft background; now using surface color if needed */
+    background: var(--color-surface);
     border: 1px solid var(--chains-border);
     position: relative;
-    /* ensure local stacking context for controls */
 }
 
 html[data-page="chains"] .carousel-track {
-    padding: 14px;
+    padding: 1.5rem;
+    /* Increased padding slightly for more visual space */
 }
 
 @media (max-width: 639.98px) {
     html[data-page="chains"] .carousel-track {
-        padding: 12px;
+        padding: 1rem;
     }
 }
 
-/* Controls appearance + clickability on dark backgrounds (desktop safety) */
+/* Controls appearance + clickability on dark backgrounds */
 html[data-page="chains"] .carousel-controls {
     position: relative;
     z-index: 20;
-    /* float controls above any media overlays */
 }
 
 html[data-page="chains"] .carousel-prev,
@@ -106,23 +123,51 @@ html[data-page="chains"] .carousel-next {
 }
 
 /* -------------------------------------
-   PROJECT CARD REFINEMENTS
+   PROJECT CARD REFINEMENTS (Applying TDI's Card Style)
 -------------------------------------- */
 html[data-page="chains"] .project-card {
+    /* Adopted TDI's card style */
+    background-color: var(--color-surface);
     border-radius: var(--chains-card-radius);
-    border: 1px solid var(--chains-border);
-    background: var(--surface);
+    overflow: hidden;
+    box-shadow: var(--chains-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    /* Remove the original 1px border */
+}
+
+html[data-page="chains"] .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--chains-shadow), 0 0 0 2px var(--color-accent);
 }
 
 html[data-page="chains"] .project-media {
-    background: linear-gradient(135deg, var(--primary-soft), var(--secondary-soft));
+    /* Removed custom background gradient to focus on the image */
     z-index: 1;
-    /* Ensure media doesn't overlap buttons */
     position: relative;
+    /* Adopted TDI's media container style */
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Ensure the image within the project-media fills its space */
+html[data-page="chains"] .project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 html[data-page="chains"] .project-body {
-    padding: 16px 16px 18px;
+    padding: 1.25rem;
+    /* Matched TDI's padding */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 html[data-page="chains"] .project-title {
@@ -130,21 +175,44 @@ html[data-page="chains"] .project-title {
 }
 
 html[data-page="chains"] .project-blurb {
-    color: var(--chains-muted);
+    color: var(--color-muted);
+    /* Used TDI's muted text color */
     margin: 0 0 12px 0;
 }
 
+/* Styling for linkified elements */
+html[data-page="chains"] .project-body a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+html[data-page="chains"] .project-body a:hover {
+    text-decoration: underline;
+}
+
+
 /* Inline meta dots within project-meta (reuses .footer-right .dot coloring) */
 html[data-page="chains"] .project-body .dot {
-    color: var(--muted);
+    color: var(--color-muted);
+    /* Used TDI's muted color */
     margin-inline: 8px;
 }
 
 /* Button styles to ensure clickability */
+html[data-page="chains"] .hero-ctas {
+    margin-top: auto;
+    /* Pushes CTAs to the bottom of the body */
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(150, 150, 150, 0.1);
+    /* TDI-like divider */
+    display: flex;
+    gap: 8px;
+}
+
 html[data-page="chains"] .hero-ctas .btn {
     position: relative;
     z-index: 10;
-    /* Ensure buttons are above project-media */
     pointer-events: auto;
 }
 
@@ -171,6 +239,36 @@ html[data-page="chains"] .meta-badge {
     color: var(--text);
     font-weight: 700;
     letter-spacing: 0.1px;
+}
+
+/* -------------------------------------
+   DETAILS SECTIONS (Below Carousel)
+-------------------------------------- */
+html[data-page="chains"] section:not(.view) {
+    padding-block: 24px;
+}
+
+html[data-page="chains"] h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--chains-border);
+}
+
+html[data-page="chains"] h3 {
+    margin-top: 22px;
+    font-size: 1.4rem;
+    color: var(--color-accent);
+}
+
+html[data-page="chains"] ul,
+html[data-page="chains"] ol {
+    padding-left: 20px;
+    margin-bottom: 1rem;
+}
+
+html[data-page="chains"] li {
+    margin-bottom: 0.5rem;
 }
 
 /* -------------------------------------

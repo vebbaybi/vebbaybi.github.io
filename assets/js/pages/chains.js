@@ -6,7 +6,7 @@
 
 (function () {
   const root = document.documentElement;
-  if (root.getAttribute('data-page') !== 'chains') return;
+  if (root.getAttribute('data-page') !== 'Chains') return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
