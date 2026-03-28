@@ -1,13 +1,10 @@
-// assets/js/app.js
-// Global bootstrap for MPA: inject header/footer, update meta, init right-side nav.
-// Initializes scroll_paper.js for /scroll_paper only, with cleanup.
-// Boots immediately. Works on GitHub Pages subpaths.
-
 import { updateMeta } from './meta/meta.js';
 import { initFooter } from './ui/components/footer.js';
 import { initHeader } from './ui/components/header.js';
 import { initNav } from './ui/components/nav.js';
 import { initThemeToggle } from './ui/theme.js';
+import { initScrollPaper } from './pages/scroll_paper.js';
+import { initContractorBubble } from './ui/contractor-bubbles.js';
 
 const pageMeta = {
   '/':               { title: 'Home — 1807-Chain',            desc: 'webbaby portfolio' },
@@ -18,6 +15,7 @@ const pageMeta = {
   '/robotics':       { title: 'Robotics — 1807-Chain',        desc: 'Embedded, control, and vision systems' },
   '/chains':         { title: 'Blockchain — 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
   '/construction':   { title: 'Construction — 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
+  '/resume':         { title: 'Resume — 1807-Chain',          desc: 'Primary resume page' },
   '/resumes':        { title: 'Resumes — 1807-Chain',         desc: 'IT/AI, Robotics, and Construction resumes' },
   '/toolbox':        { title: 'Toolbox — 1807-Chain',         desc: 'Software, hardware, and build tools' },
   '/roadmap':        { title: 'Roadmap — 1807-Chain',         desc: 'Backlog, building, shipped' },
@@ -29,13 +27,16 @@ const pageMeta = {
   '/now':            { title: 'Now — 1807-Chain',             desc: 'What I’m focused on now' },
   '/faq':            { title: 'FAQ — 1807-Chain',             desc: 'Frequently asked questions' },
   '/legal':          { title: 'Legal — 1807-Chain',           desc: 'Privacy & Terms' },
+  '/1807-contractor': { title: '1807 Contractor — The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },
 };
 
 function routeKey(pathname = window.location.pathname) {
   const parts = pathname.split('/').filter(Boolean);
   if (parts.length === 0) return '/';
+
   const last = parts[parts.length - 1].toLowerCase();
   if (last === 'index' || last === 'index.html') return '/';
+
   const noHtml = last.endsWith('.html') ? last.slice(0, -5) : last;
   return `/${noHtml}`;
 }
@@ -47,17 +48,39 @@ function currentMeta() {
 
 async function boot() {
   let scrollPaperCleanup = null;
+  let contractorBubbleCleanup = null;
 
   try {
-    // Allow landing/hero to settle
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Initialize common components
     await Promise.all([initHeader(), initFooter(), initNav()]);
     initThemeToggle();
 
-    // Route-specific boot
+    const initContractorBubbleSafely = () => {
+      try {
+        return initContractorBubble();
+      } catch (err) {
+        console.error('Failed to initialize contractor bubble:', err);
+        return null;
+      }
+    };
+
+    const resetContractorBubble = () => {
+      if (contractorBubbleCleanup?.cleanup) {
+        try {
+          contractorBubbleCleanup.cleanup();
+        } catch (err) {
+          console.error('Contractor bubble cleanup failed:', err);
+        }
+      }
+
+      contractorBubbleCleanup = initContractorBubbleSafely();
+    };
+
+    contractorBubbleCleanup = initContractorBubbleSafely();
+
     const rk = routeKey();
+
     if (rk === '/scroll_paper') {
       try {
         scrollPaperCleanup = initScrollPaper();
@@ -65,17 +88,15 @@ async function boot() {
         console.error('Failed to initialize scroll_paper.js:', err);
       }
     } else if (rk === '/') {
-      // Avoid stealing focus on landing
       document.getElementById('main')?.classList.add('landing');
     } else {
       document.getElementById('main')?.focus({ preventScroll: true });
     }
 
-    // Update meta tags
     updateMeta(currentMeta());
 
-    // Enhance navigation: clean up route-specific controllers when leaving
     const originalPushState = history.pushState;
+
     history.pushState = function (...args) {
       const prevRoute = routeKey(window.location.pathname);
       const ret = originalPushState.apply(this, args);
@@ -83,9 +104,14 @@ async function boot() {
 
       if (prevRoute !== newRoute) {
         if (scrollPaperCleanup && newRoute !== '/scroll_paper') {
-          try { scrollPaperCleanup.cleanup(); } catch (err) { console.error('Scroll Paper cleanup failed:', err); }
+          try {
+            scrollPaperCleanup.cleanup();
+          } catch (err) {
+            console.error('Scroll Paper cleanup failed:', err);
+          }
           scrollPaperCleanup = null;
         }
+
         try {
           if (newRoute === '/scroll_paper' && !scrollPaperCleanup) {
             scrollPaperCleanup = initScrollPaper();
@@ -93,18 +119,26 @@ async function boot() {
         } catch (err) {
           console.error('Route init after pushState failed (Scroll Paper):', err);
         }
+
+        resetContractorBubble();
         updateMeta(currentMeta());
       }
+
       return ret;
     };
 
-    // Also react on popstate (back/forward buttons)
     window.addEventListener('popstate', () => {
       const rk2 = routeKey();
+
       if (rk2 !== '/scroll_paper' && scrollPaperCleanup) {
-        try { scrollPaperCleanup.cleanup(); } catch (err) { console.error('Scroll Paper cleanup (popstate) failed:', err); }
+        try {
+          scrollPaperCleanup.cleanup();
+        } catch (err) {
+          console.error('Scroll Paper cleanup (popstate) failed:', err);
+        }
         scrollPaperCleanup = null;
       }
+
       try {
         if (rk2 === '/scroll_paper' && !scrollPaperCleanup) {
           scrollPaperCleanup = initScrollPaper();
@@ -112,13 +146,26 @@ async function boot() {
       } catch (err) {
         console.error('Route init (popstate) failed (Scroll Paper):', err);
       }
+
+      resetContractorBubble();
       updateMeta(currentMeta());
     });
 
-    // Cleanup on unload
     window.addEventListener('beforeunload', () => {
       if (scrollPaperCleanup) {
-        try { scrollPaperCleanup.cleanup(); } catch (err) { console.error('Scroll Paper cleanup on unload failed:', err); }
+        try {
+          scrollPaperCleanup.cleanup();
+        } catch (err) {
+          console.error('Scroll Paper cleanup on unload failed:', err);
+        }
+      }
+
+      if (contractorBubbleCleanup) {
+        try {
+          contractorBubbleCleanup.cleanup();
+        } catch (err) {
+          console.error('Contractor bubble cleanup on unload failed:', err);
+        }
       }
     });
   } catch (err) {
