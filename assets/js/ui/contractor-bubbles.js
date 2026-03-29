@@ -6,7 +6,7 @@ const LEGACY_STORAGE_VISITED = 'the1807_contractor_page_visited';
 const SHOW_DELAY_MS = 10000;
 const VISIBILITY_RETRY_MS = 1200;
 const TRANSITION_MS = 220;
-const TARGET_PATH = '/1807-contractor.html';
+const TARGET_PATH = '/1807-contractor/';
 
 function readSession(key) {
   try {

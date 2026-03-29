@@ -1,8 +1,8 @@
 {
-  "name": "1807-chain — Uchenna Anozie (webbaby)",
+  "name": "The 1807 - Uchenna Anozie (webbaby)",
   "short_name": "1807-chain",
   "description": "Uchenna Anozie's portfolio: Computer Science, AI, Robotics, and Embedded Systems projects.",
-  "start_url": "/home.html",
+  "start_url": "/home/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -31,24 +31,25 @@
       "name": "AI Flagship (Luna)",
       "short_name": "Luna AI",
       "description": "Explore the Luna AI assistant and projects.",
-      "url": "/ai.html",
+      "url": "/ai/",
       "icons": [{ "src": "/assets/icons/shortcut-ai.png", "sizes": "96x96" }]
     },
     {
       "name": "Robotics Projects",
       "short_name": "Robotics",
-      "description": "View Embedded Systems & Robotics work.",
-      "url": "/robotics.html",
+      "description": "View Embedded Systems and Robotics work.",
+      "url": "/robotics/",
       "icons": [{ "src": "/assets/icons/shortcut-robo.png", "sizes": "96x96" }]
     },
     {
       "name": "My Resumes",
       "short_name": "Resumes",
       "description": "Quick access to all professional resumes.",
-      "url": "/resumes.html",
+      "url": "/resumes/",
       "icons": [{ "src": "/assets/icons/shortcut-resume.png", "sizes": "96x96" }]
     }
   ],
   "lang": "en-US",
   "prefer_related_applications": false
 }
+

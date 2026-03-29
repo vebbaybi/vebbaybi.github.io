@@ -1,143 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Root / landing -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vebbaybi.github.io/</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
-
-  <!-- Main sections -->
   <url>
-    <loc>https://vebbaybi.github.io/home.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/home/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://the1807.xyz/projects/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
-
   <url>
-    <loc>https://vebbaybi.github.io/projects.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://the1807.xyz/scroll_paper/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://the1807.xyz/ai/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Story / scrolly replacement -->
   <url>
-    <loc>https://vebbaybi.github.io/scroll_paper.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/robotics/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://the1807.xyz/chains/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
-  <!-- Category pages -->
   <url>
-    <loc>https://vebbaybi.github.io/ai.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/construction/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.75</priority>
   </url>
-
   <url>
-    <loc>https://vebbaybi.github.io/robotics.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/chains.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/construction.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/resume/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
-
-  <!-- Utility & resources -->
   <url>
-    <loc>https://vebbaybi.github.io/resumes.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/resumes/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://the1807.xyz/contact/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
-
   <url>
-    <loc>https://vebbaybi.github.io/toolbox.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/links/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/roadmap.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/changelog.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.55</priority>
   </url>
-
   <url>
-    <loc>https://vebbaybi.github.io/presskit.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.40</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/contact.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/links.html</loc>
-    <lastmod>2025-09-28</lastmod>
+    <loc>https://the1807.xyz/tdi/</loc>
+    <lastmod>2026-03-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
   </url>
-
   <url>
-    <loc>https://vebbaybi.github.io/blog.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.60</priority>
+    <loc>https://the1807.xyz/1807-contractor/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/now.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/faq.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.40</priority>
-  </url>
-
-  <url>
-    <loc>https://vebbaybi.github.io/legal.html</loc>
-    <lastmod>2025-09-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.40</priority>
-  </url>
-
 </urlset>

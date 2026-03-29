@@ -1,5 +1,5 @@
 // assets/js/landing.js
-// Landing overlay animations (typing → explosion → falling line(s) → redirect to /home.html)
+// Landing overlay animations (typing → explosion → falling line(s) → redirect to /home/)
 // Mobile-safe: adaptive character spacing with overflow prevention + optional two-line split.
 // Plays nice with app.js boot timing and boot.js gating.
 
@@ -12,7 +12,7 @@
   const colors = ["#60a5fa", "#2563eb", "#06b6d4", "#ff00ff"];
 
   // Where to go after the sequence so boot.js can gate the puzzle
-  const REDIRECT_TARGET = "/home.html";
+  const REDIRECT_TARGET = "/home/";
 
   // Per-char timing (keep in sync with your CSS if it reads --delay / --final-drop-delay)
   const TYPE_INTERVAL_MS       = 120;
