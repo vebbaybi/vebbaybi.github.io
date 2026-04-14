@@ -1,4 +1,4 @@
-import { updateMeta } from './meta/meta.js';
+﻿import { updateMeta } from './meta/meta.js';
 import { initFooter } from './ui/components/footer.js';
 import { initHeader } from './ui/components/header.js';
 import { initNav } from './ui/components/nav.js';
@@ -7,27 +7,28 @@ import { initScrollPaper } from './pages/scroll_paper.js';
 import { initContractorBubble } from './ui/contractor-bubbles.js';
 
 const pageMeta = {
-  '/':               { title: 'Home — 1807-Chain',            desc: 'webbaby portfolio' },
-  '/home':           { title: 'Home — 1807-Chain',            desc: 'webbaby portfolio' },
-  '/scroll_paper':   { title: 'Scroll Paper — 1807-Chain',    desc: 'Newspaper story & showcase' },
-  '/projects':       { title: 'Projects — 1807-Chain',        desc: 'AI, Embedded-Systems, and Blockchain projects' },
-  '/ai':             { title: 'AI Projects — 1807-Chain',     desc: 'Models, pipelines, and production AI systems' },
-  '/robotics':       { title: 'Robotics — 1807-Chain',        desc: 'Embedded, control, and vision systems' },
-  '/chains':         { title: 'Blockchain — 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
-  '/construction':   { title: 'Construction — 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
-  '/resume':         { title: 'Resume — 1807-Chain',          desc: 'Primary resume page' },
-  '/resumes':        { title: 'Resumes — 1807-Chain',         desc: 'IT/AI, Robotics, and Construction resumes' },
-  '/toolbox':        { title: 'Toolbox — 1807-Chain',         desc: 'Software, hardware, and build tools' },
-  '/roadmap':        { title: 'Roadmap — 1807-Chain',         desc: 'Backlog, building, shipped' },
-  '/changelog':      { title: 'Changelog — 1807-Chain',       desc: 'Project updates and releases' },
-  '/presskit':       { title: 'Press Kit — 1807-Chain',       desc: 'Logos, bios, and assets' },
-  '/contact':        { title: 'Contact — 1807-Chain',         desc: 'Get in touch' },
-  '/links':          { title: 'Links — 1807-Chain',           desc: 'Link-in-bio hub' },
-  '/blog':           { title: 'Blog — 1807-Chain',            desc: 'Posts and notes' },
-  '/now':            { title: 'Now — 1807-Chain',             desc: 'What I’m focused on now' },
-  '/faq':            { title: 'FAQ — 1807-Chain',             desc: 'Frequently asked questions' },
-  '/legal':          { title: 'Legal — 1807-Chain',           desc: 'Privacy & Terms' },
-  '/1807-contractor': { title: '1807 Contractor — The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },
+  '/':               { title: 'Home â€” 1807-Chain',            desc: 'webbaby portfolio' },
+  '/home':           { title: 'Home â€” 1807-Chain',            desc: 'webbaby portfolio' },
+  '/scroll_paper':   { title: 'Scroll Paper â€” 1807-Chain',    desc: 'Newspaper story & showcase' },
+  '/projects':       { title: 'Projects â€” 1807-Chain',        desc: 'AI, Embedded-Systems, and Blockchain projects' },
+  '/ai':             { title: 'AI Projects â€” 1807-Chain',     desc: 'Models, pipelines, and production AI systems' },
+  '/robotics':       { title: 'Robotics â€” 1807-Chain',        desc: 'Embedded, control, and vision systems' },
+  '/chains':         { title: 'Blockchain â€” 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
+  '/construction':   { title: 'Construction â€” 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
+  '/resume':         { title: 'Resume â€” 1807-Chain',          desc: 'Primary resume page' },
+  '/resumes':        { title: 'Resumes â€” 1807-Chain',         desc: 'IT/AI, Robotics, and Construction resumes' },
+  '/toolbox':        { title: 'Toolbox â€” 1807-Chain',         desc: 'Software, hardware, and build tools' },
+  '/roadmap':        { title: 'Roadmap â€” 1807-Chain',         desc: 'Backlog, building, shipped' },
+  '/changelog':      { title: 'Changelog â€” 1807-Chain',       desc: 'Project updates and releases' },
+  '/presskit':       { title: 'Press Kit â€” 1807-Chain',       desc: 'Logos, bios, and assets' },
+  '/contact':        { title: 'Contact â€” 1807-Chain',         desc: 'Get in touch' },
+  '/links':          { title: 'Links â€” 1807-Chain',           desc: 'Link-in-bio hub' },
+  '/blog':           { title: 'Blog â€” 1807-Chain',            desc: 'Posts and notes' },
+  '/now':            { title: 'Now â€” 1807-Chain',             desc: 'What Iâ€™m focused on now' },
+  '/faq':            { title: 'FAQ â€” 1807-Chain',             desc: 'Frequently asked questions' },
+  '/legal':          { title: 'Legal â€” 1807-Chain',           desc: 'Privacy & Terms' },
+  '/1807-contractor': { title: '1807 Contractor â€” The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },
+  '/1807osport':     { title: '1807os Portfolio â€” The 1807',  desc: 'Operating-system portfolio experience for The 1807 with live modules, telemetry, and alternate navigation.' },
 };
 
 function routeKey(pathname = window.location.pathname) {
@@ -180,3 +181,4 @@ async function boot() {
     document.addEventListener('DOMContentLoaded', boot, { once: true });
   }
 })();
+

@@ -20,6 +20,7 @@
   const SMART_SLIDE  = true;
   const GRID_SIZE    = 3;
   const IDLE_ANIM_MS = 700; // brief solved pulse
+  const SOLVED_TRANSITION_MS = 1100;
 
   /* ---------- Helpers ---------- */
   const qs = (root, sel) => (root || document).querySelector(sel);
@@ -80,6 +81,7 @@
       this._gesture = null;
       this._imagePreload = null;
       this._resizeListener = null;
+      this._completing = false;
     }
 
     async mount() {
@@ -462,6 +464,8 @@
     }
 
     async _onSolved() {
+      if (this._completing) return;
+      this._completing = true;
       this._stopTimer();
       const elapsed = Math.max(0, now() - this.state.startTs);
       const best = localStorage.getItem(LS_KEY_BEST);
@@ -479,7 +483,15 @@
         }, IDLE_ANIM_MS);
       } catch {}
 
-      await new Promise(r => setTimeout(r, 5000));
+      [
+        this.dom.btnShuffle,
+        this.dom.btnReveal,
+        this.dom.btnSkip,
+      ].forEach((button) => {
+        if (button) button.disabled = true;
+      });
+
+      await new Promise(r => setTimeout(r, SOLVED_TRANSITION_MS));
       this.destroy();
       if (typeof this.onSolved === 'function') {
         this.onSolved({ elapsedMs: elapsed, moves: this.state.moves });
@@ -496,6 +508,8 @@
     }
 
     _skip() {
+      if (this._completing) return;
+      this._completing = true;
       this.destroy();
       if (typeof this.onSkip === 'function') this.onSkip();
       window.dispatchEvent(new CustomEvent('PUZZLE_SKIPPED'));
@@ -520,6 +534,7 @@
       this.tilesByNum = {};
       this._mounted = false;
       this._imagePreload = null;
+      this._completing = false;
       window.dispatchEvent(new CustomEvent('PUZZLE_DESTROYED'));
     }
   }

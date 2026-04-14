@@ -20,6 +20,7 @@
 
   const PUZZLE_DEADLINE_MS = 2000;   // wait up to 2s for engine to appear
   const IDLE_MS = 90_000;
+  const OS_PORTFOLIO_PATH = '/1807osPort/';
 
   // Random image pool (yours)
   const IMAGE_SOURCES = [
@@ -83,10 +84,87 @@
     window.dispatchEvent(new CustomEvent('SITE_READY', { detail }));
   }
 
+  function markGateDone() {
+    try { sessionStorage.setItem('__vb_gate_done__', '1'); } catch {}
+  }
+
   function ensureMount() {
     let el = document.getElementById('intro-root');
     if (!el) { el = document.createElement('div'); el.id = 'intro-root'; document.body.appendChild(el); }
     return el;
+  }
+
+  function classicPortfolioSelected(mount, detail) {
+    markGateDone();
+    if (document.body.contains(mount)) mount.remove();
+    siteReady({ ...detail, interface: 'classic' });
+  }
+
+  function osPortfolioSelected() {
+    markGateDone();
+    window.location.assign(OS_PORTFOLIO_PATH);
+  }
+
+  function renderPortfolioChoice(mount, detail = {}) {
+    const summary = detail.skipped
+      ? 'Puzzle bypass confirmed. Choose which portfolio interface you want to launch.'
+      : `Access synchronized in ${Math.max(0, Math.round((detail.elapsedMs || 0) / 1000))}s with ${detail.moves || 0} move${detail.moves === 1 ? '' : 's'}. Pick your interface.`;
+
+    mount.innerHTML = `
+      <div id="vb-intro-overlay" role="dialog" aria-modal="true" aria-labelledby="vb-access-title">
+        <div id="vb-intro-dialog" style="max-width:min(760px, calc(100vw - 32px));padding:clamp(24px,4vw,42px);border-radius:28px;background:
+          radial-gradient(circle at top, rgba(102,227,255,.14), transparent 38%),
+          linear-gradient(160deg, rgba(10,18,31,.98), rgba(8,12,23,.94));border:1px solid rgba(102,227,255,.2);
+          box-shadow:0 24px 80px rgba(0,0,0,.55);color:#e6edf3;">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px;">
+            <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(102,227,255,.22);background:rgba(8,14,24,.82);font:600 11px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;">Interface Selector</span>
+            <span style="font:600 11px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:rgba(230,237,243,.68);">Node 1807 :: Session Ready</span>
+          </div>
+          <div style="display:grid;gap:16px;">
+            <div>
+              <p style="margin:0 0 10px;font:600 12px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.24em;text-transform:uppercase;color:#66e3ff;">Gate Complete</p>
+              <h2 id="vb-access-title" style="margin:0;font:700 clamp(2rem,4vw,3.4rem)/.96 Georgia,serif;color:#f8fbff;">Choose Your 1807 Interface</h2>
+            </div>
+            <p style="margin:0;color:rgba(230,237,243,.82);font:500 1rem/1.75 ui-sans-serif,system-ui,sans-serif;">${summary}</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:16px;margin-top:6px;">
+              <button type="button" data-interface="classic" style="display:grid;gap:10px;text-align:left;padding:18px;border-radius:22px;border:1px solid rgba(102,227,255,.2);background:linear-gradient(180deg, rgba(16,27,40,.96), rgba(10,18,28,.98));color:#f3f7fb;cursor:pointer;transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;">
+                <span style="font:700 1.05rem/1.2 ui-sans-serif,system-ui,sans-serif;">1807 Portfolio</span>
+                <span style="color:rgba(230,237,243,.74);font:500 .94rem/1.6 ui-sans-serif,system-ui,sans-serif;">Continue into the current portfolio flow with the classic navigation, image transitions, and section map.</span>
+                <span style="font:600 11px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#66e3ff;">Launch /home/</span>
+              </button>
+              <button type="button" data-interface="os" style="display:grid;gap:10px;text-align:left;padding:18px;border-radius:22px;border:1px solid rgba(245,158,11,.24);background:linear-gradient(180deg, rgba(27,19,8,.96), rgba(16,11,5,.98));color:#fff6ea;cursor:pointer;transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;">
+                <span style="font:700 1.05rem/1.2 ui-sans-serif,system-ui,sans-serif;">1807os Portfolio</span>
+                <span style="color:rgba(255,240,215,.74);font:500 .94rem/1.6 ui-sans-serif,system-ui,sans-serif;">Launch the operating-system portfolio with reactive modules, live telemetry, and the alternate 1807os workspace.</span>
+                <span style="font:600 11px/1.1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-transform:uppercase;color:#f59e0b;">Launch /1807osPort/</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const buttons = mount.querySelectorAll('[data-interface]');
+    buttons.forEach((button) => {
+      button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-3px)';
+        button.style.boxShadow = button.dataset.interface === 'os'
+          ? '0 18px 40px rgba(245,158,11,.18)'
+          : '0 18px 40px rgba(102,227,255,.16)';
+      });
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0)';
+        button.style.boxShadow = 'none';
+      });
+      button.addEventListener('click', () => {
+        if (button.dataset.interface === 'os') {
+          osPortfolioSelected();
+          return;
+        }
+        classicPortfolioSelected(mount, detail);
+      });
+    });
+
+    mount.querySelector('[data-interface="classic"]')?.focus({ preventScroll: true });
   }
 
   function createIdleToast(host, { onContinue, onSkip, onReveal }) {
@@ -131,13 +209,10 @@
       container: mount,
       imageSrc: IMAGE_SRC,
       onSolved: ({ elapsedMs, moves }) => {
-        if (document.body.contains(mount)) mount.remove();
-        siteReady({ solved: true, elapsedMs, moves });
+        renderPortfolioChoice(mount, { solved: true, elapsedMs, moves });
       },
       onSkip: () => {
-        if (document.body.contains(mount)) mount.remove();
-        try { sessionStorage.setItem('__vb_gate_done__', '1'); } catch {}
-        siteReady({ solved: false, skipped: true });
+        renderPortfolioChoice(mount, { solved: false, skipped: true });
       }
     });
   }
@@ -200,9 +275,12 @@
         const toast = createIdleToast(dialog, {
           onContinue: resetIdle,
           onSkip: () => {
-            if (document.body.contains(mount)) mount.remove();
-            try { sessionStorage.setItem('__vb_gate_done__', '1'); } catch {}
-            siteReady({ solved: false, skipped: true, idle: true });
+            const btn = mount.querySelector('[data-skip]');
+            if (btn) {
+              btn.click();
+            } else {
+              renderPortfolioChoice(mount, { solved: false, skipped: true, idle: true });
+            }
           },
           onReveal: () => {
             const btn = mount.querySelector('[data-reveal]');
