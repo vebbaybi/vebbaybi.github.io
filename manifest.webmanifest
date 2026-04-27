@@ -1,23 +1,41 @@
 {
-  "name": "The 1807 - Uchenna Anozie (webbaby)",
-  "short_name": "1807-chain",
-  "description": "Uchenna Anozie's portfolio: Computer Science, AI, Robotics, and Embedded Systems projects.",
+  "name": "The 1807 | Uchenna Anozie (webbaby)",
+  "short_name": "The 1807",
+  "description": "Official portfolio of Uchenna Anozie (webbaby): AI systems, robotics, embedded engineering, software development, blockchain, and advanced technical projects.",
   "start_url": "/home/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#111111",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#07090f",
   "theme_color": "#0099ff",
+  "categories": [
+    "technology",
+    "business",
+    "productivity",
+    "education",
+    "developer"
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+
   "icons": [
     {
       "src": "/assets/icons/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/assets/icons/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/assets/icons/icon.svg",
@@ -26,30 +44,76 @@
       "purpose": "any maskable"
     }
   ],
-  "shortcuts": [
+
+  "screenshots": [
     {
-      "name": "AI Flagship (Luna)",
-      "short_name": "Luna AI",
-      "description": "Explore the Luna AI assistant and projects.",
-      "url": "/ai/",
-      "icons": [{ "src": "/assets/icons/shortcut-ai.png", "sizes": "96x96" }]
+      "src": "/assets/images/pwa/desktop-home.png",
+      "sizes": "1440x900",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "The 1807 desktop homepage"
     },
     {
-      "name": "Robotics Projects",
-      "short_name": "Robotics",
-      "description": "View Embedded Systems and Robotics work.",
-      "url": "/robotics/",
-      "icons": [{ "src": "/assets/icons/shortcut-robo.png", "sizes": "96x96" }]
-    },
-    {
-      "name": "My Resumes",
-      "short_name": "Resumes",
-      "description": "Quick access to all professional resumes.",
-      "url": "/resumes/",
-      "icons": [{ "src": "/assets/icons/shortcut-resume.png", "sizes": "96x96" }]
+      "src": "/assets/images/pwa/mobile-home.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "The 1807 mobile homepage"
     }
   ],
-  "lang": "en-US",
-  "prefer_related_applications": false
-}
 
+  "shortcuts": [
+    {
+      "name": "AI Systems",
+      "short_name": "AI",
+      "description": "Explore Luna, ELKA-0, Ainor, NLP systems, and intelligent tooling.",
+      "url": "/ai/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-ai.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "ELKA-0 Engine",
+      "short_name": "ELKA-0",
+      "description": "Open cognitive engine powering advanced AI systems.",
+      "url": "/elka-0/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-elka.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Robotics",
+      "short_name": "Robotics",
+      "description": "Embedded systems, automation, robotics, and edge intelligence.",
+      "url": "/robotics/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-robo.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Resume",
+      "short_name": "Resume",
+      "description": "Professional experience, technical stack, and qualifications.",
+      "url": "/resume/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-resume.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
