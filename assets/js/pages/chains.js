@@ -77,7 +77,7 @@
     }
   };
 
-  const isLunaAnchor = (hash) => /^luna-from-(tcs|chainpad)$/i.test(hash || "");
+  const iskaelAnchor = (hash) => /^kael-from-(tcs|chainpad)$/i.test(hash || "");
 
   const getSlideWidth = () => {
     const first = state.slides[0];
@@ -241,7 +241,7 @@
 
     const slideIndexForKey = (key) => {
       if (!key) return null;
-      const normalized = isLunaAnchor(key) ? 'luna' : key;
+      const normalized = iskaelAnchor(key) ? 'kael' : key;
       const el = state.view.querySelector(`[data-hash="${CSS.escape(normalized)}"]`);
       if (!el) return null;
       const idx = state.slides.findIndex(li => li === el);
@@ -403,11 +403,11 @@
       const targetId = a.getAttribute('href').replace(/^#/, '');
       if (!targetId) return;
 
-      if (isLunaAnchor(targetId)) {
+      if (iskaelAnchor(targetId)) {
         e.preventDefault();
-        const lunaIdx = slideIndexForKey('luna');
-        if (lunaIdx !== null) {
-          goTo(lunaIdx, { user: true, suppressHash: true });
+        const kaelIdx = slideIndexForKey('kael');
+        if (kaelIdx !== null) {
+          goTo(kaelIdx, { user: true, suppressHash: true });
           history.replaceState(null, '', `#${targetId}`);
           const targetEl = document.getElementById(targetId);
           if (targetEl) {
@@ -428,10 +428,10 @@
       const key = (location.hash || '').replace(/^#/, '');
       if (!key) return;
 
-      if (isLunaAnchor(key)) {
-        const lunaIdx = slideIndexForKey('luna');
-        if (lunaIdx !== null) {
-          goTo(lunaIdx, { user: true, suppressHash: true });
+      if (iskaelAnchor(key)) {
+        const kaelIdx = slideIndexForKey('kael');
+        if (kaelIdx !== null) {
+          goTo(kaelIdx, { user: true, suppressHash: true });
           const targetEl = document.getElementById(key);
           if (targetEl) targetEl.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
         }
@@ -483,9 +483,9 @@
     startTypewriterRotate();
 
     const key = (location.hash || '').replace(/^#/, '');
-    if (isLunaAnchor(key)) {
-      const lunaSlide = document.querySelector('[data-hash="luna"]');
-      if (lunaSlide) {
+    if (iskaelAnchor(key)) {
+      const kaelSlide = document.querySelector('[data-hash="kael"]');
+      if (kaelSlide) {
         window.dispatchEvent(new HashChangeEvent('hashchange'));
       }
     }

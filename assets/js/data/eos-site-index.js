@@ -25,7 +25,7 @@ export const eosSitePages = [
     "scope": "classic",
     "family": "projects",
     "title": "Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded • Blockchain • Construction",
-    "description": "Projects by Uchenna Anozie: Ainor (AI), Luna (assistant), ACEBot/FieldEye/DERET (embedded), Chains (blockchain), and construction tooling."
+    "description": "Projects by Uchenna Anozie: Ainor (AI), kael (assistant), ACEBot/FieldEye/DERET (embedded), Chains (blockchain), and construction tooling."
   },
   {
     "key": "page:/scroll_paper/",
@@ -43,7 +43,7 @@ export const eosSitePages = [
     "scope": "classic",
     "family": "ai",
     "title": "AI • 1807-chain - Uchenna Anozie (webbaby) | Assistants • NLP • Pipelines",
-    "description": "AI portfolio by Uchenna Anozie (webbaby) | Computer Scientist: Luna (flagship), Ainor (living-house AI), NLP tooling, data and model pipelines, and vision & edge tie-ins like VIGI AI Cam. Local-first, production-minded with observability and guardrails."
+    "description": "AI portfolio by Uchenna Anozie (webbaby) | Computer Scientist: kael (flagship), Ainor (living-house AI), NLP tooling, data and model pipelines, and vision & edge tie-ins like VIGI AI Cam. Local-first, production-minded with observability and guardrails."
   },
   {
     "key": "page:/robotics/",
@@ -52,7 +52,7 @@ export const eosSitePages = [
     "scope": "classic",
     "family": "robotics",
     "title": "Robotics • Embedded Systems & AI Vision | Uchenna Anozie (webbaby)",
-    "description": "Embedded systems & robotics by Uchenna Anozie (webbaby): ACEBOT, X-EYE, VIGI AI Cam, and DERET concept. Sensor fusion, FSM, telemetry, orchestrated by Luna in hive mode."
+    "description": "Embedded systems & robotics by Uchenna Anozie (webbaby): ACEBOT, X-EYE, VIGI AI Cam, and DERET concept. Sensor fusion, FSM, telemetry, orchestrated by kael in hive mode."
   },
   {
     "key": "page:/chains/",
@@ -1301,19 +1301,19 @@ export const eosUploads = [
     ]
   },
   {
-    "key": "asset:/assets/images/chains/lunaorch.png",
-    "path": "/assets/images/chains/lunaorch.png",
-    "name": "lunaorch.png",
-    "stem": "lunaorch",
+    "key": "asset:/assets/images/chains/kaelorch.png",
+    "path": "/assets/images/chains/kaelorch.png",
+    "name": "kaelorch.png",
+    "stem": "kaelorch",
     "ext": "png",
     "kind": "image",
     "directory": "assets/images/chains",
     "bytes": 1487114,
     "updated": "2025-09-28T11:54:26.037Z",
     "aliases": [
-      "/assets/images/chains/lunaorch.png",
-      "lunaorch.png",
-      "lunaorch",
+      "/assets/images/chains/kaelorch.png",
+      "kaelorch.png",
+      "kaelorch",
       "assets",
       "images",
       "chains"
@@ -1679,38 +1679,38 @@ export const eosUploads = [
     ]
   },
   {
-    "key": "asset:/assets/images/ai/ai-luna.png",
-    "path": "/assets/images/ai/ai-luna.png",
-    "name": "ai-luna.png",
-    "stem": "ai-luna",
+    "key": "asset:/assets/images/ai/ai-kael.png",
+    "path": "/assets/images/ai/ai-kael.png",
+    "name": "ai-kael.png",
+    "stem": "ai-kael",
     "ext": "png",
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1113867,
     "updated": "2025-09-24T16:10:53.136Z",
     "aliases": [
-      "/assets/images/ai/ai-luna.png",
-      "ai-luna.png",
-      "ai-luna",
+      "/assets/images/ai/ai-kael.png",
+      "ai-kael.png",
+      "ai-kael",
       "assets",
       "images",
       "ai"
     ]
   },
   {
-    "key": "asset:/assets/images/ai/luna-br.png",
-    "path": "/assets/images/ai/luna-br.png",
-    "name": "luna-br.png",
-    "stem": "luna-br",
+    "key": "asset:/assets/images/ai/kael-br.png",
+    "path": "/assets/images/ai/kael-br.png",
+    "name": "kael-br.png",
+    "stem": "kael-br",
     "ext": "png",
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1064314,
     "updated": "2025-09-24T16:09:21.354Z",
     "aliases": [
-      "/assets/images/ai/luna-br.png",
-      "luna-br.png",
-      "luna-br",
+      "/assets/images/ai/kael-br.png",
+      "kael-br.png",
+      "kael-br",
       "assets",
       "images",
       "ai"
