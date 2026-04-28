@@ -5,16 +5,18 @@
     --elka-surface-2: #141b2e;
     --elka-surface-3: #18213a;
     --elka-border: rgba(114, 158, 255, 0.25);
-    --elka-border-strong: rgba(114, 158, 255, 0.42);
+    --elka-border-strong: rgba(114, 158, 255, 0.45);
     --elka-accent: #48a7ff;
     --elka-accent-2: #3aeecd;
     --elka-accent-soft: rgba(72, 167, 255, 0.15);
-    --elka-accent-softer: rgba(72, 167, 255, 0.08);
     --elka-text: #f7f9ff;
     --elka-text-soft: #b8c2d9;
     --elka-text-muted: #8793ad;
     --elka-grid: rgba(72, 167, 255, 0.08);
+    --elka-header-offset: calc(var(--header-height, 72px) + 8px);
 
+    color: var(--elka-text);
+    font-family: "Space Grotesk", "Sora", "Avenir Next", "Segoe UI", sans-serif;
     background:
       linear-gradient(var(--elka-grid) 1px, transparent 1px),
       linear-gradient(90deg, var(--elka-grid) 1px, transparent 1px),
@@ -26,7 +28,12 @@
   }
 
   body[data-route="elka-0"] main {
-    padding-top: var(--header-height);
+    padding-top: var(--header-height, 72px);
+  }
+
+  body[data-route="elka-0"] ::selection {
+    background: rgba(58, 238, 205, 0.3);
+    color: #ffffff;
   }
 
   .elka-main {
@@ -35,11 +42,19 @@
     position: relative;
   }
 
+  .elka-main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 10%, rgba(72, 167, 255, 0.06), transparent 55%);
+  }
+
   .elka-section {
     width: min(100% - 24px, 1100px);
     margin: 0 auto;
     padding: 1rem 0 2.2rem;
-    scroll-margin-top: calc(var(--header-height) + 24px);
+    scroll-margin-top: calc(var(--header-height, 72px) + 28px);
   }
 
   .elka-surface {
@@ -50,6 +65,7 @@
     border-radius: 18px;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
     padding: clamp(1rem, 2vw, 1.8rem);
+    transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
   }
 
   .elka-surface::before {
@@ -61,6 +77,12 @@
       linear-gradient(135deg, rgba(72, 167, 255, 0.12), transparent 32%),
       radial-gradient(circle at top right, rgba(58, 238, 205, 0.1), transparent 28%);
     opacity: 0.75;
+  }
+
+  .elka-surface:hover {
+    border-color: var(--elka-border-strong);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+    transform: translateY(-1px);
   }
 
   .elka-surface>* {
@@ -135,24 +157,33 @@
     border-color: transparent;
     color: #031428;
     font-weight: 800;
+    transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
   }
 
   .btn.btn--elka:hover,
   .btn.btn--elka:focus-visible {
     background: #8bc7ff;
     color: #031428;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(72, 167, 255, 0.35);
   }
 
   .btn.secondary.btn--elka {
     color: #e7f1ff;
     border-color: var(--elka-border);
-    background: transparent;
+    background: rgba(8, 12, 22, 0.5);
   }
 
   .btn.secondary.btn--elka:hover,
   .btn.secondary.btn--elka:focus-visible {
     background: var(--elka-accent-soft);
     border-color: var(--elka-border-strong);
+  }
+
+  a.btn--elka.is-disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    filter: grayscale(0.25);
   }
 
   .elka-section h2 {
@@ -180,14 +211,25 @@
     gap: 0.45rem;
     overflow-x: auto;
     position: sticky;
-    top: calc(var(--header-height) + 8px);
+    top: var(--elka-header-offset);
     z-index: 20;
     border: 1px solid var(--elka-border);
     border-radius: 999px;
-    background: rgba(7, 9, 15, 0.76);
+    background: rgba(7, 9, 15, 0.78);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(138, 186, 255, 0.55) transparent;
+  }
+
+  .elka-docnav::-webkit-scrollbar {
+    height: 7px;
+  }
+
+  .elka-docnav::-webkit-scrollbar-thumb {
+    background: rgba(138, 186, 255, 0.45);
+    border-radius: 999px;
   }
 
   .elka-docnav a {
@@ -197,6 +239,8 @@
     border-radius: 999px;
     padding: 0.45rem 0.75rem;
     font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
   }
 
   .elka-docnav a:hover,
@@ -205,6 +249,11 @@
     color: #f7fbff;
     background: var(--elka-accent-soft);
     border-color: var(--elka-border);
+  }
+
+  .elka-docnav a:focus-visible {
+    outline: 2px solid rgba(58, 238, 205, 0.7);
+    outline-offset: 1px;
   }
 
   .elka-hero-metrics {
@@ -410,13 +459,28 @@
     color: #dcecff;
     border-radius: 999px;
     padding: 0.35rem 0.7rem;
-    cursor: var(--cursor-pointer);
+    cursor: pointer;
+    font: inherit;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
   }
 
   .copy-btn:hover,
   .copy-btn:focus-visible {
     background: var(--elka-accent-soft);
+    border-color: var(--elka-border-strong);
     outline: none;
+  }
+
+  .copy-btn[data-copied="true"] {
+    background: rgba(58, 238, 205, 0.18);
+    border-color: rgba(58, 238, 205, 0.55);
+    color: #dcfff7;
+  }
+
+  .copy-btn[data-copied="false"] {
+    background: rgba(255, 120, 120, 0.16);
+    border-color: rgba(255, 140, 140, 0.55);
+    color: #ffdede;
   }
 
   .code-panel pre {
@@ -428,6 +492,118 @@
   .code-panel code {
     color: #bfe2ff;
     white-space: pre;
+    font-family: "JetBrains Mono", "IBM Plex Mono", "Consolas", monospace;
+  }
+
+  .elka-logo-pair {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+
+  .elka-pair-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(10, 16, 28, 0.65);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-radius: 999px;
+    padding: 0.35rem 1rem 0.35rem 0.85rem;
+    border: 1px solid var(--elka-border);
+    color: var(--elka-text-soft);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .elka-pair-badge img {
+    height: 28px;
+    width: auto;
+  }
+
+  .elka-hero-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .elka-hero-logo img {
+    max-height: 72px;
+    width: auto;
+  }
+
+  .elka-badge-tag {
+    background: var(--elka-accent-soft);
+    border-radius: 40px;
+    padding: 0.2rem 0.9rem;
+    border: 1px solid var(--elka-border);
+    color: #b9dcff;
+    font-size: 0.85rem;
+  }
+
+  .non-goals-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+
+  .non-goals-badges span {
+    background: var(--elka-surface-3);
+    border-radius: 40px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    border: 1px solid rgba(114, 158, 255, 0.2);
+  }
+
+  .elka-statement-card {
+    background: linear-gradient(135deg, rgba(72, 167, 255, 0.12), transparent);
+    border-left: 3px solid var(--elka-accent);
+    padding: 0.8rem 1rem;
+    border-radius: 14px;
+    margin-top: 1rem;
+  }
+
+  .capabilities-grid,
+  .home-feature-grid,
+  .coord-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  .capabilities-grid li,
+  .home-feature-grid div,
+  .coord-grid div {
+    background: var(--elka-surface-2);
+    border: 1px solid var(--elka-border);
+    border-radius: 12px;
+    padding: 0.75rem;
+  }
+
+  .contract-list,
+  .priority-list {
+    background: var(--elka-surface-2);
+    border: 1px solid var(--elka-border);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .contract-list li,
+  .priority-list li {
+    margin: 0.5rem 0;
+  }
+
+  .elka-quote-block {
+    font-size: 0.95rem;
+    border-left: 2px solid var(--elka-accent-2);
+    padding-left: 1rem;
+    margin: 1rem 0 0.5rem;
+    color: #cad4ff;
   }
 
   .final-cta {
@@ -438,6 +614,17 @@
   .final-cta h2 {
     max-width: 760px;
     margin-inline: auto;
+  }
+
+  .elka-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 400ms ease, transform 400ms ease;
+  }
+
+  .elka-reveal.is-in-view {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: 1100px) {
@@ -465,6 +652,17 @@
 
     .elka-docnav {
       border-radius: 18px;
+      top: calc(var(--header-height, 72px) + 6px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .elka-hero-logo img {
+      max-height: 52px;
+    }
+
+    .elka-pair-badge img {
+      height: 22px;
     }
   }
 
@@ -480,6 +678,10 @@
     .elka-title {
       letter-spacing: -0.04em;
     }
+
+    .elka-cta {
+      flex-direction: column;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -488,7 +690,40 @@
     body[data-route="elka-0"] *::before,
     body[data-route="elka-0"] *::after {
       transition: none !important;
+      animation: none !important;
       scroll-behavior: auto !important;
+    }
+
+    .elka-reveal,
+    .elka-reveal.is-in-view {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media print {
+    body[data-route="elka-0"] {
+      background: #ffffff !important;
+      color: #0f172a !important;
+    }
+
+    .elka-docnav,
+    .elka-cta,
+    .copy-btn,
+    .skip-link {
+      display: none !important;
+    }
+
+    .elka-section {
+      width: 100%;
+      padding: 0.4rem 0 1rem;
+      page-break-inside: avoid;
+    }
+
+    .elka-surface {
+      background: #ffffff !important;
+      border-color: #d1d9eb !important;
+      box-shadow: none !important;
     }
   }
 }

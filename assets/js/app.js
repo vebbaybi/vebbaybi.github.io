@@ -1,10 +1,10 @@
 ﻿import { updateMeta } from './meta/meta.js';
+import { initScrollPaper } from './pages/scroll_paper.js';
 import { initFooter } from './ui/components/footer.js';
 import { initHeader } from './ui/components/header.js';
 import { initNav } from './ui/components/nav.js';
-import { initThemeToggle } from './ui/theme.js';
-import { initScrollPaper } from './pages/scroll_paper.js';
 import { initContractorBubble } from './ui/contractor-bubbles.js';
+import { initThemeToggle } from './ui/theme.js';
 
 const pageMeta = {
   '/':               { title: 'Home â€” 1807-Chain',            desc: 'webbaby portfolio' },
@@ -24,7 +24,8 @@ const pageMeta = {
   '/contact':        { title: 'Contact â€” 1807-Chain',         desc: 'Get in touch' },
   '/links':          { title: 'Links â€” 1807-Chain',           desc: 'Link-in-bio hub' },
   '/blog':           { title: 'Blog â€” 1807-Chain',            desc: 'Posts and notes' },
-  '/now':            { title: 'Now â€” 1807-Chain',             desc: 'What Iâ€™m focused on now' },
+  '/now': { title: 'Now â€” 1807-Chain', desc: 'What Iâ€™m focused on now' },
+  '/elka-0':          { title: 'ELKA â€” 1807-Chain',            desc: 'ELKA Model -> Elka-0, elka is a conceptual framework for understanding and developing intelligent systems.' },
   '/faq':            { title: 'FAQ â€” 1807-Chain',             desc: 'Frequently asked questions' },
   '/legal':          { title: 'Legal â€” 1807-Chain',           desc: 'Privacy & Terms' },
   '/1807-contractor': { title: '1807 Contractor â€” The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },

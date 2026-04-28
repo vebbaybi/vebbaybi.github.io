@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" data-app="1807" data-page="elka-0" data-version="v1.1">
+<html lang="en" data-app="1807" data-page="elka-0" data-version="v1.2">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>ELKA-0 | Open Cognitive Engine for Kael | The 1807</title>
+  <title>ELKA-0 Documentation | Cognitive Engine API | The 1807</title>
   <link rel="canonical" href="https://the1807.xyz/elka-0/" />
 
   <meta name="description"
-    content="ELKA-0 is the open cognitive engine powering Kael, built for memory-native reasoning, multimodal grounding, structured planning, safety-aware decisions, and embodied AI systems." />
+    content="Official ELKA-0 documentation: quickstart, runtime endpoints, request and response schemas, architecture, safety contracts, deployment profiles, and contribution workflow." />
   <meta name="keywords"
-    content="ELKA-0, Kael, The 1807, cognitive engine, open-source AI, embodied AI, memory-native AI, multimodal AI, AI runtime, robotics AI, edge AI, planning engine, safety-aware AI" />
+    content="ELKA-0, ELKA documentation, cognitive engine, model runtime, inference API, memory-native AI, multimodal reasoning, safety-aware AI, deployment profiles, open source model docs" />
   <meta name="theme-color" content="#07090f" />
   <meta name="color-scheme" content="dark light" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <meta property="og:title" content="ELKA-0 | Open Cognitive Engine for Kael" />
+  <meta property="og:title" content="ELKA-0 Documentation | Cognitive Engine API" />
   <meta property="og:description"
-    content="Memory-native cognitive infrastructure for real-world AI systems, built to power Kael and future The 1807 systems." />
+    content="Build with ELKA-0 using documented endpoints, typed contracts, architecture patterns, and production-safe runtime rules." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://the1807.xyz/elka-0/" />
   <meta property="og:image" content="https://the1807.xyz/assets/images/ai.webp" />
-  <meta property="og:image:alt" content="ELKA-0 cognitive engine architecture by The 1807" />
+  <meta property="og:image:alt" content="ELKA-0 documentation cover by The 1807" />
   <meta property="og:site_name" content="The 1807" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ELKA-0 | Open Cognitive Engine for Kael" />
+  <meta name="twitter:title" content="ELKA-0 Documentation | Cognitive Engine API" />
   <meta name="twitter:description"
-    content="Open cognitive engine for memory-native embodied AI systems, Kael runtime integration, planning, safety, and multimodal grounding." />
+    content="Reference guide for ELKA-0 runtime endpoints, schemas, deployment, and safety-aware integration." />
   <meta name="twitter:image" content="https://the1807.xyz/assets/images/ai.webp" />
 
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -62,7 +62,7 @@
     "programmingLanguage": "Python",
     "runtimePlatform": "Cross-platform",
     "applicationCategory": "Artificial Intelligence Engine",
-    "description": "Open cognitive engine for memory-native reasoning, multimodal grounding, structured planning, safety-aware decision logic, and Kael runtime integration.",
+    "description": "Open cognitive engine with memory-native reasoning, multimodal grounding, structured planning, and safety-aware decision logic.",
     "author": {
       "@type": "Person",
       "name": "Uchenna Emmanuel Anozie",
@@ -85,350 +85,446 @@
   <nav-placeholder></nav-placeholder>
 
   <main id="main" class="elka-main" tabindex="-1">
-    <aside class="elka-docnav" aria-label="ELKA-0 page navigation">
+    <aside class="elka-docnav" aria-label="ELKA-0 documentation navigation">
       <a href="#overview">Overview</a>
-      <a href="#stack">Stack</a>
-      <a href="#specs">Specs</a>
-      <a href="#capabilities">Capabilities</a>
+      <a href="#quickstart">Quickstart</a>
+      <a href="#endpoints">Endpoints</a>
+      <a href="#schemas">Schemas</a>
       <a href="#architecture">Architecture</a>
-      <a href="#developers">Developers</a>
-      <a href="#open-source">Open Source</a>
+      <a href="#safety">Safety</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#contribute">Contribute</a>
       <a href="#roadmap">Roadmap</a>
     </aside>
 
     <section id="overview" class="elka-section elka-hero" aria-labelledby="elka-title">
       <div class="elka-surface elka-surface--hero">
-        <p class="elka-eyebrow">The 1807 · Kael Runtime Intelligence</p>
+        <div class="elka-logo-pair">
+          <div class="elka-pair-badge">
+            <img src="/assets/images/elka/elka-nbkgl.png" alt="ELKA mark" loading="lazy">
+            <span>ELKA-0 documentation</span>
+          </div>
+        </div>
 
+        <div class="elka-hero-logo">
+          <img src="/assets/images/elka/elka-0.png" alt="ELKA-0 core logo" loading="lazy">
+          <span class="elka-badge-tag">Spec first. Runtime ready.</span>
+        </div>
+
+        <p class="elka-eyebrow">Reference Guide</p>
+        <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
+          "Memory-Native Reasoning",
+          "Multimodal Event Grounding",
+          "Structured Action Planning",
+          "Safety-Aware Decision Logic",
+          "Interruptible Dialogue Flows",
+          "Retrieval-Augmented Cognition",
+          "Uncertainty Scoring and Gating",
+          "Persona-Adaptive Behavior."
+        ]'>
+          Memory-Native Reasoning
+        </p>
         <h1 id="elka-title" class="elka-title">
           ELKA-0
-          <span>Open Cognitive Engine</span>
+          <span>Open Cognitive Engine API</span>
         </h1>
 
-        <p class="elka-subtitle">
-          Memory-native cognition for embodied AI systems.
-        </p>
+        <p class="elka-subtitle">A model-engine layer for memory-native, multimodal, safety-scored reasoning.</p>
 
         <p class="elka-lead">
-          ELKA-0 is the cognitive engine designed to power Kael and future real-world AI systems through persistent
-          memory, multimodal grounding, structured planning, temporal reasoning, and safety-aware decision logic.
+          This page documents ELKA-0 itself: how to run it, call it, integrate it, and evaluate it. ELKA-0 can power
+          multiple runtimes, including Kael, but this documentation focuses on ELKA contracts and behavior.
         </p>
 
         <div class="elka-cta" role="group" aria-label="Primary ELKA-0 actions">
-          <a class="btn btn--elka" data-elka-link="ELKA_REPO_URL" target="_blank" rel="noopener noreferrer">
-            View Repository
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_FORK_URL" target="_blank" rel="noopener noreferrer">
-            Fork ELKA-0
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_ARCH_URL" target="_blank" rel="noopener noreferrer">
-            Read Architecture
-          </a>
+          <a class="btn btn--elka" data-elka-link="ELKA_REPO_URL" target="_blank" rel="noopener noreferrer">View
+            Repository</a>
+          <a class="btn secondary btn--elka" data-elka-link="ELKA_DOCS_URL" target="_blank"
+            rel="noopener noreferrer">Read README</a>
+          <a class="btn secondary btn--elka" data-elka-link="ELKA_CONTRIBUTE_URL" target="_blank"
+            rel="noopener noreferrer">Contributing Guide</a>
         </div>
 
         <dl class="elka-hero-metrics" aria-label="ELKA-0 quick facts">
           <div>
-            <dt>Type</dt>
-            <dd>Cognitive Engine</dd>
+            <dt>Language</dt>
+            <dd>Python</dd>
           </div>
           <div>
-            <dt>Runtime Target</dt>
-            <dd>Kael</dd>
+            <dt>Service Version</dt>
+            <dd>0.2.0</dd>
           </div>
           <div>
-            <dt>Mode</dt>
-            <dd>Local · Hybrid · Edge</dd>
+            <dt>Runtime Endpoints</dt>
+            <dd>4 public routes</dd>
           </div>
           <div>
             <dt>Status</dt>
-            <dd>v0 Foundation</dd>
+            <dd>Open specification</dd>
           </div>
         </dl>
       </div>
     </section>
 
-    <section id="stack" class="elka-section" aria-labelledby="identity-stack-title">
+    <section id="quickstart" class="elka-section" aria-labelledby="quickstart-title">
       <div class="elka-surface">
-        <p class="elka-kicker">Identity</p>
-        <h2 id="identity-stack-title">The 1807 → Kael → ELKA-0</h2>
+        <p class="elka-kicker">Get Started</p>
+        <h2 id="quickstart-title">Quickstart in 60 Seconds</h2>
         <p class="elka-intro">
-          The product stack is separated so the public system, runtime layer, and cognition engine each have a clean
-          role.
+          Start the service locally, verify health, then call inference. These commands reflect the current repo
+          runtime layout.
         </p>
 
-        <div class="stack-flow" role="list" aria-label="The 1807 product stack">
-          <article class="stack-node" role="listitem">
-            <strong>The 1807</strong>
-            <span>Builder ecosystem for applied AI, robotics, edge systems, and intelligent infrastructure.</span>
-          </article>
+        <ul class="deployment-grid" role="list">
+          <li><strong>1. Install:</strong> Create your environment and install `requirements.txt`.</li>
+          <li><strong>2. Launch:</strong> Start ELKA-0 with the documented uvicorn factory command.</li>
+          <li><strong>3. Verify:</strong> Call `GET /health` before sending inference traffic.</li>
+          <li><strong>4. Iterate:</strong> Use `/infer`, `/chat`, or `/chat/stream` based on your integration path.</li>
+        </ul>
 
-          <div class="stack-arrow" aria-hidden="true">→</div>
-
-          <article class="stack-node" role="listitem">
-            <strong>Kael</strong>
-            <span>User-facing AI runtime responsible for sessions, orchestration, execution, and system control.</span>
-          </article>
-
-          <div class="stack-arrow" aria-hidden="true">→</div>
-
-          <article class="stack-node" role="listitem">
-            <strong>ELKA-0</strong>
-            <span>Cognitive engine that remembers, reasons, grounds, plans, and scores safety before execution.</span>
-          </article>
+        <div class="code-panel" aria-label="Quickstart shell commands">
+          <div class="code-panel__header">
+            <span>Local Runtime</span>
+            <button class="copy-btn" type="button" data-copy-target="quickstart-code">Copy</button>
+          </div>
+          <pre><code id="quickstart-code">pip install -r requirements.txt
+uvicorn infrastructure.serving.app:create_service_app --factory --host 0.0.0.0 --port 8080
+curl http://127.0.0.1:8080/health</code></pre>
         </div>
       </div>
     </section>
 
-    <section id="specs" class="elka-section" aria-labelledby="specs-title">
+    <section id="endpoints" class="elka-section" aria-labelledby="endpoints-title">
       <div class="elka-surface">
-        <p class="elka-kicker">Model Card</p>
-        <h2 id="specs-title">Engine Specs</h2>
+        <p class="elka-kicker">API Reference</p>
+        <h2 id="endpoints-title">Runtime Endpoints</h2>
         <p class="elka-intro">
-          ELKA-0 is not positioned as a simple chatbot wrapper. It is a cognition layer for systems that need memory,
-          context, planning, and safer action decisions.
+          ELKA-0 currently exposes four production routes. Security guards can enforce API keys, signatures, tenant
+          boundaries, and rate limits.
         </p>
 
         <dl class="spec-grid">
           <div>
-            <dt>Engine Class</dt>
-            <dd>Memory-native cognitive engine</dd>
+            <dt>GET /health</dt>
+            <dd>Returns uptime, profile, memory health, request count, and average latency.</dd>
           </div>
           <div>
-            <dt>Primary Runtime</dt>
-            <dd>Kael assistant runtime</dd>
+            <dt>POST /infer</dt>
+            <dd>Runs structured reasoning using `InferRequest` and returns typed `InferResponse`.</dd>
           </div>
           <div>
-            <dt>Input Types</dt>
-            <dd>Text, sensor events, device telemetry, structured context</dd>
+            <dt>POST /chat</dt>
+            <dd>Turn-based chat interface over `ChatRequest` for session conversation flows.</dd>
           </div>
           <div>
-            <dt>Output Types</dt>
-            <dd>Reasoned response, structured plan, risk score, action proposal</dd>
+            <dt>POST /chat/stream</dt>
+            <dd>Streaming chat via `application/x-ndjson` chunks for real-time response delivery.</dd>
           </div>
           <div>
-            <dt>Deployment Modes</dt>
-            <dd>Local, hybrid, edge fallback, high-compute</dd>
+            <dt>Response Headers</dt>
+            <dd>`X-Request-Id` and `X-ELKA-Latency-Ms` are set by middleware on each request.</dd>
           </div>
           <div>
-            <dt>System Targets</dt>
-            <dd>Kael, AinorLiving, Campball, robotics, automation, edge intelligence</dd>
+            <dt>Optional Security Headers</dt>
+            <dd>`X-API-Key`, `X-Signature`, and tenant header support when configured.</dd>
           </div>
         </dl>
+
+        <div class="code-panel" aria-label="Health endpoint example">
+          <div class="code-panel__header">
+            <span>Health Check Example</span>
+            <button class="copy-btn" type="button" data-copy-target="health-curl-code">Copy</button>
+          </div>
+          <pre><code id="health-curl-code">curl -X GET "http://127.0.0.1:8080/health"</code></pre>
+        </div>
       </div>
     </section>
 
-    <section id="capabilities" class="elka-section" aria-labelledby="capabilities-title">
+    <section id="schemas" class="elka-section" aria-labelledby="schemas-title">
       <div class="elka-surface">
-        <p class="elka-kicker">Capability Layer</p>
-        <h2 id="capabilities-title">Core Capabilities</h2>
+        <p class="elka-kicker">Contracts</p>
+        <h2 id="schemas-title">Request and Response Schemas</h2>
+        <p class="elka-intro">
+          ELKA-0 is typed end to end. The integration surface is stable when you treat these structures as the source
+          of truth.
+        </p>
 
         <ul class="elka-grid" role="list">
-          <li><strong>Retrieval-Native Memory</strong><span>Persistent context retrieval for long-running AI
-              systems.</span></li>
-          <li><strong>Multimodal Grounding</strong><span>Fusion path for text, device state, sensor events, and
-              environment signals.</span></li>
-          <li><strong>Structured Planning</strong><span>Converts intent into executable plans with explicit
-              constraints.</span></li>
-          <li><strong>Temporal Reasoning</strong><span>Tracks sequence, state drift, event order, and long-horizon
-              context.</span></li>
-          <li><strong>World Modeling</strong><span>Maintains a working model of entities, devices, spaces, and system
-              state.</span></li>
-          <li><strong>Uncertainty Awareness</strong><span>Separates confident decisions from assumptions, missing data,
-              and risk.</span></li>
-          <li><strong>Safety Conditioning</strong><span>Scores actions before runtime execution or external system
-              calls.</span></li>
-          <li><strong>Interruptible Dialogue</strong><span>Supports real-world sessions where user intent can shift
-              midstream.</span></li>
+          <li><strong>InferRequest</strong><span>Wrapper for `ReasoningRequest`, with optional trace flag.</span></li>
+          <li><strong>ReasoningRequest</strong><span>Session id, user text, events, permissions, profile, and safety
+              controls.</span></li>
+          <li><strong>InferResponse</strong><span>Decision status, confidence, structured plan, explanation trace,
+              and latency.</span></li>
+          <li><strong>ChatRequest</strong><span>Session turns, optional permissions set, profile name, and
+              metadata.</span>
+          </li>
+          <li><strong>Perception Events</strong><span>`text`, `vision`, `audio`, `sensor`, `device_state`,
+              `room_state`.</span></li>
+          <li><strong>ActionPlan</strong><span>Objective, ordered steps, risk level, permission requirement, fallback
+              strategy.</span></li>
         </ul>
+
+        <div class="code-panel" aria-label="Infer request example">
+          <div class="code-panel__header">
+            <span>Infer Request Example</span>
+            <button class="copy-btn" type="button" data-copy-target="infer-request-code">Copy</button>
+          </div>
+          <pre><code id="infer-request-code">{
+  "request": {
+    "session_id": "session-01",
+    "user_text": "Review backyard motion event and recommend next safe action",
+    "events": [
+      {
+        "kind": "text",
+        "text": "Motion alert received from backyard camera"
+      }
+    ],
+    "permissions": ["observe", "notify"],
+    "profile_name": "core",
+    "allow_actions": true
+  },
+  "trace": true
+}</code></pre>
+        </div>
+
+        <div class="code-panel" aria-label="Infer response example">
+          <div class="code-panel__header">
+            <span>Infer Response Shape</span>
+            <button class="copy-btn" type="button" data-copy-target="infer-response-code">Copy</button>
+          </div>
+          <pre><code id="infer-response-code">{
+  "ok": true,
+  "response": {
+    "request_id": "...",
+    "status": "planned",
+    "natural_language_response": "...",
+    "confidence": 0.82,
+    "plan": { "objective": "...", "steps": [] },
+    "explanation": { "summary": "...", "evidence": [] },
+    "escalation": "notify",
+    "profile_name": "core"
+  },
+  "model_version": "v0",
+  "latency_ms": 91.4
+}</code></pre>
+        </div>
       </div>
     </section>
 
     <section id="architecture" class="elka-section" aria-labelledby="architecture-title">
       <div class="elka-surface">
         <p class="elka-kicker">System Design</p>
-        <h2 id="architecture-title">Architecture Flow</h2>
+        <h2 id="architecture-title">Layered Architecture</h2>
+        <p class="elka-intro">Dependency direction is explicit: `core -> model -> cognition -> world_model -> policies
+          -> safety -> infrastructure -> evaluation/tests`.</p>
 
         <ol class="elka-flow" aria-label="ELKA-0 architecture flow">
-          <li class="flow-step">User · Sensor · Device Event</li>
-          <li class="flow-arrow" aria-hidden="true">→</li>
-          <li class="flow-step">Kael Runtime</li>
-          <li class="flow-arrow" aria-hidden="true">→</li>
-          <li class="flow-step">ELKA-0 Cognition</li>
-          <li class="flow-arrow" aria-hidden="true">→</li>
-          <li class="flow-step">Memory · Perception · Planning · Safety</li>
-          <li class="flow-arrow" aria-hidden="true">→</li>
-          <li class="flow-step">Structured Response · Action Plan</li>
-          <li class="flow-arrow" aria-hidden="true">→</li>
-          <li class="flow-step">Kael Execution Layer</li>
+          <li class="flow-step">Input Event</li>
+          <li class="flow-arrow" aria-hidden="true">-></li>
+          <li class="flow-step">Context Builder</li>
+          <li class="flow-arrow" aria-hidden="true">-></li>
+          <li class="flow-step">Reasoning Engine</li>
+          <li class="flow-arrow" aria-hidden="true">-></li>
+          <li class="flow-step">Planning and Policy</li>
+          <li class="flow-arrow" aria-hidden="true">-></li>
+          <li class="flow-step">Safety Gates</li>
+          <li class="flow-arrow" aria-hidden="true">-></li>
+          <li class="flow-step">Structured Output</li>
         </ol>
 
         <div class="architecture-panels">
           <article>
-            <h3>Memory Layer</h3>
-            <p>Stores and retrieves useful context for consistent reasoning across sessions, devices, and environments.
-            </p>
+            <h3>Core Contracts</h3>
+            <p>Shared interfaces, schema wrappers, constants, and orchestration boundaries.</p>
           </article>
           <article>
-            <h3>Perception Layer</h3>
-            <p>Normalizes multimodal signals into structured context that the engine can reason over.</p>
+            <h3>Cognition and Memory</h3>
+            <p>Inference orchestration, retrieval-native memory usage, uncertainty handling, and explainability.</p>
           </article>
           <article>
-            <h3>Planning Layer</h3>
-            <p>Generates explicit action paths, checks dependencies, and prepares execution-ready instructions.</p>
+            <h3>Policy and Safety</h3>
+            <p>Permission checks, escalation scoring, refusal paths, and risk-aware action constraints.</p>
           </article>
           <article>
-            <h3>Safety Layer</h3>
-            <p>Evaluates uncertainty, permissions, failure modes, and risk before an action reaches the runtime.</p>
+            <h3>Infrastructure and Serving</h3>
+            <p>FastAPI runtime, security middleware, observability hooks, and deployment entrypoints.</p>
           </article>
         </div>
-      </div>
-    </section>
 
-    <section id="developers" class="elka-section" aria-labelledby="developer-title">
-      <div class="elka-surface">
-        <p class="elka-kicker">Builder Interface</p>
-        <h2 id="developer-title">Developer Integration</h2>
-
-        <ul class="dev-grid" role="list">
-          <li>Standalone engine first, then importable into Kael runtime.</li>
-          <li>Typed interfaces for cognition modules and adapters.</li>
-          <li>Structured input and output contracts for deterministic tooling.</li>
-          <li>External memory backends supported by interface adapters.</li>
-          <li>Model-provider-agnostic inference pathways.</li>
-          <li>Local, hybrid, edge, and high-compute deployment paths.</li>
-        </ul>
-
-        <div class="code-panel" aria-label="ELKA-0 integration shape">
+        <div class="code-panel" aria-label="Integration contract">
           <div class="code-panel__header">
             <span>Integration Contract</span>
             <button class="copy-btn" type="button" data-copy-target="contract-code">Copy</button>
           </div>
-          <pre><code id="contract-code">Input Context → ELKA-0 Reasoning → Risk Score → Structured Plan → Kael Execution</code></pre>
+          <pre><code id="contract-code">Input Context -> ELKA Reasoning -> Risk Score -> Structured Plan -> Runtime Execution</code></pre>
         </div>
       </div>
     </section>
 
-    <section id="real-world" class="elka-section" aria-labelledby="use-title">
+    <section id="safety" class="elka-section" aria-labelledby="safety-title">
       <div class="elka-surface">
-        <p class="elka-kicker">Use Cases</p>
-        <h2 id="use-title">Real-World AI Use</h2>
+        <p class="elka-kicker">Governance</p>
+        <h2 id="safety-title">Safety, Permissions, and Uncertainty</h2>
+        <p class="elka-intro">
+          ELKA-0 is designed to prefer truthful, low-risk actions over fluent but unsafe behavior.
+        </p>
 
-        <ul class="use-grid" role="list">
-          <li><strong>Kael:</strong> Uses ELKA-0 as the cognition core while Kael runtime layers handle execution.</li>
-          <li><strong>AinorLiving:</strong> Supplies room and home context signals for grounded cognition.</li>
-          <li><strong>Campball Sentinel:</strong> Sends environment and event telemetry into Kael and ELKA reasoning
-            paths.</li>
-          <li><strong>Robotics:</strong> Supports safer planning, event interpretation, and device-aware decision logic.
-          </li>
-          <li><strong>Industrial Systems:</strong> Converts noisy machine events into structured observations and
-            reasoning paths.</li>
-          <li><strong>Edge Assistants:</strong> Keeps cognition usable when systems need local-first resilience.</li>
-        </ul>
-      </div>
-    </section>
+        <ol class="contract-list">
+          <li>Check permission requirements before impactful action.</li>
+          <li>Prefer truth over fluency and ask when context is missing.</li>
+          <li>Use minimum safe action first, then escalate if needed.</li>
+          <li>Return explicit refusal with safe fallback when constraints fail.</li>
+          <li>Preserve privacy and user trust as default runtime behavior.</li>
+          <li>Attach explanation traces for important decisions.</li>
+          <li>Allow immediate human override with no delay path.</li>
+          <li>Record audit-friendly lifecycle stages for post-review.</li>
+        </ol>
 
-    <section id="open-source" class="elka-section" aria-labelledby="oss-title">
-      <div class="elka-surface">
-        <p class="elka-kicker">Distribution</p>
-        <h2 id="oss-title">Open Source</h2>
-
-        <ul class="oss-grid" role="list">
-          <li>
-            <strong>License:</strong> See the repository license file for the active license selection.
-          </li>
-          <li>
-            <strong>Status:</strong> Early architecture and implementation phase; interfaces are stabilizing.
-            <div class="status-chip">Transparent project maturity</div>
-          </li>
-          <li>
-            <strong>Repository:</strong> Source, issues, discussions, docs, and pull requests are managed publicly.
-          </li>
-        </ul>
-
-        <div class="elka-cta" role="group" aria-label="Open source actions">
-          <a class="btn btn--elka" data-elka-link="ELKA_REPO_URL" target="_blank" rel="noopener noreferrer">
-            Repository
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_FORK_URL" target="_blank" rel="noopener noreferrer">
-            Fork on GitHub
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_DOWNLOAD_URL" target="_blank"
-            rel="noopener noreferrer">
-            Download
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_CONTRIBUTE_URL" target="_blank"
-            rel="noopener noreferrer">
-            Contribute
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_DOCS_URL" target="_blank" rel="noopener noreferrer">
-            Read Docs
-          </a>
+        <div class="coord-grid">
+          <div><strong>API Key Auth</strong><br>Configured keys are validated with `X-API-Key` when enabled.</div>
+          <div><strong>Request Signing</strong><br>Optional `X-Signature` verification protects request integrity.</div>
+          <div><strong>Rate and Tenant Guard</strong><br>Rate limits and tenant boundary checks are enforced in
+            middleware.
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="deployment" class="elka-section" aria-labelledby="deploy-title">
+    <section id="deployment" class="elka-section" aria-labelledby="deployment-title">
       <div class="elka-surface">
         <p class="elka-kicker">Runtime Modes</p>
-        <h2 id="deploy-title">Deployment Modes</h2>
+        <h2 id="deployment-title">Deployment Profiles and Operations</h2>
+        <p class="elka-intro">
+          ELKA-0 supports local-first operation and can scale into hybrid or high-compute modes without changing core
+          contracts.
+        </p>
 
         <ul class="deployment-grid" role="list">
-          <li><strong>Local Mode:</strong> On-device cognition for private environments and offline resilience.</li>
-          <li><strong>Hybrid Mode:</strong> Local control with optional cloud inference or long-context support.</li>
-          <li><strong>Edge Fallback:</strong> Reduced cognition path for intermittent network or constrained devices.
+          <li><strong>Local Mode:</strong> On-device inference and memory behavior for privacy and offline resilience.
           </li>
-          <li><strong>High-Compute Mode:</strong> Multi-model, higher-depth cognition for complex planning workloads.
+          <li><strong>Hybrid Mode:</strong> Local orchestration with optional cloud model augmentation.</li>
+          <li><strong>Edge Fallback:</strong> Resource-aware behavior for constrained hardware and intermittent network.
           </li>
+          <li><strong>High-Compute Mode:</strong> Deeper multimodal reasoning for complex, multi-step plans.</li>
         </ul>
+
+        <ul class="use-grid" role="list">
+          <li><strong>Core Profile:</strong> Balanced reasoning and planning for general workloads.</li>
+          <li><strong>Vision Profile:</strong> Scene and event-grounded reasoning for camera-rich systems.</li>
+          <li><strong>Audio Profile:</strong> Interruptible dialog and urgency signal interpretation.</li>
+          <li><strong>Edge Profile:</strong> Lower-resource cognition with predictable fallback behavior.</li>
+        </ul>
+
+        <div class="code-panel" aria-label="Deployment command">
+          <div class="code-panel__header">
+            <span>Service Launch Command</span>
+            <button class="copy-btn" type="button" data-copy-target="deploy-code">Copy</button>
+          </div>
+          <pre><code id="deploy-code">uvicorn infrastructure.serving.app:create_service_app --factory --host 0.0.0.0 --port 8080</code></pre>
+        </div>
       </div>
     </section>
 
     <section id="evaluation" class="elka-section" aria-labelledby="evaluation-title">
       <div class="elka-surface">
         <p class="elka-kicker">Quality Targets</p>
-        <h2 id="evaluation-title">Evaluation Targets</h2>
+        <h2 id="evaluation-title">Evaluation and Runtime Signals</h2>
+        <p class="elka-intro">Use both offline tests and live runtime telemetry to track real quality, not just response
+          style.</p>
 
         <ul class="eval-grid" role="list">
           <li>Memory recall accuracy</li>
-          <li>Hallucination reduction</li>
-          <li>Action safety</li>
-          <li>Interruption handling</li>
-          <li>Response latency</li>
-          <li>Anomaly reasoning</li>
-          <li>Persona consistency</li>
-          <li>Multimodal grounding fidelity</li>
+          <li>Action safety success rate</li>
+          <li>Planning completion rate</li>
+          <li>False escalation rate</li>
+          <li>Hallucination frequency</li>
+          <li>Interruption recovery quality</li>
+          <li>Persona consistency score</li>
+          <li>Multimodal grounding precision</li>
+          <li>Latency distribution by profile</li>
+          <li>Uncertainty honesty rate</li>
         </ul>
+
+        <div class="code-panel" aria-label="Testing command">
+          <div class="code-panel__header">
+            <span>Local Test Command</span>
+            <button class="copy-btn" type="button" data-copy-target="test-code">Copy</button>
+          </div>
+          <pre><code id="test-code">pytest -q</code></pre>
+        </div>
+
+        <div class="status-chip">Operational tip: capture `X-Request-Id` and `X-ELKA-Latency-Ms` for each request in
+          your client logs.</div>
+      </div>
+    </section>
+
+    <section id="contribute" class="elka-section" aria-labelledby="contribute-title">
+      <div class="elka-surface">
+        <p class="elka-kicker">Open Source</p>
+        <h2 id="contribute-title">Feedback, Issues, and Contributions</h2>
+        <p class="elka-intro">
+          Treat this documentation as part of the engine contract. Improvements to docs, tests, schema notes, and
+          integration examples are first-class contributions.
+        </p>
+
+        <ul class="oss-grid" role="list">
+          <li><strong>Report:</strong> Open issues for bugs, behavioral regressions, and unclear contracts.</li>
+          <li><strong>Propose:</strong> Use pull requests to improve docs, schema examples, and evaluation coverage.
+          </li>
+          <li><strong>Collaborate:</strong> Keep changes transparent with rationale, test evidence, and migration notes.
+          </li>
+        </ul>
+
+        <div class="elka-cta" role="group" aria-label="Contribution actions">
+          <a class="btn btn--elka" data-elka-link="ELKA_ISSUES_URL" target="_blank" rel="noopener noreferrer">Open
+            Issues</a>
+          <a class="btn secondary btn--elka" data-elka-link="ELKA_CONTRIBUTE_URL" target="_blank"
+            rel="noopener noreferrer">Contribution Guide</a>
+          <a class="btn secondary btn--elka" data-elka-link="ELKA_FORK_URL" target="_blank"
+            rel="noopener noreferrer">Fork Repository</a>
+        </div>
       </div>
     </section>
 
     <section id="roadmap" class="elka-section" aria-labelledby="roadmap-title">
       <div class="elka-surface">
         <p class="elka-kicker">Release Path</p>
-        <h2 id="roadmap-title">Roadmap</h2>
+        <h2 id="roadmap-title">Roadmap and Priority Order</h2>
 
+        <h3>v0 Priority Sequence</h3>
+        <ol class="priority-list">
+          <li>Retrieval-native memory behavior</li>
+          <li>Multimodal grounding and event fusion</li>
+          <li>Structured action and tool call planning</li>
+          <li>Interruptible and stream-safe dialogue</li>
+          <li>Uncertainty scoring and safety gating</li>
+          <li>Stable persona adaptation boundaries</li>
+          <li>World model continuity across sessions</li>
+          <li>Mission replanning and interruption recovery</li>
+        </ol>
+
+        <h3 style="margin-top: 1.5rem;">Version Path</h3>
         <ol class="roadmap">
-          <li><code>v0</code> Cognitive engine contract and core implementation.</li>
-          <li><code>v0.1</code> Memory-native reasoning layer.</li>
-          <li><code>v0.2</code> Multimodal event grounding.</li>
-          <li><code>v0.3</code> Structured planning and safety policy.</li>
-          <li><code>v0.4</code> Kael runtime integration.</li>
-          <li><code>v1.0</code> Stable public release.</li>
+          <li><code>v0</code> Core contract and baseline runtime.</li>
+          <li><code>v0.1</code> Memory-native inference quality pass.</li>
+          <li><code>v0.2</code> Multimodal event grounding expansion.</li>
+          <li><code>v0.3</code> Safety policy and plan reliability hardening.</li>
+          <li><code>v0.4</code> Runtime integration maturity and profiling.</li>
+          <li><code>v1.0</code> Stable public release with documented guarantees.</li>
         </ol>
       </div>
     </section>
 
     <section class="elka-section" aria-labelledby="final-cta-title">
       <div class="elka-surface final-cta">
-        <p class="elka-kicker">Build With It</p>
-        <h2 id="final-cta-title">Fork ELKA-0. Build cognition that remembers, reasons, and acts safely.</h2>
-
+        <p class="elka-kicker">Build With ELKA</p>
+        <h2 id="final-cta-title">Ship integrations that remember, reason, and act with explicit safety constraints.</h2>
         <div class="elka-cta elka-cta--center">
-          <a class="btn btn--elka" data-elka-link="ELKA_FORK_URL" target="_blank" rel="noopener noreferrer">
-            Fork ELKA-0
-          </a>
-          <a class="btn secondary btn--elka" data-elka-link="ELKA_ISSUES_URL" target="_blank" rel="noopener noreferrer">
-            Join Discussions
-          </a>
+          <a class="btn btn--elka" data-elka-link="ELKA_REPO_URL" target="_blank" rel="noopener noreferrer">Start
+            Building</a>
+          <a class="btn secondary btn--elka" data-elka-link="ELKA_DOWNLOAD_URL" target="_blank"
+            rel="noopener noreferrer">Download Source</a>
         </div>
       </div>
     </section>
