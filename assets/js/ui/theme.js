@@ -17,7 +17,12 @@ function applyClass(next) {
 }
 
 export function getStoredTheme() {
-  const v = localStorage.getItem(STORAGE_KEY);
+  let v = null;
+  try {
+    v = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    v = null;
+  }
   return v === 'light' ? 'light' : (v === 'dark' ? 'dark' : null);
 }
 
@@ -32,7 +37,11 @@ export function detectInitialTheme() {
 export function applyTheme(mode) {
   const next = mode === 'light' ? 'light' : 'dark';
   applyClass(next);
-  localStorage.setItem(STORAGE_KEY, next);
+  try {
+    localStorage.setItem(STORAGE_KEY, next);
+  } catch {
+    // Storage can be unavailable in private or embedded contexts.
+  }
   return next;
 }
 
@@ -40,7 +49,13 @@ export function initTheme() {
   const stored = getStoredTheme();
   const mode = stored ?? detectInitialTheme();
   applyClass(mode);
-  if (stored !== mode) localStorage.setItem(STORAGE_KEY, mode);
+  if (stored !== mode) {
+    try {
+      localStorage.setItem(STORAGE_KEY, mode);
+    } catch {
+      // Storage can be unavailable in private or embedded contexts.
+    }
+  }
   return mode;
 }
 

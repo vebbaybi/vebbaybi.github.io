@@ -26,6 +26,46 @@ function timeAgo(iso) {
   return "just now";
 }
 
+function sanitizeMessageHtml(html) {
+  const template = document.createElement("template");
+  template.innerHTML = String(html || "");
+  const allowedTags = new Set(["A", "BR", "EM", "STRONG", "B", "I"]);
+
+  const cleanNode = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) return node.cloneNode();
+    if (node.nodeType !== Node.ELEMENT_NODE) return document.createTextNode("");
+
+    const tag = node.tagName.toUpperCase();
+    if (!allowedTags.has(tag)) {
+      const fragment = document.createDocumentFragment();
+      node.childNodes.forEach((child) => fragment.appendChild(cleanNode(child)));
+      return fragment;
+    }
+
+    const clone = document.createElement(tag.toLowerCase());
+    if (tag === "A") {
+      const href = node.getAttribute("href") || "";
+      try {
+        const url = new URL(href, window.location.origin);
+        if (url.protocol === "http:" || url.protocol === "https:") {
+          clone.href = url.href;
+          clone.target = "_blank";
+          clone.rel = "noopener noreferrer";
+        }
+      } catch {
+        return document.createTextNode(node.textContent || "");
+      }
+    }
+
+    node.childNodes.forEach((child) => clone.appendChild(cleanNode(child)));
+    return clone;
+  };
+
+  const fragment = document.createDocumentFragment();
+  template.content.childNodes.forEach((child) => fragment.appendChild(cleanNode(child)));
+  return fragment;
+}
+
 /**
  * Renders a single Facebook post card element.
  * @param {object} p - Normalized post object from tdi_feed.json.
@@ -71,7 +111,7 @@ function createPostCard(p) {
     if (p.message_html) {
         const msg = document.createElement("div");
         msg.className = "tdi-msg";
-        msg.innerHTML = p.message_html;
+        msg.appendChild(sanitizeMessageHtml(p.message_html));
         body.appendChild(msg);
     }
 
@@ -111,7 +151,7 @@ async function loadFeed() {
 
   try {
     // Setting "no-cache" helps ensure the GitHub Pages artifact updates quickly
-    const res = await fetch("assets/data/tdi_feed.json", { cache: "no-cache" });
+    const res = await fetch("/assets/data/tdi_feed.json", { cache: "no-cache" });
     if (!res.ok) throw new Error("Failed to load feed JSON. Status: " + res.status);
     const data = await res.json();
 

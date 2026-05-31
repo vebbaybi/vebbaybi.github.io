@@ -1,7 +1,7 @@
 export function updateMeta(route) {
-  const title = route?.meta?.title || '1807 — Portfolio';
-  const desc = route?.meta?.desc || 'Webbaby portfolio';
-  const fullTitle = `${title} | The 1807`;
+  const meta = route?.meta || route || {};
+  const title = meta.title || '1807 - Portfolio';
+  const desc = meta.desc || meta.description || 'Webbaby portfolio';
   document.title = title;
 
   set('meta[name="description"]', 'content', desc);
@@ -10,13 +10,13 @@ export function updateMeta(route) {
   set('meta[name="twitter:title"]', 'content', title, true);
   set('meta[name="twitter:description"]', 'content', desc, true);
 
-  function set(sel, attr, val, create=false) {
+  function set(sel, attr, val, create = false) {
     let el = document.querySelector(sel);
     if (!el && create) {
       el = document.createElement('meta');
-      const [k,v] = sel.slice(5,-2).split('" ');
-      const key = k.includes('property=') ? 'property' : 'name';
-      el.setAttribute(key, v.replace(/.*="/,''));
+      const isProperty = sel.includes('property=');
+      const match = sel.match(/\[(?:name|property)="([^"]+)"\]/);
+      el.setAttribute(isProperty ? 'property' : 'name', match?.[1] || '');
       document.head.appendChild(el);
     }
     if (el) el.setAttribute(attr, val);

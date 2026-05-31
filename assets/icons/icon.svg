@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">The 1807</title>
+  <desc id="desc">The 1807 portfolio icon</desc>
+  <rect width="512" height="512" rx="104" fill="#0a192f"/>
+  <circle cx="256" cy="256" r="178" fill="none" stroke="#2489f6" stroke-width="34"/>
+  <circle cx="256" cy="256" r="88" fill="none" stroke="#f0f0f0" stroke-width="28"/>
+  <path d="M256 92v328M92 256h328" stroke="#f7d46b" stroke-width="24" stroke-linecap="round" opacity=".92"/>
+</svg>

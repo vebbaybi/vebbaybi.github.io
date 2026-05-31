@@ -33,6 +33,22 @@
     return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
   }
 
+  function getBestTime() {
+    try {
+      return localStorage.getItem(LS_KEY_BEST);
+    } catch {
+      return null;
+    }
+  }
+
+  function setBestTime(value) {
+    try {
+      localStorage.setItem(LS_KEY_BEST, value);
+    } catch {
+      /* Storage can be unavailable in private or embedded contexts. */
+    }
+  }
+
   function inversions(order) {
     let inv = 0;
     const a = order.filter(v => v !== 0);
@@ -455,7 +471,7 @@
       this.state.startTs = now();
       this.state.raf = requestAnimationFrame(tick);
 
-      const best = localStorage.getItem(LS_KEY_BEST);
+      const best = getBestTime();
       if (best && this.dom.best) this.dom.best.textContent = formatMs(parseInt(best, 10));
     }
 
@@ -468,9 +484,9 @@
       this._completing = true;
       this._stopTimer();
       const elapsed = Math.max(0, now() - this.state.startTs);
-      const best = localStorage.getItem(LS_KEY_BEST);
+      const best = getBestTime();
       if (!best || elapsed < parseInt(best, 10)) {
-        localStorage.setItem(LS_KEY_BEST, String(elapsed));
+        setBestTime(String(elapsed));
       }
 
       // Brief reveal pulse without external CSS

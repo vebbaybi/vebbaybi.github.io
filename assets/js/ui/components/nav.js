@@ -18,6 +18,7 @@ export async function initNav() {
   const closeBtn    = navHost.querySelector('.nav-close');               // inside pane
   const backdrop    = document.querySelector('.nav-backdrop');           // sibling overlay
   const body        = document.body;
+  const links       = Array.from(navHost.querySelectorAll('a[href]'));
 
   function openNav() {
     pane.classList.add('active');
@@ -42,6 +43,19 @@ export async function initNav() {
   toggleBtn?.addEventListener('click', toggleNav);
   closeBtn?.addEventListener('click', closeNav);
   backdrop?.addEventListener('click', closeNav);
+  links.forEach((link) => {
+    try {
+      const url = new URL(link.getAttribute('href'), window.location.origin);
+      const currentPath = window.location.pathname.replace(/\/index\.html$/i, '/');
+      if (url.origin === window.location.origin && url.pathname === currentPath) {
+        link.setAttribute('aria-current', 'page');
+      }
+    } catch {
+      /* Ignore malformed links in partials. */
+    }
+
+    link.addEventListener('click', closeNav);
+  });
 
   // ESC to close
   window.addEventListener('keydown', (e) => {

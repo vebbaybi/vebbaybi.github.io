@@ -77,6 +77,19 @@
       ]
     },
     {
+      "name": "SkinCradle",
+      "short_name": "SkinCradle",
+      "description": "Open the browser-based hand and face landmark visual tracker.",
+      "url": "/skincradle/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-skincradle.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "ELKA-0 Engine",
       "short_name": "ELKA-0",
       "description": "Open cognitive engine powering advanced AI systems.",

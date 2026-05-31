@@ -1,4 +1,4 @@
-export const eosSiteGeneratedAt = "2026-03-29T06:23:43.344Z";
+export const eosSiteGeneratedAt = "2026-05-31T13:33:00.580Z";
 export const eosSitePages = [
   {
     "key": "page:/",
@@ -26,6 +26,15 @@ export const eosSitePages = [
     "family": "projects",
     "title": "Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded • Blockchain • Construction",
     "description": "Projects by Uchenna Anozie: Ainor (AI), kael (assistant), ACEBot/FieldEye/DERET (embedded), Chains (blockchain), and construction tooling."
+  },
+  {
+    "key": "page:/skincradle/",
+    "route": "/skincradle/",
+    "source": "skincradle/index.html",
+    "scope": "classic",
+    "family": "skincradle",
+    "title": "SkinCradle Halo Tracker | The 1807",
+    "description": "SkinCradle is a browser-based visual gesture tracker for hand halos, head halos, elastic strings, and gesture drawing. It is an interactive visual project, not a medical or diagnostic tool."
   },
   {
     "key": "page:/scroll_paper/",
@@ -210,6 +219,371 @@ export const eosSitePages = [
 ];
 export const eosUploads = [
   {
+    "key": "asset:/assets/images/deret-fsm-concept.svg",
+    "path": "/assets/images/deret-fsm-concept.svg",
+    "name": "deret-fsm-concept.svg",
+    "stem": "deret-fsm-concept",
+    "ext": "svg",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 2199,
+    "updated": "2026-05-31T13:31:19.595Z",
+    "aliases": [
+      "/assets/images/deret-fsm-concept.svg",
+      "deret-fsm-concept.svg",
+      "deret-fsm-concept",
+      "assets",
+      "images"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/pwa/mobile-home.png",
+    "path": "/assets/images/pwa/mobile-home.png",
+    "name": "mobile-home.png",
+    "stem": "mobile-home",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/pwa",
+    "bytes": 46193,
+    "updated": "2026-05-31T13:30:43.583Z",
+    "aliases": [
+      "/assets/images/pwa/mobile-home.png",
+      "mobile-home.png",
+      "mobile-home",
+      "assets",
+      "images",
+      "pwa"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/pwa/desktop-home.png",
+    "path": "/assets/images/pwa/desktop-home.png",
+    "name": "desktop-home.png",
+    "stem": "desktop-home",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/pwa",
+    "bytes": 120196,
+    "updated": "2026-05-31T13:30:43.495Z",
+    "aliases": [
+      "/assets/images/pwa/desktop-home.png",
+      "desktop-home.png",
+      "desktop-home",
+      "assets",
+      "images",
+      "pwa"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-ai.png",
+    "path": "/assets/icons/shortcut-ai.png",
+    "name": "shortcut-ai.png",
+    "stem": "shortcut-ai",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 12291,
+    "updated": "2026-05-31T13:30:21.908Z",
+    "aliases": [
+      "/assets/icons/shortcut-ai.png",
+      "shortcut-ai.png",
+      "shortcut-ai",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/cursors/typing@2x.png",
+    "path": "/assets/cursors/typing@2x.png",
+    "name": "typing@2x.png",
+    "stem": "typing@2x",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/cursors",
+    "bytes": 4336,
+    "updated": "2026-05-31T13:30:03.878Z",
+    "aliases": [
+      "/assets/cursors/typing@2x.png",
+      "typing@2x.png",
+      "typing@2x",
+      "assets",
+      "cursors"
+    ]
+  },
+  {
+    "key": "asset:/assets/cursors/editor@2x.png",
+    "path": "/assets/cursors/editor@2x.png",
+    "name": "editor@2x.png",
+    "stem": "editor@2x",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/cursors",
+    "bytes": 2836,
+    "updated": "2026-05-31T13:30:03.844Z",
+    "aliases": [
+      "/assets/cursors/editor@2x.png",
+      "editor@2x.png",
+      "editor@2x",
+      "assets",
+      "cursors"
+    ]
+  },
+  {
+    "key": "asset:/assets/cursors/pointer@2x.png",
+    "path": "/assets/cursors/pointer@2x.png",
+    "name": "pointer@2x.png",
+    "stem": "pointer@2x",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/cursors",
+    "bytes": 4191,
+    "updated": "2026-05-31T13:30:03.828Z",
+    "aliases": [
+      "/assets/cursors/pointer@2x.png",
+      "pointer@2x.png",
+      "pointer@2x",
+      "assets",
+      "cursors"
+    ]
+  },
+  {
+    "key": "asset:/assets/cursors/default@2x.png",
+    "path": "/assets/cursors/default@2x.png",
+    "name": "default@2x.png",
+    "stem": "default@2x",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/cursors",
+    "bytes": 3709,
+    "updated": "2026-05-31T13:30:03.778Z",
+    "aliases": [
+      "/assets/cursors/default@2x.png",
+      "default@2x.png",
+      "default@2x",
+      "assets",
+      "cursors"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-skincradle.png",
+    "path": "/assets/icons/shortcut-skincradle.png",
+    "name": "shortcut-skincradle.png",
+    "stem": "shortcut-skincradle",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 12291,
+    "updated": "2026-05-31T13:30:03.725Z",
+    "aliases": [
+      "/assets/icons/shortcut-skincradle.png",
+      "shortcut-skincradle.png",
+      "shortcut-skincradle",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-resume.png",
+    "path": "/assets/icons/shortcut-resume.png",
+    "name": "shortcut-resume.png",
+    "stem": "shortcut-resume",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 12291,
+    "updated": "2026-05-31T13:30:03.625Z",
+    "aliases": [
+      "/assets/icons/shortcut-resume.png",
+      "shortcut-resume.png",
+      "shortcut-resume",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-robo.png",
+    "path": "/assets/icons/shortcut-robo.png",
+    "name": "shortcut-robo.png",
+    "stem": "shortcut-robo",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 15624,
+    "updated": "2026-05-31T13:30:03.541Z",
+    "aliases": [
+      "/assets/icons/shortcut-robo.png",
+      "shortcut-robo.png",
+      "shortcut-robo",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-elka.png",
+    "path": "/assets/icons/shortcut-elka.png",
+    "name": "shortcut-elka.png",
+    "stem": "shortcut-elka",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 9638,
+    "updated": "2026-05-31T13:30:03.244Z",
+    "aliases": [
+      "/assets/icons/shortcut-elka.png",
+      "shortcut-elka.png",
+      "shortcut-elka",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/android-chrome-512x512.png",
+    "path": "/assets/icons/android-chrome-512x512.png",
+    "name": "android-chrome-512x512.png",
+    "stem": "android-chrome-512x512",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 226898,
+    "updated": "2026-05-31T13:30:02.263Z",
+    "aliases": [
+      "/assets/icons/android-chrome-512x512.png",
+      "android-chrome-512x512.png",
+      "android-chrome-512x512",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/android-chrome-192x192.png",
+    "path": "/assets/icons/android-chrome-192x192.png",
+    "name": "android-chrome-192x192.png",
+    "stem": "android-chrome-192x192",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 39463,
+    "updated": "2026-05-31T13:30:02.100Z",
+    "aliases": [
+      "/assets/icons/android-chrome-192x192.png",
+      "android-chrome-192x192.png",
+      "android-chrome-192x192",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/favicon-32x32.png",
+    "path": "/assets/icons/favicon-32x32.png",
+    "name": "favicon-32x32.png",
+    "stem": "favicon-32x32",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 2179,
+    "updated": "2026-05-31T13:30:02.046Z",
+    "aliases": [
+      "/assets/icons/favicon-32x32.png",
+      "favicon-32x32.png",
+      "favicon-32x32",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/apple-touch-icon.png",
+    "path": "/assets/icons/apple-touch-icon.png",
+    "name": "apple-touch-icon.png",
+    "stem": "apple-touch-icon",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 35326,
+    "updated": "2026-05-31T13:30:02.000Z",
+    "aliases": [
+      "/assets/icons/apple-touch-icon.png",
+      "apple-touch-icon.png",
+      "apple-touch-icon",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/icon.svg",
+    "path": "/assets/icons/icon.svg",
+    "name": "icon.svg",
+    "stem": "icon",
+    "ext": "svg",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 533,
+    "updated": "2026-05-31T13:29:33.396Z",
+    "aliases": [
+      "/assets/icons/icon.svg",
+      "icon.svg",
+      "icon",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/elka/elka-nbkgl.png",
+    "path": "/assets/images/elka/elka-nbkgl.png",
+    "name": "elka-nbkgl.png",
+    "stem": "elka-nbkgl",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/elka",
+    "bytes": 1449310,
+    "updated": "2026-04-28T14:30:30.132Z",
+    "aliases": [
+      "/assets/images/elka/elka-nbkgl.png",
+      "elka-nbkgl.png",
+      "elka-nbkgl",
+      "assets",
+      "images",
+      "elka"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/elka/elka-0.png",
+    "path": "/assets/images/elka/elka-0.png",
+    "name": "elka-0.png",
+    "stem": "elka-0",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/elka",
+    "bytes": 1014875,
+    "updated": "2026-04-27T19:57:58.841Z",
+    "aliases": [
+      "/assets/images/elka/elka-0.png",
+      "elka-0.png",
+      "elka-0",
+      "assets",
+      "images",
+      "elka"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/img/logo/logo.png",
+    "path": "/assets/images/img/logo/logo.png",
+    "name": "logo.png",
+    "stem": "logo",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/img/logo",
+    "bytes": 242311,
+    "updated": "2026-04-14T11:47:52.757Z",
+    "aliases": [
+      "/assets/images/img/logo/logo.png",
+      "logo.png",
+      "logo",
+      "assets",
+      "images",
+      "img"
+    ]
+  },
+  {
     "key": "asset:/assets/images/img/logo/logoos.png",
     "path": "/assets/images/img/logo/logoos.png",
     "name": "logoos.png",
@@ -247,25 +621,6 @@ export const eosUploads = [
       "images",
       "img",
       "favicons"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/img/logo/logo.png",
-    "path": "/assets/images/img/logo/logo.png",
-    "name": "logo.png",
-    "stem": "logo",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images/img/logo",
-    "bytes": 9527,
-    "updated": "2025-12-01T03:46:37.191Z",
-    "aliases": [
-      "/assets/images/img/logo/logo.png",
-      "logo.png",
-      "logo",
-      "assets",
-      "images",
-      "img"
     ]
   },
   {

@@ -22,6 +22,22 @@ import {
 } from './eos-shell-render.js';
 import { getChatReply, getWebResults } from './eos-shell-chat.js';
 
+function safeGetLocalStorage(key, fallback = null) {
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function safeSetLocalStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    /* Storage can be unavailable in private or embedded contexts. */
+  }
+}
+
 function createMarkup() {
   const station = document.createElement('section');
   station.className = 'eos-station';
@@ -91,7 +107,7 @@ export function initEosStation(options = {}) {
   const history = [];
   let historyIndex = -1;
   let activePanel = 'cli';
-  let themeChoice = localStorage.getItem('eos-theme-choice') || config.cliTheme || 'auto';
+  let themeChoice = safeGetLocalStorage('eos-theme-choice', config.cliTheme || 'auto');
   let currentTheme = 'night';
 
   const appendCliEntry = (kind, html) => { const block = document.createElement('div'); block.className = `eos-cli-entry eos-cli-entry-${kind}`; block.innerHTML = html; cliOutput.appendChild(block); cliOutput.scrollTop = cliOutput.scrollHeight; };
@@ -163,7 +179,7 @@ export function initEosStation(options = {}) {
   function setPanel(name) { activePanel = name; tabs.forEach((tab) => { const active = tab.dataset.eosTab === name; tab.classList.toggle('is-active', active); tab.setAttribute('aria-selected', String(active)); }); panes.forEach((pane) => pane.classList.toggle('is-active', pane.dataset.eosPanel === name)); }
   function openShell(panel = activePanel) { shellWindow.hidden = false; station.classList.add('is-open'); launcher.setAttribute('aria-expanded', 'true'); document.body.classList.add('eos-shell-open'); setPanel(panel); refreshSideCards(); renderSuggestions(cliInput.value); (panel === 'cli' ? cliInput : chatInput).focus({ preventScroll: true }); }
   function closeShell() { shellWindow.hidden = true; station.classList.remove('is-open'); launcher.setAttribute('aria-expanded', 'false'); document.body.classList.remove('eos-shell-open'); }
-  function applyTheme(choice = 'auto') { themeChoice = choice; localStorage.setItem('eos-theme-choice', choice); currentTheme = choice === 'auto' ? dayPhase() : choice; shellWindow.dataset.eosTheme = currentTheme; themeButtons.forEach((button) => { const active = button.dataset.eosTheme === choice; button.classList.toggle('is-active', active); button.setAttribute('aria-pressed', String(active)); }); refreshSideCards(); }
+  function applyTheme(choice = 'auto') { themeChoice = choice; safeSetLocalStorage('eos-theme-choice', choice); currentTheme = choice === 'auto' ? dayPhase() : choice; shellWindow.dataset.eosTheme = currentTheme; themeButtons.forEach((button) => { const active = button.dataset.eosTheme === choice; button.classList.toggle('is-active', active); button.setAttribute('aria-pressed', String(active)); }); refreshSideCards(); }
   function seedCli() { cliOutput.innerHTML = ''; appendCliEntry('system', `<div class="eos-result-block"><div class="eos-result-head">eos ready</div><p>Site shell online. Every command begins with <code>eos</code>. Try <code>eos ls eos</code>, <code>eos fd ai</code>, or <code>eos open /contact/</code>.</p></div>`); renderSuggestions(''); }
   function seedChat() { chatFeed.innerHTML = ''; appendChatMessage('assistant', 'I am eos, the shark shell for 1807os. Ask about routes, uploads, commands, or how to move through the site. When your Google or OpenAI bridge is configured, I can widen the search beyond the local site brain too.', [{ type: 'command', label: 'eos help', value: 'eos help' }, { type: 'question', label: 'How do I list all pages?', value: 'How do I list all pages?' }]); }
 

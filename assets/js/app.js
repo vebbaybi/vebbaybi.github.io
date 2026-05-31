@@ -12,6 +12,7 @@ const pageMeta = {
   '/scroll_paper':   { title: 'Scroll Paper â€” 1807-Chain',    desc: 'Newspaper story & showcase' },
   '/projects':       { title: 'Projects â€” 1807-Chain',        desc: 'AI, Embedded-Systems, and Blockchain projects' },
   '/ai':             { title: 'AI Projects â€” 1807-Chain',     desc: 'Models, pipelines, and production AI systems' },
+  '/skincradle':     { title: 'SkinCradle Halo Tracker - 1807-Chain', desc: 'Browser-based hand and face landmark visual tracker for halos and gesture drawing' },
   '/robotics':       { title: 'Robotics â€” 1807-Chain',        desc: 'Embedded, control, and vision systems' },
   '/chains':         { title: 'Blockchain â€” 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
   '/construction':   { title: 'Construction â€” 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
@@ -30,17 +31,29 @@ const pageMeta = {
   '/legal':          { title: 'Legal â€” 1807-Chain',           desc: 'Privacy & Terms' },
   '/1807-contractor': { title: '1807 Contractor â€” The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },
   '/1807osport':     { title: '1807os Portfolio â€” The 1807',  desc: 'Operating-system portfolio experience for The 1807 with live modules, telemetry, and alternate navigation.' },
+  '/1807osport/ai':  { title: '1807os AI - The 1807',          desc: 'Operating-system portfolio AI workspace.' },
+  '/1807osport/data': { title: '1807os Data - The 1807',       desc: 'Operating-system portfolio data workspace.' },
+  '/1807osport/robotics': { title: '1807os Robotics - The 1807', desc: 'Operating-system portfolio robotics workspace.' },
+  '/1807osport/chains': { title: '1807os Chains - The 1807',   desc: 'Operating-system portfolio chains workspace.' },
+  '/1807osport/about': { title: '1807os About - The 1807',     desc: 'Operating-system portfolio story workspace.' },
+  '/1807osport/contractor': { title: '1807os Contractor - The 1807', desc: 'Operating-system portfolio contractor workspace.' },
+  '/1807osport/resume': { title: '1807os Resume - The 1807',   desc: 'Operating-system portfolio resume workspace.' },
+  '/1807osport/contact': { title: '1807os Contact - The 1807', desc: 'Operating-system portfolio contact workspace.' },
 };
 
 function routeKey(pathname = window.location.pathname) {
-  const parts = pathname.split('/').filter(Boolean);
+  const parts = pathname.split('/').filter(Boolean).map((part) => part.toLowerCase());
   if (parts.length === 0) return '/';
 
-  const last = parts[parts.length - 1].toLowerCase();
-  if (last === 'index' || last === 'index.html') return '/';
+  let last = parts[parts.length - 1];
+  if (last === 'index' || last === 'index.html') {
+    parts.pop();
+    if (parts.length === 0) return '/';
+    last = parts[parts.length - 1];
+  }
 
-  const noHtml = last.endsWith('.html') ? last.slice(0, -5) : last;
-  return `/${noHtml}`;
+  parts[parts.length - 1] = last.endsWith('.html') ? last.slice(0, -5) : last;
+  return `/${parts.join('/')}`;
 }
 
 function currentMeta() {
