@@ -111,6 +111,30 @@
       });
   }
 
+  async function fetchSafeLocation() {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(geoUrl, {
+        signal: controller.signal,
+        headers: {
+          accept: 'application/json'
+        },
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+
+      const raw = await response.json();
+      return toSafeLocation(raw);
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
   function sanitizeText(value, limit) {
     return String(value || '')
       .normalize('NFKC')
@@ -118,6 +142,10 @@
       .replace(/\s+/g, ' ')
       .trim()
       .slice(0, limit);
+  }
+
+  function sanitizeLocationValue(value) {
+    return sanitizeText(value, maxLocationLength);
   }
 
   function normalizeKey(value) {
@@ -138,28 +166,38 @@
     return list[Math.floor(Math.random() * list.length)];
   }
 
-  function safeLocation(payload) {
-    if (!isObject(payload)) return null;
+  function validateSafeLocation(location) {
+    if (!isObject(location)) return false;
+
+    const allowedKeys = ['city', 'region', 'country', 'countryCode'];
+    const keys = Object.keys(location);
+
+    if (!keys.every((key) => allowedKeys.includes(key))) return false;
+    if (!keys.every((key) => typeof location[key] === 'string')) return false;
+    if (!location.city && !location.region && !location.country && !location.countryCode) return false;
+    if (location.countryCode && !/^[A-Z]{2,3}$/.test(location.countryCode)) return false;
+
+    return true;
+  }
+
+  function toSafeLocation(raw) {
+    if (!isObject(raw)) return null;
 
     const {
       city,
       region,
       country,
       country_code: countryCode
-    } = payload;
+    } = raw;
 
     const location = {
-      city: sanitizeText(city, maxLocationLength),
-      region: sanitizeText(region, maxLocationLength),
-      country: sanitizeText(country, maxLocationLength),
+      city: sanitizeLocationValue(city),
+      region: sanitizeLocationValue(region),
+      country: sanitizeLocationValue(country),
       countryCode: sanitizeText(countryCode, 8).toUpperCase()
     };
 
-    if (!location.city && !location.region && !location.country && !location.countryCode) {
-      return null;
-    }
-
-    return location;
+    return validateSafeLocation(location) ? location : null;
   }
 
   function replacePlaceholders(template, location) {
@@ -296,10 +334,10 @@
   async function run() {
     const [bankResult, geoResult] = await Promise.allSettled([
       fetchJson(contentUrl),
-      fetchJson(geoUrl)
+      fetchSafeLocation()
     ]);
     const bank = bankResult.status === 'fulfilled' ? validateBank(bankResult.value) || fallbackBank : fallbackBank;
-    const location = geoResult.status === 'fulfilled' ? safeLocation(geoResult.value) : null;
+    const location = geoResult.status === 'fulfilled' ? geoResult.value : null;
     render(chooseMessage(bank, location));
   }
 
