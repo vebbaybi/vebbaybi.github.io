@@ -1,9 +1,6 @@
-/* -------------------------------------------------------------------------
- * TDI Feed Styles: assets/css/tdi.css
- * Styles for the Djehuty Institute live feed page.
- * ------------------------------------------------------------------------- */
 
-/* --- Theme Variables and Base Colors (Adapt to your site's main.css if needed) --- */
+
+
 :root {
     --color-background: #f8f8f8;
     --color-surface: #ffffff;
@@ -29,7 +26,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- Layout Containers --- */
+
 
 .tdi-wrap {
     max-width: 1200px;
@@ -54,31 +51,31 @@ body {
     color: var(--color-muted);
 }
 
-/* --- Grid Layout (Responsive Columns) --- */
+
 
 .tdi-grid {
     display: grid;
     gap: 2rem;
 
-    /* Default: 1 column for small screens */
+
     grid-template-columns: 1fr;
 }
 
-/* Tablet (md) and up: 2 columns */
+
 @media (min-width: 768px) {
     .tdi-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Desktop (lg) and up: 3 columns */
+
 @media (min-width: 1024px) {
     .tdi-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* --- Individual Card Styles --- */
+
 
 .tdi-card {
     background-color: var(--color-surface);
@@ -95,11 +92,11 @@ body {
     box-shadow: var(--shadow-card), 0 0 0 2px var(--color-accent);
 }
 
-/* --- Media Section --- */
+
 
 .tdi-media {
     width: 100%;
-    /* Max height to prevent excessively tall images */
+
     max-height: 300px;
     overflow: hidden;
     background-color: #000;
@@ -112,14 +109,14 @@ body {
     display: block;
 }
 
-/* --- Card Body and Text --- */
+
 
 .tdi-body {
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Ensures body takes up remaining space in flex container */
+
 }
 
 .tdi-time {
@@ -133,13 +130,13 @@ body {
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: 1rem;
-    /* Limit the message height for a uniform card look */
+
     max-height: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Styling for linkified elements created by the JS fetcher */
+
 .tdi-msg a,
 .tdi-actions .tdi-link {
     color: var(--color-accent);
@@ -163,11 +160,11 @@ body {
     font-weight: 600;
 }
 
-/* --- Actions/Link --- */
+
 
 .tdi-actions {
     margin-top: auto;
-    /* Pushes actions to the bottom */
+
     padding-top: 1rem;
     border-top: 1px dashed rgba(150, 150, 150, 0.1);
 }
@@ -178,11 +175,11 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- Empty/Loading State --- */
+
 
 .tdi-empty {
     display: none;
-    /* Hidden by default, shown by JS on empty data/error */
+
     text-align: center;
     padding: 4rem 1rem;
     font-size: 1.25rem;

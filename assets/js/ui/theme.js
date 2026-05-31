@@ -1,7 +1,7 @@
-// assets/js/ui/theme.js
-// Theme controller: apply, load/save, and bind a toggle button.
 
-const STORAGE_KEY = 'pref:theme'; // 'light' | 'dark'
+
+
+const STORAGE_KEY = 'pref:theme';
 const CLASS_LIGHT = 'theme-light';
 const CLASS_DARK  = 'theme-dark';
 
@@ -27,7 +27,7 @@ export function getStoredTheme() {
 }
 
 export function detectInitialTheme() {
-  // default to existing body class; if ambiguous, prefer OS
+
   if (document.body.classList.contains(CLASS_LIGHT)) return 'light';
   if (document.body.classList.contains(CLASS_DARK))  return 'dark';
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -40,7 +40,7 @@ export function applyTheme(mode) {
   try {
     localStorage.setItem(STORAGE_KEY, next);
   } catch {
-    // Storage can be unavailable in private or embedded contexts.
+
   }
   return next;
 }
@@ -53,7 +53,7 @@ export function initTheme() {
     try {
       localStorage.setItem(STORAGE_KEY, mode);
     } catch {
-      // Storage can be unavailable in private or embedded contexts.
+
     }
   }
   return mode;
@@ -62,7 +62,7 @@ export function initTheme() {
 export function bindThemeToggle(btn) {
   if (!btn) return;
 
-  // initialize ARIA state
+
   const syncAria = (mode) => {
     const isLight = mode === 'light';
     btn.setAttribute('aria-pressed', String(isLight));
@@ -77,7 +77,7 @@ export function bindThemeToggle(btn) {
     syncAria(applyTheme(next));
   }, { passive: true });
 }
-//binding button
+
 export function initThemeToggle() {
     const themeButton = document.getElementById('theme-toggle');
     bindThemeToggle(themeButton);

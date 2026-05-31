@@ -18,6 +18,7 @@ const pages = [
   { source: 'ai.html', route: '/ai/', changefreq: 'monthly', priority: '0.85' },
   { source: 'robotics.html', route: '/robotics/', changefreq: 'monthly', priority: '0.85' },
   { source: 'chains.html', route: '/chains/', changefreq: 'monthly', priority: '0.80' },
+  { source: 'elka-0.html', route: '/elka-0/', changefreq: 'monthly', priority: '0.80' },
   { source: 'construction.html', route: '/construction/', changefreq: 'monthly', priority: '0.75' },
   { source: 'resume.html', route: '/resume/', changefreq: 'monthly', priority: '0.70' },
   { source: 'resumes.html', route: '/resumes/', changefreq: 'monthly', priority: '0.65' },

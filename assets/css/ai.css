@@ -1,7 +1,4 @@
-/* =====================================================
-    SCOPED CSS for #main (AI Page)
-    All selectors are prefixed with #main to prevent leakage.
-    ===================================================== */
+
 
 :root {
     --ai-gap: clamp(12px, 2.2vw, 20px);
@@ -12,9 +9,9 @@
     --ai-blur-strong: 10px;
 }
 
-/* ------------------------------ GLOBAL SCOPES ------------------------------ */
 
-/* The critical fix: Scoping the common 'container' class */
+
+
 #main .container {
     max-width: min(1100px, 92vw);
     margin: 0 auto;
@@ -30,7 +27,7 @@
     margin: 0 0 .75rem 0;
 }
 
-/* ------------------------------ HERO ------------------------------ */
+
 #main .page-hero {
     position: relative;
     padding: clamp(16px, 3vw, 28px) 0;
@@ -87,7 +84,7 @@
     margin-top: clamp(14px, 2vw, 20px);
 }
 
-/* ------------------------------ STATS ------------------------------ */
+
 
 #main .section--stats .stats-grid {
     display: grid;
@@ -113,7 +110,7 @@
     color: var(--muted);
 }
 
-/* ------------------------------ SPOTLIGHT ------------------------------ */
+
 #main .section--spotlight {
     padding-top: clamp(12px, 2.5vw, 24px);
 }
@@ -216,7 +213,7 @@
     color: var(--accent);
 }
 
-/* ------------------------------ CARDS ------------------------------ */
+
 
 #main .cards-grid--projects {
     display: grid;
@@ -306,7 +303,7 @@
     backdrop-filter: blur(var(--ai-blur-strong));
 }
 
-/* ------------------------------ ARCHITECTURE GRID ------------------------------ */
+
 #main .arch-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -334,7 +331,7 @@
     margin: 0;
 }
 
-/* ------------------------------ GALLERY ------------------------------ */
+
 #main .section--gallery {
     background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface-2) 45%, transparent));
     padding-top: clamp(12px, 2vw, 18px);
@@ -365,7 +362,7 @@
     object-fit: cover;
 }
 
-/* ------------------------------ CTA ------------------------------ */
+
 #main .section--cta {
     text-align: center;
 }
@@ -381,7 +378,7 @@
 }
 
 
-/* ------------------------------ RESPONSIVE ------------------------------ */
+
 @media (max-width:1024px) {
     #main .arch-grid {
         grid-template-columns: repeat(2, 1fr);

@@ -240,7 +240,7 @@
         await navigator.clipboard.writeText(text);
         return true;
       } catch {
-        // Fallback below.
+
       }
     }
 

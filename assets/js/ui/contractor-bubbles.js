@@ -20,7 +20,7 @@ function writeSession(key, value) {
   try {
     window.sessionStorage.setItem(key, value);
   } catch {
-    // Ignore storage failures so navigation still works.
+
   }
 }
 
@@ -45,7 +45,7 @@ function clearLegacyStickyState() {
     window.localStorage.removeItem(LEGACY_STORAGE_CLICKED);
     window.localStorage.removeItem(LEGACY_STORAGE_VISITED);
   } catch {
-    // Ignore storage failures.
+
   }
 }
 

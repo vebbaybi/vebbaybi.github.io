@@ -1,13 +1,4 @@
-/* =====================================================
-   1807-chain — robotics.css (v2.0 – FINAL)
-   Scoped styles for Robotics page
-   - Banner → fade → video (play once) → revert to banner
-   - Sticky hero with no clipping
-   - Responsive grids
-   - Intersection .active states
-   - Gallery strip with snap scroll
-   - Mobile-safe, accessible
-   ===================================================== */
+
 
 :root {
     --rbx-gap: clamp(12px, 2.2vw, 20px);
@@ -18,7 +9,7 @@
     --rbx-blur-strong: 10px;
 }
 
-/* ------------------------------ GLOBAL SCOPES ------------------------------ */
+
 #main .container {
     max-width: min(1100px, 92vw);
     margin: 0 auto;
@@ -35,7 +26,7 @@
     font-weight: 700;
 }
 
-/* ------------------------------ HERO SECTION ------------------------------ */
+
 #main .page-hero {
     position: relative;
     padding: clamp(16px, 3vw, 28px) 0;
@@ -97,7 +88,7 @@
     opacity: 1;
 }
 
-/* Hero content */
+
 #main .page-hero__content {
     position: relative;
     z-index: 2;
@@ -135,7 +126,7 @@
     margin-top: clamp(14px, 2vw, 20px);
 }
 
-/* ------------------------------ STATS GRID ------------------------------ */
+
 #main .section--stats .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -173,7 +164,7 @@
     font-size: 0.875rem;
 }
 
-/* ------------------------------ PROJECT CARDS ------------------------------ */
+
 #main .cards-grid--projects {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -227,7 +218,7 @@
     line-height: 1.5;
 }
 
-/* Chips */
+
 #main .chipset {
     display: flex;
     flex-wrap: wrap;
@@ -245,7 +236,7 @@
     font-weight: 500;
 }
 
-/* Hover & Active */
+
 #main .card:hover {
     border-color: var(--blue-400);
     box-shadow: 0 8px 22px rgba(96, 165, 250, .18);
@@ -263,7 +254,7 @@
     border-color: var(--blue-400);
 }
 
-/* ------------------------------ ARCHITECTURE GRID ------------------------------ */
+
 #main .arch-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -303,7 +294,7 @@
     line-height: 1.5;
 }
 
-/* ------------------------------ DOCS & PDF ------------------------------ */
+
 #main .doc-card {
     background: var(--rbx-card-bg);
     border: 1px solid var(--border);
@@ -350,7 +341,7 @@
     border: none;
 }
 
-/* ------------------------------ GALLERY STRIP ------------------------------ */
+
 #main .section--gallery {
     background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--surface-2) 45%, transparent));
     padding: clamp(12px, 2vw, 18px) 0;
@@ -405,7 +396,7 @@
     transform: scale(1.05);
 }
 
-/* ------------------------------ CTA SECTION ------------------------------ */
+
 #main .section--cta {
     text-align: center;
 }
@@ -422,7 +413,7 @@
     justify-content: center;
 }
 
-/* ------------------------------ UTILITIES ------------------------------ */
+
 #main code {
     background: color-mix(in srgb, var(--surface-2) 70%, transparent);
     padding: .1rem .35rem;
@@ -431,7 +422,7 @@
     font-size: 0.85em;
 }
 
-/* ------------------------------ RESPONSIVE ------------------------------ */
+
 @media (max-width: 1024px) {
 
     #main .arch-grid,
@@ -491,7 +482,7 @@
     }
 }
 
-/* High contrast mode */
+
 @media (prefers-contrast: high) {
 
     #main .card,

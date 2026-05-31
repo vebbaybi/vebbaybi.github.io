@@ -1,14 +1,14 @@
-/* =======================================================================================
-   1807 — Projects Page Script
-   Features:
-   - Accessible carousel (keyboard, swipe, wrap, autoplay, progress bar)
-   - Hash navigation (#ai, #embedded, #chains, #construction)
-   - Typewriter subtitle with per-character transient color (reverts to white)
-   - Live region announcer for current slide
-   - Entrance animations (respect prefers-reduced-motion)
-   - Hot-reload friendly cleanup (guarded)
-   Author: webbaby
-   ======================================================================================= */
+
+
+
+
+
+
+
+
+
+
+
 
 const VIEW_ID = "projects-view";
 
@@ -36,11 +36,11 @@ let state = {
   visible: 2,
   opts: { ...DEFAULTS },
   autoplayEnabled: true,
-  // UI refs
+
   progressBarEl: null,
   announcerEl: null,
   autoplayBtn: null,
-  // Typewriter
+
   tw: {
     el: null,
     phrases: [],
@@ -52,26 +52,26 @@ let state = {
     typeMs: 55,
     eraseMs: 28,
     colors: [
-      "#60a5fa", // blue-400
-      "#93c5fd", // blue-300
-      "#2563eb", // blue-600
-      "#b68b4c", // tan-600
-      "#d6a76a", // tan-500
-      "#f5e9da"  // tan-100
+      "#60a5fa",
+      "#93c5fd",
+      "#2563eb",
+      "#b68b4c",
+      "#d6a76a",
+      "#f5e9da"
     ],
     prevColor: null
   },
   _listeners: null
 };
 
-/* ------------------------------ Utilities ------------------------------ */
+
 function qs(sel, root = document) { return root.querySelector(sel); }
 function qsa(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
 function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 function prefersReducedMotion() { return typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches; }
 function safeJSON(str) { try { return JSON.parse(str || ""); } catch { return null; } }
 
-/* ------------------------------ Lifecycle ------------------------------ */
+
 function mount() {
   state.isReducedMotion = prefersReducedMotion();
   state.index = 0;
@@ -126,7 +126,7 @@ function cleanup() {
   state._listeners = null;
 }
 
-/* ------------------------------ Layout ------------------------------ */
+
 function computeLayout() {
   const width = state.viewport?.clientWidth || 0;
   state.visible = width < 640 ? 1 : 2;
@@ -149,7 +149,7 @@ function gapOfTrack() {
   return Number.isFinite(g) ? g : 24;
 }
 
-/* ------------------------------ Events ------------------------------ */
+
 function attachEvents() {
   const prev = qs(".carousel-prev", state.root);
   const next = qs(".carousel-next", state.root);
@@ -184,7 +184,7 @@ function attachEvents() {
   state._listeners = { prev, next, dots, vp, autoplayBtn };
 }
 
-/* ------------------------------ Carousel Controls ------------------------------ */
+
 function onPrev() { goTo(state.index - 1, { user: true }); }
 function onNext() { goTo(state.index + 1, { user: true }); }
 
@@ -210,7 +210,7 @@ function onResize() { computeLayout(); }
 function onVPHoverIn() { pauseAutoplay(); }
 function onVPHoverOut() { if (state.autoplayEnabled) startAutoplay(); }
 
-/* ------------------------------ Pointer (Swipe) ------------------------------ */
+
 function onPointerDown(e) {
   state.isPointerDown = true;
   state.pointerStartX = (e.clientX ?? (e.touches?.[0]?.clientX || 0));
@@ -238,7 +238,7 @@ function onPointerUp() {
   if (!state.isReducedMotion && state.opts.pauseOnHover === false && state.autoplayEnabled) startAutoplay();
 }
 
-/* ------------------------------ Carousel State ------------------------------ */
+
 function positionsCount() {
   const total = state.slides.length;
   return Math.max(1, total - state.visible + 1);
@@ -292,7 +292,7 @@ function translateTo(x, ms = 0) {
   state.track.style.transform = `translate3d(${x}px, 0, 0)`;
 }
 
-/* ------------------------------ Autoplay & Progress ------------------------------ */
+
 function startAutoplay() {
   if (state.isReducedMotion || !state.opts.autoplayMs || !state.autoplayEnabled) {
     setProgress(0);
@@ -319,7 +319,7 @@ function toggleAutoplay() {
   state.autoplayEnabled = !state.autoplayEnabled;
   if (state.autoplayBtn) {
     state.autoplayBtn.setAttribute("aria-pressed", String(state.autoplayEnabled));
-    state.autoplayBtn.textContent = state.autoplayEnabled ? "⏸️ Autoplay" : "▶️ Autoplay";
+    state.autoplayBtn.textContent = state.autoplayEnabled ? "Pause Autoplay" : "Resume Autoplay";
   }
   if (state.autoplayEnabled) startAutoplay();
   else pauseAutoplay();
@@ -348,7 +348,7 @@ function animateProgressBar() {
   requestAnimationFrame(frame);
 }
 
-/* ------------------------------ Hash Navigation ------------------------------ */
+
 function applyHashOnLoad() {
   const key = (location.hash || "").replace("#", "");
   goToHash(key);
@@ -369,7 +369,7 @@ function updateHashForIndex(i) {
   history.replaceState(null, "", `#${key}`);
 }
 
-/* ------------------------------ Typewriter Subtitle ------------------------------ */
+
 function startTypewriterRotate() {
   state.tw.el = document.getElementById("subtitle-rotator");
   if (!state.tw.el) return;
@@ -450,7 +450,7 @@ function pickTypingColor() {
   return choice;
 }
 
-/* ------------------------------ Entrance Animations ------------------------------ */
+
 function animateHeader() {
   if (state.isReducedMotion) return;
   const vh = document.querySelector(".view-header");
@@ -482,18 +482,18 @@ function animateCards() {
   });
 }
 
-/* ------------------------------ Boot ------------------------------ */
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", mount, { once: true });
 } else {
   mount();
 }
 
-/* ------------------------------ Hot Reload Cleanup (guarded) ------------------------------ */
+
 try {
   if (import.meta && import.meta.hot) {
     import.meta.hot.dispose(() => cleanup());
   }
 } catch (_) {
-  // Non-module environments or bundlers without import.meta.hot — safe no-op
+
 }

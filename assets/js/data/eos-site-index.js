@@ -1,4 +1,4 @@
-export const eosSiteGeneratedAt = "2026-05-31T14:33:07.166Z";
+export const eosSiteGeneratedAt = "2026-05-31T17:09:19.849Z";
 export const eosSitePages = [
   {
     "key": "page:/",
@@ -71,6 +71,15 @@ export const eosSitePages = [
     "family": "chains",
     "title": "Chains • Blockchain Intelligence & NFT Toolkit | The 1807",
     "description": "The 1807"
+  },
+  {
+    "key": "page:/elka-0/",
+    "route": "/elka-0/",
+    "source": "elka-0.html",
+    "scope": "classic",
+    "family": "elka-0",
+    "title": "ELKA-0 Documentation | Cognitive Engine API | The 1807",
+    "description": "Official ELKA-0 documentation: quickstart, runtime endpoints, request and response schemas, architecture, safety contracts, deployment profiles, and contribution workflow."
   },
   {
     "key": "page:/construction/",

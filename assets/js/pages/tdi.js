@@ -1,12 +1,12 @@
-// assets/js/pages/tdi.js
-// Renders TDI feed from assets/data/tdi_feed.json into cards.
-// No external deps. Theme-aware via site CSS tokens.
 
-/**
- * Calculates a friendly time difference string (e.g., "5 hours ago").
- * @param {string} iso - ISO 8601 timestamp string.
- * @returns {string} The time ago string.
- */
+
+
+
+
+
+
+
+
 function timeAgo(iso) {
   if (!iso) return "";
   const d = new Date(iso);
@@ -66,24 +66,24 @@ function sanitizeMessageHtml(html) {
   return fragment;
 }
 
-/**
- * Renders a single Facebook post card element.
- * @param {object} p - Normalized post object from tdi_feed.json.
- * @returns {HTMLElement} The created article card element.
- */
+
+
+
+
+
 function createPostCard(p) {
     const card = document.createElement("article");
     card.className = "tdi-card";
 
-    // --- Media ---
+
     const media = Array.isArray(p.attachments) ? p.attachments : [];
-    
-    // Check if there is valid media to display (we display the first item for the card preview)
+
+
     if (media.length > 0 && media[0].src) {
         const m = document.createElement("div");
         m.className = "tdi-media";
-        
-        // Use an anchor tag around the media to link to the permalink
+
+
         const mediaLink = document.createElement("a");
         mediaLink.href = p.permalink_url || "#";
         mediaLink.target = "_blank";
@@ -93,13 +93,13 @@ function createPostCard(p) {
         img.src = media[0].src;
         img.alt = media[0].alt || "Post media";
         img.loading = "lazy";
-        
+
         mediaLink.appendChild(img);
         m.appendChild(mediaLink);
         card.appendChild(m);
     }
 
-    // --- Body (Text, Time, Actions) ---
+
     const body = document.createElement("div");
     body.className = "tdi-body";
 
@@ -107,7 +107,7 @@ function createPostCard(p) {
     time.className = "tdi-time";
     time.textContent = p.created_time ? timeAgo(p.created_time) : "";
 
-    // The message_html property contains linkified text, hashtags, and mentions.
+
     if (p.message_html) {
         const msg = document.createElement("div");
         msg.className = "tdi-msg";
@@ -117,7 +117,7 @@ function createPostCard(p) {
 
     const actions = document.createElement("div");
     actions.className = "tdi-actions";
-    
+
     if (p.permalink_url) {
         const a = document.createElement("a");
         a.className = "tdi-link";
@@ -136,21 +136,21 @@ function createPostCard(p) {
 }
 
 
-/**
- * Loads the feed data and renders the post cards into the grid.
- */
+
+
+
 async function loadFeed() {
   const grid = document.getElementById("tdi-grid");
   const meta = document.getElementById("tdi-meta");
   const empty = document.getElementById("tdi-empty");
-  
+
   if (!grid || !meta || !empty) {
     console.error("Required TDI elements (tdi-grid, tdi-meta, tdi-empty) not found.");
     return;
   }
 
   try {
-    // Setting "no-cache" helps ensure the GitHub Pages artifact updates quickly
+
     const res = await fetch("/assets/data/tdi_feed.json", { cache: "no-cache" });
     if (!res.ok) throw new Error("Failed to load feed JSON. Status: " + res.status);
     const data = await res.json();
@@ -167,8 +167,8 @@ async function loadFeed() {
     }
 
     empty.style.display = "none";
-    
-    // Render posts
+
+
     for (const p of posts) {
       grid.appendChild(createPostCard(p));
     }
@@ -181,7 +181,7 @@ async function loadFeed() {
   }
 }
 
-// Initialize the loader when the page attribute indicates the TDI page
+
 if (document.documentElement.getAttribute("data-page") === "TDI") {
   loadFeed();
 }

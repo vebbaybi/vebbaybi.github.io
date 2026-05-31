@@ -1,11 +1,4 @@
-/* ================================================================================
-   CONSTRUCTION.CSS — scoped, readable, checker-first (no page fill color)
-   Scope: html[data-page="construction"]
-   Rules:
-     • Do NOT paint a solid background behind the page — keep the checker visible.
-     • Keep content readable using semi-transparent panels only (cards/sections).
-     • Fix header/footer overlap with explicit scroll padding and bottom padding.
-================================================================================ */
+
 .construction-wrap {
     position: relative;
     isolation: isolate;
@@ -30,34 +23,34 @@
 }
 @layer construction, motion;
 
-/* ------------------------------ Page Tokens ------------------------------ */
+
 @layer construction {
   html[data-page="construction"] {
-    /* Panels (let checkers show through) */
+
     --panel-day: rgba(255, 255, 255, 0.92);
     --panel-night: rgba(9, 14, 24, 0.86);
 
-    /* Text */
+
     --text-strong: var(--primary-text);
     --text-muted: var(--muted);
 
-    /* Borders / radii / gaps */
+
     --constr-border: var(--border);
     --constr-radius: var(--radius-lg);
     --constr-gap: 20px;
     --constr-controls-offset: 14px;
 
-    /* Media + cards */
+
     --constr-media-ratio: 16 / 9;
     --constr-card-min-h: 360px;
     --constr-card-min-h-sm: 300px;
 
-    /* Dots */
+
     --constr-dot-size: 10px;
     --constr-dot-gap: 10px;
   }
 
-  /* ------------------------------ Page Wrapper ------------------------------ */
+
 
   body.theme-dark main.construction-wrap::before {
     opacity: 0.06;
@@ -68,7 +61,7 @@
     z-index: 1;
   }
 
-  /* ------------------------------ Header ------------------------------ */
+
   html[data-page="construction"] .view-header {
     position: relative;
     z-index: 1;
@@ -163,7 +156,7 @@
     }
   }
 
-  /* ------------------------------ Carousel Shell ------------------------------ */
+
   html[data-page="construction"] .view.story {
     overflow-x: clip;
     --card-gap: var(--constr-gap);
@@ -179,7 +172,7 @@
     container-type: inline-size;
   }
 
-  /* Panels: semi-transparent so checker remains visible under cards */
+
   html[data-page="construction"] .carousel-viewport {
     border: 1px solid var(--constr-border);
     border-radius: var(--constr-radius);
@@ -222,7 +215,7 @@
     }
   }
 
-  /* ------------------------------ Cards ------------------------------ */
+
   html[data-page="construction"] .carousel-slide {
     list-style: none;
     flex: 0 0 100%;
@@ -309,7 +302,7 @@
     overflow: hidden;
   }
 
-  /* ------------------------------ Responsive Columns ------------------------------ */
+
   @media (min-width: 640px) {
     html[data-page="construction"] .carousel-slide {
       flex: 0 0 calc(50% - var(--constr-gap) / 2);
@@ -326,7 +319,7 @@
     }
   }
 
-  /* ------------------------------ Controls / Dots ------------------------------ */
+
   html[data-page="construction"] .carousel-controls {
     position: absolute;
     inset: 0;
@@ -408,7 +401,7 @@
     outline-offset: 2px;
   }
 
-  /* ------------------------------ Newspaper Panels ------------------------------ */
+
   html[data-page="construction"] .newspaper {
     border: 1px solid var(--constr-border);
     border-radius: var(--constr-radius);
@@ -491,7 +484,7 @@
     font-size: 0.95rem;
   }
 
-  /* Mobile tuning */
+
   @media (max-width: 768px) {
     html[data-page="construction"] .view-header {
       padding-block: 14px 6px;
@@ -515,7 +508,7 @@
   }
 }
 
-/* ------------------------------ Motion Pref ------------------------------ */
+
 @layer motion {
   @media (prefers-reduced-motion: reduce) {
 

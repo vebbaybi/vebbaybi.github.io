@@ -1,22 +1,22 @@
-// assets/js/ui/components/nav.js
+
 import { loadPartial } from '../../utils/fetch.js';
 
 export async function initNav() {
-  // mount header (so the toggle exists at far right)
+
   const headerHost = document.querySelector('header-placeholder');
   if (headerHost) {
     headerHost.innerHTML = await loadPartial('/partials/header.html');
   }
 
-  // mount side pane
+
   const navHost = document.querySelector('nav-placeholder');
   if (!navHost) return;
   navHost.innerHTML = await loadPartial('/partials/nav.html');
 
-  const toggleBtn   = document.getElementById('nav-toggle');             // in header
-  const pane        = document.getElementById('side-nav');               // the pane
-  const closeBtn    = navHost.querySelector('.nav-close');               // inside pane
-  const backdrop    = document.querySelector('.nav-backdrop');           // sibling overlay
+  const toggleBtn   = document.getElementById('nav-toggle');
+  const pane        = document.getElementById('side-nav');
+  const closeBtn    = navHost.querySelector('.nav-close');
+  const backdrop    = document.querySelector('.nav-backdrop');
   const body        = document.body;
   const links       = Array.from(navHost.querySelectorAll('a[href]'));
 
@@ -51,13 +51,13 @@ export async function initNav() {
         link.setAttribute('aria-current', 'page');
       }
     } catch {
-      /* Ignore malformed links in partials. */
+
     }
 
     link.addEventListener('click', closeNav);
   });
 
-  // ESC to close
+
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && pane.classList.contains('active')) closeNav();
   });

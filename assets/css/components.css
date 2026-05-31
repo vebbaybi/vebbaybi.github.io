@@ -1,13 +1,8 @@
-/* ==============================================
- COMPONENTS.CSS — FINAL (FIXED)
- Scope: Header, Footer, Buttons, Navigation (inline + drawer), Cards, Carousels, Motion
- Depends on: Tokens from main.css
- CONTRACT: Header/Footer elements now use HIGH CONTRAST text colors against their blue backgrounds.
-================================================= */
+
 
 @layer components, buttons, navigation, cards, carousels, motion;
 
-/* ------------------------------ HEADER AND FOOTER ------------------------------ */
+
 @layer components {
 
     .site-header,
@@ -18,7 +13,7 @@
         z-index: 2000 !important;
         pointer-events: auto;
         width: 100%;
-        /* Background is set to secondary-bg (a shade of blue/navy in your theme) */
+
         background: var(--secondary-bg);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
@@ -35,11 +30,11 @@
         bottom: 0;
         border-top: 1px solid var(--border);
         min-height: var(--footer-height);
-        /* FIX: Set base text color to high-contrast primary text for readability */
+
         color: var(--primary-text);
     }
 
-    /* Inner shells */
+
     .header-inner,
     .footer-inner {
         display: flex;
@@ -55,13 +50,13 @@
         font-size: .875rem;
     }
 
-    /* Brand block */
+
     .brand {
         display: inline-flex;
         align-items: center;
         gap: 12px;
         font-weight: 800;
-        /* FIX: Ensure brand text is high contrast against the blue header background */
+
         color: var(--primary-text);
         text-decoration: none;
         cursor: var(--cursor-pointer);
@@ -96,7 +91,7 @@
     }
 
     .footer-left {
-        /* FIX: Ensure footer plain text is high contrast (primary-text) */
+
         color: var(--primary-text);
         display: flex;
         align-items: center;
@@ -105,12 +100,12 @@
     }
 
     .footer-left a {
-        /* FIX: Force specific footer link to use primary text color */
+
         color: var(--primary-text);
     }
 
     .footer-left a:hover {
-        /* Use the accent blue hover state */
+
         color: var(--blue-400);
     }
 
@@ -123,19 +118,19 @@
     }
 
     .footer-right a {
-        /* FIX: Ensure footer links are high contrast against the blue footer background */
+
         color: var(--primary-text);
         transition: var(--transition);
         text-decoration: none;
     }
 
     .footer-right a:hover {
-        /* Use the accent blue hover state */
+
         color: var(--blue-400);
     }
 
     .footer-right .dot {
-        /* FIX: Ensure separator dots are high contrast */
+
         color: var(--primary-text);
         font-weight: 300;
     }
@@ -159,7 +154,7 @@
     }
 }
 
-/* ------------------------------ BUTTONS ------------------------------ */
+
 @layer buttons {
     .btn {
         display: inline-flex;
@@ -192,7 +187,7 @@
 
     .btn.secondary {
         background: transparent;
-        /* Secondary buttons in header/footer must also be high contrast */
+
         color: var(--primary-text);
         border: 1px solid var(--border);
         box-shadow: none;
@@ -222,7 +217,7 @@
         margin-left: 2px;
     }
 
-    /* Icon buttons (header actions) */
+
     .iconbtn {
         padding: 10px;
         border-radius: var(--radius-md);
@@ -234,12 +229,12 @@
         align-items: center;
         justify-content: center;
         line-height: 0;
-        /* FIX: Ensure icons are primary text color */
+
         color: var(--primary-text);
     }
 
     .iconbtn:hover {
-        /* Compatible hover effect using primary text color with slight transparency */
+
         background: color-mix(in srgb, var(--primary-text) 8%, transparent);
     }
 
@@ -256,10 +251,10 @@
     }
 }
 
-/* ------------------------------ NAVIGATION (INLINE + DRAWER) ------------------------------ */
+
 @layer navigation {
 
-    /* Inline lists (header, footer, sections) */
+
     .nav-list {
         display: flex;
         gap: 12px;
@@ -276,7 +271,7 @@
         padding: 8px 12px;
         border-radius: var(--radius);
         color: var(--primary-text);
-        /* Use high contrast text */
+
         text-decoration: none;
         font-weight: 600;
         letter-spacing: .1px;
@@ -300,7 +295,7 @@
         border-color: var(--blue-400);
     }
 
-    /* Off-canvas drawer */
+
     .nav-pane {
         position: fixed;
         top: 0;
@@ -416,7 +411,7 @@
         outline-offset: 2px;
     }
 
-    /* Backdrop */
+
     .nav-backdrop {
         position: fixed;
         inset: 0;
@@ -441,12 +436,12 @@
         pointer-events: none !important;
     }
 
-    /* Lock body scroll when drawer open */
+
     body:has(#side-nav[aria-hidden="false"]) {
         overflow: hidden;
     }
 
-    /* Responsive tuning */
+
     @media (min-width: 992px) {
         .nav-list.drawer a {
             font-size: 1rem;
@@ -466,7 +461,7 @@
     }
 }
 
-/* ------------------------------ CARDS ------------------------------ */
+
 @layer cards {
     .project-card {
         display: grid;
@@ -540,13 +535,13 @@
 
     .project-blurb {
         margin: 0 0 14px 0;
-        /* FIX: Changed from secondary-text to primary-text for better contrast against secondary-bg */
+
         color: var(--primary-text);
         font-size: .9rem;
     }
 }
 
-/* ------------------------------ CAROUSEL HELPERS ------------------------------ */
+
 @layer carousels {
 
     .carousel-controls,
@@ -603,7 +598,7 @@
     }
 }
 
-/* ------------------------------ MOTION PREFERENCES ------------------------------ */
+
 @layer motion {
     @media (prefers-reduced-motion: reduce) {
 
@@ -633,7 +628,7 @@
     }
 }
 
-/* ------------------------------ HIGH-DPI AND SAFE AREAS ------------------------------ */
+
 @layer components {
     @media (min-resolution: 2dppx) {
         .iconbtn img {
@@ -648,7 +643,7 @@
         }
     }
 }
-/* ------------------------------ CONTRACTOR BUBBLE ------------------------------ */
+
 @layer components {
     .contractor-bubble {
         position: fixed;

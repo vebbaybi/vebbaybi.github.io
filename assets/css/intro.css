@@ -1,17 +1,6 @@
-/* ==============================================
-   Intro Puzzle Overlay Styles (3×3 sliding puzzle)
-   Pixel-accurate, accessible, reduced-motion aware
-   Improvements:
-     - Replaced custom tokens with main.css tokens for consistency
-     - Added light theme support using main.css tokens
-     - Enhanced accessibility with main.css --focus style
-     - Optimized backdrop-filter with fallback for compatibility
-     - Aligned button and tile styles with main.css components
-     - Refined responsive design with clamp values
-     - Optimized solved animation for performance
-   ============================================== */
 
-/* Fullscreen overlay */
+
+
 #vb-intro-overlay {
   position: fixed;
   inset: 0;
@@ -20,18 +9,18 @@
   align-items: center;
   justify-content: center;
   padding: clamp(12px, 4vh, 16px);
-  /* Matches main.css responsive padding */
+
   overflow: auto;
-  /* Safe scroll fallback */
+
   color: var(--text);
   background: var(--bg);
   background: rgba(11, 15, 20, 0.9);
-  /* Fallback for backdrop-filter */
+
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
-/* Dialog */
+
 #vb-intro-dialog {
   width: min(96vw, 1040px);
   max-height: 92vh;
@@ -45,7 +34,7 @@
   box-shadow: var(--shadow);
 }
 
-/* Header */
+
 #vb-intro-head {
   display: flex;
   align-items: center;
@@ -67,7 +56,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Puzzle container */
+
 #vb-puzzle-wrap {
   place-self: center;
   width: min(88vw, calc(92vh - 180px));
@@ -79,7 +68,7 @@
   background: var(--panel);
 }
 
-/* Base image + interactive layer */
+
 #vb-puzzle-image,
 #vb-puzzle-layer {
   position: absolute;
@@ -91,7 +80,7 @@
   filter: brightness(0.95) contrast(1.05);
 }
 
-/* Tiles */
+
 .vb-tile {
   position: absolute;
   will-change: transform;
@@ -115,7 +104,7 @@
   pointer-events: none;
 }
 
-/* Controls */
+
 #vb-intro-controls {
   display: flex;
   justify-content: space-between;
@@ -159,7 +148,7 @@
   outline-offset: 2px;
 }
 
-/* Solved flash */
+
 #vb-puzzle-image.vb-solved {
   animation: vbSolved 650ms ease-out both;
 }
@@ -174,7 +163,7 @@
   }
 }
 
-/* Reduced motion */
+
 @media (prefers-reduced-motion: reduce) {
   #vb-intro-overlay {
     -webkit-backdrop-filter: none;
@@ -189,7 +178,7 @@
   }
 }
 
-/* Mobile tweaks */
+
 @media (max-width: 520px) {
   #vb-intro-meta {
     gap: 10px;

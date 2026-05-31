@@ -1,4 +1,4 @@
-// /assets/js/pages/contact.js
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("#contact-form");
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const payload = Object.fromEntries(formData.entries());
 
     try {
-      // Example async mock (replace with actual endpoint)
+
       await new Promise((resolve) => setTimeout(resolve, 1200));
 
       form.reset();
-      status.textContent = "✅ Message sent successfully!";
+      status.textContent = "Message sent successfully!";
       status.style.color = "var(--blue-400)";
     } catch (err) {
-      status.textContent = "❌ Failed to send. Please try again later.";
+      status.textContent = "Failed to send. Please try again later.";
       status.style.color = "var(--tan-600)";
     }
   });

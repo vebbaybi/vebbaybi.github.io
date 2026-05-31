@@ -1,20 +1,20 @@
-/* 1807-chain — ai.js (v1.2)
-   AI page interactions
-   - Typewriter rotator for eyebrow (optional)
-   - Intersection activation for cards/stats/arch/galleries
-   - Stats counters
-   - Gallery: wheel-to-scroll + arrow keys
-*/
+
+
+
+
+
+
+
 
 (() => {
   'use strict';
 
-  // ---------- helpers ----------
+
   const qs  = (s, r = document) => r.querySelector(s);
   const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
   const on  = (t, e, h, o) => t.addEventListener(e, h, o);
 
-  // ---------- typewriter (optional) ----------
+
   function initTypewriter() {
     const el = qs('#ai-rotator');
     if (!el) return;
@@ -65,7 +65,7 @@
     on(window, 'beforeunload', () => clearTimeout(timer), { once: true });
   }
 
-  // ---------- intersection activation + counters ----------
+
   function initActivations() {
     const nodes = qsa('.card, .arch-card, .stat, .gallery-item');
     if (!nodes.length) return;
@@ -101,7 +101,7 @@
     requestAnimationFrame(tick);
   }
 
-  // ---------- gallery scroll (wheel + keys) ----------
+
   function initGallery() {
     const strip = qs('.gallery-strip');
     if (!strip) return;
@@ -143,7 +143,7 @@
     }
   }
 
-  // ---------- boot ----------
+
   function init() {
     initTypewriter();
     initActivations();

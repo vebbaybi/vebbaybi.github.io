@@ -1,4 +1,4 @@
-# The 1807 / custom domain on GitHub Pages
+
 
 User-agent: *
 Allow: /

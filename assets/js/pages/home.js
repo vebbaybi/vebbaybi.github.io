@@ -1,12 +1,12 @@
 "use strict";
 
-/**
- * home.js — Portfolio overlay + nav control
- * - Syncs nav hover/focus/click with background image layers and split-type overlay.
- * - Safe with missing typewriter lines (e.g., no "default" line in HTML).
- * - Honors prefers-reduced-motion.
- * - Wires mobile menu toggle and overlay dismissal.
- */
+
+
+
+
+
+
+
 
 class PortfolioOverlay {
   constructor() {
@@ -32,7 +32,7 @@ class PortfolioOverlay {
     this.init();
   }
 
-  // ---- Lifecycle ----
+
   init() {
     this.detectReducedMotion();
     this.cacheElements();
@@ -62,7 +62,7 @@ class PortfolioOverlay {
     }
   }
 
-  // ---- Setup ----
+
   detectReducedMotion() {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     this.state.reducedMotion = mq.matches;
@@ -76,12 +76,12 @@ class PortfolioOverlay {
     this.navLinks = document.querySelectorAll(".navigation-links-full .nav-link, .mobile-nav-vertical .nav-link");
     this.typewriterOverlay = document.querySelector(".typewriter-overlay-centered");
 
-    // Mobile UI
+
     this.mobileToggle = document.getElementById("mobile-menu-toggle");
     this.mobileNav = document.getElementById("mobile-nav");
     this.mobileOverlay = document.getElementById("mobile-nav-overlay");
 
-    // Ensure default is present in the map with safe nulls
+
     this.config.sectionMap.set(this.config.defaultSection, {
       link: null,
       image: document.querySelector(`.image-layer[data-section="default"]`),
@@ -117,7 +117,7 @@ class PortfolioOverlay {
     if (this.mobileOverlay) this.mobileOverlay.addEventListener("click", this._onOverlayClick);
   }
 
-  // ---- Mobile nav ----
+
   _onMobileToggle() {
     this.setMobileOpen(!this.state.mobileOpen);
   }
@@ -138,12 +138,12 @@ class PortfolioOverlay {
     if (this.mobileOverlay) {
       this.mobileOverlay.classList.toggle("active", this.state.mobileOpen);
       this.mobileOverlay.setAttribute("aria-hidden", this.state.mobileOpen ? "false" : "true");
-      // Show/Hide overlay display since CSS default is display:none
+
       this.mobileOverlay.style.display = this.state.mobileOpen ? "block" : "none";
     }
   }
 
-  // ---- Events ----
+
   _anyNavHasFocus() {
     return Array.from(this.navLinks).some(a => a === document.activeElement);
   }
@@ -165,7 +165,7 @@ class PortfolioOverlay {
       }
     } else if (e.type === "click") {
       this.activateSection(section);
-      // allow navigation effect on mobile 
+
       if (e.currentTarget.closest('.mobile-nav-vertical')) {
         this.setMobileOpen(false);
       }
@@ -179,7 +179,7 @@ class PortfolioOverlay {
     if (isTypingContext) return;
 
     if (e.key === "Escape") {
-      // Close mobile menu if open
+
       if (this.state.mobileOpen) {
         this.setMobileOpen(false);
         e.preventDefault();
@@ -204,16 +204,16 @@ class PortfolioOverlay {
     }
   }
 
-  // ---- Sections ----
+
   setInitialSection() {
-    // Clean slate
+
     this.config.sectionMap.forEach(item => {
       item?.image?.classList.remove("active");
       item?.typewriter?.classList.remove("active");
       this._resetTypewriter(item?.typewriter);
     });
 
-    // Activate default image layer; default typewriter may not exist and that is fine
+
     const def = this.config.sectionMap.get(this.config.defaultSection);
     def?.image?.classList.add("active");
     def?.typewriter && def.typewriter.classList.add("active");
@@ -267,7 +267,7 @@ class PortfolioOverlay {
     }
   }
 
-  // ---- Typewriter helpers ----
+
   _resetTypewriter(line) {
     if (!line) return;
     line.querySelectorAll(".typewriter-part-large").forEach(p => {
@@ -294,14 +294,14 @@ class PortfolioOverlay {
   }
 }
 
-// Boot
+
 document.addEventListener("DOMContentLoaded", () => {
   if (document.querySelector(".navigation-links-full")) {
     window.portfolioOverlay = new PortfolioOverlay();
   }
 });
 
-// CommonJS export for testing
+
 if (typeof module !== "undefined" && module.exports) {
   module.exports = PortfolioOverlay;
 }

@@ -1,28 +1,28 @@
-/* =========================================================
-   boot.js — Gate orchestrator (LANDING → HOME ONLY)
-   - Gates ONLY on /home when:
-       • You arrive FROM a landing page: '/', '/scroll_paper' (kept '/scrolly' for legacy)
-       • OR you hard reload on /home
-   - Skips on all other routes and flows (internal navs not from landing)
-   - Dev params:
-       ?gate=1   → force show once
-       ?bypass=1 → skip once
-   - Requires: window.VBIntroPuzzle.mount (non-module; load BEFORE this)
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
 (function () {
   'use strict';
 
-  /* ---------- Config ---------- */
-  // Use canonical route KEYS (mirrors app.js routeKey)
+
+
   const HOME_KEYS    = new Set(['/home']);
-  // Updated: include /scroll_paper (keep /scrolly for legacy nav/back button cases)
+
   const LANDING_KEYS = new Set(['/', '/scroll_paper']);
 
-  const PUZZLE_DEADLINE_MS = 2000;   // wait up to 2s for engine to appear
+  const PUZZLE_DEADLINE_MS = 2000;
   const IDLE_MS = 90_000;
   const OS_PORTFOLIO_PATH = '/1807osPort/';
 
-  // Random image pool (yours)
+
   const IMAGE_SOURCES = [
     '/assets/images/playme/playme1.jpg',
     '/assets/images/playme/playme2.jpg',
@@ -41,7 +41,7 @@
   ];
   const IMAGE_SRC = IMAGE_SOURCES[Math.floor(Math.random() * IMAGE_SOURCES.length)];
 
-  /* ---------- Utils ---------- */
+
   function ready(fn) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', fn, { once: true });
@@ -50,9 +50,9 @@
     }
   }
 
-  // Canonical route key (matches app.js):
-  //   '/' for index/index.html
-  //   '/name' for name or name.html
+
+
+
   function routeKey(pathname) {
     try {
       const parts = (pathname || window.location.pathname).split('/').filter(Boolean);
@@ -65,7 +65,7 @@
 
   function navEntryType() {
     const entries = performance.getEntriesByType && performance.getEntriesByType('navigation');
-    return entries && entries[0] ? entries[0].type : 'navigate'; // 'navigate' | 'reload' | 'back_forward' | 'prerender'
+    return entries && entries[0] ? entries[0].type : 'navigate';
   }
 
   function isHomeRoute() {
@@ -73,7 +73,7 @@
   }
 
   function cameFromLanding() {
-    if (!document.referrer) return false; // gate only after landing, not blank/external
+    if (!document.referrer) return false;
     let refPath = '/';
     try { refPath = new URL(document.referrer).pathname; } catch {}
     return LANDING_KEYS.has(routeKey(refPath));
@@ -217,20 +217,20 @@
     });
   }
 
-  /* ---------- Main ---------- */
+
   ready(function () {
-    // Soft pre-warm the chosen image
+
     try { const _img = new Image(); _img.src = IMAGE_SRC; } catch {}
 
     const qp = new URLSearchParams(location.search);
     const forceGate = qp.get('gate') === '1';
     const bypass    = qp.get('bypass') === '1';
 
-    // Optional session guard (kept OFF by default but won't crash when referenced)
+
     let alreadyGated = false;
-    /* To enable "gate only once per tab", uncomment:
-    try { alreadyGated = sessionStorage.getItem('__vb_gate_done__') === '1'; } catch {}
-    */
+
+
+
 
     const atHome        = isHomeRoute();
     const type          = navEntryType();
@@ -270,7 +270,7 @@
           return;
         }
 
-        // Idle prompt (no auto-quit)
+
         const dialog = mount.querySelector('#vb-intro-dialog') || mount;
         const toast = createIdleToast(dialog, {
           onContinue: resetIdle,

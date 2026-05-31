@@ -1,10 +1,10 @@
-/* =========================================================
-   RESUME.JS - 1807 Resume behavior
-   - Theme toggle with localStorage
-   - Print or Save PDF
-   - Auto updated year and timestamp
-   - GIF background with scroll-driven frame control
-   ========================================================= */
+
+
+
+
+
+
+
 
 (function () {
   const themeKey = "resume-theme";
@@ -22,7 +22,7 @@
     try {
       localStorage.setItem(key, value);
     } catch {
-      /* Storage can be unavailable in private or embedded contexts. */
+
     }
   }
 
@@ -48,11 +48,11 @@
     downloadBlob(new Blob([text], { type }), filename);
   }
 
-  // year
+
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear().toString();
 
-  // updated timestamp
+
   const updatedAt = document.getElementById("updatedAt");
   if (updatedAt) {
     const dt = new Date();
@@ -61,7 +61,7 @@
     updatedAt.textContent = stamp;
   }
 
-  // print
+
   const printBtn = document.getElementById("print-btn");
   if (printBtn) {
     printBtn.addEventListener("click", () => {
@@ -135,13 +135,13 @@
     });
   }
 
-  // theme load
+
   const saved = safeGetStorage(themeKey);
   if (saved === "light" || saved === "dark") {
     html.setAttribute("data-theme", saved);
   }
 
-  // theme toggle
+
   const themeToggle = document.getElementById("themeToggle");
   if (themeToggle) {
     const apply = (mode) => {
@@ -157,7 +157,7 @@
     });
   }
 
-  // optional contrast tweak based on theme
+
   const observer = new MutationObserver(() => {
     const mode = html.getAttribute("data-theme") || "dark";
     if (mode === "light") {
@@ -168,14 +168,14 @@
   });
   observer.observe(html, { attributes: true, attributeFilter: ["data-theme"] });
 
-  // GIF background scroll animation
+
   const canvas = document.getElementById("gif-bg-canvas");
   if (canvas) {
     const ctx = canvas.getContext("2d");
     const gif = new Image();
     gif.src = "/assets/images/gif/gif.gif";
 
-    // Canvas setup
+
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -183,61 +183,61 @@
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
 
-    // GIF frame control simulation
-    const totalFrames = 30; // Assumed frame count (adjust based on actual GIF)
-    const frameDuration = 100; // Assumed ms per frame (adjust based on GIF)
+
+    const totalFrames = 30;
+    const frameDuration = 100;
     let currentFrame = 0;
     let lastScrollY = window.scrollY;
     let lastTimestamp = Date.now();
     let isScrolling = false;
 
-    // Draw GIF on canvas
+
     const drawFrame = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(gif, 0, 0, canvas.width, canvas.height);
-      // Simulate frame by manipulating visibility (actual frame control needs libgif-js)
-      canvas.style.opacity = isScrolling ? 0.5 : 0; // Match resume.css opacity
+
+      canvas.style.opacity = isScrolling ? 0.5 : 0;
     };
 
-    // Scroll event handler
+
     window.addEventListener("scroll", () => {
       const currentScrollY = window.scrollY;
       const scrollDelta = currentScrollY - lastScrollY;
       const now = Date.now();
       const timeDelta = now - lastTimestamp;
 
-      // Calculate scroll speed (pixels/ms)
+
       const scrollSpeed = Math.abs(scrollDelta) / timeDelta;
       isScrolling = scrollDelta !== 0;
 
-      // Map scroll speed to frame rate
-      const frameChange = Math.round(scrollSpeed * 1000 / frameDuration); // Frames per second
+
+      const frameChange = Math.round(scrollSpeed * 1000 / frameDuration);
       if (scrollDelta > 0) {
-        // Scroll down: play forward
+
         currentFrame = Math.min(totalFrames - 1, currentFrame + frameChange);
       } else if (scrollDelta < 0) {
-        // Scroll up: rewind
+
         currentFrame = Math.max(0, currentFrame - frameChange);
       }
 
-      // Update canvas
+
       requestAnimationFrame(drawFrame);
 
       lastScrollY = currentScrollY;
       lastTimestamp = now;
     });
 
-    // Stop animation when not scrolling
+
     let scrollTimeout;
     window.addEventListener("scroll", () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         isScrolling = false;
-        drawFrame(); // Freeze on current frame
-      }, 150); // Debounce to detect scroll stop
+        drawFrame();
+      }, 150);
     });
 
-    // Initial draw
+
     gif.onload = () => {
       drawFrame();
     };

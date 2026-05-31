@@ -1,39 +1,39 @@
 
-/* =========================================================
-   VBIntroPuzzle — 3×3 Sliding Picture Puzzle (8-puzzle)
-   - Professional engine: solvable shuffle, mouse/touch/keyboard
-   - Timer & moves, best-time persisted, a11y, events
-   - No external deps. Image provided by caller.
-   Public API:
-     window.VBIntroPuzzle.mount({
-       container: '#intro-root' | HTMLElement,
-       imageSrc: '/assets/images/playme.jpg',
-       onSolved: ({ elapsedMs, moves }) => {},
-       onSkip: () => {}
-     })
-   Emits:
-     PUZZLE_SOLVED (detail: { elapsedMs, moves })
-     PUZZLE_SKIPPED
-     PUZZLE_DESTROYED
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 (function () {
   'use strict';
 
   const LS_KEY_BEST = 'vb_intro_best_time_ms';
 
-  // DOM helpers
+
   const qs  = (root, sel) => (root || document).querySelector(sel);
   const qsa = (root, sel) => Array.from((root || document).querySelectorAll(sel));
   const now = () => performance.now();
 
-  // Format mm:ss
+
   function formatMs(ms) {
     const s = Math.floor(ms / 1000), m = Math.floor(s / 60), r = s % 60;
     return `${String(m).padStart(2,'0')}:${String(r).padStart(2,'0')}`;
   }
 
-  // 8-puzzle solvability for 3×3 (odd grid): inversion count must be even
+
   function inversions(order) {
     let inv = 0; const a = order.filter(v => v !== 0);
     for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) if (a[i] > a[j]) inv++;
@@ -155,14 +155,14 @@
     }
 
     _bind() {
-      // Pointer (click/tap)
+
       this.dom.layer.addEventListener('click', (e) => {
         const btn = e.target.closest('.vb-tile');
         if (!btn) return;
         this._tryMove(parseInt(btn.getAttribute('data-pos')));
       });
 
-      // Keyboard (arrow keys / WASD on the layer)
+
       this.dom.layer.addEventListener('keydown', (e) => {
         const empty = this.state.emptyPos;
         const { x, y } = posToXY(empty);
@@ -174,12 +174,12 @@
         if (target !== null) { e.preventDefault(); this._tryMove(target); }
       });
 
-      // Controls
+
       this.dom.btnShuffle.addEventListener('click', () => this.shuffle());
       this.dom.btnSkip.addEventListener('click', () => this._skip());
       this.dom.btnReveal.addEventListener('click', () => this._reveal());
 
-      // Maintain crisp alignment on resize
+
       window.addEventListener('resize', () => this._syncPositions(false));
     }
 
@@ -223,7 +223,7 @@
           setTransform(tileEl, x, y);
         }
       }
-      // mark empty and aria-disabled
+
       qsa(this.dom.layer, '.vb-tile').forEach((el, idx) => {
         const isEmpty = this.state.order[idx] === 0;
         el.classList.toggle('vb-empty', isEmpty);
@@ -235,7 +235,7 @@
       const emptyPos = this.state.emptyPos;
       if (!canMove(tileVisualPos, emptyPos)) return;
 
-      // Swap order entries (visual positions)
+
       [this.state.order[tileVisualPos], this.state.order[emptyPos]] =
         [this.state.order[emptyPos], this.state.order[tileVisualPos]];
       this.state.emptyPos = tileVisualPos;
@@ -253,11 +253,11 @@
       const best = window.localStorage.getItem(LS_KEY_BEST);
       if (!best || elapsed < parseInt(best, 10)) window.localStorage.setItem(LS_KEY_BEST, String(elapsed));
 
-      // Solved flash
+
       this.dom.image.classList.add('vb-solved');
       setTimeout(() => this.dom.image.classList.remove('vb-solved'), 700);
 
-      // Small pause so users perceive the solved state
+
       await new Promise(r => setTimeout(r, 420));
 
       this.destroy();
@@ -272,7 +272,7 @@
     }
 
     _reveal() {
-      // Instantly show finished state then treat as solved
+
       this.state.order = [1,2,3,4,5,6,7,8,0];
       this.state.emptyPos = 8;
       this._syncPositions(false);

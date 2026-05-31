@@ -1,64 +1,64 @@
 @layer notfound {
 
-    /* 1. LAYOUT FOR NO-SCROLL SCREEN */
+
     html[data-page="404"] body {
         background: var(--bg);
         color: var(--text);
         min-height: 100vh;
-        /* Ensure body takes full viewport height */
+
         display: grid;
         grid-template-rows: auto 1fr auto;
-        /* Header, Main Content (fills space), Footer */
+
     }
 
-    /* Target the main content area to handle vertical centering */
+
     html[data-page="404"] #main {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* Vertically center the view inside #main */
+
         align-items: center;
         overflow-y: hidden;
-        /* Prevent scrolling on the page */
+
     }
 
     html[data-page="404"] .view.error {
         padding-block: clamp(24px, 6vw, 40px);
-        /* Reduced padding to save vertical space */
+
         display: grid;
         justify-items: center;
         text-align: center;
         gap: clamp(14px, 3vw, 22px);
     }
 
-    /* 2. GIF STYLING (333px, no box) */
+
     html[data-page="404"] .nf-hero-bleed {
         width: 100%;
         max-width: 333px;
-        /* Constrain the container width for horizontal centering */
+
         margin: 0 auto;
-        /* Center the GIF container */
+
         overflow: visible;
-        /* Ensure the image doesn't get clipped by this container */
+
         aspect-ratio: 1 / 1;
-        /* Match container ratio to image size for centering */
+
     }
 
     html[data-page="404"] .nf-hero-bleed img {
         width: 333px;
         height: 333px;
         object-fit: contain;
-        /* Shows full character without clipping */
+
         object-position: 50%;
         display: block;
         image-rendering: auto;
         margin: 0 auto;
-        /* Explicitly center the image if needed */
+
         position: static;
-        /* Resetting position from the original code */
+
     }
 
-    /* 3. HEADER/ACTION STYLING (Unchanged) */
+
     html[data-page="404"] .nf-header {
         display: grid;
         gap: 8px;
@@ -105,7 +105,7 @@
         min-width: 138px;
     }
 
-    /* 4. MEDIA QUERIES */
+
     @media (prefers-reduced-motion: reduce) {
 
         html[data-page="404"] .nf-hero-bleed,
@@ -114,8 +114,8 @@
         }
     }
 
-    /* IMPORTANT: Remove scaling for small screens to maintain 333px height */
+
     @media (max-width: 480px) {
-        /* No changes needed here, as the fixed 333px size takes precedence. */
+
     }
 }

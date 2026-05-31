@@ -34,7 +34,7 @@ function safeSetLocalStorage(key, value) {
   try {
     localStorage.setItem(key, value);
   } catch {
-    /* Storage can be unavailable in private or embedded contexts. */
+
   }
 }
 

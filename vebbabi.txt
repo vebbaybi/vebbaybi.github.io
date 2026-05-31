@@ -1,34 +1,34 @@
 vebbaybi.github.io/
 ├─ index.html
-├─ home.html                               # home page
+├─ home.html
 ├─ scroll_paper.html
-├─ projects.html                            # projects overview
-├─ ai.html                                  # AI projects page
-├─ robotics.html                            # robotics projects page
-├─ chains.html                              # blockchain projects page
-├─ construction.html                        # construction endeavors page
-├─ resumes.html                             # resumes hub (with tabs)
+├─ projects.html
+├─ ai.html
+├─ robotics.html
+├─ chains.html
+├─ construction.html
+├─ resumes.html
 ├─ resume.html
-├─ toolbox.html                             # toolbox showcase
-├─ roadmap.html                             # roadmap timeline
-├─ changelog.html                           # changelog view
-├─ presskit.html                            # press kit page
-├─ contact.html                             # contact page
-├─ links.html                               # link-in-bio style page
-├─ blog.html                                # blog index
-├─ now.html                                 # “now” page
-├─ faq.html                                 # FAQ page
-├─ legal.html                               # privacy/terms
-├─ 404.html                                 # custom error page
+├─ toolbox.html
+├─ roadmap.html
+├─ changelog.html
+├─ presskit.html
+├─ contact.html
+├─ links.html
+├─ blog.html
+├─ now.html
+├─ faq.html
+├─ legal.html
+├─ 404.html
 ├─ favicon.ico
 ├─ robots.txt
-├─ sitemap.xml                              # SEO listing
-├─ manifest.webmanifest                     # PWA basics
+├─ sitemap.xml
+├─ manifest.webmanifest
 │
 ├─ partials/
 │  ├─  nav.html
-│  ├─ header.html                           # global nav, logo, theme toggle
-│  └─ footer.html                           # footer, socials, copyright
+│  ├─ header.html
+│  └─ footer.html
 │
 ├─ assets/
 │  ├─ cursors/
@@ -41,39 +41,39 @@ vebbaybi.github.io/
 │  ├─ css/
 │  │  ├─ scroll_paper.css
 │  │  ├─ landing.css
-│  │  ├─ main.css                           # reset, base layout, typography
-│  │  ├─ components.css                     # cards, chips, grid, lightbox, tabs
-│  │  ├─ pages.css                          # page-specific styling
-│  │  ├─ intro.css                          # NEW: puzzle overlay, solved animation, skip btn, accessibility rules
-│  │  └─ ai-widget.css                      # NEW: floating chat widget styles (panel, bubbles, recruiter mode)
+│  │  ├─ main.css
+│  │  ├─ components.css
+│  │  ├─ pages.css
+│  │  ├─ intro.css
+│  │  └─ ai-widget.css
 │  │
 │  ├─ js/
 │  │  ├─ scroll_paper.js
-│  │  ├─ app.js                             # main bootstrap; waits for SITE_READY before running page logic
-│  │  ├─ boot.js                            # NEW: first-load controller → mounts puzzle, runs preload, emits SITE_READY
+│  │  ├─ app.js
+│  │  ├─ boot.js
 │  │  ├─ landing.js
 │  │  ├─ state/
-│  │  │  └─ store.js                        # global state; add keys: intro.seen, intro.bestTime, widget.open
+│  │  │  └─ store.js
 │  │  ├─ meta/
-│  │  │  └─ meta.js                         # meta tag updater (titles, OG, Twitter)
+│  │  │  └─ meta.js
 │  │  ├─ ui/
 │  │  │  ├─ components/
-│  │  │  │  ├─ header.js                    # injects /partials/header.html
-│  │  │  │  ├─ footer.js                    # injects /partials/footer.html
-│  │  │  │  ├─ card.js                      # project/resume cards
-│  │  │  │  ├─ lightbox.js                  # modal for images/videos
-│  │  │  │  ├─ tabs.js                      # tabs (resume, etc.)
-│  │  │  │  ├─ filters.js                   # chips + search
-│  │  │  │  ├─ puzzle.js                    # NEW: 3×3 sliding puzzle logic (tiles, moves, solve, skip)
-│  │  │  │  ├─ preload.js                   # NEW: prefetches header/footer, fonts, hero imgs while puzzle runs
-│  │  │  │  └─ toasts.js                    # NEW: small notifications (“Solved in 22s”)
-│  │  │  ├─ helpers.js                      # DOM utils (qs/qsa, debounce, formatters)
-│  │  │  └─ animations.js                   # motion helpers; respects prefers-reduced-motion
+│  │  │  │  ├─ header.js
+│  │  │  │  ├─ footer.js
+│  │  │  │  ├─ card.js
+│  │  │  │  ├─ lightbox.js
+│  │  │  │  ├─ tabs.js
+│  │  │  │  ├─ filters.js
+│  │  │  │  ├─ puzzle.js
+│  │  │  │  ├─ preload.js
+│  │  │  │  └─ toasts.js
+│  │  │  ├─ helpers.js
+│  │  │  └─ animations.js
 │  │  ├─ ai/
-│  │  │  ├─ widget.js                       # NEW: floating assistant UI; chips, chat input, recruiter shortcuts
-│  │  │  ├─ knowledge.js                    # NEW: builds local search index from /data/*.json (projects, resumes, etc.)
-│  │  │  └─ intents.js                      # NEW: maps utterances → actions (NAV, DOWNLOAD, SEARCH, API)
-│  │  ├─ pages/                             # page-specific controllers
+│  │  │  ├─ widget.js
+│  │  │  ├─ knowledge.js
+│  │  │  └─ intents.js
+│  │  ├─ pages/
 │  │  │  ├─ home.js
 │  │  │  ├─ ai.js
 │  │  │  ├─ robotics.js
@@ -91,23 +91,23 @@ vebbaybi.github.io/
 │  │  │  ├─ faq.js
 │  │  │  └─ legal.js
 │  │  └─ utils/
-│  │     ├─ fetch.js                        # robust fetch with retries
-│  │     └─ guardrails.js                   # error handling, focus mgmt
+│  │     ├─ fetch.js
+│  │     └─ guardrails.js
 │  │
 │  ├─ img/
-│  │  ├─ og/                                # OG preview images
+│  │  ├─ og/
 │  │  ├─ home/
 │  │  ├─ ai/
 │  │  ├─ robotics/
 │  │  ├─ construction/
 │  │  ├─ resumes/
-│  │  └─ intro/                             # NEW: puzzle source images (logos, AI art, robotics)
+│  │  └─ intro/
 │  │
-│  ├─ media/                                # PDFs, TXT resumes, videos
+│  ├─ media/
 │  └─ fonts/
 │
 └─ data/
-   ├─ site.json                             # +feature flags for puzzle + aiWidget
+   ├─ site.json
    ├─ projects.json
    ├─ updates.json
    ├─ resumes.json
@@ -115,4 +115,4 @@ vebbaybi.github.io/
    ├─ roadmap.json
    ├─ links.json
    ├─ blog.json
-   └─ ai-widget.json                        # NEW: intents, FAQs, and actions for widget
+   └─ ai-widget.json

@@ -1,24 +1,24 @@
-// assets/js/pages/construction.js
 
-/* =============================================================================
-   CONSTRUCTION PAGE (SCOPED, NO GLOBAL LEAKS)
-   Carousel + subtitle typewriter with robust a11y, swipe, hash sync,
-   and adaptive dots: slides on mobile (1-up), pages on tablet/desktop.
 
-   This build fixes desktop click-through on slide anchors by deferring
-   pointer capture until a swipe is confirmed (beyond a small deadzone).
-   ============================================================================ */
+
+
+
+
+
+
+
+
 
 (() => {
   const root = document.documentElement;
   if (root.getAttribute('data-page') !== 'construction') return;
 
-  /* ------------------------- FLAGS / CONSTS ------------------------- */
+
   const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const AUTO_DELAY = 5000; // ms
+  const AUTO_DELAY = 5000;
   const STORAGE_KEY = 'construction.carousel.index';
 
-  /* ------------------------- DOM LOOKUPS ---------------------------- */
+
   const page = document.querySelector('main .view.story');
   if (!page) return;
 
@@ -31,7 +31,7 @@
   const dotsWrap = carousel?.querySelector('.carousel-pagination');
   const subtitle = document.getElementById('subtitle-rotator');
 
-  // Live region announcer (SR)
+
   let announcer = document.getElementById('carousel-announcer');
   if (!announcer) {
     announcer = document.createElement('div');
@@ -42,25 +42,25 @@
     document.body.appendChild(announcer);
   }
 
-  /* ------------------------- STATE ---------------------------- */
+
   let slidesPerView = 1;
-  let pageIndex = 0;              // current page (tablet/desktop) or the slide index on mobile
+  let pageIndex = 0;
   let pageCount = 0;
   let autoTimer = null;
-  let maxTranslatePx = 0;         // clamp to prevent blank overscroll
+  let maxTranslatePx = 0;
 
-  // swipe
+
   let dragging = false;
   let startX = 0;
   let deltaX = 0;
 
-  // click suppression after a real swipe to avoid accidental anchor nav
+
   let suppressNextClick = false;
 
-  // cache
+
   const SLIDE_COUNT = slides.length;
 
-  /* ------------------------- UTIL ------------------------------ */
+
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
   const getCurrentTranslateX = (el) => {
@@ -69,10 +69,10 @@
     const m = t.match(/matrix\(([^)]+)\)/);
     if (!m) return 0;
     const parts = m[1].split(',').map(parseFloat);
-    return parts[4] || 0; // tx
+    return parts[4] || 0;
   };
 
-  // Use layout offsets only; do NOT subtract current transform
+
   const slideOffsetLeftPx = (idx) => {
     const first = slides[0];
     const slide = slides[idx];
@@ -130,13 +130,13 @@
 
   const announce = (msg) => { if (announcer) announcer.textContent = msg; };
 
-  /* ------------------------- LAYOUT ---------------------------- */
+
   function computeLayout() {
     slidesPerView = computeSlidesPerView();
     pageCount = Math.max(1, Math.ceil(SLIDE_COUNT / slidesPerView));
     pageIndex = clamp(pageIndex, 0, pageCount - 1);
 
-    // SR labels for slides
+
     slides.forEach((slide, i) => {
       slide.setAttribute('aria-roledescription', 'slide');
       slide.setAttribute('aria-label', `${i + 1} of ${SLIDE_COUNT}`);
@@ -152,7 +152,7 @@
     maxTranslatePx = computeMaxTranslatePx();
   }
 
-  /* ------------------------- DOTS ------------------------------ */
+
   function clearDots() {
     if (!dotsWrap) return;
     while (dotsWrap.firstChild) dotsWrap.removeChild(dotsWrap.firstChild);
@@ -220,7 +220,7 @@
     });
   }
 
-  /* ------------------------- TRANSFORMS ------------------------- */
+
   function transformTo(px, animate = true) {
     const clampedPx = clamp(px, 0, maxTranslatePx);
     track.style.transition = animate && !REDUCED_MOTION ? 'transform 450ms ease' : 'none';
@@ -237,7 +237,7 @@
     const px = slideOffsetLeftPx(firstIdx);
     transformTo(px, animate);
 
-    // buttons
+
     if (prevBtn && nextBtn) {
       if (slidesPerView === 1) {
         const curSlide = currentSlideIndexFromTransform();
@@ -292,7 +292,7 @@
     announce(`Viewing slide ${clamped + 1} of ${SLIDE_COUNT}`);
   }
 
-  /* ------------------------- NAV HANDLERS ------------------------ */
+
   const goPrev = () => {
     if (slidesPerView === 1) {
       const cur = currentSlideIndexFromTransform();
@@ -311,9 +311,9 @@
     }
   };
 
-  /* ------------------------- EVENTS ------------------------------ */
+
   function bindEvents() {
-    // arrows
+
     if (prevBtn) {
       prevBtn.style.pointerEvents = 'auto';
       prevBtn.addEventListener('click', goPrev);
@@ -325,7 +325,7 @@
       nextBtn.addEventListener('mousedown', (e) => e.preventDefault());
     }
 
-    // keyboard
+
     if (viewport) {
       viewport.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
@@ -341,17 +341,17 @@
       });
     }
 
-    // pause on hover/focus
+
     ['mouseenter', 'focusin'].forEach((evt) => carousel.addEventListener(evt, pauseAuto, { passive: true }));
     ['mouseleave', 'focusout'].forEach((evt) => carousel.addEventListener(evt, resumeAuto, { passive: true }));
 
-    // vis change
+
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) pauseAuto();
       else resumeAuto();
     });
 
-    // resize (debounced): layout → dots (if mode changed) → snap (no anim)
+
     let rTO = null;
     window.addEventListener('resize', () => {
       clearTimeout(rTO);
@@ -363,22 +363,22 @@
       }, 150);
     }, { passive: true });
 
-    // swipe
+
     if (viewport) enableSwipe(viewport);
 
-    // hash navigation (carousel slides AND content sections)
+
     window.addEventListener('hashchange', () => {
       const h = (location.hash || '').replace(/^#/, '');
       if (!h) return;
 
-      // If it's a section (detail) id, scroll to it and exit
+
       const section = document.getElementById(h);
       if (section && !slides.includes(section)) {
         section.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
         return;
       }
 
-      // Otherwise, if it's a slide hash, move carousel
+
       const idx = indexFromHashString(h);
       if (idx != null) {
         slidesPerView === 1
@@ -387,7 +387,7 @@
       }
     });
 
-    // CAPTURE PHASE: intercept anchors and also suppress click right after a swipe
+
     document.addEventListener('click', (e) => {
       if (suppressNextClick && viewport && viewport.contains(e.target)) {
         e.preventDefault();
@@ -401,7 +401,7 @@
       const id = a.getAttribute('href').replace(/^#/, '');
       if (!id) return;
 
-      // If target is a content section, update hash then smooth scroll (keep carousel state)
+
       const section = document.getElementById(id);
       if (section && !slides.includes(section)) {
         e.preventDefault();
@@ -410,7 +410,7 @@
         return;
       }
 
-      // If target maps to a slide hash, drive the carousel
+
       const idx = indexFromHashString(id);
       if (idx != null) {
         e.preventDefault();
@@ -418,10 +418,10 @@
           ? gotoSlideIndex(idx, { from: 'anchor' })
           : snapToPage(Math.floor(idx / slidesPerView), { animate: true, from: 'anchor' });
       }
-    }, true); // capture
+    }, true);
   }
 
-  /* ------------------------- AUTO ------------------------------- */
+
   function startAuto() {
     if (REDUCED_MOTION || autoTimer) return;
     autoTimer = setInterval(() => {
@@ -450,12 +450,12 @@
     resumeAuto();
   }
 
-  /* ------------------------- SWIPE ------------------------------ */
+
   function enableSwipe(el) {
     let isSwiping = false;
     let captured = false;
     let pointerId = null;
-    const DEADZONE = 8; // px before considering it a swipe
+    const DEADZONE = 8;
 
     el.addEventListener('pointerdown', (e) => {
       dragging = true;
@@ -465,15 +465,15 @@
       startX = e.clientX;
       deltaX = 0;
       pauseAuto();
-      track.style.transition = 'none'; // prep for potential swipe
-      // IMPORTANT: do NOT setPointerCapture here — wait until > DEADZONE
+      track.style.transition = 'none';
+
     });
 
     el.addEventListener('pointermove', (e) => {
       if (!dragging) return;
       deltaX = e.clientX - startX;
 
-      // Promote to swipe once beyond deadzone
+
       if (!isSwiping && Math.abs(deltaX) > DEADZONE) {
         isSwiping = true;
         try { el.setPointerCapture(pointerId); captured = true; } catch {}
@@ -494,12 +494,12 @@
       track.style.transition = '';
 
       if (!isSwiping) {
-        // Tap/click — let native click proceed to anchor if any
+
         resumeAuto();
         return;
       }
 
-      // Real swipe — decide navigation and suppress the ensuing click once
+
       suppressNextClick = true;
       setTimeout(() => { suppressNextClick = false; }, 250);
 
@@ -518,7 +518,7 @@
     el.addEventListener('pointercancel', endDrag);
   }
 
-  /* ------------------------- TYPEWRITER ------------------------- */
+
   function startTypewriter() {
     if (!subtitle) return;
 
@@ -565,9 +565,9 @@
     tick();
   }
 
-  /* ------------------------- INIT ------------------------------- */
+
   function init() {
-    // graceful without carousel (still run typewriter + card anim)
+
     if (!carousel || !viewport || !track || SLIDE_COUNT === 0) {
       startTypewriter();
       animateStoryCards();
@@ -577,7 +577,7 @@
     computeLayout();
     buildDots();
 
-    // start index from hash > session > 0
+
     const fromHash = indexFromHash();
     const saved = Number(sessionStorage.getItem(STORAGE_KEY));
     const initialSlide = clamp(
@@ -586,7 +586,7 @@
       SLIDE_COUNT - 1
     );
 
-    // move to initial position without animation
+
     if (slidesPerView === 1) {
       gotoSlideIndex(initialSlide, { from: 'init' });
     } else {
@@ -600,7 +600,7 @@
     startAuto();
   }
 
-  /* -------------------- CARD APPEAR ON SCROLL ------------------- */
+
   function animateStoryCards() {
     const cards = page.querySelectorAll('.story-card[data-animate]');
     if (!cards.length) return;
@@ -615,14 +615,14 @@
     cards.forEach((c) => obs.observe(c));
   }
 
-  /* ------------------------- BOOT ------------------------------- */
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
   } else {
     init();
   }
 
-  // Post-load layout pass: sizes/images/fonts are final → clamp correct translate
+
   window.addEventListener('load', () => {
     if (!carousel || !viewport || !track || SLIDE_COUNT === 0) return;
     const prevMode = slidesPerView;
@@ -631,7 +631,7 @@
     snapToPage(pageIndex, { animate: false, from: 'load' });
   }, { once: true });
 
-  // Hot-reload guard (non-fatal in prod)
+
   try {
     if (import.meta && import.meta.hot) {
       import.meta.hot.dispose(() => {
@@ -641,5 +641,5 @@
         }
       });
     }
-  } catch { /* no-op */ }
+  } catch {  }
 })();

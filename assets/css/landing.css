@@ -1,15 +1,6 @@
-/* ============================================== 
-   Landing (updated)
-   - White canvas so the All-Seeing Eye stays visible
-   - Merged original + new rain/typing/explosion variants
-   - Supports BOTH class sets:
-       * binary-rain / binary-drop  (older JS)
-       * rain-container / raindrop  (your new spec)
-       * fall-char + final-drop     (older JS)
-       * raindrop-text              (your new spec)
-   ============================================== */
 
-/* --- Force white canvas on landing only --- */
+
+
 html,
 body,
 .runway,
@@ -18,7 +9,7 @@ body,
   background-color: #6e6d6d0f !important;
 }
 
-/* --- Landing wrapper --- */
+
 .landing-wrap {
   position: relative;
   width: 100%;
@@ -27,10 +18,10 @@ body,
   place-items: center;
 
   background: #bbe0003f;
-  /* keep white even if theme-dark on body */
+
   color-scheme: light;
 
-  /* local token fallbacks */
+
   --text: #111;
   --blue-400: #60a5fa;
   --accent-blue: #2563eb;
@@ -42,10 +33,10 @@ body,
 
   font-family: 'Courier New', Courier, monospace;
   margin-top: clamp(80px, 12vh, 120px);
-  /* room for any sticky header */
+
 }
 
-/* --- Typing area (clean—no border/shadow) --- */
+
 #typing-area {
   position: relative;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
@@ -56,11 +47,9 @@ body,
   padding: 0;
 }
 
-/* ===============================
-   CHAR / TYPING / EXPLOSION
-   =============================== */
 
-/* Base character */
+
+
 .char {
   display: inline-block;
   opacity: 0;
@@ -76,16 +65,16 @@ body,
   transform: translateY(0);
 }
 
-/* Explosion trigger (older/new JS both supported) */
+
 .exploding .char {
   position: absolute;
   transition: none;
   pointer-events: none;
-  /* prefer explode-animation but also define explode-char keyframes */
+
   animation: explode-animation 3.3s ease-out forwards;
 }
 
-/* Keyframes (both names map to same motion) */
+
 @keyframes explode-animation {
   from {
     transform: translate(0, 0) scale(1) rotate(0deg);
@@ -112,7 +101,7 @@ body,
   }
 }
 
-/* Older JS: falling line + final drop */
+
 .char.fall-char {
   position: absolute;
   transform: translateY(-100vh);
@@ -143,7 +132,7 @@ body,
   }
 }
 
-/* New spec: raindrop-text (falls into place line by line) */
+
 .char.raindrop-text {
   position: absolute;
   opacity: 0;
@@ -151,7 +140,7 @@ body,
   margin: 0;
   transition: none;
   font-size: inherit;
-  /* inherit from #typing-area */
+
 }
 
 .char.raindrop-text.visible {
@@ -160,16 +149,14 @@ body,
   transition: transform 3.3s ease-in var(--delay, 0s), opacity 0.5s var(--delay, 0s);
 }
 
-/* ===============================
-   PARTICLES (explosion debris)
-   =============================== */
+
 
 #explosion {
   position: absolute;
   inset: 0;
   pointer-events: none;
   display: none;
-  /* toggled by JS when spawning particles */
+
 }
 
 .particle {
@@ -194,23 +181,20 @@ body,
   }
 }
 
-/* ===============================
-   0/1 RAIN BACKGROUNDS
-   (support both class sets)
-   =============================== */
 
-/* Containers */
+
+
 .rain-container,
 .binary-rain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  /* below .top-img and main content */
+
   overflow: hidden;
 }
 
-/* Drops (new spec) */
+
 .raindrop {
   position: absolute;
   font-family: 'Courier New', Courier, monospace;
@@ -231,7 +215,7 @@ body,
   }
 }
 
-/* Drops (older spec) */
+
 .binary-drop {
   position: absolute;
   font-family: 'Courier New', Courier, monospace;
@@ -252,7 +236,7 @@ body,
   }
 }
 
-/* All-Seeing Eye placement with veil */
+
 .top-img {
   position: absolute;
   top: clamp(16px, 2vh, 24px);
@@ -270,9 +254,7 @@ body,
   filter: blur(0) grayscale(0) opacity(1);
 }
 
-/* ===============================
-   Responsive
-   =============================== */
+
 @media (max-width: 768px) {
   #typing-area {
     font-size: clamp(1.2rem, 4vw, 1.8rem);
@@ -287,9 +269,7 @@ body,
   }
 }
 
-/* ===============================
-   Reduced Motion Accessibility
-   =============================== */
+
 @media (prefers-reduced-motion: reduce) {
   #typing-area {
     animation: none;

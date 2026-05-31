@@ -1,8 +1,8 @@
-/* =======================================================================================
-   1807 — CHAINS PAGE JS (ES MODULE, DEDICATED, SCOPED)
-   Improved to ensure button functionality on desktop and mobile, with robust event handling,
-   optimized transforms, and enhanced accessibility.
-   ======================================================================================= */
+
+
+
+
+
 
 (function () {
   const root = document.documentElement;
@@ -10,11 +10,11 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* -----------------------------------------
-     STATE
-  ----------------------------------------- */
+
+
+
   const state = {
-    // carousel
+
     index: 0,
     timer: null,
     view: null,
@@ -27,11 +27,11 @@
     announcerEl: null,
     autoplayMs: 6000,
     autoplayEnabled: true,
-    // swipe
+
     dragging: false,
     startX: 0,
     currentTranslate: 0,
-    // typewriter
+
     tw: {
       el: null,
       phrases: [],
@@ -43,20 +43,20 @@
       typeMs: 55,
       eraseMs: 28,
       colors: [
-        "#60a5fa", // blue-400
-        "#93c5fd", // blue-300
-        "#2563eb", // blue-600
-        "#b68b4c", // tan-600
-        "#d6a76a", // tan-500
-        "#f5e9da"  // tan-100
+        "#60a5fa",
+        "#93c5fd",
+        "#2563eb",
+        "#b68b4c",
+        "#d6a76a",
+        "#f5e9da"
       ],
       prevColor: null
     }
   };
 
-  /* -----------------------------------------
-     UTILITIES
-  ----------------------------------------- */
+
+
+
   const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
   const parsePhrases = (el) => {
@@ -88,7 +88,7 @@
     return width + gap;
   };
 
-  // Debounce utility for resize events
+
   const debounce = (func, wait) => {
     let timeout;
     return (...args) => {
@@ -97,14 +97,14 @@
     };
   };
 
-  /* -----------------------------------------
-     TYPEWRITER (per-character transient color)
-  ----------------------------------------- */
+
+
+
   function startTypewriterRotate() {
     state.tw.el = document.getElementById("subtitle-rotator");
     if (!state.tw.el) return;
 
-    // Reduced motion: show first phrase only
+
     if (prefersReducedMotion) {
       const list = parsePhrases(state.tw.el);
       state.tw.el.textContent = (list && list[0]) || state.tw.el.textContent.trim();
@@ -121,8 +121,8 @@
     state.tw.el.textContent = "";
     const line = document.createElement("span");
     line.className = "tw-line";
-    line.style.display = "inline-block"; // Ensure horizontal layout
-    line.style.whiteSpace = "nowrap"; // Prevent wrapping
+    line.style.display = "inline-block";
+    line.style.whiteSpace = "nowrap";
     state.tw.el.appendChild(line);
 
     state.tw.iPhrase = 0;
@@ -160,28 +160,28 @@
         const prev = line.children[line.children.length - 2];
         if (prev && prev.classList.contains("tw-char")) {
           prev.classList.remove("is-typing");
-          prev.style.color = ""; // Revert to inherited color
+          prev.style.color = "";
         }
 
         state.tw.iChar++;
         state.tw.timer = setTimeout(loopTypewriter, state.tw.typeMs);
         return;
       }
-      // Finished typing current phrase
+
       const last = line.children[line.children.length - 1];
       if (last) last.classList.remove("is-typing");
       state.tw.typing = false;
       state.tw.timer = setTimeout(loopTypewriter, state.tw.pauseMs);
       return;
     } else {
-      // Erasing
+
       if (state.tw.iChar > 0) {
         line.removeChild(line.lastChild);
         state.tw.iChar--;
         state.tw.timer = setTimeout(loopTypewriter, state.tw.eraseMs);
         return;
       }
-      // Next phrase
+
       state.tw.typing = true;
       state.tw.iPhrase = (state.tw.iPhrase + 1) % state.tw.phrases.length;
       state.tw.timer = setTimeout(loopTypewriter, state.tw.typeMs);
@@ -195,9 +195,9 @@
     return choice;
   }
 
-  /* -----------------------------------------
-     CAROUSEL
-  ----------------------------------------- */
+
+
+
   function initCarousel() {
     state.view = document.querySelector('main .view.projects');
     if (!state.view) {
@@ -227,16 +227,16 @@
       return;
     }
 
-    // Ensure buttons are focusable and clickable
+
     [state.prevBtn, state.nextBtn, ...state.dots].forEach(btn => {
       if (btn) {
-        btn.style.pointerEvents = 'auto'; // Ensure buttons are clickable
-        btn.style.userSelect = 'none'; // Prevent text selection
-        btn.setAttribute('tabindex', '0'); // Ensure focusable
+        btn.style.pointerEvents = 'auto';
+        btn.style.userSelect = 'none';
+        btn.setAttribute('tabindex', '0');
       }
     });
 
-    // initial index: hash > session > 0
+
     const storageKey = 'chains.carousel.index';
 
     const slideIndexForKey = (key) => {
@@ -255,7 +255,7 @@
 
     const setTransform = (i, immediate = false) => {
       const w = getSlideWidth();
-      if (w === 0) return; // Prevent invalid transforms
+      if (w === 0) return;
       state.currentTranslate = -i * w;
       state.track.style.transition = immediate || prefersReducedMotion ? 'none' : 'transform 450ms ease';
       state.track.style.transform = `translate3d(${state.currentTranslate}px, 0, 0)`;
@@ -299,7 +299,7 @@
     if (document.readyState === 'complete') setTimeout(ready, 0);
     else window.addEventListener('load', ready, { once: true });
 
-    // Controls
+
     const handleButtonClick = (direction) => {
       const nextIndex = direction === 'prev' ? state.index - 1 : state.index + 1;
       goTo(nextIndex, { user: true });
@@ -307,7 +307,7 @@
 
     if (state.prevBtn) {
       state.prevBtn.addEventListener('click', () => handleButtonClick('prev'), { passive: false });
-      state.prevBtn.addEventListener('mousedown', (e) => e.preventDefault(), { passive: false }); // Prevent focus issues
+      state.prevBtn.addEventListener('mousedown', (e) => e.preventDefault(), { passive: false });
     }
     if (state.nextBtn) {
       state.nextBtn.addEventListener('click', () => handleButtonClick('next'), { passive: false });
@@ -325,7 +325,7 @@
       });
     });
 
-    // CTA buttons within project cards
+
     const ctaButtons = state.view.querySelectorAll('.hero-ctas .btn');
     ctaButtons.forEach(btn => {
       btn.style.pointerEvents = 'auto';
@@ -333,7 +333,7 @@
       btn.setAttribute('tabindex', '0');
     });
 
-    // Keyboard
+
     state.viewport.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
@@ -350,7 +350,7 @@
       }
     });
 
-    // Swipe
+
     state.viewport.addEventListener('pointerdown', (e) => {
       stopAutoplay();
       state.dragging = true;
@@ -394,12 +394,12 @@
       if (state.autoplayEnabled && !prefersReducedMotion) startAutoplay();
     });
 
-    // Anchor navigation interception
+
     document.addEventListener('click', (e) => {
       const a = e.target.closest('a[href^="#"]');
       if (!a) return;
-      e.stopPropagation(); // Prevent parent interference
-      console.log('Anchor clicked:', a.getAttribute('href')); // Debug
+      e.stopPropagation();
+      console.log('Anchor clicked:', a.getAttribute('href'));
       const targetId = a.getAttribute('href').replace(/^#/, '');
       if (!targetId) return;
 
@@ -423,7 +423,7 @@
       }
     });
 
-    // Hash navigation
+
     window.addEventListener('hashchange', () => {
       const key = (location.hash || '').replace(/^#/, '');
       if (!key) return;
@@ -442,11 +442,11 @@
       if (hIdx !== null) goTo(hIdx, { user: true, hashOverride: key });
     });
 
-    // Debounced resize handler
+
     const handleResize = debounce(() => setTransform(state.index), 100);
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Autoplay
+
     function startAutoplay() {
       if (prefersReducedMotion || !state.autoplayEnabled) return;
       stopAutoplay();
@@ -461,23 +461,23 @@
       state.timer = null;
     }
 
-    // Autoplay control
+
     if (!prefersReducedMotion && state.autoplayEnabled) startAutoplay();
     state.viewport.addEventListener('mouseenter', stopAutoplay, { passive: true });
     state.viewport.addEventListener('mouseleave', startAutoplay, { passive: true });
     state.viewport.addEventListener('focusin', stopAutoplay);
     state.viewport.addEventListener('focusout', startAutoplay);
 
-    // Page visibility
+
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) stopAutoplay();
       else startAutoplay();
     });
   }
 
-  /* -----------------------------------------
-     BOOT
-  ----------------------------------------- */
+
+
+
   function mount() {
     initCarousel();
     startTypewriterRotate();
@@ -504,10 +504,10 @@
     mount();
   }
 
-  // Hot-reload guard
+
   try {
     if (import.meta && import.meta.hot) {
       import.meta.hot.dispose(() => cleanup());
     }
-  } catch { /* no-op */ }
+  } catch {  }
 })();

@@ -1,28 +1,28 @@
-/* =========================================================
-   VBIntroPuzzle — 3×3 Sliding Picture Puzzle (pixel-accurate)
-   - Self-styling overlay/dialog/board: no external CSS required
-   - Pixel slicing, SmartSlide (row/column runs), keyboard support
-   - Timer & moves counter with best-time in localStorage
-   - Accessible buttons/labels; modal overlay
-   API:
-     window.VBIntroPuzzle.mount({
-       container: '#intro-root' | HTMLElement,
-       imageSrc: '/assets/images/playme.jpg',
-       onSolved: ({ elapsedMs, moves }) => {},
-       onSkip: () => {}
-     })
-   ========================================================= */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (function () {
   'use strict';
 
-  /* ---------- Config ---------- */
+
   const LS_KEY_BEST  = 'vb_intro_best_time_ms';
   const SMART_SLIDE  = true;
   const GRID_SIZE    = 3;
-  const IDLE_ANIM_MS = 700; // brief solved pulse
+  const IDLE_ANIM_MS = 700;
   const SOLVED_TRANSITION_MS = 1100;
 
-  /* ---------- Helpers ---------- */
+
   const qs = (root, sel) => (root || document).querySelector(sel);
   const now = () => performance.now();
   const posToXY = (idx) => ({ x: idx % GRID_SIZE, y: (idx / GRID_SIZE | 0) });
@@ -45,7 +45,7 @@
     try {
       localStorage.setItem(LS_KEY_BEST, value);
     } catch {
-      /* Storage can be unavailable in private or embedded contexts. */
+
     }
   }
 
@@ -80,7 +80,7 @@
     return a;
   }
 
-  /* ---------- Core ---------- */
+
   class IntroPuzzle {
     constructor({ root, imageSrc, onSolved, onSkip }) {
       this.root = root;
@@ -104,31 +104,31 @@
       if (this._mounted) return;
       this._mounted = true;
 
-      // Preload image first so background paint is immediate
+
       await this._preloadImage();
 
-      // Render template and cache refs
+
       this.root.innerHTML = this._template();
       this._cacheDom();
 
-      // Apply runtime styles so layout is guaranteed without external CSS
+
       this._applyStyles();
 
-      // Set reveal layer background
+
       this.dom.image.style.background = `url('${this.imageSrc}') center/cover no-repeat`;
 
-      // Build tiles and layout
+
       this._buildTiles();
       this._measureAndLayout();
 
-      // Bind interactions
+
       this._bind();
 
-      // Shuffle and start timer
+
       this.shuffle();
       this._startTimer();
 
-      // Focus grid for keys
+
       this.dom.layer.focus({ preventScroll: true });
     }
 
@@ -177,9 +177,9 @@
       this.dom.btnSkip    = qs(r, '[data-skip]');
     }
 
-    /* Inject essential layout styles so widths/heights are non-zero */
+
     _applyStyles() {
-      // Fullscreen overlay centered grid
+
       const o = this.dom.overlay;
       o.style.position = 'fixed';
       o.style.inset = '0';
@@ -189,7 +189,7 @@
       o.style.placeItems = 'center';
       o.style.backdropFilter = 'blur(2px)';
 
-      // Dialog card
+
       const d = this.dom.dialog;
       d.style.background = '#0f1726';
       d.style.border = '1px solid rgba(102,227,255,.18)';
@@ -201,7 +201,7 @@
       d.style.color = '#e6edf3';
       d.style.font = '600 14px/1.4 ui-sans-serif, system-ui, -apple-system';
 
-      // Header/meta
+
       const head = this.dom.head;
       head.style.display = 'flex';
       head.style.justifyContent = 'space-between';
@@ -217,12 +217,12 @@
       meta.style.gap = '14px';
       meta.style.opacity = '.9';
 
-      // Compute square board size from viewport
+
       const vw = window.innerWidth || document.documentElement.clientWidth || 800;
       const vh = window.innerHeight || document.documentElement.clientHeight || 600;
-      const S = Math.max(280, Math.floor(Math.min(vw, vh) * 0.76)); // 76% of smaller side
+      const S = Math.max(280, Math.floor(Math.min(vw, vh) * 0.76));
 
-      // Board wrap + layers
+
       const wrap = this.dom.wrap;
       wrap.style.position = 'relative';
       wrap.style.width = `${S}px`;
@@ -246,7 +246,7 @@
       layer.style.outline = 'none';
       layer.style.zIndex = '2';
 
-      // Controls
+
       const controls = qs(this.dom.dialog, '#vb-intro-controls');
       controls.style.display = 'flex';
       controls.style.justifyContent = 'space-between';
@@ -259,7 +259,7 @@
       btns.style.display = 'flex';
       btns.style.gap = '8px';
 
-      // Buttons
+
       const setBtn = (el, primary) => {
         el.style.cursor = '--cursor-pointer';
         el.style.padding = '8px 12px';
@@ -284,7 +284,7 @@
         tile.className = 'vb-tile';
         tile.dataset.num = String(num);
         tile.setAttribute('aria-label', `Tile ${num}`);
-        // Inline presentation styles
+
         tile.style.position = 'absolute';
         tile.style.willChange = 'transform';
         tile.style.backgroundRepeat = 'no-repeat';
@@ -301,7 +301,7 @@
     }
 
     _measureAndLayout() {
-      // Recompute board square on resize to keep things sane across toolbars/OSK
+
       const vw = window.innerWidth || document.documentElement.clientWidth || 800;
       const vh = window.innerHeight || document.documentElement.clientHeight || 600;
       const S = Math.max(280, Math.floor(Math.min(vw, vh) * 0.76));
@@ -328,18 +328,18 @@
     }
 
     _bind() {
-      // Click
+
       this.dom.layer.addEventListener('click', this._handleClick.bind(this));
-      // Pointer gestures
+
       this.dom.layer.addEventListener('pointerdown', this._handlePointerDown.bind(this));
       this.dom.layer.addEventListener('pointerup', this._handlePointerUp.bind(this));
-      // Keyboard
+
       this.dom.layer.addEventListener('keydown', this._handleKeydown.bind(this));
-      // Buttons
+
       this.dom.btnShuffle.addEventListener('click', this.shuffle.bind(this));
       this.dom.btnReveal.addEventListener('click', this._reveal.bind(this));
       this.dom.btnSkip.addEventListener('click', this._skip.bind(this));
-      // Resize
+
       this._resizeListener = debounce(() => { this._applyStyles(); this._measureAndLayout(); }, 120);
       window.addEventListener('resize', this._resizeListener, { passive: true });
     }
@@ -363,7 +363,7 @@
       if (!this._gesture) return;
       const g = this._gesture; this._gesture = null;
       const dx = e.clientX - g.startX, dy = e.clientY - g.startY;
-      if (Math.hypot(dx, dy) < 8) return; // treat as click
+      if (Math.hypot(dx, dy) < 8) return;
       const pos = this.posByNum[g.num];
       const empty = this.state.emptyPos;
       const { y: ty } = posToXY(pos), { y: ey } = posToXY(empty);
@@ -489,7 +489,7 @@
         setBestTime(String(elapsed));
       }
 
-      // Brief reveal pulse without external CSS
+
       try {
         this.dom.image.style.transform = 'scale(1.02)';
         this.dom.image.style.opacity = '0.95';
@@ -555,7 +555,7 @@
     }
   }
 
-  /* ---------- Public API ---------- */
+
   function VBIntroPuzzle_mount({ container, imageSrc, onSolved, onSkip }) {
     const root = (typeof container === 'string') ? qs(document, container) : container;
     if (!root) throw new Error('VBIntroPuzzle: container not found');

@@ -1,25 +1,25 @@
-/* =======================================================================================
-   SCROLL_PAPER.JS (ES MODULE)
-   Carousel + typewriter + counters for scroll_paper.html with clean init/cleanup hooks.
-   Fully self-contained, idempotent, and attached as window.initScrollPaper for external use.
-   ======================================================================================= */
+
+
+
+
+
 
 const __PAGE_ID__ = "scroll_paper";
 
-/* -----------------------------------------
-   ENV GUARDS
------------------------------------------ */
+
+
+
 const rootEl = document.documentElement;
 const isTargetPage = () => rootEl.getAttribute("data-page") === __PAGE_ID__;
 const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* -----------------------------------------
-   STATE
------------------------------------------ */
+
+
+
 const state = {
-  // lifecycle
+
   mounted: false,
-  // Carousel
+
   index: 0,
   timer: null,
   view: null,
@@ -32,11 +32,11 @@ const state = {
   announcerEl: null,
   autoplayMs: 6000,
   autoplayEnabled: true,
-  // Swipe
+
   dragging: false,
   startX: 0,
   currentTranslate: 0,
-  // Typewriter
+
   tw: {
     el: null,
     phrases: [],
@@ -50,13 +50,13 @@ const state = {
     colors: ["#60a5fa", "#93c5fd", "#2563eb", "#b68b4c", "#d6a76a", "#f5e9da"],
     prevColor: null
   },
-  // listeners to remove on cleanup
+
   listeners: []
 };
 
-/* -----------------------------------------
-   UTILITIES
------------------------------------------ */
+
+
+
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
 const add = (target, type, handler, opts) => {
@@ -108,9 +108,9 @@ function slideIndexForKey(key) {
   return idx >= 0 ? idx : null;
 }
 
-/* -----------------------------------------
-   TYPEWRITER
------------------------------------------ */
+
+
+
 function startTypewriterRotate() {
   state.tw.el = document.getElementById("subtitle-rotator");
   if (!state.tw.el) return;
@@ -202,9 +202,9 @@ function pickTypingColor() {
   return choice;
 }
 
-/* -----------------------------------------
-   COUNTERS
------------------------------------------ */
+
+
+
 function animateCounters() {
   const counters = document.querySelectorAll('[data-counter="true"]');
   if (!counters.length) return;
@@ -230,9 +230,9 @@ function animateCounters() {
   });
 }
 
-/* -----------------------------------------
-   CAROUSEL
------------------------------------------ */
+
+
+
 function initCarousel() {
   state.view = document.querySelector("main .view.story");
   if (!state.view) return;
@@ -256,7 +256,7 @@ function initCarousel() {
 
   if (!state.viewport || !state.track || !state.slides.length) return;
 
-  // Controls clickable
+
   [state.prevBtn, state.nextBtn, ...state.dots].forEach(btn => {
     if (!btn) return;
     btn.style.pointerEvents = "auto";
@@ -264,12 +264,12 @@ function initCarousel() {
     btn.setAttribute("tabindex", "0");
   });
 
-  // Prevent image drag
+
   state.view.querySelectorAll("img").forEach(img => {
     add(img, "dragstart", e => e.preventDefault());
   });
 
-  // Index from hash or session
+
   const storageKey = "scroll_paper.carousel.index";
   const hashKey = (location.hash || "").replace(/^#/, "");
   const fromHash = slideIndexForKey(hashKey);
@@ -324,14 +324,14 @@ function initCarousel() {
   if (document.readyState === "complete") setTimeout(ready, 0);
   else add(window, "load", ready, { once: true });
 
-  // Controls
+
   const handleButtonClick = (dir) => {
     goTo(dir === "prev" ? state.index - 1 : state.index + 1, { user: true });
   };
   if (state.prevBtn) add(state.prevBtn, "click", () => handleButtonClick("prev"));
   if (state.nextBtn) add(state.nextBtn, "click", () => handleButtonClick("next"));
 
-  // Dots
+
   state.dots.forEach((dot, k) => {
     add(dot, "click", () => goTo(k, { user: true }));
     add(dot, "keydown", (e) => {
@@ -342,14 +342,14 @@ function initCarousel() {
     });
   });
 
-  // CTA buttons
+
   state.view.querySelectorAll(".hero-ctas .btn").forEach(btn => {
     btn.style.pointerEvents = "auto";
     btn.style.userSelect = "none";
     btn.setAttribute("tabindex", "0");
   });
 
-  // Keyboard on viewport
+
   add(state.viewport, "keydown", (e) => {
     if (e.key === "ArrowLeft") { e.preventDefault(); goTo(state.index - 1, { user: true }); }
     else if (e.key === "ArrowRight") { e.preventDefault(); goTo(state.index + 1, { user: true }); }
@@ -357,10 +357,10 @@ function initCarousel() {
     else if (e.key === "End") { e.preventDefault(); goTo(state.slides.length - 1, { user: true }); }
   });
 
-  // Guard interactive
+
   const isInteractive = (el) => !!el.closest('a,button,input,textarea,select,[role="button"],[role="link"]');
 
-  // Swipe
+
   add(state.viewport, "pointerdown", (e) => {
     if (isInteractive(e.target)) return;
     stopAutoplay();
@@ -400,7 +400,7 @@ function initCarousel() {
     if (state.autoplayEnabled && !prefersReducedMotion) startAutoplay();
   });
 
-  // Anchor navigation
+
   add(document, "click", (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
@@ -422,7 +422,7 @@ function initCarousel() {
     }
   });
 
-  // Hash navigation
+
   add(window, "hashchange", () => {
     const key = (location.hash || "").replace(/^#/, "");
     if (!key) return;
@@ -438,11 +438,11 @@ function initCarousel() {
     }
   });
 
-  // Debounced resize
+
   const handleResize = debounce(() => setTransform(state.index), 120);
   add(window, "resize", handleResize, { passive: true });
 
-  // Autoplay
+
   function startAutoplay() {
     if (prefersReducedMotion || !state.autoplayEnabled) return;
     stopAutoplay();
@@ -464,13 +464,13 @@ function initCarousel() {
   add(state.viewport, "focusin", stopAutoplay);
   add(state.viewport, "focusout", startAutoplay);
 
-  // Page visibility
+
   add(document, "visibilitychange", () => {
     if (document.hidden) stopAutoplay();
     else startAutoplay();
   });
 
-  // Respect initial hash
+
   const key = (location.hash || "").replace(/^#/, "");
   if (key) {
     const idx = slideIndexForKey(key);
@@ -492,14 +492,14 @@ function initCarousel() {
   }
 }
 
-/* -----------------------------------------
-   LIFECYCLE
------------------------------------------ */
+
+
+
 function mount() {
   if (state.mounted || !isTargetPage()) return;
   state.mounted = true;
 
-  // subsystems
+
   initCarousel();
   animateCounters();
   startTypewriterRotate();
@@ -511,17 +511,17 @@ function cleanup() {
   stopTypewriterRotate();
   if (state._stopAutoplay) state._stopAutoplay();
 
-  // remove announcer if we created it
+
   if (state.announcerEl && state.announcerEl.parentNode === document.body) {
     document.body.removeChild(state.announcerEl);
   }
 
-  // remove listeners
+
   state.listeners.splice(0).forEach(off => {
     try { off(); } catch {}
   });
 
-  // reset dynamic state
+
   state.index = 0;
   state.timer = null;
   state.view = null;
@@ -539,9 +539,9 @@ function cleanup() {
   state.mounted = false;
 }
 
-/* -----------------------------------------
-   PUBLIC INIT
------------------------------------------ */
+
+
+
 export function initScrollPaper() {
   if (!isTargetPage()) {
     return { cleanup: () => {} };
@@ -550,26 +550,26 @@ export function initScrollPaper() {
   return { cleanup };
 }
 
-// Attach to window for non-module consumers or hot reinit from app.js
-// Safe to overwrite idempotently
+
+
 if (typeof window !== "undefined") {
   window.initScrollPaper = initScrollPaper;
 }
 
-/* -----------------------------------------
-   AUTO BOOT
------------------------------------------ */
+
+
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => { if (isTargetPage()) mount(); }, { once: true });
 } else {
   if (isTargetPage()) mount();
 }
 
-/* -----------------------------------------
-   HMR SAFE
------------------------------------------ */
+
+
+
 try {
   if (import.meta && import.meta.hot) {
     import.meta.hot.dispose(() => cleanup());
   }
-} catch { /* no-op */ }
+} catch {  }

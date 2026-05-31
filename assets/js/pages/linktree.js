@@ -3,7 +3,7 @@
   const page = document.querySelector('[data-page="linktree"]');
   if (!page) return;
 
-  // 1) External links safety
+
   const links = document.querySelectorAll('.lt-links a[href]');
   for (const a of links) {
     try {
@@ -17,11 +17,11 @@
         a.setAttribute('rel', rel.join(' '));
       }
     } catch {
-      /* ignore bad URLs */
+
     }
   }
 
-  // 2) Ripple feedback on pointer down
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function addRipple(e) {
     if (prefersReduced) return;
@@ -46,7 +46,7 @@
     a.addEventListener('pointerdown', addRipple);
   }
 
-  // 3) Copy to clipboard for mail link
+
   const mail = Array.from(links).find(a => a.href.startsWith('mailto:'));
   if (mail) {
     mail.addEventListener('contextmenu', evt => {
@@ -59,7 +59,7 @@
     });
   }
 
-  // 4) Toast helper
+
   let toastTimer = null;
   function toast(text) {
     clearTimeout(toastTimer);
@@ -80,7 +80,7 @@
     }, 2000);
   }
 
-  // 5) Tab navigation
+
   const tabs = document.querySelectorAll('.lt-tab');
   const panels = document.querySelectorAll('.lt-links');
   tabs.forEach((tab, index) => {
@@ -99,6 +99,6 @@
   });
 
 
-  // 7) Hydration marker
+
   root.setAttribute('data-linktree-hydrated', '1');
 })();

@@ -1,18 +1,18 @@
-/* =====================================================
-   1807-chain — robotics.js (v2.0 – FINAL)
-   SPEC:
-   - Show robo.png on load
-   - On first scroll (>100px) → fade out banner → play video ONCE
-   - When video ends → fade in robo.png again
-   - No repeat until page reload
-   - Mobile-safe, no autoplay issues
-   - Preserves sticky recalc, intersection, gallery
-   ===================================================== */
+
+
+
+
+
+
+
+
+
+
 
 (() => {
   'use strict';
 
-  // ---------- Utils ----------
+
   const qs = (s, r = document) => r.querySelector(s);
   const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
   const on = (t, e, h, o) => t.addEventListener(e, h, o);
@@ -36,7 +36,7 @@
     };
   };
 
-  // ---------- Scrolly Video: Banner → Play Once → Revert ----------
+
   function initScrollyVideo() {
     const wrap = qs('.page-hero .scrolly-video') || qs('.scrolly-video');
     const banner = qs('.scrolly-banner', wrap);
@@ -47,18 +47,18 @@
       return;
     }
 
-    // State
+
     let hasScrolled = false;
     let videoPlayed = false;
 
-    // Setup video
+
     video.muted = true;
     video.playsInline = true;
-    video.loop = false; // Play once
+    video.loop = false;
     video.preload = 'auto';
-    video.style.opacity = '0'; // Start hidden
+    video.style.opacity = '0';
 
-    // Scroll trigger
+
     const onFirstScroll = () => {
       if (hasScrolled || window.scrollY < 100) return;
       hasScrolled = true;
@@ -68,7 +68,7 @@
 
     on(window, 'scroll', onFirstScroll, { passive: true });
 
-    // Video end handler
+
     const onVideoEnd = () => {
       videoPlayed = true;
       video.style.opacity = '0';
@@ -83,19 +83,19 @@
       revertToBanner();
     };
 
-    // Start sequence
+
     const startVideoSequence = async () => {
       wrap.classList.add('playing');
       banner.classList.add('fade-out');
 
-      // Wait for fade-out
+
       await new Promise(resolve => setTimeout(resolve, 700));
 
-      // Hide banner, show video
+
       banner.classList.add('is-gone');
       video.style.opacity = '1';
 
-      // Play video
+
       try {
         await video.play();
         console.log('Hero video playing');
@@ -108,14 +108,14 @@
       video.addEventListener('error', onVideoError, { once: true });
     };
 
-    // Fallback revert
+
     const revertToBanner = () => {
       video.style.opacity = '0';
       banner.style.opacity = '1';
       banner.classList.remove('is-gone');
     };
 
-    // Visibility handling
+
     on(document, 'visibilitychange', () => {
       if (!video || videoPlayed) return;
       if (document.hidden && !video.paused && !video.ended) {
@@ -126,7 +126,7 @@
     });
   }
 
-  // ---------- Sticky Recalc ----------
+
   function initStickyRecalc() {
     const wrap = qs('.page-hero .scrolly-video') || qs('.scrolly-video');
     if (!wrap) return;
@@ -144,7 +144,7 @@
     wrap._resizeHandler = handle;
   }
 
-  // ---------- Intersection Activation ----------
+
   function initActivations() {
     const targets = qsa('.card, .arch-card, .stat, .scrolly__panel, .doc-card');
     if (!targets.length) return;
@@ -162,7 +162,7 @@
     window._intersectionObserver = io;
   }
 
-  // ---------- Gallery Strip ----------
+
   function initGallery() {
     const strip = qs('.gallery-strip');
     if (!strip) return;
@@ -211,7 +211,7 @@
     }
   }
 
-  // ---------- Boot ----------
+
   function init() {
     initScrollyVideo();
     initStickyRecalc();
@@ -225,7 +225,7 @@
     init();
   }
 
-  // ---------- Cleanup ----------
+
   on(window, 'pagehide', () => {
     const wrap = qs('.scrolly-video');
     if (wrap?._resizeHandler) {

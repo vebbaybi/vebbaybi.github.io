@@ -1,37 +1,29 @@
-/* =========================================================
-    RESUME.CSS — 1807 Resume Layout (scoped to <main>)
-    CONTRACT: Content surfaces are now SEMI-TRANSPARENT to reveal the page background image.
-    ========================================================= */
 
-/* ---------- Local tokens (inherit sensible defaults from main.css) ---------- */
+
+
 main#main {
-    /* * NEW: Transparent Base Colors (75% opacity)
-     * These will be the foundation for the transparent resume blocks.
-     */
-    --transp-bg-light: rgba(255, 255, 255, 0.90);
-    /* Near-opaque white for high contrast */
-    --transp-bg-dark: rgba(10, 25, 47, 0.90);
-    /* Near-opaque navy for high contrast */
 
-    /*
-     * Color Mapping: Use the established high-contrast text and border colors.
-     * Backgrounds now use the semi-transparent versions.
-     */
+    --transp-bg-light: rgba(255, 255, 255, 0.90);
+
+    --transp-bg-dark: rgba(10, 25, 47, 0.90);
+
+
+
     --bg: var(--transp-bg-dark);
-    /* Default (Dark) */
+
     --surface: var(--transp-bg-dark);
     --surface-2: rgba(10, 25, 47, 0.82);
-    /* Slightly darker for content blocks */
+
 
     --text: var(--primary-text);
-    /* Retain high contrast text from main.css */
+
     --muted: var(--muted, #aab8d3);
     --primary: var(--primary, #2489f6);
     --accent: #00bcd4;
     --border: var(--border);
     --primary-soft: rgba(36, 137, 246, .12);
 
-    /* Layout + type */
+
     --radius: 12px;
     --radius-sm: 8px;
     --pad: 20px;
@@ -43,7 +35,7 @@ main#main {
     --h3: clamp(16px, 2.4vw, 18px);
     --body: 16px;
 
-    /* Respect sticky header/footer defined in main.css */
+
     --header-h: var(--header-height, 70px);
     --footer-h: var(--footer-height, 60px);
 
@@ -60,7 +52,7 @@ main#main {
     margin-inline: auto;
     padding: clamp(16px, 4vw, 28px);
     box-shadow: var(--shadow);
-    /* NEW: Now uses the transparent surface */
+
     background: var(--surface);
 }
 
@@ -77,10 +69,10 @@ main#main {
     opacity: 0.06;
 }
 
-/* True light theme (when body.theme-light is active in main.css) */
+
 html[data-theme="light"] main#main,
 body.theme-light main#main {
-    /* UI Improvement: Ensure surfaces are distinct light colors */
+
     --bg: var(--transp-bg-light);
     --surface: var(--transp-bg-light);
     --surface-2: rgba(255, 255, 255, 0.673);
@@ -93,7 +85,7 @@ body.theme-light main#main {
     --primary-soft: rgba(29, 78, 216, .12);
 }
 
-/* Box sizing scoped to main only (Safari safe) */
+
 main#main,
 main#main *,
 main#main *::before,
@@ -101,7 +93,7 @@ main#main *::after {
     box-sizing: border-box;
 }
 
-/* Links inside main only */
+
 main#main a {
     color: var(--primary);
     text-decoration: none;
@@ -114,28 +106,28 @@ main#main a:focus-visible {
     outline: none;
 }
 
-/* Container: keep centered; no global background bleed */
+
 main#main.container {
     max-width: var(--maxw);
     margin-inline: auto;
     padding-inline: var(--pad);
     padding-block: 12px;
 
-    /* REAPPLIED TRANSPARENT BACKGROUND */
+
     background: var(--surface);
 }
 
-/* Respect page header/footer so nothing hides underneath on Safari iOS */
+
 main#main.container {
     padding-top: max(12px, calc(var(--header-h) - 8px));
     padding-bottom: max(12px, calc(var(--footer-h) - 8px));
 }
 
-/* Sections */
+
 main#main .section {
     margin-top: 28px;
     padding: 22px;
-    /* UI IMPROVEMENT: Uses the semi-transparent content block color */
+
     background: var(--surface-2);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -151,7 +143,7 @@ main#main .summary-text {
     color: var(--text);
 }
 
-/* Skills */
+
 main#main .skills-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -159,7 +151,7 @@ main#main .skills-grid {
 }
 
 main#main .skill-group {
-    /* UI IMPROVEMENT: Slightly lighter block for skill groups (surface) */
+
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -168,7 +160,7 @@ main#main .skill-group {
 
 main#main .group-title {
     margin: 0 0 10px 0;
-    /* UI IMPROVEMENT: Uses the distinct accent color */
+
     color: var(--accent);
     font-size: var(--h3);
 }
@@ -186,18 +178,18 @@ main#main .tag-list li {
     border: 1px solid var(--border);
     padding: 4px 8px;
     border-radius: 999px;
-    /* UI IMPROVEMENT: Subtle distinction for tags */
+
     background: var(--primary-soft);
     color: var(--text);
     font-size: 13px;
 }
 
-/* Experience/Projects items */
+
 main#main .item {
     padding: 16px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    /* Matches section background (surface-2) */
+
     background: var(--surface-2);
     margin-top: 14px;
 }
@@ -235,7 +227,7 @@ main#main .item-tech {
     margin: 10px 0 0;
 }
 
-/* Flat list (certs) */
+
 main#main .list-flat {
     margin: 0;
     padding-left: 18px;
@@ -245,7 +237,7 @@ main#main .list-flat li {
     margin: 4px 0;
 }
 
-/* Actions */
+
 main#main .resume-actions {
     margin-top: 20px;
     display: flex;
@@ -255,7 +247,7 @@ main#main .resume-actions {
 
 main#main .resume-actions .btn {
     border: 1px solid var(--border);
-    /* UI IMPROVEMENT: Consistent use of secondary-bg for contrast */
+
     background: var(--secondary-bg);
     color: var(--text);
     padding: 8px 12px;
@@ -270,11 +262,11 @@ main#main .resume-actions .btn:hover {
 }
 
 main#main .resume-actions .btn.secondary {
-    /* UI IMPROVEMENT: Use soft primary color for secondary button background */
+
     background: var(--primary-soft);
 }
 
-/* Meta footer inside main */
+
 main#main .meta {
     background: transparent;
     border: none;
@@ -290,7 +282,7 @@ main#main .meta-grid {
     margin-top: 20px;
 }
 
-/* ---------- Responsive (scoped) ---------- */
+
 @media (max-width: 980px) {
     main#main .skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -306,7 +298,7 @@ main#main .meta-grid {
     }
 
     main#main.container {
-        /* Removed backdrop filters for mobile */
+
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
@@ -319,7 +311,7 @@ main#main .meta-grid {
 
     main#main .section {
         padding: 16px;
-        /* UI: Slightly softer background on small screens */
+
         background: var(--surface-2);
     }
 
@@ -333,7 +325,7 @@ main#main .meta-grid {
     }
 }
 
-/* ---------- Reduced motion ---------- */
+
 @media (prefers-reduced-motion: reduce) {
     main#main * {
         transition: none !important;
@@ -341,7 +333,7 @@ main#main .meta-grid {
     }
 }
 
-/* ---------- Print (scoped) ---------- */
+
 @media print {
     main#main {
         --bg: #ffffff;

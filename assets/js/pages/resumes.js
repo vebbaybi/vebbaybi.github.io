@@ -1,21 +1,21 @@
-/* =======================================================================================
-   The 1807 — Resume Page Behavior (Typewriter Only)
-   - Eyebrow typewriter: reads data-phrases from #eyebrow-rotator (reduced-motion safe)
-   Author: webbaby (the1807.xyz)
-   ======================================================================================= */
+
+
+
+
+
 
 (function () {
   "use strict";
 
-  /** ----------------------------------------------
-   * Utilities
-   * ---------------------------------------------- */
+
+
+
 
   function $(sel, root = document) { return root.querySelector(sel); }
 
-  /** ----------------------------------------------
-   * Eyebrow Typewriter (reads data-phrases)
-   * ---------------------------------------------- */
+
+
+
 
   let TW_STATE = { timer: null, reduced: false };
 
@@ -25,8 +25,8 @@
 
     TW_STATE.reduced = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-    // Decide target line element:
-    // If host itself has .tw-line, write into host. Otherwise ensure a child .tw-line exists.
+
+
     let line = host;
     if (!host.classList.contains("tw-line")) {
       line = host.querySelector(".tw-line");
@@ -37,21 +37,21 @@
       }
     }
 
-    // Parse phrases
+
     let phrases;
     try {
       const raw = host.getAttribute("data-phrases");
       phrases = raw ? JSON.parse(raw) : null;
-    } catch { /* ignore */ }
+    } catch {  }
     if (!Array.isArray(phrases) || phrases.length === 0) phrases = ["WELCOME TO THE RAIN..."];
 
-    // Reduced motion → just show the first phrase
+
     if (TW_STATE.reduced) {
       line.textContent = phrases[0] || "";
       return;
     }
 
-    // Typing loop
+
     const colors = ["#60a5fa", "#93c5fd", "#2563eb", "#b68b4c", "#d6a76a", "#f5e9da"];
     const pickColor = (prev) => {
       const pool = colors.filter(c => c !== prev);
@@ -60,7 +60,7 @@
 
     let ip = 0, ic = 0, typing = true, prevColor = null;
 
-    // Clear any previous content (HMR/soft reload safety)
+
     line.textContent = "";
 
     function step() {
@@ -100,7 +100,7 @@
 
     step();
 
-    // Visibility pause/resume (saves CPU)
+
     const onVis = () => {
       if (document.hidden) {
         if (TW_STATE.timer) { clearTimeout(TW_STATE.timer); TW_STATE.timer = null; }
@@ -110,20 +110,20 @@
     };
     document.addEventListener("visibilitychange", onVis);
 
-    // Store cleanup to remove listeners if needed later
+
     TW_STATE.cleanup = () => {
       if (TW_STATE.timer) { clearTimeout(TW_STATE.timer); TW_STATE.timer = null; }
       document.removeEventListener("visibilitychange", onVis);
     };
   }
 
-  /** ----------------------------------------------
-   * Wiring
-   * ---------------------------------------------- */
+
+
+
   function boot() {
     initTypewriter();
 
-    // If something re-rendered and nuked the eyebrow contents, retry once
+
     setTimeout(() => {
       const host = document.querySelector("#eyebrow-rotator");
       if (host && !host.textContent.trim()) {

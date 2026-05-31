@@ -111,7 +111,7 @@ export function renderWhoAmI(currentModuleId) {
 
 export function renderWeb(query, results) {
   if (!results.length) return `<div class="eos-result-block eos-result-error"><div class="eos-result-head">web :: ${escapeHtml(query)}</div><p>Google search is configured, but it returned no results for that query.</p></div>`;
-  return `<div class="eos-result-block"><div class="eos-result-head">web :: ${escapeHtml(query)}</div><div class="eos-web-stack">${results.map((result) => `<article class="eos-web-card"><a class="eos-route-link" href="${escapeHtml(result.link)}" target="_blank" rel="noreferrer">${escapeHtml(result.title)}</a><p>${escapeHtml(result.snippet || '')}</p><span class="eos-microcopy">${escapeHtml(result.displayLink || result.link)}</span></article>`).join('')}</div></div>`;
+  return `<div class="eos-result-block"><div class="eos-result-head">web :: ${escapeHtml(query)}</div><div class="eos-web-stack">${results.map((result) => `<article class="eos-web-card"><a class="eos-route-link" href="${escapeHtml(result.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(result.title)}</a><p>${escapeHtml(result.snippet || '')}</p><span class="eos-microcopy">${escapeHtml(result.displayLink || result.link)}</span></article>`).join('')}</div></div>`;
 }
 
 export function parseShellCommand(raw) {

@@ -44,6 +44,7 @@ export const modules = {
     ],
     links: [
       { label: 'Classic AI page', href: '/ai/', note: 'See the current portfolio view for AI.' },
+      { label: 'SkinCradle visual tracker', href: '/skincradle/', note: 'Open the browser-based landmark tracker.' },
       { label: 'Projects hub', href: '/projects/', note: 'Cross-check AI against the rest of the build portfolio.' },
       { label: 'Contact', href: '/contact/', note: 'Open a serious conversation about AI work.' },
     ],
