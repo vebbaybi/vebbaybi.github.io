@@ -1,0 +1,386 @@
+{
+  "meta": {
+    "name": "Arrival Signal",
+    "version": "1.0.0",
+    "privacy": "Approximate city, region, and country only. No IP display. No storage."
+  },
+  "safety": {
+    "blockedWords": [
+      "tragedy",
+      "death",
+      "dead",
+      "war",
+      "bombing",
+      "genocide",
+      "terrorism",
+      "disaster",
+      "disease",
+      "pandemic",
+      "crime",
+      "violence",
+      "race",
+      "ethnicity",
+      "religion",
+      "politics",
+      "poverty"
+    ]
+  },
+  "fallbacks": {
+    "unknown": [
+      "Unknown signal detected. Visitor arrived in stealth mode.",
+      "Signal unclear. Local context loaded with privacy intact.",
+      "Quiet arrival detected. No precision claims, just good manners."
+    ],
+    "genericCity": [
+      "{city} signal detected. Local context loaded. Debug responsibly.",
+      "{city} checked in. Tabs open, system calm.",
+      "{city} arrival confirmed. The page is keeping it respectful."
+    ],
+    "genericRegion": [
+      "{region} signal detected. Regional mode online.",
+      "{region} checked in. Clean routing, steady hands.",
+      "{region} arrival noted. The interface is behaving."
+    ],
+    "genericCountry": [
+      "{country} signal detected. Welcome to The 1807.",
+      "{country} checked in. Portfolio systems are live.",
+      "{country} arrival confirmed. Build energy accepted."
+    ]
+  },
+  "countryProfiles": {
+    "canada": [
+      "{city} signal detected. Clean code, cold-weather discipline.",
+      "{country} signal detected. Polite systems, careful deploys."
+    ],
+    "nigeria": [
+      "{city} signal detected. High-energy builder mode enabled.",
+      "{country} signal detected. Fast hands, sharp tabs, clean push."
+    ],
+    "united_states": [
+      "{city} signal detected. Big-scale browsing mode online.",
+      "{country} signal detected. Traffic high, systems steady."
+    ],
+    "united_kingdom": [
+      "{city} signal detected. Polite systems, classic timing.",
+      "{country} signal detected. Tea compiled successfully."
+    ],
+    "germany": [
+      "{city} signal detected. Structure loaded, edges aligned.",
+      "{country} signal detected. Efficiency mode is awake."
+    ],
+    "france": [
+      "{city} signal detected. Tasteful routing, stylish deploy.",
+      "{country} signal detected. Design rhythm looks composed."
+    ],
+    "ghana": [
+      "{city} signal detected. Warm energy, sharp creative mode.",
+      "{country} signal detected. Bright rhythm, clean build."
+    ],
+    "kenya": [
+      "{city} signal detected. Mobile-first builder rhythm online.",
+      "{country} signal detected. Fast taps, steady systems."
+    ],
+    "south_africa": [
+      "{city} signal detected. City energy, wide-range systems.",
+      "{country} signal detected. Range loaded, interface steady."
+    ],
+    "india": [
+      "{city} signal detected. Scale thinking engaged.",
+      "{country} signal detected. Developer energy is very online."
+    ],
+    "japan": [
+      "{city} signal detected. Precision timing looks good.",
+      "{country} signal detected. Clean systems, quiet confidence."
+    ],
+    "china": [
+      "{city} signal detected. Scale-aware mode enabled.",
+      "{country} signal detected. Big systems, careful routing."
+    ],
+    "australia": [
+      "{city} signal detected. Distance handled, calm debugging active.",
+      "{country} signal detected. Sunshine mode, steady deploy."
+    ],
+    "brazil": [
+      "{city} signal detected. Bold motion, clean rhythm.",
+      "{country} signal detected. Colorful pace, stable interface."
+    ],
+    "mexico": [
+      "{city} signal detected. Strong build energy online.",
+      "{country} signal detected. Bright pace, clean load."
+    ],
+    "united_arab_emirates": [
+      "{city} signal detected. Skyline-speed deploy mode.",
+      "{country} signal detected. Polished systems, fast route."
+    ],
+    "singapore": [
+      "{city} signal detected. Precision and speed are aligned.",
+      "{country} signal detected. Polished systems online."
+    ],
+    "south_korea": [
+      "{city} signal detected. Fast network, focused interface.",
+      "{country} signal detected. Sharp timing, clean build."
+    ],
+    "netherlands": [
+      "{city} signal detected. Structured flow, clean routes.",
+      "{country} signal detected. Neat systems, steady cadence."
+    ],
+    "italy": [
+      "{city} signal detected. Design rhythm, clean delivery.",
+      "{country} signal detected. Style loaded, interface steady."
+    ],
+    "spain": [
+      "{city} signal detected. Smooth pace, bright interface.",
+      "{country} signal detected. Warm rhythm, clean route."
+    ]
+  },
+  "countries": {
+    "canada": [
+      "Canada signal detected. Winter discipline, clean code.",
+      "Canada checked in. Polite systems, careful deploys."
+    ],
+    "nigeria": [
+      "Nigeria signal detected. High-energy builder mode enabled.",
+      "Nigeria checked in. Fast hands, clean push."
+    ],
+    "united_states": [
+      "United States signal detected. Big-scale browsing mode online.",
+      "United States checked in. Systems steady, tabs awake."
+    ],
+    "united_kingdom": [
+      "United Kingdom signal detected. Tea compiled successfully.",
+      "United Kingdom checked in. Polite routing enabled."
+    ],
+    "germany": [
+      "Germany signal detected. Structure loaded, edges aligned.",
+      "Germany checked in. Efficiency mode is awake."
+    ],
+    "france": [
+      "France signal detected. Stylish routing, calm deploy.",
+      "France checked in. Design taste loaded."
+    ],
+    "ghana": [
+      "Ghana signal detected. Warm energy, sharp creative mode.",
+      "Ghana checked in. Bright rhythm, clean build."
+    ],
+    "kenya": [
+      "Kenya signal detected. Mobile-first energy online.",
+      "Kenya checked in. Fast taps, steady systems."
+    ],
+    "south_africa": [
+      "South Africa signal detected. Range loaded, interface steady.",
+      "South Africa checked in. City energy online."
+    ],
+    "india": [
+      "India signal detected. Scale thinking engaged.",
+      "India checked in. Developer energy is very online."
+    ],
+    "japan": [
+      "Japan signal detected. Precision timing looks good.",
+      "Japan checked in. Clean systems, quiet confidence."
+    ],
+    "china": [
+      "China signal detected. Scale-aware mode enabled.",
+      "China checked in. Big systems, careful routing."
+    ],
+    "australia": [
+      "Australia signal detected. Calm debugging active.",
+      "Australia checked in. Distance handled gracefully."
+    ],
+    "brazil": [
+      "Brazil signal detected. Bold motion, clean rhythm.",
+      "Brazil checked in. Colorful pace, stable interface."
+    ],
+    "mexico": [
+      "Mexico signal detected. Strong build energy online.",
+      "Mexico checked in. Bright pace, clean load."
+    ],
+    "united_arab_emirates": [
+      "UAE signal detected. Skyline-speed deploy mode.",
+      "UAE checked in. Polished systems, fast route."
+    ],
+    "singapore": [
+      "Singapore signal detected. Precision and speed aligned.",
+      "Singapore checked in. Polished systems online."
+    ],
+    "south_korea": [
+      "South Korea signal detected. Sharp timing, clean build.",
+      "South Korea checked in. Fast network, focused interface."
+    ],
+    "netherlands": [
+      "Netherlands signal detected. Structured flow, clean routes.",
+      "Netherlands checked in. Neat systems, steady cadence."
+    ],
+    "italy": [
+      "Italy signal detected. Design rhythm, clean delivery.",
+      "Italy checked in. Style loaded, interface steady."
+    ],
+    "spain": [
+      "Spain signal detected. Smooth pace, bright interface.",
+      "Spain checked in. Warm rhythm, clean route."
+    ]
+  },
+  "regions": {
+    "ontario_canada": [
+      "Ontario signal detected. Tabs open, winter discipline ready.",
+      "Ontario checked in. Careful deploys, clean routes."
+    ],
+    "quebec_canada": [
+      "Quebec signal detected. Design taste and clean code loaded.",
+      "Quebec checked in. Sharp rhythm, careful systems."
+    ],
+    "british_columbia_canada": [
+      "British Columbia signal detected. Mountain air, clean interfaces.",
+      "British Columbia checked in. Calm mode, steady deploy."
+    ],
+    "alberta_canada": [
+      "Alberta signal detected. Strong build mode online.",
+      "Alberta checked in. Big sky, tidy stack."
+    ],
+    "lagos_nigeria": [
+      "Lagos signal detected. Fast pace, sharp tabs, clean push.",
+      "Lagos checked in. High-energy build mode enabled."
+    ],
+    "federal_capital_territory_nigeria": [
+      "FCT signal detected. Structured mode, steady systems.",
+      "Federal Capital Territory signal detected. Clean route online."
+    ],
+    "california_united_states": [
+      "California signal detected. Startup rhythm, careful deploy.",
+      "California checked in. Big ideas, clean interface."
+    ],
+    "new_york_united_states": [
+      "New York signal detected. Fast pace, steady systems.",
+      "New York checked in. Tabs awake, route ready."
+    ],
+    "texas_united_states": [
+      "Texas signal detected. Big build energy online.",
+      "Texas checked in. Wide routes, steady deploy."
+    ],
+    "england_united_kingdom": [
+      "England signal detected. Tea compiled successfully.",
+      "England checked in. Polite systems, classic timing."
+    ]
+  },
+  "cities": {
+    "windsor_ontario_canada": [
+      "Windsor signal detected. Border-town debugging mode enabled.",
+      "Windsor checked in. Local context loaded, bridge traffic ignored."
+    ],
+    "toronto_ontario_canada": [
+      "Toronto signal detected. Tabs open, coffee ready, deploy carefully.",
+      "Toronto checked in. Big-city pace, clean interface."
+    ],
+    "ottawa_ontario_canada": [
+      "Ottawa signal detected. Calm systems, tidy commits.",
+      "Ottawa checked in. Structured tabs, careful deploy."
+    ],
+    "london_ontario_canada": [
+      "London signal detected. Ontario edition, tea optional.",
+      "London, Ontario signal detected. Local context loaded."
+    ],
+    "montreal_quebec_canada": [
+      "Montreal signal detected. Design rhythm and clean code online.",
+      "Montreal checked in. Style loaded, systems steady."
+    ],
+    "vancouver_british_columbia_canada": [
+      "Vancouver signal detected. Mountain calm, clean deploy.",
+      "Vancouver checked in. Scenic mode, tidy interface."
+    ],
+    "calgary_alberta_canada": [
+      "Calgary signal detected. Big-sky debugging mode enabled.",
+      "Calgary checked in. Steady systems, clean routes."
+    ],
+    "lagos_lagos_nigeria": [
+      "Lagos signal detected. If this page loads fast here, the engineering is serious.",
+      "Lagos checked in. Fast pace, sharp tabs, clean push."
+    ],
+    "abuja_federal_capital_territory_nigeria": [
+      "Abuja signal detected. Structured mode, steady deploy.",
+      "Abuja checked in. Clean route, calm systems."
+    ],
+    "accra_greater_accra_ghana": [
+      "Accra signal detected. Warm rhythm, sharp creative mode.",
+      "Accra checked in. Bright energy, clean interface."
+    ],
+    "nairobi_nairobi_kenya": [
+      "Nairobi signal detected. Mobile-first builder rhythm online.",
+      "Nairobi checked in. Fast taps, steady systems."
+    ],
+    "johannesburg_gauteng_south_africa": [
+      "Johannesburg signal detected. City energy, clean systems.",
+      "Johannesburg checked in. Wide range, steady route."
+    ],
+    "london_england_united_kingdom": [
+      "London signal detected. Tea compiled successfully.",
+      "London checked in. Polite systems, classic timing."
+    ],
+    "new_york_new_york_united_states": [
+      "New York signal detected. Fast pace, steady systems.",
+      "New York checked in. Tabs awake, route ready."
+    ],
+    "los_angeles_california_united_states": [
+      "Los Angeles signal detected. Bright screen, clean scene.",
+      "Los Angeles checked in. Big ideas, steady interface."
+    ],
+    "san_francisco_california_united_states": [
+      "San Francisco signal detected. Startup rhythm, careful deploy.",
+      "San Francisco checked in. Clean stack, calm tabs."
+    ],
+    "houston_texas_united_states": [
+      "Houston signal detected. Big build energy online.",
+      "Houston checked in. Wide routes, steady deploy."
+    ],
+    "dallas_texas_united_states": [
+      "Dallas signal detected. Clean route, big-screen confidence.",
+      "Dallas checked in. Systems steady, tabs ready."
+    ],
+    "berlin_germany": [
+      "Berlin signal detected. Structure loaded, edges aligned.",
+      "Berlin checked in. Efficient tabs, tidy systems."
+    ],
+    "paris_france": [
+      "Paris signal detected. Stylish routing, calm deploy.",
+      "Paris checked in. Design taste loaded."
+    ],
+    "amsterdam_netherlands": [
+      "Amsterdam signal detected. Structured flow, clean routes.",
+      "Amsterdam checked in. Neat systems, steady cadence."
+    ],
+    "dubai_united_arab_emirates": [
+      "Dubai signal detected. Skyline-speed deploy mode.",
+      "Dubai checked in. Polished systems, fast route."
+    ],
+    "singapore_singapore": [
+      "Singapore signal detected. Precision and speed aligned.",
+      "Singapore checked in. Polished systems online."
+    ],
+    "tokyo_japan": [
+      "Tokyo signal detected. Precision timing looks good.",
+      "Tokyo checked in. Clean systems, quiet confidence."
+    ],
+    "seoul_south_korea": [
+      "Seoul signal detected. Sharp timing, clean build.",
+      "Seoul checked in. Fast network, focused interface."
+    ],
+    "mumbai_maharashtra_india": [
+      "Mumbai signal detected. Scale thinking engaged.",
+      "Mumbai checked in. Fast pace, clean systems."
+    ],
+    "delhi_delhi_india": [
+      "Delhi signal detected. Scale thinking engaged.",
+      "Delhi checked in. Busy tabs, steady interface."
+    ],
+    "bangalore_karnataka_india": [
+      "Bangalore signal detected. Developer energy is very online.",
+      "Bangalore checked in. Startup rhythm, clean deploy."
+    ],
+    "sydney_new_south_wales_australia": [
+      "Sydney signal detected. Sunshine mode, steady deploy.",
+      "Sydney checked in. Distance handled gracefully."
+    ],
+    "melbourne_victoria_australia": [
+      "Melbourne signal detected. Calm debugging, clean rhythm.",
+      "Melbourne checked in. Coffee nearby, systems steady."
+    ]
+  }
+}
