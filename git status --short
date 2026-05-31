@@ -1,0 +1,54 @@
+[33mcommit 8c84e9a8e3a211ffd0a83165ed6fdbf8087de6e0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: vebbaybi Immanuel <euceenna@aol.com>
+Date:   Sun May 31 10:16:16 2026 -0400
+
+    Audit web layers and normalize SkinCradle placement
+
+ assets/css/pages.css                    |    6 [32m+[m[31m-[m
+ assets/css/skincradle.css               |  364 [32m+++++++[m
+ assets/cursors/default@2x.png           |  Bin [31m0[m -> [32m3709[m bytes
+ assets/cursors/editor@2x.png            |  Bin [31m0[m -> [32m2836[m bytes
+ assets/cursors/pointer@2x.png           |  Bin [31m0[m -> [32m4191[m bytes
+ assets/cursors/typing@2x.png            |  Bin [31m0[m -> [32m4336[m bytes
+ assets/icons/android-chrome-192x192.png |  Bin [31m0[m -> [32m39463[m bytes
+ assets/icons/android-chrome-512x512.png |  Bin [31m0[m -> [32m226898[m bytes
+ assets/icons/apple-touch-icon.png       |  Bin [31m0[m -> [32m35326[m bytes
+ assets/icons/favicon-32x32.png          |  Bin [31m0[m -> [32m2179[m bytes
+ assets/icons/icon.svg                   |    8 [32m+[m
+ assets/icons/shortcut-ai.png            |  Bin [31m0[m -> [32m12291[m bytes
+ assets/icons/shortcut-elka.png          |  Bin [31m0[m -> [32m9638[m bytes
+ assets/icons/shortcut-resume.png        |  Bin [31m0[m -> [32m12291[m bytes
+ assets/icons/shortcut-robo.png          |  Bin [31m0[m -> [32m15624[m bytes
+ assets/icons/shortcut-skincradle.png    |  Bin [31m0[m -> [32m12291[m bytes
+ assets/images/deret-fsm-concept.svg     |   45 [32m+[m
+ assets/images/pwa/desktop-home.png      |  Bin [31m0[m -> [32m120196[m bytes
+ assets/images/pwa/mobile-home.png       |  Bin [31m0[m -> [32m46193[m bytes
+ assets/js/app.js                        |   23 [32m+[m[31m-[m
+ assets/js/data/eos-site-index.js        |  395 [32m+++++++[m[31m-[m
+ assets/js/meta/meta.js                  |   14 [32m+[m[31m-[m
+ assets/js/pages/resume.js               |  112 [32m++[m[31m-[m
+ assets/js/pages/skincradle.js           | 1573 [32m+++++++++++++++++++++++++++++++[m
+ assets/js/pages/tdi.js                  |   44 [32m+[m[31m-[m
+ assets/js/ui/components/nav.js          |   14 [32m+[m
+ assets/js/ui/components/puzzle.js       |   22 [32m+[m[31m-[m
+ assets/js/ui/eos-station.js             |   20 [32m+[m[31m-[m
+ assets/js/ui/theme.js                   |   23 [32m+[m[31m-[m
+ construction.html                       |    4 [32m+[m[31m-[m
+ construction/index.html                 |    4 [32m+[m[31m-[m
+ home.html                               |    6 [32m+[m[31m-[m
+ home/index.html                         |    6 [32m+[m[31m-[m
+ links.html                              |    8 [32m+[m[31m-[m
+ links/index.html                        |    8 [32m+[m[31m-[m
+ manifest.webmanifest                    |   15 [32m+[m[31m-[m
+ partials/footer.html                    |    8 [32m+[m[31m-[m
+ partials/nav.html                       |    1 [32m+[m
+ projects.html                           |   15 [32m+[m[31m-[m
+ projects/index.html                     |   15 [32m+[m[31m-[m
+ resume.html                             |    5 [32m+[m[31m-[m
+ resume/index.html                       |    5 [32m+[m[31m-[m
+ scripts/sync-clean-routes.mjs           |    1 [32m+[m
+ sitemap.xml                             |   58 [32m+[m[31m-[m
+ skincradle/index.html                   |  107 [32m+++[m
+ tdi.html                                |   14 [32m+[m[31m-[m
+ tdi/index.html                          |   14 [32m+[m[31m-[m
+ 47 files changed, 2825 insertions(+), 132 deletions(-)

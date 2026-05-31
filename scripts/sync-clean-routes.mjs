@@ -13,7 +13,7 @@ const pages = [
   { source: 'index.html', route: '/', changefreq: 'weekly', priority: '1.00' },
   { source: 'home.html', route: '/home/', changefreq: 'weekly', priority: '0.95' },
   { source: 'projects.html', route: '/projects/', changefreq: 'weekly', priority: '0.90' },
-  { source: 'skincradle/index.html', route: '/skincradle/', changefreq: 'monthly', priority: '0.82', static: true },
+  { source: 'skincradle.html', route: '/skincradle/', changefreq: 'monthly', priority: '0.82' },
   { source: 'scroll_paper.html', route: '/scroll_paper/', changefreq: 'monthly', priority: '0.80' },
   { source: 'ai.html', route: '/ai/', changefreq: 'monthly', priority: '0.85' },
   { source: 'robotics.html', route: '/robotics/', changefreq: 'monthly', priority: '0.85' },

@@ -1,4 +1,4 @@
-export const eosSiteGeneratedAt = "2026-05-31T13:33:00.580Z";
+export const eosSiteGeneratedAt = "2026-05-31T14:33:07.166Z";
 export const eosSitePages = [
   {
     "key": "page:/",
@@ -30,7 +30,7 @@ export const eosSitePages = [
   {
     "key": "page:/skincradle/",
     "route": "/skincradle/",
-    "source": "skincradle/index.html",
+    "source": "skincradle.html",
     "scope": "classic",
     "family": "skincradle",
     "title": "SkinCradle Halo Tracker | The 1807",
