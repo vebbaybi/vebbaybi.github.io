@@ -155,8 +155,10 @@ select {
     background: rgba(15, 23, 42, 0.9);
     border: 1px solid rgba(148, 163, 184, 0.25);
     padding: 10px 14px;
+    min-height: 44px;
     border-radius: 999px;
     font-weight: 750;
+    line-height: 1;
     cursor: pointer;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -301,7 +303,7 @@ button.draw-active {
     font-weight: 700;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1100px) {
     .controls {
         width: calc(100vw - 24px);
         justify-content: flex-start;

@@ -90,6 +90,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--ai-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 #main .stat {
@@ -277,9 +280,13 @@
     flex-wrap: wrap;
     gap: 8px;
     margin: .25rem 0 0 0;
+    padding: 0;
+    list-style: none;
 }
 
 #main .chip {
+    display: inline-flex;
+    align-items: center;
     font-size: .85rem;
     padding: .25rem .5rem;
     border-radius: 999px;

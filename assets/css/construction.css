@@ -201,6 +201,8 @@
     display: flex;
     gap: var(--constr-gap);
     padding: 16px;
+    margin: 0;
+    list-style: none;
     will-change: transform;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -364,14 +366,15 @@
 
     html[data-page="construction"] .carousel-prev,
     html[data-page="construction"] .carousel-next {
-      inline-size: 38px;
-      block-size: 38px;
+      inline-size: 44px;
+      block-size: 44px;
     }
   }
 
   html[data-page="construction"] .carousel-pagination {
     margin-top: 16px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: var(--constr-dot-gap);
     padding-inline: 8px;
@@ -382,16 +385,32 @@
   }
 
   html[data-page="construction"] .carousel-dot {
-    inline-size: var(--constr-dot-size);
-    block-size: var(--constr-dot-size);
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    inline-size: 44px;
+    block-size: 44px;
     border-radius: 50%;
     border: 0;
-    background: linear-gradient(90deg, var(--primary), var(--blue-400));
-    opacity: 0.5;
+    background: transparent;
+    opacity: 1;
     cursor: var(--cursor-pointer);
   }
 
+  html[data-page="construction"] .carousel-dot::before {
+    content: "";
+    inline-size: var(--constr-dot-size);
+    block-size: var(--constr-dot-size);
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--primary), var(--blue-400));
+    opacity: 0.5;
+  }
+
   html[data-page="construction"] .carousel-dot[aria-selected="true"] {
+    box-shadow: none;
+  }
+
+  html[data-page="construction"] .carousel-dot[aria-selected="true"]::before {
     opacity: 1;
     box-shadow: var(--focus);
   }

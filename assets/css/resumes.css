@@ -127,9 +127,11 @@ body.theme-light .resume-wrap::before {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-weight: 800;
   padding: 12px 16px;
+  min-height: 44px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--primary);

@@ -159,8 +159,10 @@
     .btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         padding: 12px 16px;
+        min-height: 44px;
         border-radius: var(--radius);
         text-decoration: none;
         background: var(--primary-strong);
@@ -220,6 +222,8 @@
 
     .iconbtn {
         padding: 10px;
+        min-width: 44px;
+        min-height: 44px;
         border-radius: var(--radius-md);
         cursor: var(--cursor-pointer);
         transition: var(--transition);
@@ -248,6 +252,15 @@
         height: 28px;
         display: block;
         pointer-events: none;
+    }
+
+    #theme-toggle:not(.iconbtn) {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 14px;
+        border-radius: var(--radius-md);
     }
 }
 
@@ -584,15 +597,34 @@
 
     .carousel-pagination .carousel-dot {
         pointer-events: auto;
+        display: grid;
+        place-items: center;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border-radius: 50%;
+        margin: 0;
+        transition: var(--transition);
+    }
+
+    .carousel-pagination .carousel-dot::before {
+        content: "";
         width: 10px;
         height: 10px;
         background: rgba(255, 255, 255, .4);
         border-radius: 50%;
-        margin: 0 4px;
         transition: var(--transition);
     }
 
-    .carousel-pagination .carousel-dot.active {
+    .carousel-pagination .carousel-dot.active,
+    .carousel-pagination .carousel-dot[aria-selected="true"] {
+        background: transparent;
+        transform: none;
+    }
+
+    .carousel-pagination .carousel-dot.active::before,
+    .carousel-pagination .carousel-dot[aria-selected="true"]::before {
         background: white;
         transform: scale(1.2);
     }

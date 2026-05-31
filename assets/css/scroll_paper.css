@@ -195,6 +195,8 @@ body.theme-light .scrolly-paper-wrap::before {
         display: flex;
         gap: var(--card-gap);
         padding: 16px;
+        margin: 0;
+        list-style: none;
         will-change: transform;
         transform: translate3d(0, 0, 0);
         transition: var(--transition);
@@ -308,8 +310,8 @@ body.theme-light .scrolly-paper-wrap::before {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         background: rgba(11, 15, 20, 0.9);
         -webkit-backdrop-filter: blur(6px);
@@ -340,22 +342,39 @@ body.theme-light .scrolly-paper-wrap::before {
 
     html[data-page="scroll_paper"] .carousel-pagination {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
         margin-top: 16px;
     }
 
     html[data-page="scroll_paper"] .carousel-dot {
+        display: grid;
+        place-items: center;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: transparent;
+        border: 0;
+        opacity: 1;
+        cursor: var(--cursor-pointer);
+    }
+
+    html[data-page="scroll_paper"] .carousel-dot::before {
+        content: "";
         width: 10px;
         height: 10px;
         border-radius: 50%;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
-        border: 0;
         opacity: 0.5;
-        cursor: var(--cursor-pointer);
     }
 
     html[data-page="scroll_paper"] .carousel-dot[aria-selected="true"] {
+        box-shadow: none;
+    }
+
+    html[data-page="scroll_paper"] .carousel-dot[aria-selected="true"]::before {
         opacity: 1;
         box-shadow: var(--focus);
     }
@@ -588,8 +607,8 @@ body.theme-light .scrolly-paper-wrap::before {
 
         html[data-page="scroll_paper"] .carousel-prev,
         html[data-page="scroll_paper"] .carousel-next {
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
         }
 
         html[data-page="scroll_paper"] #story-heading {

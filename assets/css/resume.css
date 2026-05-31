@@ -246,11 +246,15 @@ main#main .resume-actions {
 }
 
 main#main .resume-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid var(--border);
 
     background: var(--secondary-bg);
     color: var(--text);
     padding: 8px 12px;
+    min-height: 44px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;

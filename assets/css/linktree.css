@@ -110,7 +110,11 @@
     }
 
     .linktree .lt-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         padding: 8px 16px;
+        min-height: 44px;
         border-radius: var(--radius-sm);
         background: var(--surface);
         color: var(--muted);

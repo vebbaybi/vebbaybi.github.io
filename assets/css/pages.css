@@ -347,6 +347,8 @@
         will-change: transform;
         transform: translate3d(0, 0, 0);
         padding: 16px;
+        margin: 0;
+        list-style: none;
         transition: var(--transition);
     }
 
@@ -400,8 +402,8 @@
 
         .carousel-prev,
         .carousel-next {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
         }
     }
 
@@ -409,21 +411,38 @@
     .carousel-pagination {
         margin-top: 18px;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: var(--dot-gap);
     }
 
     .carousel-dot {
-        width: var(--dot-size);
-        height: var(--dot-size);
+        display: grid;
+        place-items: center;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         border: 0;
-        background: linear-gradient(90deg, var(--primary), var(--primary-strong));
-        opacity: var(--dot-opacity);
+        background: transparent;
+        opacity: 1;
         cursor: var(--cursor-pointer);
     }
 
+    .carousel-dot::before {
+        content: "";
+        width: var(--dot-size);
+        height: var(--dot-size);
+        border-radius: 50%;
+        background: linear-gradient(90deg, var(--primary), var(--primary-strong));
+        opacity: var(--dot-opacity);
+    }
+
     .carousel-dot[aria-selected="true"] {
+        box-shadow: none;
+    }
+
+    .carousel-dot[aria-selected="true"]::before {
         opacity: var(--dot-active-opacity);
         box-shadow: var(--focus);
     }
