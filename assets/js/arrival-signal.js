@@ -7,11 +7,17 @@
     return;
   }
 
+  const currentScript = document.currentScript;
+  const scriptPathMarker = '/assets/js/arrival-signal.js';
+
   const contentUrl = '/assets/data/arrival-signals.json';
   const geoUrl = 'https://get.geojs.io/v1/ip/geo.json';
   const timeoutMs = 3500;
   const maxMessageLength = 130;
   const maxLocationLength = 64;
+
+  let hasRun = false;
+
   const fallbackBank = {
     meta: {
       name: 'Arrival Signal',
@@ -59,7 +65,91 @@
     regions: {},
     cities: {}
   };
+
   const builtInBlockedWords = fallbackBank.safety.blockedWords;
+
+  function getSiteRootPath() {
+    if (!currentScript || !currentScript.src) {
+      return '/';
+    }
+
+    try {
+      const scriptUrl = new URL(currentScript.src, window.location.href);
+      const markerIndex = scriptUrl.pathname.indexOf(scriptPathMarker);
+
+      if (markerIndex === -1) {
+        return '/';
+      }
+
+      const root = scriptUrl.pathname.slice(0, markerIndex + 1);
+      return root || '/';
+    } catch (_) {
+      return '/';
+    }
+  }
+
+  function normalizePath(pathname) {
+    if (!pathname) {
+      return '/';
+    }
+
+    return pathname.endsWith('/') ? pathname : `${pathname}/`;
+  }
+
+  function isIndexPage() {
+    const siteRoot = normalizePath(getSiteRootPath());
+    const currentPath = window.location.pathname;
+
+    return currentPath === siteRoot || currentPath === `${siteRoot}index.html`;
+  }
+
+  function hideSignal() {
+    mount.textContent = '';
+    mount.hidden = true;
+    mount.classList.remove(
+      'arrival-signal--loading',
+      'arrival-signal--ready',
+      'arrival-signal--fallback'
+    );
+  }
+
+  function watchNavigationExit() {
+    window.addEventListener('pagehide', hideSignal, { once: true });
+    window.addEventListener('beforeunload', hideSignal, { once: true });
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        const link = event.target.closest('a[href]');
+
+        if (!link) {
+          return;
+        }
+
+        const url = new URL(link.href, window.location.href);
+        const samePageHash =
+          url.pathname === window.location.pathname &&
+          url.search === window.location.search &&
+          url.hash;
+
+        if (samePageHash) {
+          return;
+        }
+
+        hideSignal();
+      },
+      true
+    );
+  }
+
+  function runAfterFullPageLoad(callback) {
+    if (document.readyState === 'complete') {
+      callback();
+      return;
+    }
+
+    window.addEventListener('load', callback, { once: true });
+  }
 
   function isObject(value) {
     return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
@@ -97,7 +187,9 @@
       headers: {
         accept: 'application/json'
       },
-      cache: 'no-store'
+      cache: 'no-store',
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
     })
       .then((response) => {
         if (!response.ok) {
@@ -121,7 +213,9 @@
         headers: {
           accept: 'application/json'
         },
-        cache: 'no-store'
+        cache: 'no-store',
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer'
       });
 
       if (!response.ok) {
@@ -187,13 +281,14 @@
       city,
       region,
       country,
+      country_name: countryName,
       country_code: countryCode
     } = raw;
 
     const location = {
       city: sanitizeLocationValue(city),
       region: sanitizeLocationValue(region),
-      country: sanitizeLocationValue(country),
+      country: sanitizeLocationValue(countryName || country),
       countryCode: sanitizeText(countryCode, 8).toUpperCase()
     };
 
@@ -210,15 +305,24 @@
 
   function hasBlockedWord(message, blockedWords) {
     const text = ` ${message.toLowerCase()} `;
+
     return blockedWords.some((word) => {
       const safeWord = normalizeKey(word).replace(/_/g, ' ');
-      if (!safeWord) return false;
-      return new RegExp(`(^|[^a-z0-9])${safeWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`, 'i').test(text);
+
+      if (!safeWord) {
+        return false;
+      }
+
+      return new RegExp(
+        `(^|[^a-z0-9])${safeWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^a-z0-9]|$)`,
+        'i'
+      ).test(text);
     });
   }
 
   function hasIpPattern(message) {
-    return /\b(?:\d{1,3}\.){3}\d{1,3}\b/.test(message) || /\b[0-9a-f]{1,4}(?::[0-9a-f]{1,4}){2,}\b/i.test(message);
+    return /\b(?:\d{1,3}\.){3}\d{1,3}\b/.test(message) ||
+      /\b[0-9a-f]{1,4}(?::[0-9a-f]{1,4}){2,}\b/i.test(message);
   }
 
   function isSafeMessage(message, blockedWords) {
@@ -324,27 +428,64 @@
   }
 
   function render(result) {
-    if (!result.message) return;
+    if (!result.message || !isIndexPage()) {
+      hideSignal();
+      return;
+    }
+
     mount.textContent = result.message;
     mount.hidden = false;
-    mount.classList.remove('arrival-signal--loading');
+    mount.classList.remove(
+      'arrival-signal--loading',
+      'arrival-signal--ready',
+      'arrival-signal--fallback'
+    );
     mount.classList.add(result.fallback ? 'arrival-signal--fallback' : 'arrival-signal--ready');
   }
 
   async function run() {
+    if (hasRun) {
+      return;
+    }
+
+    hasRun = true;
+
+    if (!isIndexPage()) {
+      hideSignal();
+      return;
+    }
+
+    mount.textContent = '';
+    mount.hidden = true;
+    mount.classList.remove(
+      'arrival-signal--ready',
+      'arrival-signal--fallback'
+    );
+    mount.classList.add('arrival-signal--loading');
+
     const [bankResult, geoResult] = await Promise.allSettled([
       fetchJson(contentUrl),
       fetchSafeLocation()
     ]);
-    const bank = bankResult.status === 'fulfilled' ? validateBank(bankResult.value) || fallbackBank : fallbackBank;
+
+    const bank = bankResult.status === 'fulfilled'
+      ? validateBank(bankResult.value) || fallbackBank
+      : fallbackBank;
+
     const location = geoResult.status === 'fulfilled' ? geoResult.value : null;
+
     render(chooseMessage(bank, location));
   }
 
-  run().catch(() => {
-    render({
-      message: 'Unknown signal detected. Visitor arrived in stealth mode.',
-      fallback: true
+  hideSignal();
+  watchNavigationExit();
+
+  runAfterFullPageLoad(() => {
+    run().catch(() => {
+      render({
+        message: 'Unknown signal detected. Visitor arrived in stealth mode.',
+        fallback: true
+      });
     });
   });
 }());

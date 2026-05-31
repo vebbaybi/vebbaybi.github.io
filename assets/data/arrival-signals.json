@@ -2,385 +2,741 @@
   "meta": {
     "name": "Arrival Signal",
     "version": "1.0.0",
-    "privacy": "Approximate city, region, and country only. No IP display. No storage."
+    "privacy": "Approximate city, region, and country only. No IP display. No storage.",
+    "contentStrategy": "Layered message bank using city, region, country, country profile, and generic fallbacks.",
+    "matchingPriority": [
+      "cities",
+      "regions",
+      "countries",
+      "countryProfiles",
+      "genericCity",
+      "genericRegion",
+      "genericCountry",
+      "unknown"
+    ]
   },
   "safety": {
     "blockedWords": [
       "tragedy",
       "death",
       "dead",
+      "die",
+      "dying",
+      "kill",
+      "killing",
+      "murder",
       "war",
+      "bomb",
       "bombing",
       "genocide",
+      "terror",
       "terrorism",
+      "terrorist",
       "disaster",
+      "earthquake",
+      "flood",
+      "fire",
+      "wildfire",
+      "hurricane",
+      "tsunami",
       "disease",
       "pandemic",
       "crime",
       "violence",
+      "violent",
+      "attack",
+      "shooting",
       "race",
       "ethnicity",
       "religion",
       "politics",
-      "poverty"
+      "poverty",
+      "suffering",
+      "abuse",
+      "trauma",
+      "riot",
+      "refugee",
+      "famine"
     ]
   },
   "fallbacks": {
     "unknown": [
       "Unknown signal detected. Visitor arrived in stealth mode.",
       "Signal unclear. Local context loaded with privacy intact.",
-      "Quiet arrival detected. No precision claims, just good manners."
+      "Visitor signal detected. No creepy tracking, just clean frontend manners.",
+      "Unknown arrival confirmed. The interface still knows how to behave.",
+      "Stealth visitor detected. The build welcomes you without asking questions.",
+      "Signal hidden. Clean arrival mode activated.",
+      "Unknown location signal. The page kept it private and professional.",
+      "Visitor pulse detected. Location details stayed respectfully quiet."
     ],
     "genericCity": [
       "{city} signal detected. Local context loaded. Debug responsibly.",
-      "{city} checked in. Tabs open, system calm.",
-      "{city} arrival confirmed. The page is keeping it respectful."
+      "{city} signal detected. The interface adjusted its posture.",
+      "{city} signal detected. Clean arrival confirmed.",
+      "{city} signal detected. The build noticed the city energy.",
+      "{city} signal detected. Local mode entered the page.",
+      "{city} signal detected. Clean routes, calm runtime.",
+      "{city} signal detected. The frontend made room for your arrival.",
+      "{city} signal detected. Visitor context loaded without drama."
     ],
     "genericRegion": [
       "{region} signal detected. Regional mode online.",
-      "{region} checked in. Clean routing, steady hands.",
-      "{region} arrival noted. The interface is behaving."
+      "{region} signal detected. Province-level frontend discipline confirmed.",
+      "{region} signal detected. Clean layout adapted to the signal.",
+      "{region} signal detected. The interface received the regional pulse.",
+      "{region} signal detected. Smooth entry into the build zone.",
+      "{region} signal detected. Local rhythm, clean execution.",
+      "{region} signal detected. The page kept the welcome sharp.",
+      "{region} signal detected. Visitor arrival routed cleanly."
     ],
     "genericCountry": [
       "{country} signal detected. Welcome to The 1807.",
-      "{country} checked in. Portfolio systems are live.",
-      "{country} arrival confirmed. Build energy accepted."
+      "{country} signal detected. Clean frontend energy received.",
+      "{country} signal detected. The interface is standing properly.",
+      "{country} signal detected. Visitor arrival confirmed.",
+      "{country} signal detected. The build opened the door cleanly.",
+      "{country} signal detected. Local signal, global polish.",
+      "{country} signal detected. The page loaded with respect.",
+      "{country} signal detected. Clean entry into the system."
     ]
   },
   "countryProfiles": {
     "canada": [
-      "{city} signal detected. Clean code, cold-weather discipline.",
-      "{country} signal detected. Polite systems, careful deploys."
+      "{country} signal detected. Cold weather outside, clean code inside.",
+      "{country} signal detected. Polite visitor, serious frontend.",
+      "{country} signal detected. The interface loaded with winter discipline.",
+      "{country} signal detected. Calm signal, sharp engineering posture.",
+      "{country} signal detected. The page said welcome with clean spacing."
     ],
     "nigeria": [
-      "{city} signal detected. High-energy builder mode enabled.",
-      "{country} signal detected. Fast hands, sharp tabs, clean push."
+      "{country} signal detected. High energy, sharp execution.",
+      "{country} signal detected. If this loads clean, the build is serious.",
+      "{country} signal detected. Fresh signal, strong engineering spirit.",
+      "{country} signal detected. Big ambition entered the interface.",
+      "{country} signal detected. The frontend knew it had to come correct."
     ],
     "united_states": [
-      "{city} signal detected. Big-scale browsing mode online.",
-      "{country} signal detected. Traffic high, systems steady."
+      "{country} signal detected. Big traffic, lean interface.",
+      "{country} signal detected. Large signal, clean delivery.",
+      "{country} signal detected. Frontend entered production posture.",
+      "{country} signal detected. Scale met structure at the door.",
+      "{country} signal detected. Fast pace, calm render."
     ],
     "united_kingdom": [
-      "{city} signal detected. Polite systems, classic timing.",
-      "{country} signal detected. Tea compiled successfully."
+      "{country} signal detected. Calm signal, polished interface.",
+      "{country} signal detected. The page arrived properly arranged.",
+      "{country} signal detected. Clean layout with classic composure.",
+      "{country} signal detected. Polite system behavior confirmed.",
+      "{country} signal detected. The interface kept its manners."
     ],
     "germany": [
-      "{city} signal detected. Structure loaded, edges aligned.",
-      "{country} signal detected. Efficiency mode is awake."
+      "{country} signal detected. Structure approved.",
+      "{country} signal detected. Efficient signal, clean architecture.",
+      "{country} signal detected. The build kept things precise.",
+      "{country} signal detected. Layout discipline confirmed.",
+      "{country} signal detected. The interface organized itself quickly."
     ],
     "france": [
-      "{city} signal detected. Tasteful routing, stylish deploy.",
-      "{country} signal detected. Design rhythm looks composed."
+      "{country} signal detected. Design taste confirmed.",
+      "{country} signal detected. Smooth interface with visual confidence.",
+      "{country} signal detected. The layout brought style and structure.",
+      "{country} signal detected. Clean rhythm entered the page.",
+      "{country} signal detected. The interface remembered to look good."
     ],
     "ghana": [
-      "{city} signal detected. Warm energy, sharp creative mode.",
-      "{country} signal detected. Bright rhythm, clean build."
+      "{country} signal detected. Warm signal, clean build.",
+      "{country} signal detected. Smooth visitor energy received.",
+      "{country} signal detected. The frontend greeted you properly.",
+      "{country} signal detected. Clean arrival with bright energy.",
+      "{country} signal detected. The page welcomed the signal with style."
     ],
     "kenya": [
-      "{city} signal detected. Mobile-first builder rhythm online.",
-      "{country} signal detected. Fast taps, steady systems."
+      "{country} signal detected. Innovation signal recognized.",
+      "{country} signal detected. Clean UI with forward motion.",
+      "{country} signal detected. The page caught the signal cleanly.",
+      "{country} signal detected. Fast ideas, tidy interface.",
+      "{country} signal detected. The build felt the startup rhythm."
     ],
     "south_africa": [
-      "{city} signal detected. City energy, wide-range systems.",
-      "{country} signal detected. Range loaded, interface steady."
+      "{country} signal detected. Strong signal, clean layout.",
+      "{country} signal detected. Interface posture looking solid.",
+      "{country} signal detected. Frontend rhythm confirmed.",
+      "{country} signal detected. Big-city energy, disciplined render.",
+      "{country} signal detected. The page stood firm and polished."
     ],
     "india": [
-      "{city} signal detected. Scale thinking engaged.",
-      "{country} signal detected. Developer energy is very online."
+      "{country} signal detected. Developer energy entered the page.",
+      "{country} signal detected. High-scale signal, lightweight render.",
+      "{country} signal detected. Busy network, disciplined interface.",
+      "{country} signal detected. Startup rhythm recognized.",
+      "{country} signal detected. The frontend knew performance mattered."
     ],
     "japan": [
-      "{city} signal detected. Precision timing looks good.",
-      "{country} signal detected. Clean systems, quiet confidence."
+      "{country} signal detected. Precision arrival confirmed.",
+      "{country} signal detected. Clean timing, clean layout.",
+      "{country} signal detected. The page loaded with quiet discipline.",
+      "{country} signal detected. The interface aligned itself properly.",
+      "{country} signal detected. Smooth system behavior confirmed."
     ],
     "china": [
-      "{city} signal detected. Scale-aware mode enabled.",
-      "{country} signal detected. Big systems, careful routing."
+      "{country} signal detected. Massive signal, compact interface.",
+      "{country} signal detected. Scale recognized, layout stabilized.",
+      "{country} signal detected. Clean render under serious traffic energy.",
+      "{country} signal detected. Big system energy reached the page.",
+      "{country} signal detected. The interface kept things efficient."
     ],
     "australia": [
-      "{city} signal detected. Distance handled, calm debugging active.",
-      "{country} signal detected. Sunshine mode, steady deploy."
+      "{country} signal detected. Bright signal, smooth interface.",
+      "{country} signal detected. Clean frontend from the other side of the map.",
+      "{country} signal detected. Layout arrived with sunny confidence.",
+      "{country} signal detected. The page loaded with coastal calm.",
+      "{country} signal detected. Clean build energy landed well."
     ],
     "brazil": [
-      "{city} signal detected. Bold motion, clean rhythm.",
-      "{country} signal detected. Colorful pace, stable interface."
+      "{country} signal detected. Vibrant signal, clean UI rhythm.",
+      "{country} signal detected. Fast energy, smooth interface.",
+      "{country} signal detected. The page loaded with movement.",
+      "{country} signal detected. Bright arrival, polished render.",
+      "{country} signal detected. The interface caught the rhythm."
     ],
     "mexico": [
-      "{city} signal detected. Strong build energy online.",
-      "{country} signal detected. Bright pace, clean load."
+      "{country} signal detected. Warm signal, crisp interface.",
+      "{country} signal detected. Clean layout with strong arrival energy.",
+      "{country} signal detected. Visitor signal landed smoothly.",
+      "{country} signal detected. The page opened with confidence.",
+      "{country} signal detected. Local warmth, clean frontend."
     ],
     "united_arab_emirates": [
-      "{city} signal detected. Skyline-speed deploy mode.",
-      "{country} signal detected. Polished systems, fast route."
+      "{country} signal detected. Polished signal, premium interface.",
+      "{country} signal detected. Clean UI with skyline-level ambition.",
+      "{country} signal detected. Visitor arrival looking sharp.",
+      "{country} signal detected. High-rise energy, clean render.",
+      "{country} signal detected. The page arrived dressed properly."
     ],
     "singapore": [
-      "{city} signal detected. Precision and speed are aligned.",
-      "{country} signal detected. Polished systems online."
+      "{country} signal detected. Efficient signal, disciplined layout.",
+      "{country} signal detected. Clean city, clean UI.",
+      "{country} signal detected. The frontend passed the neatness check.",
+      "{country} signal detected. Smooth systems energy confirmed.",
+      "{country} signal detected. Compact signal, polished execution."
     ],
     "south_korea": [
-      "{city} signal detected. Fast network, focused interface.",
-      "{country} signal detected. Sharp timing, clean build."
+      "{country} signal detected. Fast signal, polished frontend.",
+      "{country} signal detected. Clean render with future-city energy.",
+      "{country} signal detected. Interface performance looking sharp.",
+      "{country} signal detected. Smooth digital rhythm confirmed.",
+      "{country} signal detected. The page kept pace."
     ],
     "netherlands": [
-      "{city} signal detected. Structured flow, clean routes.",
-      "{country} signal detected. Neat systems, steady cadence."
+      "{country} signal detected. Smooth routes, clean lanes.",
+      "{country} signal detected. Calm signal, sharp interface.",
+      "{country} signal detected. The layout moved responsibly.",
+      "{country} signal detected. Clean navigation energy confirmed.",
+      "{country} signal detected. The page kept the flow balanced."
     ],
     "italy": [
-      "{city} signal detected. Design rhythm, clean delivery.",
-      "{country} signal detected. Style loaded, interface steady."
+      "{country} signal detected. Style arrived with structure.",
+      "{country} signal detected. The interface remembered the details.",
+      "{country} signal detected. Clean layout with design confidence.",
+      "{country} signal detected. Smooth rhythm, polished arrival.",
+      "{country} signal detected. The page made the entrance count."
     ],
     "spain": [
-      "{city} signal detected. Smooth pace, bright interface.",
-      "{country} signal detected. Warm rhythm, clean route."
+      "{country} signal detected. Bright signal, clean interface.",
+      "{country} signal detected. Smooth arrival with warm UI energy.",
+      "{country} signal detected. The layout kept its rhythm.",
+      "{country} signal detected. Clean frontend under sunny pressure.",
+      "{country} signal detected. Visitor arrival felt properly styled."
     ]
   },
   "countries": {
     "canada": [
-      "Canada signal detected. Winter discipline, clean code.",
-      "Canada checked in. Polite systems, careful deploys."
+      "Canada signal detected. Cold weather, clean code.",
+      "Canada signal detected. Polite visitor, serious frontend.",
+      "Canada signal detected. The interface loaded with winter discipline.",
+      "Canada signal detected. Clean spacing entered with a warm jacket.",
+      "Canada signal detected. The page said sorry for loading this clean."
     ],
     "nigeria": [
-      "Nigeria signal detected. High-energy builder mode enabled.",
-      "Nigeria checked in. Fast hands, clean push."
+      "Nigeria signal detected. High energy, sharp execution.",
+      "Nigeria signal detected. If this loads clean, the build is serious.",
+      "Nigeria signal detected. Fresh signal, strong engineering spirit.",
+      "Nigeria signal detected. The frontend tightened its belt and performed.",
+      "Nigeria signal detected. Big energy reached the interface."
     ],
     "united_states": [
-      "United States signal detected. Big-scale browsing mode online.",
-      "United States checked in. Systems steady, tabs awake."
+      "United States signal detected. Big traffic, lean interface.",
+      "United States signal detected. Large signal, clean delivery.",
+      "United States signal detected. Frontend entered production posture.",
+      "United States signal detected. The page packed scale into a clean layout.",
+      "United States signal detected. Fast signal, steady interface."
     ],
     "united_kingdom": [
-      "United Kingdom signal detected. Tea compiled successfully.",
-      "United Kingdom checked in. Polite routing enabled."
+      "United Kingdom signal detected. Calm signal, polished interface.",
+      "United Kingdom signal detected. The page arrived properly arranged.",
+      "United Kingdom signal detected. Clean layout with classic composure.",
+      "United Kingdom signal detected. The interface queued politely and loaded.",
+      "United Kingdom signal detected. Proper frontend manners confirmed."
     ],
     "germany": [
-      "Germany signal detected. Structure loaded, edges aligned.",
-      "Germany checked in. Efficiency mode is awake."
+      "Germany signal detected. Structure approved.",
+      "Germany signal detected. Efficient signal, clean architecture.",
+      "Germany signal detected. The build kept things precise.",
+      "Germany signal detected. Layout discipline entered the chat.",
+      "Germany signal detected. The frontend organized itself immediately."
     ],
     "france": [
-      "France signal detected. Stylish routing, calm deploy.",
-      "France checked in. Design taste loaded."
+      "France signal detected. Design taste confirmed.",
+      "France signal detected. Smooth interface with visual confidence.",
+      "France signal detected. The layout brought style and structure.",
+      "France signal detected. Clean visual rhythm entered the page.",
+      "France signal detected. The frontend wore its spacing well."
     ],
     "ghana": [
-      "Ghana signal detected. Warm energy, sharp creative mode.",
-      "Ghana checked in. Bright rhythm, clean build."
+      "Ghana signal detected. Warm signal, clean build.",
+      "Ghana signal detected. Smooth visitor energy received.",
+      "Ghana signal detected. The frontend greeted you properly.",
+      "Ghana signal detected. Bright arrival, clean UI posture.",
+      "Ghana signal detected. The page caught the energy cleanly."
     ],
     "kenya": [
-      "Kenya signal detected. Mobile-first energy online.",
-      "Kenya checked in. Fast taps, steady systems."
+      "Kenya signal detected. Innovation signal recognized.",
+      "Kenya signal detected. Clean UI with forward motion.",
+      "Kenya signal detected. The page caught the signal cleanly.",
+      "Kenya signal detected. Fast ideas entered the interface.",
+      "Kenya signal detected. The frontend moved like it had a roadmap."
     ],
     "south_africa": [
-      "South Africa signal detected. Range loaded, interface steady.",
-      "South Africa checked in. City energy online."
+      "South Africa signal detected. Strong signal, clean layout.",
+      "South Africa signal detected. Interface posture looking solid.",
+      "South Africa signal detected. Frontend rhythm confirmed.",
+      "South Africa signal detected. Big signal, balanced render.",
+      "South Africa signal detected. The page stood tall."
     ],
     "india": [
-      "India signal detected. Scale thinking engaged.",
-      "India checked in. Developer energy is very online."
+      "India signal detected. Developer energy entered the page.",
+      "India signal detected. High-scale signal, lightweight render.",
+      "India signal detected. Busy network, disciplined interface.",
+      "India signal detected. Startup energy recognized.",
+      "India signal detected. The frontend knew the assignment."
     ],
     "japan": [
-      "Japan signal detected. Precision timing looks good.",
-      "Japan checked in. Clean systems, quiet confidence."
+      "Japan signal detected. Precision arrival confirmed.",
+      "Japan signal detected. Clean timing, clean layout.",
+      "Japan signal detected. The page loaded with quiet discipline.",
+      "Japan signal detected. The interface aligned itself cleanly.",
+      "Japan signal detected. Sharp timing entered the build."
     ],
     "china": [
-      "China signal detected. Scale-aware mode enabled.",
-      "China checked in. Big systems, careful routing."
+      "China signal detected. Massive signal, compact interface.",
+      "China signal detected. Scale recognized, layout stabilized.",
+      "China signal detected. Clean render under serious traffic energy.",
+      "China signal detected. Big system energy entered the page.",
+      "China signal detected. The frontend stayed efficient."
     ],
     "australia": [
-      "Australia signal detected. Calm debugging active.",
-      "Australia checked in. Distance handled gracefully."
+      "Australia signal detected. Bright signal, smooth interface.",
+      "Australia signal detected. Clean frontend from the other side of the map.",
+      "Australia signal detected. Layout arrived with sunny confidence.",
+      "Australia signal detected. Coastal energy, clean render.",
+      "Australia signal detected. The page loaded like it had space to breathe."
     ],
     "brazil": [
-      "Brazil signal detected. Bold motion, clean rhythm.",
-      "Brazil checked in. Colorful pace, stable interface."
+      "Brazil signal detected. Vibrant signal, clean UI rhythm.",
+      "Brazil signal detected. Fast energy, smooth interface.",
+      "Brazil signal detected. The page loaded with movement.",
+      "Brazil signal detected. Bright arrival, clean execution.",
+      "Brazil signal detected. The interface caught the rhythm."
     ],
     "mexico": [
-      "Mexico signal detected. Strong build energy online.",
-      "Mexico checked in. Bright pace, clean load."
+      "Mexico signal detected. Warm signal, crisp interface.",
+      "Mexico signal detected. Clean layout with strong arrival energy.",
+      "Mexico signal detected. Visitor signal landed smoothly.",
+      "Mexico signal detected. The frontend opened the door cleanly.",
+      "Mexico signal detected. Local warmth, sharp UI."
     ],
     "united_arab_emirates": [
-      "UAE signal detected. Skyline-speed deploy mode.",
-      "UAE checked in. Polished systems, fast route."
+      "United Arab Emirates signal detected. Polished signal, premium interface.",
+      "United Arab Emirates signal detected. Clean UI with skyline-level ambition.",
+      "United Arab Emirates signal detected. Visitor arrival looking sharp.",
+      "United Arab Emirates signal detected. High-rise signal, clean render.",
+      "United Arab Emirates signal detected. The page dressed properly."
     ],
     "singapore": [
-      "Singapore signal detected. Precision and speed aligned.",
-      "Singapore checked in. Polished systems online."
+      "Singapore signal detected. Clean city, clean UI.",
+      "Singapore signal detected. Efficient signal, disciplined layout.",
+      "Singapore signal detected. The frontend passed the neatness check.",
+      "Singapore signal detected. Compact signal, polished execution.",
+      "Singapore signal detected. The interface stayed organized."
     ],
     "south_korea": [
-      "South Korea signal detected. Sharp timing, clean build.",
-      "South Korea checked in. Fast network, focused interface."
+      "South Korea signal detected. Fast signal, polished frontend.",
+      "South Korea signal detected. Clean render with future-city energy.",
+      "South Korea signal detected. Interface performance looking sharp.",
+      "South Korea signal detected. The frontend kept pace.",
+      "South Korea signal detected. Smooth digital rhythm confirmed."
     ],
     "netherlands": [
-      "Netherlands signal detected. Structured flow, clean routes.",
-      "Netherlands checked in. Neat systems, steady cadence."
+      "Netherlands signal detected. Smooth routes, clean lanes.",
+      "Netherlands signal detected. Calm signal, sharp interface.",
+      "Netherlands signal detected. The layout is moving responsibly.",
+      "Netherlands signal detected. Clean navigation energy confirmed.",
+      "Netherlands signal detected. The page stayed balanced."
     ],
     "italy": [
-      "Italy signal detected. Design rhythm, clean delivery.",
-      "Italy checked in. Style loaded, interface steady."
+      "Italy signal detected. Style arrived with structure.",
+      "Italy signal detected. The interface remembered the details.",
+      "Italy signal detected. Clean layout with design confidence.",
+      "Italy signal detected. Smooth rhythm, polished arrival.",
+      "Italy signal detected. The page made the entrance count."
     ],
     "spain": [
-      "Spain signal detected. Smooth pace, bright interface.",
-      "Spain checked in. Warm rhythm, clean route."
+      "Spain signal detected. Bright signal, clean interface.",
+      "Spain signal detected. Smooth arrival with warm UI energy.",
+      "Spain signal detected. The layout kept its rhythm.",
+      "Spain signal detected. Clean frontend under sunny pressure.",
+      "Spain signal detected. Visitor arrival felt properly styled."
     ]
   },
   "regions": {
     "ontario_canada": [
-      "Ontario signal detected. Tabs open, winter discipline ready.",
-      "Ontario checked in. Careful deploys, clean routes."
+      "Ontario signal detected. Province-level frontend discipline confirmed.",
+      "Ontario signal detected. Clean UI moving through serious traffic.",
+      "Ontario signal detected. Polite frontend, serious runtime.",
+      "Ontario signal detected. The layout handled the corridor cleanly.",
+      "Ontario signal detected. Clean routes through busy lanes."
     ],
     "quebec_canada": [
-      "Quebec signal detected. Design taste and clean code loaded.",
-      "Quebec checked in. Sharp rhythm, careful systems."
+      "Quebec signal detected. Style and structure arrived together.",
+      "Quebec signal detected. Smooth interface with confident rhythm.",
+      "Quebec signal detected. The page loaded with cultural polish.",
+      "Quebec signal detected. Clean UI, strong personality.",
+      "Quebec signal detected. The frontend kept its accent sharp."
     ],
     "british_columbia_canada": [
-      "British Columbia signal detected. Mountain air, clean interfaces.",
-      "British Columbia checked in. Calm mode, steady deploy."
+      "British Columbia signal detected. Mountain view outside, clean view inside.",
+      "British Columbia signal detected. Calm signal, polished interface.",
+      "British Columbia signal detected. The layout arrived with coastal focus.",
+      "British Columbia signal detected. Clean UI with fresh-air spacing.",
+      "British Columbia signal detected. The page breathed properly."
     ],
     "alberta_canada": [
-      "Alberta signal detected. Strong build mode online.",
-      "Alberta checked in. Big sky, tidy stack."
+      "Alberta signal detected. Prairie speed meets disciplined UI.",
+      "Alberta signal detected. Strong signal, steady frontend.",
+      "Alberta signal detected. Clean build riding smooth.",
+      "Alberta signal detected. The interface kept its boots polished.",
+      "Alberta signal detected. Big-sky energy, compact render."
     ],
     "lagos_nigeria": [
-      "Lagos signal detected. Fast pace, sharp tabs, clean push.",
-      "Lagos checked in. High-energy build mode enabled."
+      "Lagos signal detected. High energy outside, optimized assets inside.",
+      "Lagos signal detected. If this page loads fast here, the engineering is serious.",
+      "Lagos signal detected. Fast signal, disciplined interface.",
+      "Lagos signal detected. The frontend tightened performance mode.",
+      "Lagos signal detected. Big motion, clean render."
     ],
     "federal_capital_territory_nigeria": [
-      "FCT signal detected. Structured mode, steady systems.",
-      "Federal Capital Territory signal detected. Clean route online."
+      "Federal Capital Territory signal detected. Capital city request, production-grade response.",
+      "Federal Capital Territory signal detected. Clean routes, official posture.",
+      "Federal Capital Territory signal detected. The page entered admin mode politely.",
+      "Federal Capital Territory signal detected. Smooth interface, serious build discipline.",
+      "Federal Capital Territory signal detected. The frontend came prepared."
     ],
     "california_united_states": [
-      "California signal detected. Startup rhythm, careful deploy.",
-      "California checked in. Big ideas, clean interface."
+      "California signal detected. Startup weather, production mindset.",
+      "California signal detected. The interface arrived camera-ready.",
+      "California signal detected. Smooth layout with main-character energy.",
+      "California signal detected. Bright signal, clean render.",
+      "California signal detected. The frontend came with product energy."
     ],
     "new_york_united_states": [
-      "New York signal detected. Fast pace, steady systems.",
-      "New York checked in. Tabs awake, route ready."
+      "New York signal detected. Big signal, compact bundle.",
+      "New York signal detected. Fast pace recognized, UI kept up.",
+      "New York signal detected. The page loaded before the next honk.",
+      "New York signal detected. Strong rhythm, clean execution.",
+      "New York signal detected. The interface handled the rush."
     ],
     "texas_united_states": [
-      "Texas signal detected. Big build energy online.",
-      "Texas checked in. Wide routes, steady deploy."
+      "Texas signal detected. Big signal, clean execution.",
+      "Texas signal detected. Sharp frontend with wide-lane confidence.",
+      "Texas signal detected. Layout moving with Texas-sized posture.",
+      "Texas signal detected. Strong arrival, steady render.",
+      "Texas signal detected. The page kept it bold and clean."
     ],
     "england_united_kingdom": [
-      "England signal detected. Tea compiled successfully.",
-      "England checked in. Polite systems, classic timing."
+      "England signal detected. The page loaded with tea-level composure.",
+      "England signal detected. Polite signal, serious interface.",
+      "England signal detected. Classic signal, modern build.",
+      "England signal detected. The frontend queued properly.",
+      "England signal detected. Calm arrival, polished render."
+    ],
+    "greater_accra_ghana": [
+      "Greater Accra signal detected. Warm city pulse, clean frontend rhythm.",
+      "Greater Accra signal detected. Bright signal, polished arrival.",
+      "Greater Accra signal detected. The interface caught the coastal confidence.",
+      "Greater Accra signal detected. Smooth visitor energy received.",
+      "Greater Accra signal detected. Clean build, warm welcome."
+    ],
+    "nairobi_kenya": [
+      "Nairobi signal detected. Innovation signal moving clean.",
+      "Nairobi signal detected. Fast ideas, tidy interface.",
+      "Nairobi signal detected. Build energy came prepared.",
+      "Nairobi signal detected. The page felt the tech rhythm.",
+      "Nairobi signal detected. Clean render, forward motion."
+    ],
+    "gauteng_south_africa": [
+      "Gauteng signal detected. Strong signal, clean structure.",
+      "Gauteng signal detected. Big-city energy, disciplined frontend.",
+      "Gauteng signal detected. Interface standing firm.",
+      "Gauteng signal detected. Clean layout with serious momentum.",
+      "Gauteng signal detected. The page received the signal clearly."
+    ],
+    "maharashtra_india": [
+      "Maharashtra signal detected. Fast city energy, focused interface.",
+      "Maharashtra signal detected. Big signal, disciplined load.",
+      "Maharashtra signal detected. The frontend kept pace.",
+      "Maharashtra signal detected. Clean render under busy rhythm.",
+      "Maharashtra signal detected. The page handled the scale."
+    ],
+    "delhi_india": [
+      "Delhi signal detected. High-density signal, lightweight page.",
+      "Delhi signal detected. Busy city, clean render.",
+      "Delhi signal detected. Strong visitor energy recognized.",
+      "Delhi signal detected. The interface kept its focus.",
+      "Delhi signal detected. Clean UI under serious pace."
+    ],
+    "karnataka_india": [
+      "Karnataka signal detected. Developer energy recognized.",
+      "Karnataka signal detected. Startup signal, clean interface.",
+      "Karnataka signal detected. Code-city rhythm entered the page.",
+      "Karnataka signal detected. The frontend came ready to ship.",
+      "Karnataka signal detected. Clean build, strong logic."
+    ],
+    "new_south_wales_australia": [
+      "New South Wales signal detected. Harbour-side signal, clean interface.",
+      "New South Wales signal detected. Bright arrival, smooth frontend.",
+      "New South Wales signal detected. The page loaded with coastal confidence.",
+      "New South Wales signal detected. Clean rhythm, sunny posture.",
+      "New South Wales signal detected. The interface kept things breezy."
+    ],
+    "victoria_australia": [
+      "Victoria signal detected. Design taste entered the chat.",
+      "Victoria signal detected. Creative signal, clean execution.",
+      "Victoria signal detected. Smooth layout with café-level patience.",
+      "Victoria signal detected. The frontend kept its rhythm.",
+      "Victoria signal detected. Polished arrival confirmed."
     ]
   },
   "cities": {
     "windsor_ontario_canada": [
       "Windsor signal detected. Border-town debugging mode enabled.",
-      "Windsor checked in. Local context loaded, bridge traffic ignored."
+      "Windsor signal detected. This build crossed the border without breaking layout.",
+      "Windsor signal detected. Clean UI, sharp edges, calm runtime.",
+      "Windsor signal detected. Tunnel vision, but make it frontend.",
+      "Windsor signal detected. The page arrived with bridge-level confidence."
     ],
     "toronto_ontario_canada": [
-      "Toronto signal detected. Tabs open, coffee ready, deploy carefully.",
-      "Toronto checked in. Big-city pace, clean interface."
+      "Toronto signal detected. Big-city traffic, small-bundle discipline.",
+      "Toronto signal detected. Polished UI moving like it caught the express train.",
+      "Toronto signal detected. Clean routes, cold focus, warm welcome.",
+      "Toronto signal detected. The layout survived downtown energy.",
+      "Toronto signal detected. The frontend kept pace without honking."
     ],
     "ottawa_ontario_canada": [
-      "Ottawa signal detected. Calm systems, tidy commits.",
-      "Ottawa checked in. Structured tabs, careful deploy."
+      "Ottawa signal detected. Government-town calm, developer-mode sharp.",
+      "Ottawa signal detected. Quiet city, loud engineering standards.",
+      "Ottawa signal detected. Clean commit energy entered the page.",
+      "Ottawa signal detected. The interface filed its paperwork and loaded.",
+      "Ottawa signal detected. Policy-level calm, production-level polish."
     ],
     "london_ontario_canada": [
-      "London signal detected. Ontario edition, tea optional.",
-      "London, Ontario signal detected. Local context loaded."
+      "London Ontario signal detected. Local London, clean runtime.",
+      "London Ontario signal detected. The page knew which London this was.",
+      "London Ontario signal detected. Clean UI without pretending to be overseas.",
+      "London Ontario signal detected. The interface handled the name collision.",
+      "London Ontario signal detected. Proper city disambiguation achieved."
     ],
     "montreal_quebec_canada": [
-      "Montreal signal detected. Design rhythm and clean code online.",
-      "Montreal checked in. Style loaded, systems steady."
+      "Montreal signal detected. Style arrived before the JavaScript finished blinking.",
+      "Montreal signal detected. Smooth visuals, confident interface rhythm.",
+      "Montreal signal detected. Creative signal locked onto the page.",
+      "Montreal signal detected. The layout brought taste and timing.",
+      "Montreal signal detected. Clean render with festival-level confidence."
     ],
     "vancouver_british_columbia_canada": [
-      "Vancouver signal detected. Mountain calm, clean deploy.",
-      "Vancouver checked in. Scenic mode, tidy interface."
+      "Vancouver signal detected. Mountain view outside, clean view inside.",
+      "Vancouver signal detected. Ocean breeze meets optimized UI.",
+      "Vancouver signal detected. Calm layout, serious frontend posture.",
+      "Vancouver signal detected. The interface loaded with fresh-air spacing.",
+      "Vancouver signal detected. Clean render with skyline confidence."
     ],
     "calgary_alberta_canada": [
-      "Calgary signal detected. Big-sky debugging mode enabled.",
-      "Calgary checked in. Steady systems, clean routes."
+      "Calgary signal detected. Fast load, no rodeo needed.",
+      "Calgary signal detected. Clean build riding steady.",
+      "Calgary signal detected. Prairie speed meets disciplined UI.",
+      "Calgary signal detected. The frontend stayed balanced in the saddle.",
+      "Calgary signal detected. Big-sky signal, compact bundle."
     ],
     "lagos_lagos_nigeria": [
+      "Lagos signal detected. Traffic outside, optimized assets inside.",
+      "Lagos signal detected. High energy visitor, low latency ambition.",
       "Lagos signal detected. If this page loads fast here, the engineering is serious.",
-      "Lagos checked in. Fast pace, sharp tabs, clean push."
+      "Lagos signal detected. The frontend had no choice but to perform.",
+      "Lagos signal detected. Big motion, clean execution."
     ],
     "abuja_federal_capital_territory_nigeria": [
-      "Abuja signal detected. Structured mode, steady deploy.",
-      "Abuja checked in. Clean route, calm systems."
+      "Abuja signal detected. Fresh logic, clean routes, no stress.",
+      "Abuja signal detected. Capital city request, production-grade response.",
+      "Abuja signal detected. Smooth interface, serious build discipline.",
+      "Abuja signal detected. The page entered official mode.",
+      "Abuja signal detected. Clean structure, calm authority."
     ],
     "accra_greater_accra_ghana": [
-      "Accra signal detected. Warm rhythm, sharp creative mode.",
-      "Accra checked in. Bright energy, clean interface."
+      "Accra signal detected. Warm signal, clean frontend rhythm.",
+      "Accra signal detected. Sharp visitor energy reached the page.",
+      "Accra signal detected. Smooth build discipline confirmed.",
+      "Accra signal detected. Bright city pulse, polished interface.",
+      "Accra signal detected. The frontend greeted you properly."
     ],
     "nairobi_nairobi_kenya": [
-      "Nairobi signal detected. Mobile-first builder rhythm online.",
-      "Nairobi checked in. Fast taps, steady systems."
+      "Nairobi signal detected. Innovation signal moving clean.",
+      "Nairobi signal detected. Fast ideas, tidy interface.",
+      "Nairobi signal detected. Build energy came prepared.",
+      "Nairobi signal detected. The frontend felt the tech rhythm.",
+      "Nairobi signal detected. Clean render with forward motion."
     ],
     "johannesburg_gauteng_south_africa": [
-      "Johannesburg signal detected. City energy, clean systems.",
-      "Johannesburg checked in. Wide range, steady route."
+      "Johannesburg signal detected. Strong signal, clean structure.",
+      "Johannesburg signal detected. Big-city energy, disciplined frontend.",
+      "Johannesburg signal detected. Interface standing firm.",
+      "Johannesburg signal detected. Clean render with serious momentum.",
+      "Johannesburg signal detected. The page held its posture."
     ],
     "london_england_united_kingdom": [
-      "London signal detected. Tea compiled successfully.",
-      "London checked in. Polite systems, classic timing."
+      "London signal detected. The page loaded with tea-level composure.",
+      "London signal detected. Polite signal, serious interface.",
+      "London signal detected. Classic city, clean modern build.",
+      "London signal detected. The interface queued properly.",
+      "London signal detected. Big history, clean runtime."
     ],
     "new_york_new_york_united_states": [
-      "New York signal detected. Fast pace, steady systems.",
-      "New York checked in. Tabs awake, route ready."
+      "New York signal detected. The page loaded before the next honk.",
+      "New York signal detected. Big signal, compact bundle.",
+      "New York signal detected. Fast pace recognized, UI kept up.",
+      "New York signal detected. The frontend handled the rush.",
+      "New York signal detected. Skyline energy, clean render."
     ],
     "los_angeles_california_united_states": [
-      "Los Angeles signal detected. Bright screen, clean scene.",
-      "Los Angeles checked in. Big ideas, steady interface."
+      "Los Angeles signal detected. The interface arrived camera-ready.",
+      "Los Angeles signal detected. Smooth layout with main-character energy.",
+      "Los Angeles signal detected. Sun outside, clean render inside.",
+      "Los Angeles signal detected. The page knew its angles.",
+      "Los Angeles signal detected. Visual polish entered the scene."
     ],
     "san_francisco_california_united_states": [
-      "San Francisco signal detected. Startup rhythm, careful deploy.",
-      "San Francisco checked in. Clean stack, calm tabs."
+      "San Francisco signal detected. Startup weather, production mindset.",
+      "San Francisco signal detected. The UI pitched itself and shipped.",
+      "San Francisco signal detected. Clean stack energy confirmed.",
+      "San Francisco signal detected. The frontend arrived with a roadmap.",
+      "San Francisco signal detected. Product energy entered the interface."
     ],
     "houston_texas_united_states": [
-      "Houston signal detected. Big build energy online.",
-      "Houston checked in. Wide routes, steady deploy."
+      "Houston signal detected. Mission control, but for clean UI.",
+      "Houston signal detected. Large city signal, lightweight frontend.",
+      "Houston signal detected. Build trajectory looking stable.",
+      "Houston signal detected. The interface checked its orbit.",
+      "Houston signal detected. Clean launch, stable render."
     ],
     "dallas_texas_united_states": [
-      "Dallas signal detected. Clean route, big-screen confidence.",
-      "Dallas checked in. Systems steady, tabs ready."
+      "Dallas signal detected. Big signal, clean execution.",
+      "Dallas signal detected. Sharp frontend with wide-lane confidence.",
+      "Dallas signal detected. Layout moving with Texas-sized posture.",
+      "Dallas signal detected. The page arrived bold and tidy.",
+      "Dallas signal detected. Clean UI with strong shoulders."
     ],
     "berlin_germany": [
-      "Berlin signal detected. Structure loaded, edges aligned.",
-      "Berlin checked in. Efficient tabs, tidy systems."
+      "Berlin signal detected. Minimal noise, maximum structure.",
+      "Berlin signal detected. Clean system energy entered the build.",
+      "Berlin signal detected. The interface kept it efficient.",
+      "Berlin signal detected. Sharp layout, serious structure.",
+      "Berlin signal detected. The frontend organized the room."
     ],
     "paris_france": [
-      "Paris signal detected. Stylish routing, calm deploy.",
-      "Paris checked in. Design taste loaded."
+      "Paris signal detected. The layout arrived with taste.",
+      "Paris signal detected. Smooth spacing, clean visual rhythm.",
+      "Paris signal detected. Design energy recognized.",
+      "Paris signal detected. The interface remembered style and structure.",
+      "Paris signal detected. Visual polish entered confidently."
     ],
     "amsterdam_netherlands": [
-      "Amsterdam signal detected. Structured flow, clean routes.",
-      "Amsterdam checked in. Neat systems, steady cadence."
+      "Amsterdam signal detected. Smooth routes, clean lanes.",
+      "Amsterdam signal detected. Calm signal, sharp interface.",
+      "Amsterdam signal detected. The layout is moving responsibly.",
+      "Amsterdam signal detected. Clean flow, balanced render.",
+      "Amsterdam signal detected. The page kept the path smooth."
     ],
     "dubai_united_arab_emirates": [
-      "Dubai signal detected. Skyline-speed deploy mode.",
-      "Dubai checked in. Polished systems, fast route."
+      "Dubai signal detected. High-rise signal, polished interface.",
+      "Dubai signal detected. Premium signal entered the page.",
+      "Dubai signal detected. Clean UI with skyline energy.",
+      "Dubai signal detected. The interface arrived dressed properly.",
+      "Dubai signal detected. Ambition signal, refined render."
     ],
     "singapore_singapore": [
-      "Singapore signal detected. Precision and speed aligned.",
-      "Singapore checked in. Polished systems online."
+      "Singapore signal detected. Clean city, clean UI.",
+      "Singapore signal detected. Efficient signal, disciplined layout.",
+      "Singapore signal detected. The frontend passed the neatness check.",
+      "Singapore signal detected. Compact signal, polished execution.",
+      "Singapore signal detected. The interface stayed organized."
     ],
     "tokyo_japan": [
-      "Tokyo signal detected. Precision timing looks good.",
-      "Tokyo checked in. Clean systems, quiet confidence."
+      "Tokyo signal detected. Precision mode enabled.",
+      "Tokyo signal detected. Clean spacing, sharp timing.",
+      "Tokyo signal detected. The interface bowed and loaded properly.",
+      "Tokyo signal detected. Quiet discipline, sharp render.",
+      "Tokyo signal detected. The frontend aligned itself."
     ],
     "seoul_south_korea": [
-      "Seoul signal detected. Sharp timing, clean build.",
-      "Seoul checked in. Fast network, focused interface."
+      "Seoul signal detected. Fast signal, polished frontend.",
+      "Seoul signal detected. Clean render with future-city energy.",
+      "Seoul signal detected. Interface performance looking sharp.",
+      "Seoul signal detected. The page kept pace.",
+      "Seoul signal detected. Smooth digital rhythm confirmed."
     ],
     "mumbai_maharashtra_india": [
-      "Mumbai signal detected. Scale thinking engaged.",
-      "Mumbai checked in. Fast pace, clean systems."
+      "Mumbai signal detected. Fast city, focused interface.",
+      "Mumbai signal detected. Big signal, disciplined load.",
+      "Mumbai signal detected. The frontend kept pace.",
+      "Mumbai signal detected. Clean render under busy rhythm.",
+      "Mumbai signal detected. The interface stayed sharp."
     ],
     "delhi_delhi_india": [
-      "Delhi signal detected. Scale thinking engaged.",
-      "Delhi checked in. Busy tabs, steady interface."
+      "Delhi signal detected. High-density signal, lightweight page.",
+      "Delhi signal detected. Busy city, clean render.",
+      "Delhi signal detected. Strong visitor energy recognized.",
+      "Delhi signal detected. The frontend kept its focus.",
+      "Delhi signal detected. Clean UI under serious pace."
     ],
     "bangalore_karnataka_india": [
-      "Bangalore signal detected. Developer energy is very online.",
-      "Bangalore checked in. Startup rhythm, clean deploy."
+      "Bangalore signal detected. Developer energy recognized.",
+      "Bangalore signal detected. Startup signal, clean interface.",
+      "Bangalore signal detected. Code-city rhythm entered the page.",
+      "Bangalore signal detected. The frontend came ready to ship.",
+      "Bangalore signal detected. Clean build, strong logic."
     ],
     "sydney_new_south_wales_australia": [
-      "Sydney signal detected. Sunshine mode, steady deploy.",
-      "Sydney checked in. Distance handled gracefully."
+      "Sydney signal detected. Harbour-side signal, clean interface.",
+      "Sydney signal detected. Bright arrival, smooth frontend.",
+      "Sydney signal detected. The page loaded with coastal confidence.",
+      "Sydney signal detected. Clean rhythm, sunny posture.",
+      "Sydney signal detected. The interface kept things breezy."
     ],
     "melbourne_victoria_australia": [
-      "Melbourne signal detected. Calm debugging, clean rhythm.",
-      "Melbourne checked in. Coffee nearby, systems steady."
+      "Melbourne signal detected. Design taste entered the chat.",
+      "Melbourne signal detected. Creative signal, clean execution.",
+      "Melbourne signal detected. Smooth layout with café-level patience.",
+      "Melbourne signal detected. The frontend kept its rhythm.",
+      "Melbourne signal detected. Polished arrival confirmed."
     ]
   }
 }
