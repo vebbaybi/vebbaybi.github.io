@@ -11,7 +11,11 @@ export function initRouter(onAfterNavigate) {
     const module = await route.view();
     await module.render(document.getElementById('app'));
     document.querySelectorAll('a[data-link]').forEach(a => {
-      a.setAttribute('aria-current', a.getAttribute('href') === route.path ? 'page' : null);
+      if (a.getAttribute('href') === route.path) {
+        a.setAttribute('aria-current', 'page');
+      } else {
+        a.removeAttribute('aria-current');
+      }
     });
     if (typeof onAfterNavigate === 'function') onAfterNavigate(route);
   }

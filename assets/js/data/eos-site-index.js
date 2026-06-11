@@ -1,4 +1,4 @@
-export const eosSiteGeneratedAt = "2026-05-31T17:09:19.849Z";
+export const eosSiteGeneratedAt = "2026-06-11T15:35:14.965Z";
 export const eosSitePages = [
   {
     "key": "page:/",
@@ -71,6 +71,15 @@ export const eosSitePages = [
     "family": "chains",
     "title": "Chains • Blockchain Intelligence & NFT Toolkit | The 1807",
     "description": "The 1807"
+  },
+  {
+    "key": "page:/certific8te/",
+    "route": "/certific8te/",
+    "source": "certific8te.html",
+    "scope": "classic",
+    "family": "certific8te",
+    "title": "Certific8tes Gallery | Uchenna Anozie (webbaby) | The 1807",
+    "description": "A dynamic 3D gallery of verified professional certificates and credentials for Uchenna Anozie (webbaby), generated from the certificate assets folder."
   },
   {
     "key": "page:/elka-0/",
@@ -227,6 +236,97 @@ export const eosSitePages = [
   }
 ];
 export const eosUploads = [
+  {
+    "key": "asset:/assets/Certs/DevOps-Cousera.png",
+    "path": "/assets/Certs/DevOps-Cousera.png",
+    "name": "DevOps-Cousera.png",
+    "stem": "DevOps-Cousera",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/Certs",
+    "bytes": 436275,
+    "updated": "2026-06-07T18:42:21.420Z",
+    "aliases": [
+      "/assets/Certs/DevOps-Cousera.png",
+      "DevOps-Cousera.png",
+      "DevOps-Cousera",
+      "assets",
+      "Certs"
+    ]
+  },
+  {
+    "key": "asset:/assets/Certs/CloudComputing-Cousera.png",
+    "path": "/assets/Certs/CloudComputing-Cousera.png",
+    "name": "CloudComputing-Cousera.png",
+    "stem": "CloudComputing-Cousera",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/Certs",
+    "bytes": 429781,
+    "updated": "2026-06-07T18:41:52.556Z",
+    "aliases": [
+      "/assets/Certs/CloudComputing-Cousera.png",
+      "CloudComputing-Cousera.png",
+      "CloudComputing-Cousera",
+      "assets",
+      "Certs"
+    ]
+  },
+  {
+    "key": "asset:/assets/Certs/Python-Programming-GA.png",
+    "path": "/assets/Certs/Python-Programming-GA.png",
+    "name": "Python-Programming-GA.png",
+    "stem": "Python-Programming-GA",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/Certs",
+    "bytes": 76002,
+    "updated": "2026-06-07T18:40:57.839Z",
+    "aliases": [
+      "/assets/Certs/Python-Programming-GA.png",
+      "Python-Programming-GA.png",
+      "Python-Programming-GA",
+      "assets",
+      "Certs"
+    ]
+  },
+  {
+    "key": "asset:/assets/data/arrival-signals.json",
+    "path": "/assets/data/arrival-signals.json",
+    "name": "arrival-signals.json",
+    "stem": "arrival-signals",
+    "ext": "json",
+    "kind": "data",
+    "directory": "assets/data",
+    "bytes": 37950,
+    "updated": "2026-05-31T21:16:17.274Z",
+    "aliases": [
+      "/assets/data/arrival-signals.json",
+      "arrival-signals.json",
+      "arrival-signals",
+      "assets",
+      "data"
+    ]
+  },
+  {
+    "key": "asset:/assets/js/data/arrival-signal.json",
+    "path": "/assets/js/data/arrival-signal.json",
+    "name": "arrival-signal.json",
+    "stem": "arrival-signal",
+    "ext": "json",
+    "kind": "data",
+    "directory": "assets/js/data",
+    "bytes": 0,
+    "updated": "2026-05-31T21:15:27.690Z",
+    "aliases": [
+      "/assets/js/data/arrival-signal.json",
+      "arrival-signal.json",
+      "arrival-signal",
+      "assets",
+      "js",
+      "data"
+    ]
+  },
   {
     "key": "asset:/assets/images/deret-fsm-concept.svg",
     "path": "/assets/images/deret-fsm-concept.svg",
@@ -464,6 +564,24 @@ export const eosUploads = [
     ]
   },
   {
+    "key": "asset:/assets/icons/icon.svg",
+    "path": "/assets/icons/icon.svg",
+    "name": "icon.svg",
+    "stem": "icon",
+    "ext": "svg",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 226898,
+    "updated": "2026-05-31T13:30:02.263Z",
+    "aliases": [
+      "/assets/icons/icon.svg",
+      "icon.svg",
+      "icon",
+      "assets",
+      "icons"
+    ]
+  },
+  {
     "key": "asset:/assets/icons/android-chrome-192x192.png",
     "path": "/assets/icons/android-chrome-192x192.png",
     "name": "android-chrome-192x192.png",
@@ -513,24 +631,6 @@ export const eosUploads = [
       "/assets/icons/apple-touch-icon.png",
       "apple-touch-icon.png",
       "apple-touch-icon",
-      "assets",
-      "icons"
-    ]
-  },
-  {
-    "key": "asset:/assets/icons/icon.svg",
-    "path": "/assets/icons/icon.svg",
-    "name": "icon.svg",
-    "stem": "icon",
-    "ext": "svg",
-    "kind": "image",
-    "directory": "assets/icons",
-    "bytes": 533,
-    "updated": "2026-05-31T13:29:33.396Z",
-    "aliases": [
-      "/assets/icons/icon.svg",
-      "icon.svg",
-      "icon",
       "assets",
       "icons"
     ]

@@ -15,6 +15,7 @@ const pageMeta = {
   '/skincradle':     { title: 'SkinCradle Halo Tracker - 1807-Chain', desc: 'Browser-based hand and face landmark visual tracker for halos and gesture drawing' },
   '/robotics':       { title: 'Robotics - 1807-Chain',        desc: 'Embedded, control, and vision systems' },
   '/chains':         { title: 'Blockchain - 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
+  '/certific8te':     { title: 'Certific8tes Gallery - 1807-Chain', desc: 'Dynamic certificate and credential gallery with SHA-256 file verification' },
   '/construction':   { title: 'Construction - 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
   '/resume':         { title: 'Resume - 1807-Chain',          desc: 'Primary resume page' },
   '/resumes':        { title: 'Resumes - 1807-Chain',         desc: 'IT/AI, Robotics, and Construction resumes' },

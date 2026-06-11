@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-app="1807" data-page="certific8te" data-version="v1.4">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Certific8tes Gallery | Uchenna Anozie (webbaby) | The 1807</title>
+
+    <link rel="canonical" href="https://the1807.xyz/certific8te/" />
+    <meta name="description"
+        content="A dynamic 3D gallery of verified professional certificates and credentials for Uchenna Anozie (webbaby), generated from the certificate assets folder." />
+    <meta name="keywords"
+        content="Uchenna Anozie, webbaby, 1807-chain, certificates, credentials, verification, SHA-256, computer science, data science, DevOps, cloud computing" />
+    <meta name="theme-color" content="#02030a" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <meta property="og:title" content="Certific8tes Gallery - The 1807" />
+    <meta property="og:description"
+        content="A dynamic neon 3D credential gallery with SHA-256 verification for certificate assets." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://the1807.xyz/certific8te/" />
+    <meta property="og:image" content="https://the1807.xyz/assets/Certs/Python-Programming-GA.png" />
+    <meta property="og:image:alt" content="Python programming certificate preview" />
+    <meta property="og:site_name" content="The 1807" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Certific8tes Gallery - The 1807" />
+    <meta name="twitter:description"
+        content="A dynamic neon 3D credential gallery with SHA-256 verification for certificate assets." />
+    <meta name="twitter:image" content="https://the1807.xyz/assets/Certs/Python-Programming-GA.png" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="preload" href="/assets/css/main.css" as="style" />
+    <link rel="preload" href="/assets/cursors/default.png" as="image" />
+    <link rel="preload" href="/assets/cursors/pointer.png" as="image" />
+    <link rel="preload" href="/assets/cursors/editor.png" as="image" />
+    <link rel="preload" href="/assets/cursors/typing.png" as="image" />
+
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/pages.css" />
+    <link rel="stylesheet" href="/assets/css/cert.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://the1807.xyz/#website",
+        "name": "The 1807",
+        "url": "https://the1807.xyz/",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://the1807.xyz/certific8te/#webpage",
+        "name": "Certific8tes Gallery",
+        "url": "https://the1807.xyz/certific8te/",
+        "description": "Dynamic certificate gallery generated from uploaded credential assets.",
+        "isPartOf": {"@id": "https://the1807.xyz/#website"},
+        "about": ["Certifications", "Professional Credentials", "SHA-256 Verification", "Computer Science"],
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://the1807.xyz/#person",
+        "name": "Uchenna Emmanuel Anozie",
+        "alternateName": "webbaby",
+        "url": "https://the1807.xyz/",
+        "image": "https://the1807.xyz/assets/images/thedev.webp",
+        "jobTitle": "Computer & Data Scientist"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="theme-dark cert-page" data-route="certific8te">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header-placeholder></header-placeholder>
+    <nav-placeholder></nav-placeholder>
+
+    <main id="main" tabindex="-1" aria-label="Certificate gallery">
+        <div id="portal-view" class="container cert-shell cert-view-active">
+            <header class="view-header cert-hero">
+                <h1 id="projects-heading">Certific8tes</h1>
+                <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
+                    "Live credential gallery.",
+                    "New assets appear from the Certs folder.",
+                    "Real file hashes. Clean carousel motion.",
+                    "Cloud, DevOps, programming, and more."
+                ]'>
+                    Loading credential gallery...
+                </p>
+            </header>
+
+            <section class="cert-workspace" aria-label="3D certificate carousel">
+                <div class="cert-tunnel" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div id="cert-loading" class="matrix-loader" role="status">Indexing certificate assets...</div>
+                <div id="cert-empty" class="matrix-empty" hidden>No certificate assets matched the current filters.</div>
+
+                <div id="deck-wrapper-area" class="cert-deck-viewport" hidden>
+                    <button id="deck-prev-btn" class="carousel-prev" title="Previous" aria-label="Previous certificate"
+                        type="button">&lsaquo;</button>
+                    <div id="cert-deck" class="cert-deck-track" role="region" aria-live="polite"></div>
+                    <button id="deck-next-btn" class="carousel-next" title="Next" aria-label="Next certificate"
+                        type="button">&rsaquo;</button>
+                </div>
+
+                <div id="deck-pagination" class="carousel-pagination" role="tablist" aria-label="Certificate slides">
+                </div>
+            </section>
+
+            <nav class="cert-controls" aria-label="Certificate filters">
+                <div class="search-wrapper">
+                    <input type="text" id="cert-search" placeholder="Search certificates, issuers, or filenames"
+                        aria-label="Search certificates" autocomplete="off" />
+                </div>
+                <div class="filter-wrapper">
+                    <select id="filter-issuer" aria-label="Filter by issuer">
+                        <option value="all">All Issuers</option>
+                    </select>
+                    <select id="filter-year" aria-label="Filter by year">
+                        <option value="all">All Years</option>
+                    </select>
+                    <select id="sort-order" aria-label="Sort certificates">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="alpha">Alphabetical</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+
+        <div id="verification-view" class="container cert-shell cert-view-hidden">
+            <section class="verification-card">
+                <div class="verification-header">
+                    <div class="integrity-indicator" id="v-status-indicator"></div>
+                    <h2 id="v-title">Loading credential...</h2>
+                    <p id="v-issuer" class="issuer-tag">Checking issuer metadata...</p>
+                </div>
+                <hr class="v-divider" />
+                <div class="verification-body">
+                    <div class="meta-row">
+                        <span class="meta-label">Indexed Date</span>
+                        <span class="meta-value" id="v-date">-</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">SHA-256 Hash</span>
+                        <span class="meta-value code-block-style" id="v-hash">-</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">Verification State</span>
+                        <span class="meta-value badge-style" id="v-badge">Verifying</span>
+                    </div>
+                    <div class="meta-row" id="mismatch-container" hidden>
+                        <span class="meta-label alert-label">Integrity Status</span>
+                        <span class="meta-value alert-value">No matching certificate asset was found for this hash.</span>
+                    </div>
+                </div>
+                <div class="verification-actions">
+                    <button class="btn" id="v-btn-view" type="button">View Document</button>
+                    <a class="btn secondary" href="/certific8te/">Return to Gallery</a>
+                </div>
+            </section>
+        </div>
+
+        <dialog id="viewer-modal" class="secure-viewer-overlay" aria-modal="true" aria-label="Certificate viewer">
+            <div class="viewer-window">
+                <div class="viewer-header-bar">
+                    <span id="viewer-doc-title">Document Viewer</span>
+                    <div class="viewer-controls-group">
+                        <button id="zoom-out-btn" class="iconbtn" title="Zoom out" aria-label="Zoom out"
+                            type="button">&minus;</button>
+                        <span id="zoom-scale-readout">100%</span>
+                        <button id="zoom-in-btn" class="iconbtn" title="Zoom in" aria-label="Zoom in"
+                            type="button">+</button>
+                        <button id="close-viewer-btn" class="nav-close" title="Close" aria-label="Close viewer"
+                            type="button">&times;</button>
+                    </div>
+                </div>
+                <div id="viewer-canvas-container" class="viewer-canvas-viewport">
+                    <div id="viewer-pan-stage" class="pan-movable-wrapper">
+                        <img id="viewer-img-element" alt="Certificate document" draggable="false" hidden />
+                        <iframe id="viewer-pdf-element" title="Certificate PDF document" hidden></iframe>
+                    </div>
+                </div>
+                <div class="viewer-protection-footer">
+                    <span>SHA-256 verification is computed from the loaded certificate file.</span>
+                </div>
+            </div>
+        </dialog>
+    </main>
+
+    <footer-placeholder></footer-placeholder>
+
+    <noscript>
+        <div class="noscript-note" id="noscript">JavaScript is disabled. The certificate carousel needs JavaScript to load assets.</div>
+    </noscript>
+
+    <script type="module" src="/assets/js/app.js"></script>
+    <script type="module" src="/assets/js/pages/cert.js"></script>
+</body>
+
+</html>

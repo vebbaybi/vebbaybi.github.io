@@ -1,5 +1,6 @@
 ﻿import { copyFile, mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const rootDir = process.cwd();
 const domain = 'https://the1807.xyz';
@@ -9,7 +10,7 @@ const lastmod = new Intl.DateTimeFormat('en-CA', {
   day: '2-digit',
 }).format(new Date());
 
-const pages = [
+export const pages = [
   { source: 'index.html', route: '/', changefreq: 'weekly', priority: '1.00' },
   { source: 'home.html', route: '/home/', changefreq: 'weekly', priority: '0.95' },
   { source: 'projects.html', route: '/projects/', changefreq: 'weekly', priority: '0.90' },
@@ -18,6 +19,7 @@ const pages = [
   { source: 'ai.html', route: '/ai/', changefreq: 'monthly', priority: '0.85' },
   { source: 'robotics.html', route: '/robotics/', changefreq: 'monthly', priority: '0.85' },
   { source: 'chains.html', route: '/chains/', changefreq: 'monthly', priority: '0.80' },
+  { source: 'certific8te.html', route: '/certific8te/', changefreq: 'monthly', priority: '0.74' },
   { source: 'elka-0.html', route: '/elka-0/', changefreq: 'monthly', priority: '0.80' },
   { source: 'construction.html', route: '/construction/', changefreq: 'monthly', priority: '0.75' },
   { source: 'resume.html', route: '/resume/', changefreq: 'monthly', priority: '0.70' },
@@ -187,8 +189,12 @@ async function syncCleanRoutes() {
   await writeSiteIndex();
 }
 
-syncCleanRoutes().catch((error) => {
-  console.error('Failed to sync clean routes:', error);
-  process.exitCode = 1;
-});
+export { syncCleanRoutes, writeSiteIndex };
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  syncCleanRoutes().catch((error) => {
+    console.error('Failed to sync clean routes:', error);
+    process.exitCode = 1;
+  });
+}
 

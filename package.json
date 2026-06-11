@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "sync": "node scripts/sync-clean-routes.mjs",
+    "audit": "node scripts/audit-site.mjs",
+    "smoke": "node scripts/smoke-pages.mjs",
+    "check": "node scripts/audit-site.mjs"
+  }
+}
