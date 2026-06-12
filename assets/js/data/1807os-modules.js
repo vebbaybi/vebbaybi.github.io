@@ -309,7 +309,7 @@ export const modules = {
     ],
     links: [
       { label: 'Classic resume page', href: '/resume/', note: 'See the current resume route.' },
-      { label: 'Resume collection', href: '/resumes/', note: 'Browse the broader resume stack.' },
+      { label: 'Canonical resume', href: '/resume/', note: 'Open the merged professional resume.' },
       { label: 'Contact', href: '/contact/', note: 'Open a hiring or collaboration conversation.' },
     ],
     outcomes: [

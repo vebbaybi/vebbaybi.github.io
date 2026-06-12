@@ -6,7 +6,7 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 
 const rootDir = process.cwd();
-const keyPages = ['/', '/home/', '/projects/', '/certific8te/', '/resume/', '/resumes/', '/contact/', '/links/', '/1807osPort/'];
+const keyPages = ['/', '/home/', '/projects/', '/certific8te/', '/resume/', '/contact/', '/skincradle/', '/1807osPort/'];
 const mimeTypes = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.css', 'text/css; charset=utf-8'],
@@ -225,10 +225,22 @@ async function startBrowser() {
     navigate,
     waitForCondition,
     async close() {
-      await send('Browser.close').catch(() => {});
+      if (ws.readyState === WebSocket.OPEN) {
+        const closeBrowser = send('Browser.close').catch(() => {});
+        await Promise.race([
+          closeBrowser,
+          new Promise((resolve) => setTimeout(resolve, 1500))
+        ]);
+      }
       ws.close();
-      processRef.kill();
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      if (!processRef.killed) processRef.kill();
+      await new Promise((resolve) => {
+        const timer = setTimeout(resolve, 800);
+        processRef.once('exit', () => {
+          clearTimeout(timer);
+          resolve();
+        });
+      });
       await rm(profile, { recursive: true, force: true }).catch(() => {});
     }
   };

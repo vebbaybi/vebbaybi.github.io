@@ -202,7 +202,7 @@ async function checkCleanRoutes() {
 async function checkSitemap() {
   const xml = await readFile(path.join(rootDir, 'sitemap.xml'), 'utf8');
   const urls = Array.from(xml.matchAll(/<loc>https:\/\/the1807\.xyz([^<]+)<\/loc>/g)).map((match) => match[1]);
-  const expected = pages.map((page) => page.route);
+  const expected = pages.filter((page) => page.sitemap !== false).map((page) => page.route);
   for (const route of expected) {
     if (!urls.includes(route)) fail(`Sitemap missing route: ${route}`);
   }

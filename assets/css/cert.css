@@ -13,6 +13,16 @@
         --cert-card-width: clamp(280px, 42vw, 620px);
         --cert-card-height: clamp(420px, 62vh, 650px);
         --cert-radius: 8px;
+        --stream-panel: rgba(8, 13, 26, 0.84);
+        --stream-panel-strong: rgba(12, 20, 38, 0.96);
+        --stream-line: var(--cert-border);
+        --stream-text: #f7fbff;
+        --stream-muted: var(--cert-muted);
+        --stream-cyan: var(--cert-cyan);
+        --stream-green: var(--cert-green);
+        --stream-rose: var(--cert-magenta);
+        --stream-gold: var(--cert-gold);
+        --stream-radius: var(--cert-radius);
         background: var(--cert-bg);
         color: #f7fbff;
     }
@@ -846,6 +856,57 @@
         white-space: normal;
     }
 
+    .credential-panels {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: clamp(34px, 6vw, 72px);
+    }
+
+    .credential-panel {
+        padding: clamp(18px, 3vw, 28px);
+    }
+
+    .credential-panel--wide,
+    .credential-panel--cta {
+        grid-column: 1 / -1;
+    }
+
+    .credential-panel h2,
+    .credential-panel h3 {
+        letter-spacing: 0;
+    }
+
+    .credential-panel h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+    }
+
+    .credential-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .credential-list {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--cert-muted);
+        line-height: 1.7;
+    }
+
+    .credential-list li + li {
+        margin-top: 8px;
+    }
+
+    .credential-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
     @keyframes cert-tunnel-drift {
         0%,
         100% {
@@ -885,6 +946,11 @@
         }
 
         .filter-wrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .credential-panels,
+        .credential-grid {
             grid-template-columns: 1fr;
         }
     }

@@ -64,27 +64,32 @@ function createBubble() {
   wrapper.setAttribute('aria-label', '1807 contractor page prompt');
   wrapper.hidden = true;
 
-  wrapper.innerHTML = `
-    <div class="contractor-bubble__inner">
-      <a
-        class="contractor-bubble__link"
-        href="${TARGET_PATH}"
-        aria-label="Open the 1807 contractor page"
-      >
-        <span class="contractor-bubble__eyebrow">The 1807</span>
-        <span class="contractor-bubble__text">Who is an 1807 contractor?</span>
-      </a>
+  const inner = document.createElement('div');
+  inner.className = 'contractor-bubble__inner';
 
-      <button
-        type="button"
-        class="contractor-bubble__dismiss"
-        aria-label="Dismiss this prompt"
-        title="Dismiss"
-      >
-        &times;
-      </button>
-    </div>
-  `;
+  const link = document.createElement('a');
+  link.className = 'contractor-bubble__link';
+  link.href = TARGET_PATH;
+  link.setAttribute('aria-label', 'Open the 1807 contractor page');
+
+  const eyebrow = document.createElement('span');
+  eyebrow.className = 'contractor-bubble__eyebrow';
+  eyebrow.textContent = 'The 1807';
+
+  const text = document.createElement('span');
+  text.className = 'contractor-bubble__text';
+  text.textContent = 'Who is an 1807 contractor?';
+
+  const dismiss = document.createElement('button');
+  dismiss.type = 'button';
+  dismiss.className = 'contractor-bubble__dismiss';
+  dismiss.setAttribute('aria-label', 'Dismiss this prompt');
+  dismiss.title = 'Dismiss';
+  dismiss.textContent = 'x';
+
+  link.append(eyebrow, text);
+  inner.append(link, dismiss);
+  wrapper.appendChild(inner);
 
   document.body.appendChild(wrapper);
   return wrapper;

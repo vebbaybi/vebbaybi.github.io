@@ -8,22 +8,22 @@ import { initThemeToggle } from './ui/theme.js';
 
 const pageMeta = {
   '/':               { title: 'Home - 1807-Chain',            desc: 'webbaby portfolio' },
-  '/home':           { title: 'Home - 1807-Chain',            desc: 'webbaby portfolio' },
+  '/home':           { title: 'Uchenna Anozie - The 1807',    desc: 'Proof-first professional portfolio' },
   '/scroll_paper':   { title: 'Scroll Paper - 1807-Chain',    desc: 'Newspaper story & showcase' },
-  '/projects':       { title: 'Projects - 1807-Chain',        desc: 'AI, Embedded-Systems, and Blockchain projects' },
+  '/projects':       { title: 'Projects - Uchenna Anozie',    desc: 'Active project hub for Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, and SkinCradle' },
   '/ai':             { title: 'AI Projects - 1807-Chain',     desc: 'Models, pipelines, and production AI systems' },
   '/skincradle':     { title: 'SkinCradle Halo Tracker - 1807-Chain', desc: 'Browser-based hand and face landmark visual tracker for halos and gesture drawing' },
   '/robotics':       { title: 'Robotics - 1807-Chain',        desc: 'Embedded, control, and vision systems' },
   '/chains':         { title: 'Blockchain - 1807-Chain',      desc: 'DEX bots, scanners, and tooling' },
-  '/certific8te':     { title: 'Certific8tes Gallery - 1807-Chain', desc: 'Dynamic certificate and credential gallery with SHA-256 file verification' },
+  '/certific8te':     { title: 'Credentials - Uchenna Anozie', desc: 'Credentials hub with certificates, skills, education, work experience, tools, and certifications' },
   '/construction':   { title: 'Construction - 1807-Chain',    desc: 'Window/door install, painting, siding, painting' },
-  '/resume':         { title: 'Resume - 1807-Chain',          desc: 'Primary resume page' },
-  '/resumes':        { title: 'Resumes - 1807-Chain',         desc: 'IT/AI, Robotics, and Construction resumes' },
+  '/resume':         { title: 'Resume - Uchenna Anozie',      desc: 'Canonical resume page' },
+  '/resumes':        { title: 'Resume Moved - Uchenna Anozie', desc: 'Merged into the canonical resume page' },
   '/toolbox':        { title: 'Toolbox - 1807-Chain',         desc: 'Software, hardware, and build tools' },
   '/roadmap':        { title: 'Roadmap - 1807-Chain',         desc: 'Backlog, building, shipped' },
   '/changelog':      { title: 'Changelog - 1807-Chain',       desc: 'Project updates and releases' },
   '/presskit':       { title: 'Press Kit - 1807-Chain',       desc: 'Logos, bios, and assets' },
-  '/contact':        { title: 'Contact - 1807-Chain',         desc: 'Get in touch' },
+  '/contact':        { title: 'Contact - Uchenna Anozie',     desc: 'Hiring, collaboration, and project review contact page' },
   '/links':          { title: 'Links - 1807-Chain',           desc: 'Link-in-bio hub' },
   '/tdi':            { title: 'TDI - The Djehuty Institute Live Feed | 1807-chain', desc: 'The Djehuty Institute live feed' },
   '/blog':           { title: 'Blog - 1807-Chain',            desc: 'Posts and notes' },
@@ -73,7 +73,18 @@ async function boot() {
     await Promise.all([initHeader(), initFooter(), initNav()]);
     initThemeToggle();
 
+    const shouldUseContractorBubble = () => {
+      const rk = routeKey();
+      return rk === '/1807-contractor' || rk.startsWith('/1807osport');
+    };
+
     const initContractorBubbleSafely = () => {
+      if (!shouldUseContractorBubble()) {
+        return {
+          cleanup() {},
+        };
+      }
+
       try {
         return initContractorBubble();
       } catch (err) {

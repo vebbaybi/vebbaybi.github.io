@@ -1,38 +1,33 @@
 <!doctype html>
-<html lang="en" data-app="1807" data-page="projects" data-version="v1.3">
+<html lang="en" data-app="1807" data-page="projects" data-version="v2.0">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Projects — Uchenna Anozie (webbaby) | Computer Scientist | AI • Embedded • Blockchain • Construction</title>
-
-
+    <title>Projects | Uchenna Anozie | The 1807</title>
     <link rel="canonical" href="https://the1807.xyz/projects/" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-
-
     <meta name="description"
-        content="Projects by Uchenna Anozie: Ainor (AI), kael (assistant), ACEBot/FieldEye/DERET (embedded), Chains (blockchain), and construction tooling." />
+        content="Active projects by Uchenna Anozie: Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, and SkinCradle. Each card shows status, stack, current proof, and available links." />
     <meta name="keywords"
-        content="Uchenna Anozie, webbaby, Ainor, kael, ACEBot, FieldEye, DERET, traffic controller, AI, embedded, Arduino, Raspberry Pi, Java, Flutter, blockchain, construction" />
-    <meta name="theme-color" content="#111111" />
+        content="Uchenna Anozie, Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, SkinCradle, FastAPI, Flutter, Go, Python, AI workflow, product engineering" />
+    <meta name="theme-color" content="#0a192f" />
     <meta name="color-scheme" content="dark light" />
 
-
-    <meta property="og:title" content="Projects — Uchenna Anozie (webbaby)" />
-    <meta property="og:description" content="AI, embedded systems, blockchain, and real-world builds." />
+    <meta property="og:title" content="Projects | Uchenna Anozie" />
+    <meta property="og:description"
+        content="A focused project hub for active AI, app, architecture, model/runtime, video workflow, and visual tracker work." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://the1807.xyz/projects/" />
     <meta property="og:image" content="https://the1807.xyz/assets/images/ai.webp" />
-    <meta property="og:image:alt" content="Portfolio projects: AI, Embedded, Blockchain, Construction" />
-
+    <meta property="og:image:alt" content="Project systems visual" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Projects — Uchenna Anozie (webbaby)" />
-    <meta name="twitter:description" content="Ainor, DERET, Chains, and more." />
+    <meta name="twitter:title" content="Projects | Uchenna Anozie" />
+    <meta name="twitter:description"
+        content="Active project proof for Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, and SkinCradle." />
     <meta name="twitter:image" content="https://the1807.xyz/assets/images/ai.webp" />
-
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/assets/css/main.css" />
@@ -43,223 +38,185 @@
 <body class="theme-dark">
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header-placeholder>
-        <button type="button" id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
-    </header-placeholder>
-
+    <header-placeholder></header-placeholder>
     <nav-placeholder></nav-placeholder>
 
-    <main id="main" tabindex="-4">
-        <section id="projects-view" class="view projects" aria-labelledby="projects-heading">
-            <div class="container">
-                <header class="view-header view-header--compact">
-                    <h1 id="projects-heading">Projects</h1>
+    <main id="main" tabindex="-1" class="streamline-page projects-stream">
+        <section class="stream-hero stream-hero--projects" aria-labelledby="projects-heading">
+            <div class="stream-hero__inner">
+                <p class="stream-kicker">Active project hub</p>
+                <h1 id="projects-heading">Projects</h1>
+                <p class="stream-lead">
+                    One focused view of current work across supervised AI workflows, product apps, assistant architecture, model/runtime documentation, video context tooling, and interactive visual systems.
+                </p>
+                <nav class="stream-pill-nav" aria-label="Project shortcuts">
+                    <a href="#heimdall">Heimdall</a>
+                    <a href="#hydrion">Hydrion</a>
+                    <a href="#luna">Luna</a>
+                    <a href="#elka">ELKA</a>
+                    <a href="#clipsense">ClipSense</a>
+                    <a href="#cater">CATER</a>
+                    <a href="#skincradle">SkinCradle</a>
+                </nav>
+            </div>
+        </section>
 
-                    <p class="view-subtitle" id="subtitle-rotator" data-phrases='[
-            "I build AI, firmware, and financial automation.",
-            "From sensors to Solana: full-stack control.",
-            "Smart traffic, smarter code.",
-            "Embedded brains. Mobile apps. Real impact.",
-            "Automation is my craft.",
-            "Systems that see, decide, and act.",
-            "Code runs the world. I write the code.",
-            "Deep tech. Real builds. No fluff."
-          ]'>
-                        I build AI, firmware, and financial automation.
-                    </p>
-
-                    <nav aria-label="Project quick filters" class="quick-filters">
-                        <ul class="nav-list nav-list--pills">
-                            <li><a href="#ai">AI</a></li>
-                            <li><a href="/skincradle/">SkinCradle</a></li>
-                            <li><a href="#embedded">Embedded</a></li>
-                            <li><a href="#chains">Blockchain</a></li>
-                            <li><a href="#construction">Construction</a></li>
-                        </ul>
-                    </nav>
-                </header>
-
-
-                <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Project categories">
-                    <div class="carousel-viewport" tabindex="0" aria-live="polite">
-                        <ul class="carousel-track" role="list">
-
-
-                            <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 5"
-                                id="slide-0" data-hash="ai">
-                                <article class="project-card" data-animate>
-                                    <a class="project-media" href="/ai/">
-                                        <img src="/assets/images/ai.webp" alt="AI projects" loading="eager" />
-                                    </a>
-                                    <div class="project-body">
-                                        <h2 class="project-title"><a href="/ai/">AI & Cognitive Systems</a></h2>
-                                        <p class="project-blurb">
-                                            <strong>kael:</strong> On-device neural assistant (PyQt5).<br />
-                                            <strong>Ainor:</strong> Living AI with vision, memory, and Svelte GUI.<br />
-                                            <strong>ELKA-0:</strong> Open cognitive engine for memory-native embodied AI.<br />
-                                            <strong>SkinCradle:</strong> Browser-based hand and face landmark visual tracker.
-                                        </p>
-                                        <div class="project-meta" aria-hidden="true">
-                                            <span>• Python</span> <span class="footer-right dot">•</span>
-                                            <span>Computer&nbsp;Vision</span> <span class="footer-right dot">•</span>
-                                            <span>Svelte</span>
-                                        </div>
-                                        <a class="btn" href="/ai/">View AI</a>
-                                        <a class="btn secondary" href="/elka-0/">ELKA-0</a>
-                                        <a class="btn secondary" href="/skincradle/">SkinCradle</a>
-                                    </div>
-                                </article>
-                            </li>
-
-
-                            <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 5"
-                                id="slide-1" data-hash="embedded">
-                                <article class="project-card" data-animate>
-                                    <a class="project-media" href="/robotics/">
-                                        <img src="/assets/images/embedded.webp" alt="ACEBot & FieldEye"
-                                            loading="lazy" />
-                                    </a>
-                                    <div class="project-body">
-                                        <h2 class="project-title"><a href="/robotics/">Embedded Systems</a></h2>
-                                        <p class="project-blurb">
-                                            <strong>ACEBot & FieldEye:</strong> Motion tracking with PIR + ultrasonic
-                                            fusion,
-                                            servo control, UART, and systemd logging on Raspberry Pi.
-                                        </p>
-                                        <div class="project-meta" aria-hidden="true">
-                                            <span>• Arduino</span> <span class="footer-right dot">•</span>
-                                            <span>Raspberry&nbsp;Pi</span> <span class="footer-right dot">•</span>
-                                            <span>OpenCV</span>
-                                        </div>
-                                        <a class="btn" href="/robotics/">View Embedded</a>
-                                    </div>
-                                </article>
-                            </li>
-
-
-                            <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 5"
-                                id="slide-2" data-hash="deret">
-                                <article class="project-card" data-animate>
-                                    <a class="project-media" href="/robotics/#deret-spotlight">
-                                        <img src="/assets/images/deret-fsm-concept.svg"
-                                            alt="DERET Controller — smart traffic system" loading="lazy"
-                                            decoding="async" />
-                                    </a>
-                                    <div class="project-body">
-                                        <h2 class="project-title"><a href="/robotics/#deret-spotlight">DERET Controller</a>
-                                        </h2>
-                                        <p class="project-blurb">
-                                            <strong>Demand-Event Reactive Traffic Controller:</strong> 4-way
-                                            intersection
-                                            with FSM safety, AI vision (YOLO), MQTT bridge, Java supervisor, and Flutter
-                                            driver app. Runs on Arduino + Pi. No fixed timers — only real demand.
-                                        </p>
-                                        <div class="project-meta" aria-hidden="true">
-                                            <span>• C/C++</span> <span class="footer-right dot">•</span>
-                                            <span>Python</span> <span class="footer-right dot">•</span>
-                                            <span>Java</span> <span class="footer-right dot">•</span>
-                                            <span>Flutter</span>
-                                        </div>
-                                        <a class="btn" href="/robotics/#deret-spotlight">View DERET</a>
-                                    </div>
-                                </article>
-                            </li>
-
-
-                            <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 5"
-                                id="slide-3" data-hash="chains">
-                                <article class="project-card" data-animate>
-                                    <a class="project-media" href="/chains/">
-                                        <img src="/assets/images/chains.webp" alt="Chains blockchain" loading="lazy" />
-                                    </a>
-                                    <div class="project-body">
-                                        <h2 class="project-title"><a href="/chains/">Blockchain</a></h2>
-                                        <p class="project-blurb">
-                                            <strong>Chains:</strong> Multi-chain sniper with Uniswap/Raydium, anti-rug,
-                                            PnL tracking, and Telegram bot.
-                                        </p>
-                                        <div class="project-meta" aria-hidden="true">
-                                            <span>• EVM</span> <span class="footer-right dot">•</span>
-                                            <span>Solana</span> <span class="footer-right dot">•</span>
-                                            <span>Telegram</span>
-                                        </div>
-                                        <a class="btn" href="/chains/">View Blockchain</a>
-                                    </div>
-                                </article>
-                            </li>
-
-
-                            <li class="carousel-slide" role="group" aria-roledescription="slide" aria-label="5 of 5"
-                                id="slide-4" data-hash="construction">
-                                <article class="project-card" data-animate>
-                                    <a class="project-media" href="/construction/">
-                                        <img src="/assets/images/construction.webp" alt="Construction projects"
-                                            loading="lazy" />
-                                    </a>
-                                    <div class="project-body">
-                                        <h2 class="project-title"><a href="/construction/">Construction</a></h2>
-                                        <p class="project-blurb">
-                                            Precision installs, custom tooling, and workflow automation for job sites.
-                                        </p>
-                                        <div class="project-meta" aria-hidden="true">
-                                            <span>• Workflow</span> <span class="footer-right dot">•</span>
-                                            <span>Tooling</span>
-                                        </div>
-                                        <a class="btn" href="/construction/">View Construction</a>
-                                    </div>
-                                </article>
-                            </li>
-
-                        </ul>
-                    </div>
-
-
-                    <div class="carousel-controls">
-                        <button type="button" class="carousel-prev" aria-label="Previous slide">&larr;</button>
-                        <button type="button" class="carousel-next" aria-label="Next slide">&rarr;</button>
-                    </div>
-
-
-                    <div class="carousel-pagination" role="tablist" aria-label="Slides">
-                        <button type="button" role="tab" class="carousel-dot" aria-selected="true"
-                            aria-controls="slide-0" data-index="0" tabindex="0"><span class="sr-only">Slide
-                                1</span></button>
-                        <button type="button" role="tab" class="carousel-dot" aria-selected="false"
-                            aria-controls="slide-1" data-index="1" tabindex="-1"><span class="sr-only">Slide
-                                2</span></button>
-                        <button type="button" role="tab" class="carousel-dot" aria-selected="false"
-                            aria-controls="slide-2" data-index="2" tabindex="-1"><span class="sr-only">Slide
-                                3</span></button>
-                        <button type="button" role="tab" class="carousel-dot" aria-selected="false"
-                            aria-controls="slide-3" data-index="3" tabindex="-1"><span class="sr-only">Slide
-                                4</span></button>
-                        <button type="button" role="tab" class="carousel-dot" aria-selected="false"
-                            aria-controls="slide-4" data-index="4" tabindex="-1"><span class="sr-only">Slide
-                                5</span></button>
-                    </div>
-
-
-                    <div class="carousel-extras">
-                        <button type="button" class="btn secondary" id="autoplay-toggle" aria-pressed="true">
-                            Pause Autoplay
-                        </button>
-                        <div id="carousel-progress" class="progress">
-                            <div id="carousel-progress-bar" class="progress__bar"></div>
+        <section class="stream-section" aria-label="Project cards">
+            <div class="stream-container">
+                <div class="project-proof-grid">
+                    <article class="project-proof-card" id="heimdall">
+                        <img src="/assets/images/projects/heimdallchar.png" alt="Heimdall project character artwork" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">Active Development</span>
+                            <h2>Heimdall</h2>
+                            <p><strong>What it is:</strong> AI-assisted content workflow and review system.</p>
+                            <p><strong>Problem solved:</strong> Helps an operator draft, review, revise, approve, and package content without turning the system into an autonomous posting bot.</p>
+                            <p><strong>Architecture:</strong> FastAPI workflow layer, in-memory review queue, template logic, export package, operator summary, manual posting pack, and test coverage around review behavior.</p>
+                            <p><strong>Stack:</strong> Python, FastAPI, pytest, ruff, mypy, in-memory review queue.</p>
+                            <p><strong>Current proof:</strong> Local repo contains workflow API, draft queue, approval/rejection/revision loop, content series templates, export package, operator summary, manual posting pack, tests, and CI configuration.</p>
+                            <ul class="stream-tag-list" aria-label="Project positioning">
+                                <li>Local-first</li>
+                                <li>Supervised</li>
+                                <li>Manual posting</li>
+                            </ul>
+                            <div class="stream-actions">
+                                <a class="btn secondary" href="https://github.com/vebbaybi/Heimdall" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
                         </div>
-                        <span aria-live="polite" id="carousel-announcer" class="sr-only"></span>
-                    </div>
+                    </article>
+
+                    <article class="project-proof-card" id="hydrion">
+                        <img src="/assets/images/hydrion.png" alt="Hydrion project visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">In Progress</span>
+                            <h2>Hydrion</h2>
+                            <p><strong>What it is:</strong> Hydration tracking app.</p>
+                            <p><strong>Problem solved:</strong> Gives users a simple way to log hydration, review patterns, receive reminders, and build healthier routines without needing cloud services first.</p>
+                            <p><strong>Architecture:</strong> Flutter app boundary with local persistence, localization, reminder flows, provider separation, local coach fallback, and a future AI action contract.</p>
+                            <p><strong>Stack:</strong> Flutter, Dart, local persistence, localization, provider boundary, AI action contract.</p>
+                            <p><strong>Current proof:</strong> Manual hydration logs, analytics, reminders, challenges, local coach fallback, persistence, tests, and passing web build are tracked as user-provided proof; no local repo was found during the crawl.</p>
+                            <ul class="stream-tag-list" aria-label="Project positioning">
+                                <li>Standalone app</li>
+                                <li>Local persistence</li>
+                                <li>Future AI boundary</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-proof-card" id="luna">
+                        <img src="/assets/images/luna.png" alt="Luna AI assistant project visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">Prototype / Architecture</span>
+                            <h2>Luna</h2>
+                            <p><strong>What it is:</strong> Modular AI assistant architecture.</p>
+                            <p><strong>Problem solved:</strong> Separates assistant behavior into clear brain, core, integration, memory, routing, reasoning, persona, and LLM boundary layers.</p>
+                            <p><strong>Architecture:</strong> Brain, core, integrations, memory, routing, reasoning, persona, storage, GUI/native service, and LLM boundary layers.</p>
+                            <p><strong>Stack:</strong> Python architecture, assistant subsystems, desktop/native module direction, memory and reasoning modules.</p>
+                            <p><strong>Current proof:</strong> Local Luna repos contain saved architecture files, subsystem folders, roadmap/docs, and canonical subsystem contracts.</p>
+                            <ul class="stream-tag-list" aria-label="Project positioning">
+                                <li>Long-term platform</li>
+                                <li>Subsystem contracts</li>
+                                <li>In progress</li>
+                            </ul>
+                            <div class="stream-actions">
+                                <a class="btn secondary" href="https://github.com/vebbaybi/luna-2.0" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-proof-card" id="elka">
+                        <img src="/assets/images/elka/elka-0.png" alt="ELKA cognitive engine documentation visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">Active Development / Experiment</span>
+                            <h2>ELKA</h2>
+                            <p><strong>What it is:</strong> Cognitive engine and model/runtime layer.</p>
+                            <p><strong>Problem solved:</strong> Documents a structured runtime direction for memory, routing, safety, evaluation, and integration boundaries.</p>
+                            <p><strong>Architecture:</strong> Brain/core/runtime modules with dataset quality checks, action contracts, memory, safety, evaluation, and shadow-mode testing direction.</p>
+                            <p><strong>Stack:</strong> Python, dataset quality workflow, runtime dry-run tools, tests, technical model/runtime documentation.</p>
+                            <p><strong>Current proof:</strong> The <a href="/elka-0/">ELKA-0 technical documentation route</a> exists, and the local repo contains docs, tests, reports, and CI workflow files.</p>
+                            <div class="stream-actions">
+                                <a class="btn" href="/elka-0/">Open ELKA-0</a>
+                                <a class="btn secondary" href="https://github.com/vebbaybi/Elka" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-proof-card" id="clipsense">
+                        <img src="/assets/images/projects/clipsense.png" alt="ClipSense project visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">MVP / Active Development</span>
+                            <h2>ClipSense</h2>
+                            <p><strong>What it is:</strong> Video reaction and context workflow tool.</p>
+                            <p><strong>Problem solved:</strong> Organizes reaction video context, highlights, and story sequence so creators can move from raw video to structured review.</p>
+                            <p><strong>Architecture:</strong> Go API, Python extraction worker, Next.js web app, Docker Compose services, Postgres, Redis, and Qdrant boundaries.</p>
+                            <p><strong>Stack:</strong> Go API, Python worker, Next.js web, Postgres, Redis, Qdrant, Docker Compose.</p>
+                            <p><strong>Current proof:</strong> Local repo contains ZIP upload flow, worker extraction safety, API health, tests, Docker Compose config, CI workflow, and MVP stabilization docs.</p>
+                            <ul class="stream-tag-list" aria-label="Project positioning">
+                                <li>Video workflow</li>
+                                <li>Worker safety</li>
+                                <li>Stabilization docs</li>
+                            </ul>
+                            <div class="stream-actions">
+                                <a class="btn secondary" href="https://github.com/vebbaybi/ClipSense" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-proof-card" id="cater">
+                        <img src="/assets/images/cater.png" alt="CATER project visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">Concept / In Progress</span>
+                            <h2>CATER</h2>
+                            <p><strong>What it is:</strong> In-progress project entry.</p>
+                            <p><strong>Problem solved:</strong> Kept as a compact placeholder until project proof is available in the repository.</p>
+                            <p><strong>Architecture:</strong> Not published yet. This card stays minimal until repo content or documentation exists.</p>
+                            <p><strong>Stack:</strong> To be confirmed as implementation proof becomes available.</p>
+                            <p><strong>Current proof:</strong> No matching repo content was found during the stream-lite crawl, so this card intentionally does not overclaim.</p>
+                            <ul class="stream-tag-list" aria-label="Project positioning">
+                                <li>Placeholder</li>
+                                <li>Proof pending</li>
+                                <li>No public route yet</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-proof-card" id="skincradle">
+                        <img src="/assets/images/skincradle.png" alt="SkinCradle project visual" loading="lazy" decoding="async" />
+                        <div class="project-proof-body">
+                            <span class="stream-status">Prototype / Standalone</span>
+                            <h2>SkinCradle</h2>
+                            <p><strong>What it is:</strong> Browser-based visual gesture tracker.</p>
+                            <p><strong>Problem solved:</strong> Gives a live visual interaction surface for hand halos, head halos, elastic strings, and gesture drawing experiments.</p>
+                            <p><strong>Architecture:</strong> Standalone route with browser JavaScript, visual interaction state, CSS, icons, and route-level UI.</p>
+                            <p><strong>Stack:</strong> Browser JavaScript, canvas-style visual interaction, route-level UI.</p>
+                            <p><strong>Current proof:</strong> The <a href="/skincradle/">SkinCradle route</a> exists and remains standalone.</p>
+                            <p><strong>Positioning:</strong> Interactive visual project, not medical or diagnostic.</p>
+                            <div class="stream-actions">
+                                <a class="btn" href="/skincradle/">Open SkinCradle</a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="stream-section stream-section--lab" aria-labelledby="archive-note-heading">
+            <div class="stream-container stream-split">
+                <div>
+                    <p class="stream-kicker">Archive and lab</p>
+                    <h2 id="archive-note-heading">Older category pages are no longer the main portfolio</h2>
+                    <p>AI, robotics, chains, construction, scroll paper, contractor, and TDI routes remain available as archive or lab routes, but this page is the current professional project surface.</p>
+                </div>
+                <a class="btn secondary" href="/1807osPort/">Open 1807OS</a>
             </div>
         </section>
     </main>
 
     <footer-placeholder></footer-placeholder>
 
-
     <script type="module" src="/assets/js/app.js"></script>
     <script type="module" src="/assets/js/ui/theme.js"></script>
     <script type="module" src="/assets/js/ui/components/nav.js"></script>
-    <script type="module" src="/assets/js/pages/projects.js"></script>
 </body>
 
 </html>
