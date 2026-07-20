@@ -6,7 +6,7 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 
 const rootDir = process.cwd();
-const keyPages = ['/', '/home/', '/projects/', '/certific8te/', '/resume/', '/contact/', '/skincradle/', '/1807osPort/'];
+const keyPages = ['/', '/home/', '/projects/', '/hydrion/', '/hydrion/download/', '/hydrion/docs/', '/hydrion/releases/v1.1.0-rc.1/', '/hydrion/privacy/', '/certific8te/', '/resume/', '/contact/', '/skincradle/', '/1807osPort/'];
 const mimeTypes = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.css', 'text/css; charset=utf-8'],
@@ -83,7 +83,15 @@ async function startServer() {
   const { port } = server.address();
   return {
     baseUrl: `http://127.0.0.1:${port}`,
-    close: () => new Promise((resolve) => server.close(resolve))
+    close: () => new Promise((resolve) => {
+      server.closeIdleConnections?.();
+      server.closeAllConnections?.();
+      const timer = setTimeout(resolve, 1500);
+      server.close(() => {
+        clearTimeout(timer);
+        resolve();
+      });
+    })
   };
 }
 
@@ -241,7 +249,10 @@ async function startBrowser() {
           resolve();
         });
       });
-      await rm(profile, { recursive: true, force: true }).catch(() => {});
+      await Promise.race([
+        rm(profile, { recursive: true, force: true }).catch(() => {}),
+        new Promise((resolve) => setTimeout(resolve, 2000))
+      ]);
     }
   };
 }
@@ -307,10 +318,11 @@ async function main() {
   console.log(`Smoke passed: ${results.length} pages.`);
 }
 
+const watchdogMs = Math.max(120000, keyPages.length * 15000);
 const watchdog = setTimeout(() => {
   console.error('Smoke timed out.');
   process.exit(1);
-}, 120000);
+}, watchdogMs);
 
 main()
   .then(async () => {

@@ -1,4 +1,4 @@
-export const eosSiteGeneratedAt = "2026-06-12T02:00:17.051Z";
+export const eosSiteGeneratedAt = "2026-07-20T17:19:04.919Z";
 export const eosSitePages = [
   {
     "key": "page:/",
@@ -26,6 +26,105 @@ export const eosSitePages = [
     "family": "projects",
     "title": "Projects | Uchenna Anozie | The 1807",
     "description": "Active projects by Uchenna Anozie: Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, and SkinCradle. Each card shows status, stack, current proof, and available links."
+  },
+  {
+    "key": "page:/hydrion/",
+    "route": "/hydrion/",
+    "source": "hydrion/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Hydrion | Smart Hydration Tracking by The 1807",
+    "description": "Download Hydrion for Android, explore hydration challenges, read documentation, review release notes, and help The 1807 test the latest release candidate."
+  },
+  {
+    "key": "page:/hydrion/download/",
+    "route": "/hydrion/download/",
+    "source": "hydrion/download/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Download Hydrion v1.1.0 RC1 for Android | The 1807",
+    "description": "Download the official Hydrion v1.1.0 RC1 Android APK from The 1807, verify its checksum, and read installation guidance."
+  },
+  {
+    "key": "page:/hydrion/docs/",
+    "route": "/hydrion/docs/",
+    "source": "hydrion/docs/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Hydrion documentation | Hydrion Documentation",
+    "description": "Install Hydrion, start logging measured drinks, understand goals and challenges, and solve common tester-build issues."
+  },
+  {
+    "key": "page:/hydrion/docs/install/",
+    "route": "/hydrion/docs/install/",
+    "source": "hydrion/docs/install/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Install Hydrion on Android | Hydrion Documentation",
+    "description": "Step-by-step instructions for installing the official Hydrion RC1 APK outside Google Play."
+  },
+  {
+    "key": "page:/hydrion/docs/getting-started/",
+    "route": "/hydrion/docs/getting-started/",
+    "source": "hydrion/docs/getting-started/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Getting started | Hydrion Documentation",
+    "description": "Complete Hydrion setup, choose units, set a hydration goal, and record your first measured drink."
+  },
+  {
+    "key": "page:/hydrion/docs/hydration/",
+    "route": "/hydrion/docs/hydration/",
+    "source": "hydrion/docs/hydration/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Logging hydration | Hydrion Documentation",
+    "description": "Record measured drinks, use saved containers, edit or delete hydration history, and understand daily totals and units."
+  },
+  {
+    "key": "page:/hydrion/docs/challenges/",
+    "route": "/hydrion/docs/challenges/",
+    "source": "hydrion/docs/challenges/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Goals and challenges | Hydrion Documentation",
+    "description": "Understand Hydrion weather-assisted goals, challenge evidence, Bottle Bingo, Pomodoro Sip, Temperature Roulette, Infusion Week, and Eat Your Water."
+  },
+  {
+    "key": "page:/hydrion/docs/troubleshooting/",
+    "route": "/hydrion/docs/troubleshooting/",
+    "source": "hydrion/docs/troubleshooting/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Troubleshooting | Hydrion Documentation",
+    "description": "Resolve common Hydrion tester-build installation, notification, weather, progress, and tutorial issues."
+  },
+  {
+    "key": "page:/hydrion/releases/",
+    "route": "/hydrion/releases/",
+    "source": "hydrion/releases/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Hydrion releases | The 1807",
+    "description": "Review the current Hydrion Android release candidate, testing status, download, release notes, and known issues."
+  },
+  {
+    "key": "page:/hydrion/releases/v1.1.0-rc.1/",
+    "route": "/hydrion/releases/v1.1.0-rc.1/",
+    "source": "hydrion/releases/v1.1.0-rc.1/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Hydrion v1.1.0 RC1 release notes | The 1807",
+    "description": "Release notes, testing scope, known issues, installation guidance, and feedback links for Hydrion v1.1.0 RC1."
+  },
+  {
+    "key": "page:/hydrion/privacy/",
+    "route": "/hydrion/privacy/",
+    "source": "hydrion/privacy/index.html",
+    "scope": "classic",
+    "family": "hydrion",
+    "title": "Hydrion privacy and data | The 1807",
+    "description": "Understand what Hydrion stores, how location and weather work, notification permissions, external services, and local data deletion."
   },
   {
     "key": "page:/skincradle/",
@@ -237,78 +336,6 @@ export const eosSitePages = [
 ];
 export const eosUploads = [
   {
-    "key": "asset:/assets/images/hydrion.png",
-    "path": "/assets/images/hydrion.png",
-    "name": "hydrion.png",
-    "stem": "hydrion",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images",
-    "bytes": 993480,
-    "updated": "2026-06-11T20:34:19.193Z",
-    "aliases": [
-      "/assets/images/hydrion.png",
-      "hydrion.png",
-      "hydrion",
-      "assets",
-      "images"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/luna.png",
-    "path": "/assets/images/luna.png",
-    "name": "luna.png",
-    "stem": "luna",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images",
-    "bytes": 536669,
-    "updated": "2026-06-11T20:29:19.149Z",
-    "aliases": [
-      "/assets/images/luna.png",
-      "luna.png",
-      "luna",
-      "assets",
-      "images"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/cater.png",
-    "path": "/assets/images/cater.png",
-    "name": "cater.png",
-    "stem": "cater",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images",
-    "bytes": 71116,
-    "updated": "2026-06-11T20:24:41.220Z",
-    "aliases": [
-      "/assets/images/cater.png",
-      "cater.png",
-      "cater",
-      "assets",
-      "images"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/skincradle.png",
-    "path": "/assets/images/skincradle.png",
-    "name": "skincradle.png",
-    "stem": "skincradle",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images",
-    "bytes": 459210,
-    "updated": "2026-06-11T17:20:22.706Z",
-    "aliases": [
-      "/assets/images/skincradle.png",
-      "skincradle.png",
-      "skincradle",
-      "assets",
-      "images"
-    ]
-  },
-  {
     "key": "asset:/assets/videos/robotic-scroll.mp4",
     "path": "/assets/videos/robotic-scroll.mp4",
     "name": "robotic-scroll.mp4",
@@ -317,7 +344,7 @@ export const eosUploads = [
     "kind": "video",
     "directory": "assets/videos",
     "bytes": 38524862,
-    "updated": "2026-06-11T16:18:22.049Z",
+    "updated": "2026-07-20T17:18:38.253Z",
     "aliases": [
       "/assets/videos/robotic-scroll.mp4",
       "robotic-scroll.mp4",
@@ -335,7 +362,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets",
     "bytes": 5460405,
-    "updated": "2026-06-11T16:18:21.592Z",
+    "updated": "2026-07-20T17:18:37.326Z",
     "aliases": [
       "/assets/the1807b.gif",
       "the1807b.gif",
@@ -352,7 +379,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets",
     "bytes": 144310,
-    "updated": "2026-06-11T16:18:21.479Z",
+    "updated": "2026-07-20T17:18:37.229Z",
     "aliases": [
       "/assets/the1807.png",
       "the1807.png",
@@ -369,7 +396,7 @@ export const eosUploads = [
     "kind": "document",
     "directory": "assets/pdf",
     "bytes": 5779,
-    "updated": "2026-06-11T16:18:21.475Z",
+    "updated": "2026-07-20T17:18:37.225Z",
     "aliases": [
       "/assets/pdf/circuit.pdf",
       "circuit.pdf",
@@ -387,7 +414,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/pdf",
     "bytes": 5779,
-    "updated": "2026-06-11T16:18:21.475Z",
+    "updated": "2026-07-20T17:18:37.225Z",
     "aliases": [
       "/assets/pdf/vigiai.png",
       "vigiai.png",
@@ -405,7 +432,7 @@ export const eosUploads = [
     "kind": "data",
     "directory": "assets/js/data",
     "bytes": 0,
-    "updated": "2026-06-11T16:18:21.369Z",
+    "updated": "2026-07-20T17:18:37.053Z",
     "aliases": [
       "/assets/js/data/arrival-signal.json",
       "arrival-signal.json",
@@ -424,7 +451,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 971741,
-    "updated": "2026-06-11T16:18:21.358Z",
+    "updated": "2026-07-20T17:18:37.036Z",
     "aliases": [
       "/assets/images/unset.png",
       "unset.png",
@@ -442,7 +469,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 772375,
-    "updated": "2026-06-11T16:18:21.350Z",
+    "updated": "2026-07-20T17:18:37.024Z",
     "aliases": [
       "/assets/images/unset.jpg",
       "unset.jpg",
@@ -460,7 +487,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 3155640,
-    "updated": "2026-06-11T16:18:21.344Z",
+    "updated": "2026-07-20T17:18:37.000Z",
     "aliases": [
       "/assets/images/theshark.jpg",
       "theshark.jpg",
@@ -478,7 +505,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 69338,
-    "updated": "2026-06-11T16:18:21.319Z",
+    "updated": "2026-07-20T17:18:36.971Z",
     "aliases": [
       "/assets/images/thedev.webp",
       "thedev.webp",
@@ -496,11 +523,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 69338,
-    "updated": "2026-06-11T16:18:21.317Z",
+    "updated": "2026-07-20T17:18:36.969Z",
     "aliases": [
       "/assets/images/thedev.png",
       "thedev.png",
       "thedev",
+      "assets",
+      "images"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/skincradle.png",
+    "path": "/assets/images/skincradle.png",
+    "name": "skincradle.png",
+    "stem": "skincradle",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 459210,
+    "updated": "2026-07-20T17:18:36.967Z",
+    "aliases": [
+      "/assets/images/skincradle.png",
+      "skincradle.png",
+      "skincradle",
       "assets",
       "images"
     ]
@@ -514,7 +559,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/robotics",
     "bytes": 2571825,
-    "updated": "2026-06-11T16:18:21.313Z",
+    "updated": "2026-07-20T17:18:36.955Z",
     "aliases": [
       "/assets/images/robotics/xeye.png",
       "xeye.png",
@@ -533,7 +578,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/robotics",
     "bytes": 164149,
-    "updated": "2026-06-11T16:18:21.290Z",
+    "updated": "2026-07-20T17:18:36.934Z",
     "aliases": [
       "/assets/images/robotics/robo.png",
       "robo.png",
@@ -552,7 +597,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/robotics",
     "bytes": 1585398,
-    "updated": "2026-06-11T16:18:21.282Z",
+    "updated": "2026-07-20T17:18:36.930Z",
     "aliases": [
       "/assets/images/robotics/acebot.png",
       "acebot.png",
@@ -571,7 +616,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 164149,
-    "updated": "2026-06-11T16:18:21.269Z",
+    "updated": "2026-07-20T17:18:36.912Z",
     "aliases": [
       "/assets/images/robo000.png",
       "robo000.png",
@@ -589,7 +634,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/pwa",
     "bytes": 46193,
-    "updated": "2026-06-11T16:18:21.267Z",
+    "updated": "2026-07-20T17:18:36.905Z",
     "aliases": [
       "/assets/images/pwa/mobile-home.png",
       "mobile-home.png",
@@ -608,7 +653,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/pwa",
     "bytes": 120196,
-    "updated": "2026-06-11T16:18:21.264Z",
+    "updated": "2026-07-20T17:18:36.899Z",
     "aliases": [
       "/assets/images/pwa/desktop-home.png",
       "desktop-home.png",
@@ -616,6 +661,44 @@ export const eosUploads = [
       "assets",
       "images",
       "pwa"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/projects/heimdallchar.png",
+    "path": "/assets/images/projects/heimdallchar.png",
+    "name": "heimdallchar.png",
+    "stem": "heimdallchar",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/projects",
+    "bytes": 2272140,
+    "updated": "2026-07-20T17:18:36.886Z",
+    "aliases": [
+      "/assets/images/projects/heimdallchar.png",
+      "heimdallchar.png",
+      "heimdallchar",
+      "assets",
+      "images",
+      "projects"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/projects/clipsense.png",
+    "path": "/assets/images/projects/clipsense.png",
+    "name": "clipsense.png",
+    "stem": "clipsense",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/projects",
+    "bytes": 1185091,
+    "updated": "2026-07-20T17:18:36.853Z",
+    "aliases": [
+      "/assets/images/projects/clipsense.png",
+      "clipsense.png",
+      "clipsense",
+      "assets",
+      "images",
+      "projects"
     ]
   },
   {
@@ -627,7 +710,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 229108,
-    "updated": "2026-06-11T16:18:21.257Z",
+    "updated": "2026-07-20T17:18:36.842Z",
     "aliases": [
       "/assets/images/playme/playme9.webp",
       "playme9.webp",
@@ -646,7 +729,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 103078,
-    "updated": "2026-06-11T16:18:21.253Z",
+    "updated": "2026-07-20T17:18:36.836Z",
     "aliases": [
       "/assets/images/playme/playme8.jpg",
       "playme8.jpg",
@@ -665,7 +748,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 305988,
-    "updated": "2026-06-11T16:18:21.248Z",
+    "updated": "2026-07-20T17:18:36.832Z",
     "aliases": [
       "/assets/images/playme/playme7.webp",
       "playme7.webp",
@@ -684,7 +767,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 55204,
-    "updated": "2026-06-11T16:18:21.244Z",
+    "updated": "2026-07-20T17:18:36.828Z",
     "aliases": [
       "/assets/images/playme/playme6.jpg",
       "playme6.jpg",
@@ -703,7 +786,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 46974,
-    "updated": "2026-06-11T16:18:21.242Z",
+    "updated": "2026-07-20T17:18:36.824Z",
     "aliases": [
       "/assets/images/playme/playme5.jpg",
       "playme5.jpg",
@@ -722,7 +805,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 369854,
-    "updated": "2026-06-11T16:18:21.240Z",
+    "updated": "2026-07-20T17:18:36.820Z",
     "aliases": [
       "/assets/images/playme/playme4.jpg",
       "playme4.jpg",
@@ -741,7 +824,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 218712,
-    "updated": "2026-06-11T16:18:21.230Z",
+    "updated": "2026-07-20T17:18:36.807Z",
     "aliases": [
       "/assets/images/playme/playme3.webp",
       "playme3.webp",
@@ -760,7 +843,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 107709,
-    "updated": "2026-06-11T16:18:21.227Z",
+    "updated": "2026-07-20T17:18:36.801Z",
     "aliases": [
       "/assets/images/playme/playme2.jpg",
       "playme2.jpg",
@@ -779,7 +862,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 394710,
-    "updated": "2026-06-11T16:18:21.224Z",
+    "updated": "2026-07-20T17:18:36.797Z",
     "aliases": [
       "/assets/images/playme/playme14.webp",
       "playme14.webp",
@@ -798,7 +881,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 31785,
-    "updated": "2026-06-11T16:18:21.217Z",
+    "updated": "2026-07-20T17:18:36.785Z",
     "aliases": [
       "/assets/images/playme/playme13.jpg",
       "playme13.jpg",
@@ -817,7 +900,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 28950,
-    "updated": "2026-06-11T16:18:21.216Z",
+    "updated": "2026-07-20T17:18:36.773Z",
     "aliases": [
       "/assets/images/playme/playme12.webp",
       "playme12.webp",
@@ -836,7 +919,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 527012,
-    "updated": "2026-06-11T16:18:21.214Z",
+    "updated": "2026-07-20T17:18:36.771Z",
     "aliases": [
       "/assets/images/playme/playme11.jpg",
       "playme11.jpg",
@@ -855,7 +938,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 322752,
-    "updated": "2026-06-11T16:18:21.208Z",
+    "updated": "2026-07-20T17:18:36.763Z",
     "aliases": [
       "/assets/images/playme/playme10.webp",
       "playme10.webp",
@@ -874,7 +957,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/playme",
     "bytes": 244696,
-    "updated": "2026-06-11T16:18:21.202Z",
+    "updated": "2026-07-20T17:18:36.757Z",
     "aliases": [
       "/assets/images/playme/playme1.jpg",
       "playme1.jpg",
@@ -882,6 +965,24 @@ export const eosUploads = [
       "assets",
       "images",
       "playme"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/luna.png",
+    "path": "/assets/images/luna.png",
+    "name": "luna.png",
+    "stem": "luna",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 536669,
+    "updated": "2026-07-20T17:18:36.751Z",
+    "aliases": [
+      "/assets/images/luna.png",
+      "luna.png",
+      "luna",
+      "assets",
+      "images"
     ]
   },
   {
@@ -893,7 +994,7 @@ export const eosUploads = [
     "kind": "data",
     "directory": "assets/images/playme",
     "bytes": 1650,
-    "updated": "2026-06-11T16:18:21.194Z",
+    "updated": "2026-07-20T17:18:36.751Z",
     "aliases": [
       "/assets/images/playme/manifest_playme.json",
       "manifest_playme.json",
@@ -912,7 +1013,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/linktree",
     "bytes": 167708,
-    "updated": "2026-06-11T16:18:21.192Z",
+    "updated": "2026-07-20T17:18:36.743Z",
     "aliases": [
       "/assets/images/linktree/ddev.png",
       "ddev.png",
@@ -931,7 +1032,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 1033097,
-    "updated": "2026-06-11T16:18:21.180Z",
+    "updated": "2026-07-20T17:18:36.735Z",
     "aliases": [
       "/assets/images/img/tp.png",
       "tp.png",
@@ -950,7 +1051,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img/logo",
     "bytes": 5522534,
-    "updated": "2026-06-11T16:18:21.162Z",
+    "updated": "2026-07-20T17:18:36.722Z",
     "aliases": [
       "/assets/images/img/logo/logoos.png",
       "logoos.png",
@@ -970,7 +1071,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img/logo",
     "bytes": 242311,
-    "updated": "2026-06-11T16:18:21.057Z",
+    "updated": "2026-07-20T17:18:36.629Z",
     "aliases": [
       "/assets/images/img/logo/logo.png",
       "logo.png",
@@ -989,7 +1090,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 614259,
-    "updated": "2026-06-11T16:18:21.049Z",
+    "updated": "2026-07-20T17:18:36.605Z",
     "aliases": [
       "/assets/images/img/img019.png",
       "img019.png",
@@ -1008,7 +1109,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 8162578,
-    "updated": "2026-06-11T16:18:21.043Z",
+    "updated": "2026-07-20T17:18:36.597Z",
     "aliases": [
       "/assets/images/img/img017.png",
       "img017.png",
@@ -1027,7 +1128,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 2768774,
-    "updated": "2026-06-11T16:18:20.974Z",
+    "updated": "2026-07-20T17:18:36.533Z",
     "aliases": [
       "/assets/images/img/img016.jpg",
       "img016.jpg",
@@ -1046,7 +1147,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 107861,
-    "updated": "2026-06-11T16:18:20.937Z",
+    "updated": "2026-07-20T17:18:36.493Z",
     "aliases": [
       "/assets/images/img/img015.jpg",
       "img015.jpg",
@@ -1065,7 +1166,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 3783553,
-    "updated": "2026-06-11T16:18:20.935Z",
+    "updated": "2026-07-20T17:18:36.487Z",
     "aliases": [
       "/assets/images/img/img014.jpg",
       "img014.jpg",
@@ -1084,7 +1185,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 353592,
-    "updated": "2026-06-11T16:18:20.877Z",
+    "updated": "2026-07-20T17:18:36.435Z",
     "aliases": [
       "/assets/images/img/img012.jpg",
       "img012.jpg",
@@ -1103,7 +1204,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 25297,
-    "updated": "2026-06-11T16:18:20.877Z",
+    "updated": "2026-07-20T17:18:36.435Z",
     "aliases": [
       "/assets/images/img/img013.jpg",
       "img013.jpg",
@@ -1122,7 +1223,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 4167632,
-    "updated": "2026-06-11T16:18:20.864Z",
+    "updated": "2026-07-20T17:18:36.431Z",
     "aliases": [
       "/assets/images/img/img011.jpg",
       "img011.jpg",
@@ -1141,7 +1242,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 581443,
-    "updated": "2026-06-11T16:18:20.787Z",
+    "updated": "2026-07-20T17:18:36.367Z",
     "aliases": [
       "/assets/images/img/img010.png",
       "img010.png",
@@ -1160,30 +1261,11 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 1936298,
-    "updated": "2026-06-11T16:18:20.779Z",
+    "updated": "2026-07-20T17:18:36.361Z",
     "aliases": [
       "/assets/images/img/img009.jpg",
       "img009.jpg",
       "img009",
-      "assets",
-      "images",
-      "img"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/img/img007.jpg",
-    "path": "/assets/images/img/img007.jpg",
-    "name": "img007.jpg",
-    "stem": "img007",
-    "ext": "jpg",
-    "kind": "image",
-    "directory": "assets/images/img",
-    "bytes": 156997,
-    "updated": "2026-06-11T16:18:20.765Z",
-    "aliases": [
-      "/assets/images/img/img007.jpg",
-      "img007.jpg",
-      "img007",
       "assets",
       "images",
       "img"
@@ -1198,11 +1280,30 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 57925,
-    "updated": "2026-06-11T16:18:20.765Z",
+    "updated": "2026-07-20T17:18:36.344Z",
     "aliases": [
       "/assets/images/img/img008.jpg",
       "img008.jpg",
       "img008",
+      "assets",
+      "images",
+      "img"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/img/img007.jpg",
+    "path": "/assets/images/img/img007.jpg",
+    "name": "img007.jpg",
+    "stem": "img007",
+    "ext": "jpg",
+    "kind": "image",
+    "directory": "assets/images/img",
+    "bytes": 156997,
+    "updated": "2026-07-20T17:18:36.339Z",
+    "aliases": [
+      "/assets/images/img/img007.jpg",
+      "img007.jpg",
+      "img007",
       "assets",
       "images",
       "img"
@@ -1217,7 +1318,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 4854983,
-    "updated": "2026-06-11T16:18:20.761Z",
+    "updated": "2026-07-20T17:18:36.323Z",
     "aliases": [
       "/assets/images/img/img006.jpg",
       "img006.jpg",
@@ -1236,7 +1337,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 95106,
-    "updated": "2026-06-11T16:18:20.722Z",
+    "updated": "2026-07-20T17:18:36.250Z",
     "aliases": [
       "/assets/images/img/img005.png",
       "img005.png",
@@ -1255,7 +1356,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 40475,
-    "updated": "2026-06-11T16:18:20.721Z",
+    "updated": "2026-07-20T17:18:36.248Z",
     "aliases": [
       "/assets/images/img/img004.jpg",
       "img004.jpg",
@@ -1274,7 +1375,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 42608,
-    "updated": "2026-06-11T16:18:20.720Z",
+    "updated": "2026-07-20T17:18:36.246Z",
     "aliases": [
       "/assets/images/img/img003.jpg",
       "img003.jpg",
@@ -1293,7 +1394,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 58788,
-    "updated": "2026-06-11T16:18:20.719Z",
+    "updated": "2026-07-20T17:18:36.244Z",
     "aliases": [
       "/assets/images/img/img002.jpg",
       "img002.jpg",
@@ -1312,7 +1413,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 11084,
-    "updated": "2026-06-11T16:18:20.718Z",
+    "updated": "2026-07-20T17:18:36.242Z",
     "aliases": [
       "/assets/images/img/img001.jpg",
       "img001.jpg",
@@ -1331,7 +1432,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 3155640,
-    "updated": "2026-06-11T16:18:20.716Z",
+    "updated": "2026-07-20T17:18:36.240Z",
     "aliases": [
       "/assets/images/img/img000.jpg",
       "img000.jpg",
@@ -1350,7 +1451,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img/favicons",
     "bytes": 9527,
-    "updated": "2026-06-11T16:18:20.690Z",
+    "updated": "2026-07-20T17:18:36.198Z",
     "aliases": [
       "/assets/images/img/favicons/favicon.ico",
       "favicon.ico",
@@ -1370,7 +1471,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 199348,
-    "updated": "2026-06-11T16:18:20.686Z",
+    "updated": "2026-07-20T17:18:36.192Z",
     "aliases": [
       "/assets/images/img/dsa.png",
       "dsa.png",
@@ -1389,7 +1490,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 768765,
-    "updated": "2026-06-11T16:18:20.682Z",
+    "updated": "2026-07-20T17:18:36.186Z",
     "aliases": [
       "/assets/images/img/6eeae99f-0ae4-4f22-95be-aaeca0ce03f3-1_all_7448.png",
       "6eeae99f-0ae4-4f22-95be-aaeca0ce03f3-1_all_7448.png",
@@ -1408,7 +1509,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 2045714,
-    "updated": "2026-06-11T16:18:20.674Z",
+    "updated": "2026-07-20T17:18:36.178Z",
     "aliases": [
       "/assets/images/img/6eeae99f-0ae4-4f22-95be-aaeca0ce03f3-1_all_3816.jpg",
       "6eeae99f-0ae4-4f22-95be-aaeca0ce03f3-1_all_3816.jpg",
@@ -1427,7 +1528,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 162590,
-    "updated": "2026-06-11T16:18:20.655Z",
+    "updated": "2026-07-20T17:18:36.163Z",
     "aliases": [
       "/assets/images/img/1000014279.jpg",
       "1000014279.jpg",
@@ -1446,30 +1547,11 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 66780,
-    "updated": "2026-06-11T16:18:20.650Z",
+    "updated": "2026-07-20T17:18:36.157Z",
     "aliases": [
       "/assets/images/img/1000014277.jpg",
       "1000014277.jpg",
       "1000014277",
-      "assets",
-      "images",
-      "img"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/img/1000007094.jpg",
-    "path": "/assets/images/img/1000007094.jpg",
-    "name": "1000007094.jpg",
-    "stem": "1000007094",
-    "ext": "jpg",
-    "kind": "image",
-    "directory": "assets/images/img",
-    "bytes": 131819,
-    "updated": "2026-06-11T16:18:20.648Z",
-    "aliases": [
-      "/assets/images/img/1000007094.jpg",
-      "1000007094.jpg",
-      "1000007094",
       "assets",
       "images",
       "img"
@@ -1484,11 +1566,30 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 97833,
-    "updated": "2026-06-11T16:18:20.648Z",
+    "updated": "2026-07-20T17:18:36.155Z",
     "aliases": [
       "/assets/images/img/1000014276.jpg",
       "1000014276.jpg",
       "1000014276",
+      "assets",
+      "images",
+      "img"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/img/1000007094.jpg",
+    "path": "/assets/images/img/1000007094.jpg",
+    "name": "1000007094.jpg",
+    "stem": "1000007094",
+    "ext": "jpg",
+    "kind": "image",
+    "directory": "assets/images/img",
+    "bytes": 131819,
+    "updated": "2026-07-20T17:18:36.143Z",
+    "aliases": [
+      "/assets/images/img/1000007094.jpg",
+      "1000007094.jpg",
+      "1000007094",
       "assets",
       "images",
       "img"
@@ -1503,7 +1604,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 3928198,
-    "updated": "2026-06-11T16:18:20.644Z",
+    "updated": "2026-07-20T17:18:36.138Z",
     "aliases": [
       "/assets/images/img/1000005905.jpg",
       "1000005905.jpg",
@@ -1522,7 +1623,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/img",
     "bytes": 294236,
-    "updated": "2026-06-11T16:18:20.623Z",
+    "updated": "2026-07-20T17:18:36.109Z",
     "aliases": [
       "/assets/images/img/1000001443.jpg",
       "1000001443.jpg",
@@ -1530,25 +1631,6 @@ export const eosUploads = [
       "assets",
       "images",
       "img"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/icons/menu.png",
-    "path": "/assets/images/icons/menu.png",
-    "name": "menu.png",
-    "stem": "menu",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images/icons",
-    "bytes": 1105,
-    "updated": "2026-06-11T16:18:20.619Z",
-    "aliases": [
-      "/assets/images/icons/menu.png",
-      "menu.png",
-      "menu",
-      "assets",
-      "images",
-      "icons"
     ]
   },
   {
@@ -1560,7 +1642,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/icons",
     "bytes": 1381,
-    "updated": "2026-06-11T16:18:20.619Z",
+    "updated": "2026-07-20T17:18:36.105Z",
     "aliases": [
       "/assets/images/icons/theme.png",
       "theme.png",
@@ -1579,11 +1661,30 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/icons",
     "bytes": 80123,
-    "updated": "2026-06-11T16:18:20.603Z",
+    "updated": "2026-07-20T17:18:36.103Z",
     "aliases": [
       "/assets/images/icons/maple.png",
       "maple.png",
       "maple",
+      "assets",
+      "images",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/icons/menu.png",
+    "path": "/assets/images/icons/menu.png",
+    "name": "menu.png",
+    "stem": "menu",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/icons",
+    "bytes": 1105,
+    "updated": "2026-07-20T17:18:36.103Z",
+    "aliases": [
+      "/assets/images/icons/menu.png",
+      "menu.png",
+      "menu",
       "assets",
       "images",
       "icons"
@@ -1598,7 +1699,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/icons",
     "bytes": 70978,
-    "updated": "2026-06-11T16:18:20.601Z",
+    "updated": "2026-07-20T17:18:36.099Z",
     "aliases": [
       "/assets/images/icons/map.png",
       "map.png",
@@ -1617,7 +1718,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/icons",
     "bytes": 3277,
-    "updated": "2026-06-11T16:18:20.598Z",
+    "updated": "2026-07-20T17:18:36.097Z",
     "aliases": [
       "/assets/images/icons/lkin.png",
       "lkin.png",
@@ -1625,6 +1726,124 @@ export const eosUploads = [
       "assets",
       "images",
       "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion/screenshots/settings-night.png",
+    "path": "/assets/images/hydrion/screenshots/settings-night.png",
+    "name": "settings-night.png",
+    "stem": "settings-night",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/hydrion/screenshots",
+    "bytes": 23342,
+    "updated": "2026-07-20T17:18:36.092Z",
+    "aliases": [
+      "/assets/images/hydrion/screenshots/settings-night.png",
+      "settings-night.png",
+      "settings-night",
+      "assets",
+      "images",
+      "hydrion",
+      "screenshots"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion/screenshots/progress-night.png",
+    "path": "/assets/images/hydrion/screenshots/progress-night.png",
+    "name": "progress-night.png",
+    "stem": "progress-night",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/hydrion/screenshots",
+    "bytes": 36833,
+    "updated": "2026-07-20T17:18:36.088Z",
+    "aliases": [
+      "/assets/images/hydrion/screenshots/progress-night.png",
+      "progress-night.png",
+      "progress-night",
+      "assets",
+      "images",
+      "hydrion",
+      "screenshots"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion/screenshots/home.png",
+    "path": "/assets/images/hydrion/screenshots/home.png",
+    "name": "home.png",
+    "stem": "home",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/hydrion/screenshots",
+    "bytes": 64355,
+    "updated": "2026-07-20T17:18:36.086Z",
+    "aliases": [
+      "/assets/images/hydrion/screenshots/home.png",
+      "home.png",
+      "home",
+      "assets",
+      "images",
+      "hydrion",
+      "screenshots"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion/screenshots/home-day.png",
+    "path": "/assets/images/hydrion/screenshots/home-day.png",
+    "name": "home-day.png",
+    "stem": "home-day",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/hydrion/screenshots",
+    "bytes": 120894,
+    "updated": "2026-07-20T17:18:36.084Z",
+    "aliases": [
+      "/assets/images/hydrion/screenshots/home-day.png",
+      "home-day.png",
+      "home-day",
+      "assets",
+      "images",
+      "hydrion",
+      "screenshots"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion/screenshots/challenges.png",
+    "path": "/assets/images/hydrion/screenshots/challenges.png",
+    "name": "challenges.png",
+    "stem": "challenges",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images/hydrion/screenshots",
+    "bytes": 85897,
+    "updated": "2026-07-20T17:18:36.080Z",
+    "aliases": [
+      "/assets/images/hydrion/screenshots/challenges.png",
+      "challenges.png",
+      "challenges",
+      "assets",
+      "images",
+      "hydrion",
+      "screenshots"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/hydrion.png",
+    "path": "/assets/images/hydrion.png",
+    "name": "hydrion.png",
+    "stem": "hydrion",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 993480,
+    "updated": "2026-07-20T17:18:36.068Z",
+    "aliases": [
+      "/assets/images/hydrion.png",
+      "hydrion.png",
+      "hydrion",
+      "assets",
+      "images"
     ]
   },
   {
@@ -1636,7 +1855,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 1579180,
-    "updated": "2026-06-11T16:18:20.596Z",
+    "updated": "2026-07-20T17:18:36.055Z",
     "aliases": [
       "/assets/images/home/tdi.png",
       "tdi.png",
@@ -1655,7 +1874,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 243745,
-    "updated": "2026-06-11T16:18:20.582Z",
+    "updated": "2026-07-20T17:18:36.040Z",
     "aliases": [
       "/assets/images/home/link.png",
       "link.png",
@@ -1674,7 +1893,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 1435532,
-    "updated": "2026-06-11T16:18:20.568Z",
+    "updated": "2026-07-20T17:18:36.036Z",
     "aliases": [
       "/assets/images/home/embedded.png",
       "embedded.png",
@@ -1693,7 +1912,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 5249774,
-    "updated": "2026-06-11T16:18:20.550Z",
+    "updated": "2026-07-20T17:18:35.995Z",
     "aliases": [
       "/assets/images/home/default.png",
       "default.png",
@@ -1712,7 +1931,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 1125452,
-    "updated": "2026-06-11T16:18:20.491Z",
+    "updated": "2026-07-20T17:18:35.949Z",
     "aliases": [
       "/assets/images/home/data.png",
       "data.png",
@@ -1731,7 +1950,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 38011,
-    "updated": "2026-06-11T16:18:20.465Z",
+    "updated": "2026-07-20T17:18:35.934Z",
     "aliases": [
       "/assets/images/home/contact.png",
       "contact.png",
@@ -1750,7 +1969,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 557299,
-    "updated": "2026-06-11T16:18:20.463Z",
+    "updated": "2026-07-20T17:18:35.930Z",
     "aliases": [
       "/assets/images/home/blockchain.png",
       "blockchain.png",
@@ -1769,7 +1988,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 992838,
-    "updated": "2026-06-11T16:18:20.455Z",
+    "updated": "2026-07-20T17:18:35.901Z",
     "aliases": [
       "/assets/images/home/ai.png",
       "ai.png",
@@ -1788,7 +2007,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/home",
     "bytes": 3155640,
-    "updated": "2026-06-11T16:18:20.441Z",
+    "updated": "2026-07-20T17:18:35.888Z",
     "aliases": [
       "/assets/images/home/about.png",
       "about.png",
@@ -1807,7 +2026,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 31416,
-    "updated": "2026-06-11T16:18:20.417Z",
+    "updated": "2026-07-20T17:18:35.862Z",
     "aliases": [
       "/assets/images/gif/theme.gif",
       "theme.gif",
@@ -1826,7 +2045,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 1707147,
-    "updated": "2026-06-11T16:18:20.415Z",
+    "updated": "2026-07-20T17:18:35.859Z",
     "aliases": [
       "/assets/images/gif/spidy.gif",
       "spidy.gif",
@@ -1845,7 +2064,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 18264,
-    "updated": "2026-06-11T16:18:20.400Z",
+    "updated": "2026-07-20T17:18:35.841Z",
     "aliases": [
       "/assets/images/gif/sat.gif",
       "sat.gif",
@@ -1864,7 +2083,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 36471,
-    "updated": "2026-06-11T16:18:20.400Z",
+    "updated": "2026-07-20T17:18:35.841Z",
     "aliases": [
       "/assets/images/gif/slow.gif",
       "slow.gif",
@@ -1883,7 +2102,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 464619,
-    "updated": "2026-06-11T16:18:20.398Z",
+    "updated": "2026-07-20T17:18:35.839Z",
     "aliases": [
       "/assets/images/gif/robot.gif",
       "robot.gif",
@@ -1902,7 +2121,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 483983,
-    "updated": "2026-06-11T16:18:20.394Z",
+    "updated": "2026-07-20T17:18:35.833Z",
     "aliases": [
       "/assets/images/gif/pudgy.gif",
       "pudgy.gif",
@@ -1921,7 +2140,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 7199,
-    "updated": "2026-06-11T16:18:20.388Z",
+    "updated": "2026-07-20T17:18:35.820Z",
     "aliases": [
       "/assets/images/gif/menu.gif",
       "menu.gif",
@@ -1940,7 +2159,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 1175110,
-    "updated": "2026-06-11T16:18:20.386Z",
+    "updated": "2026-07-20T17:18:35.818Z",
     "aliases": [
       "/assets/images/gif/landing.gif",
       "landing.gif",
@@ -1959,7 +2178,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 320358,
-    "updated": "2026-06-11T16:18:20.372Z",
+    "updated": "2026-07-20T17:18:35.782Z",
     "aliases": [
       "/assets/images/gif/iseeya.gif",
       "iseeya.gif",
@@ -1978,7 +2197,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 824460,
-    "updated": "2026-06-11T16:18:20.368Z",
+    "updated": "2026-07-20T17:18:35.774Z",
     "aliases": [
       "/assets/images/gif/immi.gif",
       "immi.gif",
@@ -1997,7 +2216,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 3804005,
-    "updated": "2026-06-11T16:18:20.348Z",
+    "updated": "2026-07-20T17:18:35.764Z",
     "aliases": [
       "/assets/images/gif/header.gif",
       "header.gif",
@@ -2016,7 +2235,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 284417,
-    "updated": "2026-06-11T16:18:20.322Z",
+    "updated": "2026-07-20T17:18:35.726Z",
     "aliases": [
       "/assets/images/gif/goated.gif",
       "goated.gif",
@@ -2035,7 +2254,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 1436785,
-    "updated": "2026-06-11T16:18:20.319Z",
+    "updated": "2026-07-20T17:18:35.722Z",
     "aliases": [
       "/assets/images/gif/gif.gif",
       "gif.gif",
@@ -2053,7 +2272,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 65070,
-    "updated": "2026-06-11T16:18:20.297Z",
+    "updated": "2026-07-20T17:18:35.689Z",
     "aliases": [
       "/assets/images/gif/flagger.gif",
       "flagger.gif",
@@ -2072,7 +2291,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 867222,
-    "updated": "2026-06-11T16:18:20.295Z",
+    "updated": "2026-07-20T17:18:35.685Z",
     "aliases": [
       "/assets/images/gif/error.gif",
       "error.gif",
@@ -2091,7 +2310,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 717293,
-    "updated": "2026-06-11T16:18:20.287Z",
+    "updated": "2026-07-20T17:18:35.668Z",
     "aliases": [
       "/assets/images/gif/enjoychain.gif",
       "enjoychain.gif",
@@ -2110,7 +2329,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 2386307,
-    "updated": "2026-06-11T16:18:20.277Z",
+    "updated": "2026-07-20T17:18:35.656Z",
     "aliases": [
       "/assets/images/gif/devspy.gif",
       "devspy.gif",
@@ -2129,7 +2348,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 141069,
-    "updated": "2026-06-11T16:18:20.263Z",
+    "updated": "2026-07-20T17:18:35.640Z",
     "aliases": [
       "/assets/images/gif/crawler.gif",
       "crawler.gif",
@@ -2148,7 +2367,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 665360,
-    "updated": "2026-06-11T16:18:20.261Z",
+    "updated": "2026-07-20T17:18:35.636Z",
     "aliases": [
       "/assets/images/gif/cat.gif",
       "cat.gif",
@@ -2167,7 +2386,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 8063714,
-    "updated": "2026-06-11T16:18:20.249Z",
+    "updated": "2026-07-20T17:18:35.623Z",
     "aliases": [
       "/assets/images/gif/ai.gif",
       "ai.gif",
@@ -2186,7 +2405,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/gif",
     "bytes": 110354,
-    "updated": "2026-06-11T16:18:20.166Z",
+    "updated": "2026-07-20T17:18:35.525Z",
     "aliases": [
       "/assets/images/gif/404.gif",
       "404.gif",
@@ -2205,7 +2424,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 480774,
-    "updated": "2026-06-11T16:18:20.164Z",
+    "updated": "2026-07-20T17:18:35.521Z",
     "aliases": [
       "/assets/images/embedded.webp",
       "embedded.webp",
@@ -2223,7 +2442,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/elka",
     "bytes": 1449310,
-    "updated": "2026-06-11T16:18:20.156Z",
+    "updated": "2026-07-20T17:18:35.515Z",
     "aliases": [
       "/assets/images/elka/elka-nbkgl.png",
       "elka-nbkgl.png",
@@ -2242,7 +2461,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/elka",
     "bytes": 1014875,
-    "updated": "2026-06-11T16:18:20.140Z",
+    "updated": "2026-07-20T17:18:35.498Z",
     "aliases": [
       "/assets/images/elka/elka-0.png",
       "elka-0.png",
@@ -2261,7 +2480,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 209637,
-    "updated": "2026-06-11T16:18:20.132Z",
+    "updated": "2026-07-20T17:18:35.486Z",
     "aliases": [
       "/assets/images/devproj.webp",
       "devproj.webp",
@@ -2279,11 +2498,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 209637,
-    "updated": "2026-06-11T16:18:20.128Z",
+    "updated": "2026-07-20T17:18:35.484Z",
     "aliases": [
       "/assets/images/dev3.png",
       "dev3.png",
       "dev3",
+      "assets",
+      "images"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/deret-fsm-concept.svg",
+    "path": "/assets/images/deret-fsm-concept.svg",
+    "name": "deret-fsm-concept.svg",
+    "stem": "deret-fsm-concept",
+    "ext": "svg",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 2244,
+    "updated": "2026-07-20T17:18:35.478Z",
+    "aliases": [
+      "/assets/images/deret-fsm-concept.svg",
+      "deret-fsm-concept.svg",
+      "deret-fsm-concept",
       "assets",
       "images"
     ]
@@ -2297,7 +2534,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/contact",
     "bytes": 681799,
-    "updated": "2026-06-11T16:18:20.124Z",
+    "updated": "2026-07-20T17:18:35.475Z",
     "aliases": [
       "/assets/images/contact/tdi.png",
       "tdi.png",
@@ -2305,24 +2542,6 @@ export const eosUploads = [
       "assets",
       "images",
       "contact"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/deret-fsm-concept.svg",
-    "path": "/assets/images/deret-fsm-concept.svg",
-    "name": "deret-fsm-concept.svg",
-    "stem": "deret-fsm-concept",
-    "ext": "svg",
-    "kind": "image",
-    "directory": "assets/images",
-    "bytes": 2244,
-    "updated": "2026-06-11T16:18:20.124Z",
-    "aliases": [
-      "/assets/images/deret-fsm-concept.svg",
-      "deret-fsm-concept.svg",
-      "deret-fsm-concept",
-      "assets",
-      "images"
     ]
   },
   {
@@ -2334,7 +2553,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/contact",
     "bytes": 97603,
-    "updated": "2026-06-11T16:18:20.116Z",
+    "updated": "2026-07-20T17:18:35.469Z",
     "aliases": [
       "/assets/images/contact/social.png",
       "social.png",
@@ -2353,7 +2572,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/contact",
     "bytes": 15674,
-    "updated": "2026-06-11T16:18:20.114Z",
+    "updated": "2026-07-20T17:18:35.465Z",
     "aliases": [
       "/assets/images/contact/professional.png",
       "professional.png",
@@ -2372,7 +2591,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/contact",
     "bytes": 626056,
-    "updated": "2026-06-11T16:18:20.112Z",
+    "updated": "2026-07-20T17:18:35.463Z",
     "aliases": [
       "/assets/images/contact/hero.png",
       "hero.png",
@@ -2391,7 +2610,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/contact",
     "bytes": 696992,
-    "updated": "2026-06-11T16:18:20.105Z",
+    "updated": "2026-07-20T17:18:35.448Z",
     "aliases": [
       "/assets/images/contact/general.png",
       "general.png",
@@ -2410,7 +2629,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 293925,
-    "updated": "2026-06-11T16:18:20.095Z",
+    "updated": "2026-07-20T17:18:35.436Z",
     "aliases": [
       "/assets/images/construction/windoor.png",
       "windoor.png",
@@ -2429,7 +2648,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 943024,
-    "updated": "2026-06-11T16:18:20.093Z",
+    "updated": "2026-07-20T17:18:35.434Z",
     "aliases": [
       "/assets/images/construction/tools.png",
       "tools.png",
@@ -2448,7 +2667,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 873690,
-    "updated": "2026-06-11T16:18:20.086Z",
+    "updated": "2026-07-20T17:18:35.425Z",
     "aliases": [
       "/assets/images/construction/strapping.png",
       "strapping.png",
@@ -2467,7 +2686,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 204117,
-    "updated": "2026-06-11T16:18:20.080Z",
+    "updated": "2026-07-20T17:18:35.419Z",
     "aliases": [
       "/assets/images/construction/painter.png",
       "painter.png",
@@ -2486,7 +2705,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 6062557,
-    "updated": "2026-06-11T16:18:20.076Z",
+    "updated": "2026-07-20T17:18:35.417Z",
     "aliases": [
       "/assets/images/construction/insul.png",
       "insul.png",
@@ -2505,7 +2724,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 525793,
-    "updated": "2026-06-11T16:18:20.032Z",
+    "updated": "2026-07-20T17:18:35.369Z",
     "aliases": [
       "/assets/images/construction/hemsides.png",
       "hemsides.png",
@@ -2524,7 +2743,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 1275547,
-    "updated": "2026-06-11T16:18:20.028Z",
+    "updated": "2026-07-20T17:18:35.365Z",
     "aliases": [
       "/assets/images/construction/hemce.png",
       "hemce.png",
@@ -2543,7 +2762,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 336455,
-    "updated": "2026-06-11T16:18:20.014Z",
+    "updated": "2026-07-20T17:18:35.351Z",
     "aliases": [
       "/assets/images/construction/flagspeed.png",
       "flagspeed.png",
@@ -2562,7 +2781,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 1076080,
-    "updated": "2026-06-11T16:18:20.010Z",
+    "updated": "2026-07-20T17:18:35.349Z",
     "aliases": [
       "/assets/images/construction/flagger.png",
       "flagger.png",
@@ -2581,7 +2800,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 1869026,
-    "updated": "2026-06-11T16:18:20.000Z",
+    "updated": "2026-07-20T17:18:35.338Z",
     "aliases": [
       "/assets/images/construction/expa.png",
       "expa.png",
@@ -2600,7 +2819,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 392952,
-    "updated": "2026-06-11T16:18:19.986Z",
+    "updated": "2026-07-20T17:18:35.324Z",
     "aliases": [
       "/assets/images/construction/errflag.png",
       "errflag.png",
@@ -2619,7 +2838,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/construction",
     "bytes": 119348,
-    "updated": "2026-06-11T16:18:19.982Z",
+    "updated": "2026-07-20T17:18:35.320Z",
     "aliases": [
       "/assets/images/construction/door.png",
       "door.png",
@@ -2638,7 +2857,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 37696,
-    "updated": "2026-06-11T16:18:19.978Z",
+    "updated": "2026-07-20T17:18:35.311Z",
     "aliases": [
       "/assets/images/construction.webp",
       "construction.webp",
@@ -2656,7 +2875,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 601096,
-    "updated": "2026-06-11T16:18:19.976Z",
+    "updated": "2026-07-20T17:18:35.309Z",
     "aliases": [
       "/assets/images/checker.png",
       "checker.png",
@@ -2674,7 +2893,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/chains",
     "bytes": 1834441,
-    "updated": "2026-06-11T16:18:19.956Z",
+    "updated": "2026-07-20T17:18:35.301Z",
     "aliases": [
       "/assets/images/chains/scanner.png",
       "scanner.png",
@@ -2693,7 +2912,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/chains",
     "bytes": 1487114,
-    "updated": "2026-06-11T16:18:19.946Z",
+    "updated": "2026-07-20T17:18:35.288Z",
     "aliases": [
       "/assets/images/chains/kaelorch.png",
       "kaelorch.png",
@@ -2712,7 +2931,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/chains",
     "bytes": 58969,
-    "updated": "2026-06-11T16:18:19.937Z",
+    "updated": "2026-07-20T17:18:35.276Z",
     "aliases": [
       "/assets/images/chains/chainpad.png",
       "chainpad.png",
@@ -2731,11 +2950,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 339810,
-    "updated": "2026-06-11T16:18:19.935Z",
+    "updated": "2026-07-20T17:18:35.274Z",
     "aliases": [
       "/assets/images/chains.webp",
       "chains.webp",
       "chains",
+      "assets",
+      "images"
+    ]
+  },
+  {
+    "key": "asset:/assets/images/cater.png",
+    "path": "/assets/images/cater.png",
+    "name": "cater.png",
+    "stem": "cater",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/images",
+    "bytes": 71116,
+    "updated": "2026-07-20T17:18:35.268Z",
+    "aliases": [
+      "/assets/images/cater.png",
+      "cater.png",
+      "cater",
       "assets",
       "images"
     ]
@@ -2749,7 +2986,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 504251,
-    "updated": "2026-06-11T16:18:19.929Z",
+    "updated": "2026-07-20T17:18:35.264Z",
     "aliases": [
       "/assets/images/bkgowl.png",
       "bkgowl.png",
@@ -2767,7 +3004,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 4020865,
-    "updated": "2026-06-11T16:18:19.919Z",
+    "updated": "2026-07-20T17:18:35.253Z",
     "aliases": [
       "/assets/images/banner.jpg",
       "banner.jpg",
@@ -2785,7 +3022,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1116460,
-    "updated": "2026-06-11T16:18:19.879Z",
+    "updated": "2026-07-20T17:18:35.209Z",
     "aliases": [
       "/assets/images/ai/vigi-ai.png",
       "vigi-ai.png",
@@ -2804,7 +3041,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1064314,
-    "updated": "2026-06-11T16:18:19.871Z",
+    "updated": "2026-07-20T17:18:35.203Z",
     "aliases": [
       "/assets/images/ai/kael-br.png",
       "kael-br.png",
@@ -2823,7 +3060,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 878929,
-    "updated": "2026-06-11T16:18:19.864Z",
+    "updated": "2026-07-20T17:18:35.195Z",
     "aliases": [
       "/assets/images/ai/chailse.png",
       "chailse.png",
@@ -2842,7 +3079,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 449245,
-    "updated": "2026-06-11T16:18:19.855Z",
+    "updated": "2026-07-20T17:18:35.188Z",
     "aliases": [
       "/assets/images/ai/ainor-dashboard.png",
       "ainor-dashboard.png",
@@ -2861,7 +3098,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 68047,
-    "updated": "2026-06-11T16:18:19.848Z",
+    "updated": "2026-07-20T17:18:35.174Z",
     "aliases": [
       "/assets/images/ai/ainor-br.png",
       "ainor-br.png",
@@ -2880,7 +3117,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1049610,
-    "updated": "2026-06-11T16:18:19.846Z",
+    "updated": "2026-07-20T17:18:35.170Z",
     "aliases": [
       "/assets/images/ai/ai-ops.png",
       "ai-ops.png",
@@ -2899,7 +3136,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1003702,
-    "updated": "2026-06-11T16:18:19.836Z",
+    "updated": "2026-07-20T17:18:35.164Z",
     "aliases": [
       "/assets/images/ai/ai-nlp.png",
       "ai-nlp.png",
@@ -2918,7 +3155,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1113867,
-    "updated": "2026-06-11T16:18:19.828Z",
+    "updated": "2026-07-20T17:18:35.155Z",
     "aliases": [
       "/assets/images/ai/ai-kael.png",
       "ai-kael.png",
@@ -2937,7 +3174,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 1186807,
-    "updated": "2026-06-11T16:18:19.820Z",
+    "updated": "2026-07-20T17:18:35.147Z",
     "aliases": [
       "/assets/images/ai/ai-data.png",
       "ai-data.png",
@@ -2956,7 +3193,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images/ai",
     "bytes": 97876,
-    "updated": "2026-06-11T16:18:19.808Z",
+    "updated": "2026-07-20T17:18:35.135Z",
     "aliases": [
       "/assets/images/ai/ai-banner.png",
       "ai-banner.png",
@@ -2975,7 +3212,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 37180,
-    "updated": "2026-06-11T16:18:19.806Z",
+    "updated": "2026-07-20T17:18:35.133Z",
     "aliases": [
       "/assets/images/ai.webp",
       "ai.webp",
@@ -2993,7 +3230,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/images",
     "bytes": 13811,
-    "updated": "2026-06-11T16:18:19.804Z",
+    "updated": "2026-07-20T17:18:35.131Z",
     "aliases": [
       "/assets/images/YHWH.png",
       "YHWH.png",
@@ -3011,29 +3248,11 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 12291,
-    "updated": "2026-06-11T16:18:19.790Z",
+    "updated": "2026-07-20T17:18:35.118Z",
     "aliases": [
       "/assets/icons/shortcut-skincradle.png",
       "shortcut-skincradle.png",
       "shortcut-skincradle",
-      "assets",
-      "icons"
-    ]
-  },
-  {
-    "key": "asset:/assets/icons/shortcut-resume.png",
-    "path": "/assets/icons/shortcut-resume.png",
-    "name": "shortcut-resume.png",
-    "stem": "shortcut-resume",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/icons",
-    "bytes": 12291,
-    "updated": "2026-06-11T16:18:19.788Z",
-    "aliases": [
-      "/assets/icons/shortcut-resume.png",
-      "shortcut-resume.png",
-      "shortcut-resume",
       "assets",
       "icons"
     ]
@@ -3047,11 +3266,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 15624,
-    "updated": "2026-06-11T16:18:19.788Z",
+    "updated": "2026-07-20T17:18:35.116Z",
     "aliases": [
       "/assets/icons/shortcut-robo.png",
       "shortcut-robo.png",
       "shortcut-robo",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/shortcut-resume.png",
+    "path": "/assets/icons/shortcut-resume.png",
+    "name": "shortcut-resume.png",
+    "stem": "shortcut-resume",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 12291,
+    "updated": "2026-07-20T17:18:35.111Z",
+    "aliases": [
+      "/assets/icons/shortcut-resume.png",
+      "shortcut-resume.png",
+      "shortcut-resume",
       "assets",
       "icons"
     ]
@@ -3065,29 +3302,11 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 9638,
-    "updated": "2026-06-11T16:18:19.786Z",
+    "updated": "2026-07-20T17:18:35.109Z",
     "aliases": [
       "/assets/icons/shortcut-elka.png",
       "shortcut-elka.png",
       "shortcut-elka",
-      "assets",
-      "icons"
-    ]
-  },
-  {
-    "key": "asset:/assets/icons/icon.svg",
-    "path": "/assets/icons/icon.svg",
-    "name": "icon.svg",
-    "stem": "icon",
-    "ext": "svg",
-    "kind": "image",
-    "directory": "assets/icons",
-    "bytes": 226898,
-    "updated": "2026-06-11T16:18:19.784Z",
-    "aliases": [
-      "/assets/icons/icon.svg",
-      "icon.svg",
-      "icon",
       "assets",
       "icons"
     ]
@@ -3101,7 +3320,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 12291,
-    "updated": "2026-06-11T16:18:19.784Z",
+    "updated": "2026-07-20T17:18:35.107Z",
     "aliases": [
       "/assets/icons/shortcut-ai.png",
       "shortcut-ai.png",
@@ -3111,19 +3330,19 @@ export const eosUploads = [
     ]
   },
   {
-    "key": "asset:/assets/icons/apple-touch-icon.png",
-    "path": "/assets/icons/apple-touch-icon.png",
-    "name": "apple-touch-icon.png",
-    "stem": "apple-touch-icon",
-    "ext": "png",
+    "key": "asset:/assets/icons/icon.svg",
+    "path": "/assets/icons/icon.svg",
+    "name": "icon.svg",
+    "stem": "icon",
+    "ext": "svg",
     "kind": "image",
     "directory": "assets/icons",
-    "bytes": 35326,
-    "updated": "2026-06-11T16:18:19.780Z",
+    "bytes": 226898,
+    "updated": "2026-07-20T17:18:35.105Z",
     "aliases": [
-      "/assets/icons/apple-touch-icon.png",
-      "apple-touch-icon.png",
-      "apple-touch-icon",
+      "/assets/icons/icon.svg",
+      "icon.svg",
+      "icon",
       "assets",
       "icons"
     ]
@@ -3137,11 +3356,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 2179,
-    "updated": "2026-06-11T16:18:19.780Z",
+    "updated": "2026-07-20T17:18:35.103Z",
     "aliases": [
       "/assets/icons/favicon-32x32.png",
       "favicon-32x32.png",
       "favicon-32x32",
+      "assets",
+      "icons"
+    ]
+  },
+  {
+    "key": "asset:/assets/icons/apple-touch-icon.png",
+    "path": "/assets/icons/apple-touch-icon.png",
+    "name": "apple-touch-icon.png",
+    "stem": "apple-touch-icon",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/icons",
+    "bytes": 35326,
+    "updated": "2026-07-20T17:18:35.101Z",
+    "aliases": [
+      "/assets/icons/apple-touch-icon.png",
+      "apple-touch-icon.png",
+      "apple-touch-icon",
       "assets",
       "icons"
     ]
@@ -3155,7 +3392,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 226898,
-    "updated": "2026-06-11T16:18:19.778Z",
+    "updated": "2026-07-20T17:18:35.099Z",
     "aliases": [
       "/assets/icons/android-chrome-512x512.png",
       "android-chrome-512x512.png",
@@ -3173,7 +3410,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/icons",
     "bytes": 39463,
-    "updated": "2026-06-11T16:18:19.774Z",
+    "updated": "2026-07-20T17:18:35.093Z",
     "aliases": [
       "/assets/icons/android-chrome-192x192.png",
       "android-chrome-192x192.png",
@@ -3191,30 +3428,12 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets",
     "bytes": 887971,
-    "updated": "2026-06-11T16:18:19.772Z",
+    "updated": "2026-07-20T17:18:35.085Z",
     "aliases": [
       "/assets/deos.png",
       "deos.png",
       "deos",
       "assets"
-    ]
-  },
-  {
-    "key": "asset:/assets/data/arrival-signals.json",
-    "path": "/assets/data/arrival-signals.json",
-    "name": "arrival-signals.json",
-    "stem": "arrival-signals",
-    "ext": "json",
-    "kind": "data",
-    "directory": "assets/data",
-    "bytes": 38691,
-    "updated": "2026-06-11T16:18:19.763Z",
-    "aliases": [
-      "/assets/data/arrival-signals.json",
-      "arrival-signals.json",
-      "arrival-signals",
-      "assets",
-      "data"
     ]
   },
   {
@@ -3226,11 +3445,48 @@ export const eosUploads = [
     "kind": "data",
     "directory": "assets/data",
     "bytes": 123,
-    "updated": "2026-06-11T16:18:19.763Z",
+    "updated": "2026-07-20T17:18:35.076Z",
     "aliases": [
       "/assets/data/tdi_feed.json",
       "tdi_feed.json",
       "tdi_feed",
+      "assets",
+      "data"
+    ]
+  },
+  {
+    "key": "asset:/assets/data/hydrion/releases.json",
+    "path": "/assets/data/hydrion/releases.json",
+    "name": "releases.json",
+    "stem": "releases",
+    "ext": "json",
+    "kind": "data",
+    "directory": "assets/data/hydrion",
+    "bytes": 1605,
+    "updated": "2026-07-20T17:18:35.074Z",
+    "aliases": [
+      "/assets/data/hydrion/releases.json",
+      "releases.json",
+      "releases",
+      "assets",
+      "data",
+      "hydrion"
+    ]
+  },
+  {
+    "key": "asset:/assets/data/arrival-signals.json",
+    "path": "/assets/data/arrival-signals.json",
+    "name": "arrival-signals.json",
+    "stem": "arrival-signals",
+    "ext": "json",
+    "kind": "data",
+    "directory": "assets/data",
+    "bytes": 38691,
+    "updated": "2026-07-20T17:18:35.072Z",
+    "aliases": [
+      "/assets/data/arrival-signals.json",
+      "arrival-signals.json",
+      "arrival-signals",
       "assets",
       "data"
     ]
@@ -3244,7 +3500,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/cursors",
     "bytes": 4336,
-    "updated": "2026-06-11T16:18:19.761Z",
+    "updated": "2026-07-20T17:18:35.070Z",
     "aliases": [
       "/assets/cursors/typing@2x.png",
       "typing@2x.png",
@@ -3262,29 +3518,11 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/cursors",
     "bytes": 1117,
-    "updated": "2026-06-11T16:18:19.758Z",
+    "updated": "2026-07-20T17:18:35.068Z",
     "aliases": [
       "/assets/cursors/typing.png",
       "typing.png",
       "typing",
-      "assets",
-      "cursors"
-    ]
-  },
-  {
-    "key": "asset:/assets/cursors/pointer.png",
-    "path": "/assets/cursors/pointer.png",
-    "name": "pointer.png",
-    "stem": "pointer",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/cursors",
-    "bytes": 750,
-    "updated": "2026-06-11T16:18:19.756Z",
-    "aliases": [
-      "/assets/cursors/pointer.png",
-      "pointer.png",
-      "pointer",
       "assets",
       "cursors"
     ]
@@ -3298,7 +3536,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/cursors",
     "bytes": 4191,
-    "updated": "2026-06-11T16:18:19.756Z",
+    "updated": "2026-07-20T17:18:35.066Z",
     "aliases": [
       "/assets/cursors/pointer@2x.png",
       "pointer@2x.png",
@@ -3308,19 +3546,19 @@ export const eosUploads = [
     ]
   },
   {
-    "key": "asset:/assets/cursors/editor@2x.png",
-    "path": "/assets/cursors/editor@2x.png",
-    "name": "editor@2x.png",
-    "stem": "editor@2x",
+    "key": "asset:/assets/cursors/pointer.png",
+    "path": "/assets/cursors/pointer.png",
+    "name": "pointer.png",
+    "stem": "pointer",
     "ext": "png",
     "kind": "image",
     "directory": "assets/cursors",
-    "bytes": 2836,
-    "updated": "2026-06-11T16:18:19.749Z",
+    "bytes": 750,
+    "updated": "2026-07-20T17:18:35.064Z",
     "aliases": [
-      "/assets/cursors/editor@2x.png",
-      "editor@2x.png",
-      "editor@2x",
+      "/assets/cursors/pointer.png",
+      "pointer.png",
+      "pointer",
       "assets",
       "cursors"
     ]
@@ -3334,7 +3572,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/cursors",
     "bytes": 1309,
-    "updated": "2026-06-11T16:18:19.747Z",
+    "updated": "2026-07-20T17:18:35.060Z",
     "aliases": [
       "/assets/cursors/editor.png",
       "editor.png",
@@ -3344,19 +3582,19 @@ export const eosUploads = [
     ]
   },
   {
-    "key": "asset:/assets/cursors/default.png",
-    "path": "/assets/cursors/default.png",
-    "name": "default.png",
-    "stem": "default",
+    "key": "asset:/assets/cursors/editor@2x.png",
+    "path": "/assets/cursors/editor@2x.png",
+    "name": "editor@2x.png",
+    "stem": "editor@2x",
     "ext": "png",
     "kind": "image",
     "directory": "assets/cursors",
-    "bytes": 922,
-    "updated": "2026-06-11T16:18:19.745Z",
+    "bytes": 2836,
+    "updated": "2026-07-20T17:18:35.060Z",
     "aliases": [
-      "/assets/cursors/default.png",
-      "default.png",
-      "default",
+      "/assets/cursors/editor@2x.png",
+      "editor@2x.png",
+      "editor@2x",
       "assets",
       "cursors"
     ]
@@ -3370,11 +3608,29 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/cursors",
     "bytes": 3709,
-    "updated": "2026-06-11T16:18:19.745Z",
+    "updated": "2026-07-20T17:18:35.058Z",
     "aliases": [
       "/assets/cursors/default@2x.png",
       "default@2x.png",
       "default@2x",
+      "assets",
+      "cursors"
+    ]
+  },
+  {
+    "key": "asset:/assets/cursors/default.png",
+    "path": "/assets/cursors/default.png",
+    "name": "default.png",
+    "stem": "default",
+    "ext": "png",
+    "kind": "image",
+    "directory": "assets/cursors",
+    "bytes": 922,
+    "updated": "2026-07-20T17:18:35.056Z",
+    "aliases": [
+      "/assets/cursors/default.png",
+      "default.png",
+      "default",
       "assets",
       "cursors"
     ]
@@ -3388,7 +3644,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/Certs",
     "bytes": 76002,
-    "updated": "2026-06-11T16:18:19.699Z",
+    "updated": "2026-07-20T17:18:34.993Z",
     "aliases": [
       "/assets/Certs/Python-Programming-GA.png",
       "Python-Programming-GA.png",
@@ -3406,7 +3662,7 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/Certs",
     "bytes": 436275,
-    "updated": "2026-06-11T16:18:19.697Z",
+    "updated": "2026-07-20T17:18:34.989Z",
     "aliases": [
       "/assets/Certs/DevOps-Cousera.png",
       "DevOps-Cousera.png",
@@ -3424,51 +3680,13 @@ export const eosUploads = [
     "kind": "image",
     "directory": "assets/Certs",
     "bytes": 429781,
-    "updated": "2026-06-11T16:18:19.689Z",
+    "updated": "2026-07-20T17:18:34.978Z",
     "aliases": [
       "/assets/Certs/CloudComputing-Cousera.png",
       "CloudComputing-Cousera.png",
       "CloudComputing-Cousera",
       "assets",
       "Certs"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/projects/heimdallchar.png",
-    "path": "/assets/images/projects/heimdallchar.png",
-    "name": "heimdallchar.png",
-    "stem": "heimdallchar",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images/projects",
-    "bytes": 2272140,
-    "updated": "2026-06-01T23:51:06.131Z",
-    "aliases": [
-      "/assets/images/projects/heimdallchar.png",
-      "heimdallchar.png",
-      "heimdallchar",
-      "assets",
-      "images",
-      "projects"
-    ]
-  },
-  {
-    "key": "asset:/assets/images/projects/clipsense.png",
-    "path": "/assets/images/projects/clipsense.png",
-    "name": "clipsense.png",
-    "stem": "clipsense",
-    "ext": "png",
-    "kind": "image",
-    "directory": "assets/images/projects",
-    "bytes": 1185091,
-    "updated": "2026-05-27T12:29:46.582Z",
-    "aliases": [
-      "/assets/images/projects/clipsense.png",
-      "clipsense.png",
-      "clipsense",
-      "assets",
-      "images",
-      "projects"
     ]
   }
 ];

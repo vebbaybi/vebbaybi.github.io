@@ -1,0 +1,32 @@
+{
+  "product": "Hydrion",
+  "publisher": "The 1807",
+  "tag": "v1.1.0-rc.1",
+  "displayVersion": "v1.1.0 RC1",
+  "releaseName": "Hydrion V1.1.0",
+  "channel": "Release candidate",
+  "status": "Public testing",
+  "platform": "Android",
+  "format": "APK",
+  "distribution": "Direct download outside Google Play",
+  "publishedAt": "2026-07-19T22:14:54Z",
+  "publishedDate": "July 19, 2026",
+  "downloadUrl": "https://github.com/The-1807/hydrion/releases/download/v1.1.0-rc.1/Hydrion.apk",
+  "releaseUrl": "https://github.com/The-1807/hydrion/releases/tag/v1.1.0-rc.1",
+  "repositoryUrl": "https://github.com/The-1807/hydrion",
+  "issuesUrl": "https://github.com/The-1807/hydrion/issues",
+  "discordUrl": "https://discord.gg/3ZPDAm3A8",
+  "assetName": "Hydrion.apk",
+  "assetBytes": 78670177,
+  "assetSizeLabel": "75.0 MiB",
+  "sha256": "775fc0de365ad2769dea1f0770be2b0a6e66af47f93847ee276787b062776e16",
+  "applicationId": "com.the1807.hydrion",
+  "storeAvailability": "Not currently distributed through Google Play",
+  "testingNotice": "Hydrion v1.1.0 RC1 is a public test build. Some interface and device-specific behavior may still be refined before the stable release.",
+  "sourceEvidence": {
+    "githubRelease": "Verified with GitHub release metadata on July 20, 2026",
+    "assetDigest": "Verified from the GitHub release asset digest and direct APK download",
+    "applicationId": "Verified from android/app/build.gradle.kts",
+    "minimumAndroid": "Not published because the Flutter-resolved minimum SDK was not available in the inspected source configuration"
+  }
+}

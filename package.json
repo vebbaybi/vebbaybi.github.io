@@ -4,6 +4,8 @@
     "sync": "node scripts/sync-clean-routes.mjs",
     "audit": "node scripts/audit-site.mjs",
     "smoke": "node scripts/smoke-pages.mjs",
+    "hydrion:build": "node scripts/build-hydrion-site.mjs",
+    "hydrion:check": "node scripts/check-hydrion-site.mjs",
     "check": "node scripts/audit-site.mjs"
   }
 }
