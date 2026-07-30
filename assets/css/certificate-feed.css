@@ -1,0 +1,126 @@
+@layer components {
+  .certificate-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: clamp(0.9rem, 1.5vw, 1.25rem);
+    align-items: start;
+  }
+
+  .certificate-feed[data-limit] {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  }
+
+  .certificate-feed__card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--stream-line, rgba(127, 196, 255, 0.22));
+    border-radius: var(--stream-radius, 8px);
+    background: var(--stream-panel, rgba(8, 13, 26, 0.84));
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25);
+  }
+
+  .certificate-feed__media {
+    display: grid;
+    min-height: clamp(180px, 24vw, 260px);
+    place-items: center;
+    padding: clamp(0.65rem, 1.5vw, 1rem);
+    overflow: hidden;
+    border-bottom: 1px solid var(--stream-line, rgba(127, 196, 255, 0.22));
+    background:
+      linear-gradient(135deg, rgba(77, 248, 255, 0.12), transparent 38%),
+      linear-gradient(315deg, rgba(255, 61, 242, 0.1), transparent 42%),
+      rgba(2, 6, 18, 0.7);
+  }
+
+  .certificate-feed__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+  .certificate-feed__media:focus-visible,
+  .certificate-feed__action:focus-visible {
+    outline: 2px solid var(--stream-green, #8cf2bd);
+    outline-offset: -3px;
+  }
+
+  .certificate-feed__pdf {
+    display: grid;
+    gap: 0.4rem;
+    place-items: center;
+    color: var(--stream-text, #f5f8ff);
+    text-align: center;
+  }
+
+  .certificate-feed__pdf strong {
+    display: grid;
+    width: 4.5rem;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    color: var(--stream-cyan, #69e6ff);
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+  }
+
+  .certificate-feed__body {
+    display: grid;
+    gap: 0.7rem;
+    padding: clamp(0.9rem, 2vw, 1.2rem);
+  }
+
+  .certificate-feed__eyebrow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.6rem;
+    color: var(--stream-green, #8cf2bd);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .certificate-feed__type {
+    flex: 0 0 auto;
+    color: var(--stream-cyan, #69e6ff);
+  }
+
+  .certificate-feed__title {
+    margin: 0;
+    color: var(--stream-text, #f5f8ff);
+    font-size: 1.18rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .certificate-feed__date,
+  .certificate-feed__description {
+    margin: 0;
+    color: var(--stream-muted, #b8c5d9);
+    line-height: 1.5;
+  }
+
+  .certificate-feed__date {
+    font-size: 0.9rem;
+  }
+
+  .certificate-feed__action {
+    width: fit-content;
+    color: var(--stream-cyan, #69e6ff);
+    font-weight: 800;
+  }
+
+  .certificate-feed__empty,
+  .certificate-feed__error {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: clamp(1rem, 3vw, 2rem);
+    border: 1px dashed var(--stream-line, rgba(127, 196, 255, 0.22));
+    color: var(--stream-muted, #b8c5d9);
+    text-align: center;
+  }
+}

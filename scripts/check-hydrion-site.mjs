@@ -31,6 +31,11 @@ async function exists(file) {
 function routeToFile(href) {
   const clean = href.split('#')[0].split('?')[0];
   if (!clean || clean === '/') return path.join(siteRoot, 'index.html');
+  if (!standalone && clean.startsWith('/') && !clean.startsWith('/hydrion/') && !clean.startsWith('/assets/')) {
+    return clean.endsWith('/')
+      ? path.join(root, clean.slice(1), 'index.html')
+      : path.join(root, clean.slice(1));
+  }
   const withoutPrefix = clean.replace(/^\/hydrion(?=\/|$)/, '') || '/';
   if (withoutPrefix.startsWith('/assets/')) return path.join(root, withoutPrefix.slice(1));
   if (withoutPrefix.endsWith('/')) return path.join(siteRoot, `${withoutPrefix.slice(1)}index.html`);

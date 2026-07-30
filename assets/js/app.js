@@ -5,12 +5,19 @@ import { initHeader } from './ui/components/header.js';
 import { initNav } from './ui/components/nav.js';
 import { initContractorBubble } from './ui/contractor-bubbles.js';
 import { initThemeToggle } from './ui/theme.js';
+import { initNeonNet } from './effects/neon-net.js';
 
 const pageMeta = {
-  '/':               { title: 'Home - 1807-Chain',            desc: 'webbaby portfolio' },
-  '/home':           { title: 'Uchenna Anozie - The 1807',    desc: 'Proof-first professional portfolio' },
+  '/':               { title: 'The 1807 - Product Software and Systems', desc: 'Products, selected work, and lab systems by The 1807' },
+  '/home':           { title: 'The 1807 - Product Software and Systems', desc: 'Compatibility route for The 1807 homepage' },
+  '/work':           { title: 'Work - The 1807', desc: 'Hydrion, Modoroco, and ClipSense product pages' },
+  '/hub':            { title: 'The 1807 Hub', desc: 'Official software releases and availability' },
+  '/products':       { title: 'Work moved - The 1807', desc: 'Compatibility route for The 1807 work page' },
   '/scroll_paper':   { title: 'Scroll Paper - 1807-Chain',    desc: 'Newspaper story & showcase' },
   '/projects':       { title: 'Projects - Uchenna Anozie',    desc: 'Active project hub for Heimdall, Hydrion, Luna, ELKA, ClipSense, CATER, and SkinCradle' },
+  '/modoroco':       { title: 'Modoroco - The 1807', desc: 'Pre-1.0 native focus environment and timer engine by The 1807' },
+  '/clipsense':      { title: 'ClipSense - The 1807', desc: 'MVP creator footage intelligence product initiative by The 1807' },
+  '/about':          { title: 'About - The 1807', desc: 'The 1807 publisher identity and operating perspective' },
   '/ai':             { title: 'AI Projects - 1807-Chain',     desc: 'Models, pipelines, and production AI systems' },
   '/skincradle':     { title: 'SkinCradle Halo Tracker - 1807-Chain', desc: 'Browser-based hand and face landmark visual tracker for halos and gesture drawing' },
   '/robotics':       { title: 'Robotics - 1807-Chain',        desc: 'Embedded, control, and vision systems' },
@@ -32,15 +39,6 @@ const pageMeta = {
   '/faq':            { title: 'FAQ - 1807-Chain',             desc: 'Frequently asked questions' },
   '/legal':          { title: 'Legal - 1807-Chain',           desc: 'Privacy & Terms' },
   '/1807-contractor': { title: '1807 Contractor - The 1807',  desc: 'Doctrine, definition, principles, and operating model of an 1807 contractor.' },
-  '/1807osport':     { title: '1807os Portfolio - The 1807',  desc: 'Operating-system portfolio experience for The 1807 with live modules, telemetry, and alternate navigation.' },
-  '/1807osport/ai':  { title: '1807os AI - The 1807',          desc: 'Operating-system portfolio AI workspace.' },
-  '/1807osport/data': { title: '1807os Data - The 1807',       desc: 'Operating-system portfolio data workspace.' },
-  '/1807osport/robotics': { title: '1807os Robotics - The 1807', desc: 'Operating-system portfolio robotics workspace.' },
-  '/1807osport/chains': { title: '1807os Chains - The 1807',   desc: 'Operating-system portfolio chains workspace.' },
-  '/1807osport/about': { title: '1807os About - The 1807',     desc: 'Operating-system portfolio story workspace.' },
-  '/1807osport/contractor': { title: '1807os Contractor - The 1807', desc: 'Operating-system portfolio contractor workspace.' },
-  '/1807osport/resume': { title: '1807os Resume - The 1807',   desc: 'Operating-system portfolio resume workspace.' },
-  '/1807osport/contact': { title: '1807os Contact - The 1807', desc: 'Operating-system portfolio contact workspace.' },
 };
 
 function routeKey(pathname = window.location.pathname) {
@@ -66,16 +64,16 @@ function currentMeta() {
 async function boot() {
   let scrollPaperCleanup = null;
   let contractorBubbleCleanup = null;
+  let neonNetCleanup = null;
 
   try {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
     await Promise.all([initHeader(), initFooter(), initNav()]);
     initThemeToggle();
+    neonNetCleanup = initNeonNet();
 
     const shouldUseContractorBubble = () => {
       const rk = routeKey();
-      return rk === '/1807-contractor' || rk.startsWith('/1807osport');
+      return rk === '/1807-contractor';
     };
 
     const initContractorBubbleSafely = () => {
@@ -193,6 +191,13 @@ async function boot() {
           contractorBubbleCleanup.cleanup();
         } catch (err) {
           console.error('Contractor bubble cleanup on unload failed:', err);
+        }
+      }
+      if (neonNetCleanup?.cleanup) {
+        try {
+          neonNetCleanup.cleanup();
+        } catch (err) {
+          console.error('Neon net cleanup failed:', err);
         }
       }
     });

@@ -1,97 +1,209 @@
-<!DOCTYPE html>
-<html lang="en" data-app="1807" data-page="index" data-version="v1.1">
-
+<!doctype html>
+<html lang="en" data-app="1807" data-page="home">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
-  <title>Welcome to The 1807 | Uchenna Anozie</title>
-
-
-  <link rel="canonical" href="https://the1807.xyz/" />
-  <meta name="description"
-    content="Explore Uchenna Anozie’s (webbaby) portfolio of AI, Data Science, Embedded Systems, and Blockchain projects. Discover innovative solutions and research-ready skills." />
-  <meta name="keywords"
-    content="Uchenna Anozie, webbaby, The 1807, portfolio, AI, Data Science, Embedded Systems, Blockchain, Python, C/C++, Rust, Ottawa" />
-  <meta name="theme-color" content="#111111" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
-
-
-  <meta property="og:title" content="Welcome to The 1807 | Uchenna Anozie" />
-  <meta property="og:description"
-    content="Explore AI, Data Science, Embedded Systems, and Blockchain projects by Uchenna Anozie (webbaby)." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://the1807.xyz/" />
-  <meta property="og:image" content="https://the1807.xyz/assets/images/thedev.webp" />
-  <meta property="og:image:alt" content="Portrait of Uchenna Anozie | AI, Data, Embedded & Blockchain portfolio" />
-  <meta property="og:site_name" content="The 1807" />
-
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Welcome to The 1807 | Uchenna Anozie" />
-  <meta name="twitter:description"
-    content="Discover Uchenna Anozie’s portfolio of AI, Data Science, Embedded Systems, and Blockchain projects." />
-  <meta name="twitter:image" content="https://the1807.xyz/assets/images/thedev.webp" />
-
-
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
-
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double+Ink:wght@100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-    rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
-
-
-  <link rel="preload" href="/assets/cursors/default.png" as="image" />
-  <link rel="preload" href="/assets/cursors/pointer.png" as="image" />
-  <link rel="preload" href="/assets/cursors/editor.png" as="image" />
-  <link rel="preload" href="/assets/cursors/typing.png" as="image" />
-
-
-  <link rel="preload" href="/assets/images/gif/theme.gif" as="image" />
-  <link rel="preload" href="/assets/images/gif/menu.gif" as="image" />
-  <link rel="preload" href="/assets/css/main.css" as="style" />
-
-
-  <link rel="stylesheet" href="/assets/css/intro.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/pages.css" />
-  <link rel="stylesheet" href="/assets/css/components.css" />
-  <link rel="stylesheet" href="/assets/css/landing.css?v=1.0.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>The 1807 — Independent software by Uchenna Anozie</title>
+  <meta name="description" content="The 1807 is Uchenna Anozie's independent software studio, home to Hydrion, Modoroco, and ClipSense.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#02060c">
+  <link rel="canonical" href="https://the1807.xyz/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The 1807">
+  <meta property="og:title" content="The 1807 — Independent software, intelligently made">
+  <meta property="og:description" content="Hydrion, Modoroco, and ClipSense: focused software built by Uchenna Anozie.">
+  <meta property="og:url" content="https://the1807.xyz/">
+  <meta property="og:image" content="https://the1807.xyz/assets/images/img/logo/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The 1807 — Independent software, intelligently made">
+  <meta name="twitter:description" content="Hydrion, Modoroco, and ClipSense: focused software built by Uchenna Anozie.">
+  <meta name="twitter:image" content="https://the1807.xyz/assets/images/img/logo/logo.png">
+  <link rel="icon" href="/assets/images/img/favicons/favicon.ico" sizes="any">
+  <link rel="preload" href="/assets/images/img/logo/logooss.png" as="image">
+  <link rel="preload" href="/assets/babydev_nobg.svg" as="image" type="image/svg+xml" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/effects/neon-net.css">
+  <link rel="stylesheet" href="/assets/css/portfolio-overhaul.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"Organization","@id":"https://the1807.xyz/#studio","name":"The 1807","url":"https://the1807.xyz/","logo":"https://the1807.xyz/assets/images/img/logo/logo.png"},
+      {"@type":"Person","@id":"https://the1807.xyz/#uchenna","name":"Uchenna Emmanuel Anozie","alternateName":"webbaby","url":"https://the1807.xyz/","affiliation":{"@id":"https://the1807.xyz/#studio"},"sameAs":["https://github.com/vebbaybi","https://www.linkedin.com/in/uchenna-anozie-a86143308"]}
+    ]
+  }
+  </script>
 </head>
-
-<body class="theme-dark">
+<body class="portfolio-overhaul intro-active">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <main id="main" tabindex="-1">
-    <div class="runway">
-      <div id="TTGM-010" class="YVhW">
-        <img class="top-img" src="/assets/images/YHWH.png" alt="The 1807 splash image" fetchpriority="high"
-          decoding="async" />
+  <div class="entry" data-entry role="dialog" aria-modal="true" aria-label="The 1807 introduction">
+    <button class="entry__skip" type="button" data-entry-skip>Skip intro</button>
+    <div class="loader" data-loader role="status" aria-live="polite">
+      <div class="loader__mark">
+        <img src="/assets/images/img/logo/logooss.png" alt="">
+        <span class="loader__scan" aria-hidden="true"></span>
       </div>
-
-      <section class="landing-wrap" role="region" aria-label="Introduction">
-        <div id="typing-area" aria-live="polite" role="status"></div>
-        <div id="arrival-signal" class="arrival-signal arrival-signal--loading" aria-live="polite" hidden></div>
-        <div id="explosion" aria-hidden="true"></div>
-        <a class="btn" href="/home/" aria-label="Continue to portfolio">Enter Portfolio</a>
-      </section>
+      <p>Establishing signal</p>
     </div>
+    <div class="entry-puzzle" data-puzzle-stage hidden></div>
+    <div class="entry-complete" data-entry-complete hidden>
+      <img data-expressive-shark="/assets/images/img/logo/logoos.png" alt="The 1807 shark">
+      <p class="eyebrow">Signal accepted</p>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="shell site-header__inner">
+      <a class="brand" href="/" aria-label="The 1807 home">
+        <img src="/assets/images/img/logo/logo.png" alt="The 1807">
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle>Menu</button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation" data-primary-nav>
+        <a href="/work/">Work</a>
+        <a href="/hub/">Hub</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="signal-page streamline-page" tabindex="-1">
+    <section class="hero">
+      <div class="shell hero__grid">
+        <div>
+          <p class="eyebrow">The 1807 · Independent software studio</p>
+          <h1>Useful software for real human problems.</h1>
+          <p class="hero__lead">I’m Uchenna Anozie. I design and engineer focused products across wellbeing, productivity, and media intelligence.</p>
+          <div class="actions">
+            <a class="button" href="#work">View the work</a>
+            <a class="button button--ghost" href="/hub/">Open The 1807 Hub</a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="/assets/babydev_nobg.svg" alt="Portrait of Uchenna Anozie" width="375" height="666" decoding="async" fetchpriority="high">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <header class="section-head">
+          <p class="eyebrow">Selected software</p>
+          <h2 id="work-title">Three products. One deliberate standard.</h2>
+          <p>The public work is intentionally focused: products with a clear purpose, an honest status, and room to mature.</p>
+        </header>
+        <div class="projects">
+          <article class="project project--hydrion" data-signal-mode="hydrion">
+            <div class="project__copy">
+              <span class="project__number">01 / 03</span>
+              <h3>Hydrion</h3>
+              <p>A hydration companion that turns daily water goals into a private, practical routine.</p>
+              <span class="status">Public test release · Android</span>
+              <div class="actions">
+                <a class="button" href="/hydrion/">View product</a>
+                <a class="button button--ghost" href="/hydrion/download/">Download</a>
+              </div>
+            </div>
+            <div class="project__media">
+              <img src="/assets/images/products/hydrion/female_progress.png" alt="Hydrion progress screen" loading="lazy" decoding="async">
+            </div>
+          </article>
+
+          <article class="project project--modoroco" data-signal-mode="modoroco">
+            <div class="project__copy">
+              <span class="project__number">02 / 03</span>
+              <h3>Modoroco</h3>
+              <p>A measured focus and timing system for building repeatable work sessions.</p>
+              <span class="status">Active development</span>
+              <div class="actions">
+                <a class="button" href="/modoroco/">View product</a>
+                <a class="button button--ghost" href="/hub/#modoroco">Release status</a>
+              </div>
+            </div>
+            <div class="project__media">
+              <img src="/modoroco/assets/modoroco.png" alt="Modoroco product interface" loading="lazy" decoding="async">
+            </div>
+          </article>
+
+          <article class="project project--clipsense" data-signal-mode="clipsense">
+            <div class="project__copy">
+              <span class="project__number">03 / 03</span>
+              <h3>ClipSense</h3>
+              <p>A local-first media workflow for turning long recordings into searchable, useful context.</p>
+              <span class="status">Research prototype</span>
+              <div class="actions">
+                <a class="button" href="/clipsense/">View product</a>
+                <a class="button button--ghost" href="/hub/#clipsense">Release status</a>
+              </div>
+            </div>
+            <div class="project__media">
+              <img src="/assets/images/products/clipsense/clipsense.png" alt="ClipSense media analysis interface" loading="lazy" decoding="async">
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--quiet" aria-labelledby="hub-title">
+      <div class="shell hub-preview">
+        <div>
+          <p class="eyebrow">The 1807 Hub</p>
+          <h2 id="hub-title">Software, releases, and downloads.</h2>
+          <p>The official catalogue for public builds and honest release status—without the noise of a repository archive.</p>
+        </div>
+        <a class="button" href="/hub/">Open the Hub</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="capabilities-title">
+      <div class="shell">
+        <header class="section-head">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="capabilities-title">Product thinking through implementation.</h2>
+        </header>
+        <div class="capabilities">
+          <article class="capability"><span>01</span><h3>Product engineering</h3><p>Focused interfaces, resilient application behavior, and maintainable delivery systems.</p></article>
+          <article class="capability"><span>02</span><h3>Data and intelligence</h3><p>Useful automation and analysis designed around explicit boundaries and human control.</p></article>
+          <article class="capability"><span>03</span><h3>Systems architecture</h3><p>Clear APIs, local-first workflows, persistence, and operationally credible foundations.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--quiet" aria-labelledby="about-title">
+      <div class="shell about-summary">
+        <div><p class="eyebrow">About</p><h2 id="about-title">Built independently. Designed to last.</h2></div>
+        <div>
+          <p>The 1807 is the independent software practice of Uchenna Anozie—a computer science graduate and product developer building practical tools with care for privacy, clarity, and real use.</p>
+          <a class="button button--ghost" href="/about/">More about the studio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-panel">
+        <div><p class="eyebrow">Contact</p><h2 id="contact-title">Let’s build something useful.</h2><p>For product work, collaboration, and thoughtful technical conversations.</p></div>
+        <a class="button" href="/contact/">Start a conversation</a>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <div><img src="/assets/images/img/logo/logo.png" alt="The 1807"><p>© <span data-year></span> Uchenna Anozie</p></div>
+      <nav class="footer-links" aria-label="Secondary navigation">
+        <a href="https://github.com/vebbaybi" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/uchenna-anozie-a86143308" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/certific8te/">Certificates</a>
+        <button class="entry__replay" type="button" data-replay-intro>Replay intro</button>
+      </nav>
+    </div>
+  </footer>
 
-
-  <script type="module" src="/assets/js/app.js"></script>
-  <script type="module" src="/assets/js/ui/theme.js"></script>
-  <script type="module" src="/assets/js/ui/components/nav.js"></script>
-  <script src="/assets/js/arrival-signal.js" defer></script>
-  <script src="/assets/js/landing.js?v=1.0.0" defer></script>
+  <noscript><style>.entry{display:none}body.intro-active{overflow:auto}</style></noscript>
+  <script defer src="/assets/js/ui/components/puzzle.js"></script>
+  <script defer src="/assets/js/boot.js"></script>
+  <script type="module" src="/assets/js/pages/portfolio-overhaul.js"></script>
 </body>
-
 </html>

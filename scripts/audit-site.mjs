@@ -2,6 +2,7 @@ import { execFile } from 'node:child_process';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { promisify } from 'node:util';
+import { buildCertificateManifest } from './build-certificates-index.mjs';
 import { pages } from './sync-clean-routes.mjs';
 
 const execFileAsync = promisify(execFile);
@@ -240,6 +241,131 @@ async function checkCertIndex() {
   }
 }
 
+async function checkCertificateManifest() {
+  const manifestPath = path.join(rootDir, 'assets/data/certificates.json');
+  let manifest;
+  try {
+    manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  } catch (error) {
+    fail(`Certificate manifest is not valid JSON: ${error.message}`);
+    return;
+  }
+  const expected = await buildCertificateManifest();
+  if (JSON.stringify(manifest) !== JSON.stringify(expected)) {
+    fail('Certificate manifest does not exactly match the supported public files in assets/Certs');
+  }
+  const ids = new Set();
+  const hrefs = new Set();
+  for (const certificate of manifest) {
+    if (ids.has(certificate.id)) fail(`Duplicate certificate ID: ${certificate.id}`);
+    if (hrefs.has(certificate.href)) fail(`Duplicate certificate URL: ${certificate.href}`);
+    ids.add(certificate.id);
+    hrefs.add(certificate.href);
+    if (!certificate.href.startsWith('/assets/Certs/')) fail(`Certificate URL escaped assets/Certs: ${certificate.href}`);
+    if (/^[a-z]:\\|\\Users\\|file:\/\//i.test(JSON.stringify(certificate))) fail(`Certificate exposes a local path: ${certificate.filename}`);
+    if (certificate.type === 'image' && certificate.preview) fail(`Image certificate should use its own href as the preview source: ${certificate.filename}`);
+    if (certificate.preview && !certificate.preview.startsWith('/assets/Certs/')) fail(`Certificate preview escaped assets/Certs: ${certificate.preview}`);
+  }
+
+  const [credentials, component] = await Promise.all([
+    readFile(path.join(rootDir, 'certific8te.html'), 'utf8'),
+    readFile(path.join(rootDir, 'assets/js/components/certificate-feed.js'), 'utf8'),
+  ]);
+  if (!credentials.includes('data-certificate-feed')) fail('certific8te.html does not mount the shared certificate feed');
+  if (!credentials.includes('/assets/js/components/certificate-feed.js')) fail('certific8te.html does not load the shared certificate component');
+  if (!component.includes('/assets/data/certificates.json')) fail('Shared certificate feed does not consume the generated manifest');
+}
+
+function tagAttributeMaps(html, tagName) {
+  const pattern = new RegExp(`<${tagName}\\b[^>]*>`, 'gi');
+  return Array.from(html.matchAll(pattern), (match) => Object.fromEntries(extractAttributes(match[0]).map((attr) => [attr.name, attr.value])));
+}
+
+async function checkImportantPageSeo() {
+  const importantPages = [
+    ['index.html', '/'],
+    ['work.html', '/work/'],
+    ['hub.html', '/hub/'],
+    ['hydrion/index.html', '/hydrion/'],
+    ['modoroco/index.html', '/modoroco/'],
+    ['clipsense/index.html', '/clipsense/'],
+    ['about.html', '/about/'],
+    ['certific8te.html', '/certific8te/'],
+    ['resume.html', '/resume/'],
+    ['contact.html', '/contact/'],
+  ];
+  const seenTitles = new Map();
+  const seenDescriptions = new Map();
+  for (const [source, route] of importantPages) {
+    const html = await readFile(path.join(rootDir, source), 'utf8');
+    const head = html.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1] || '';
+    const metas = tagAttributeMaps(head, 'meta');
+    const links = tagAttributeMaps(head, 'link');
+    const named = (name) => metas.find((meta) => meta.name?.toLowerCase() === name)?.content;
+    const property = (name) => metas.find((meta) => meta.property?.toLowerCase() === name)?.content;
+    const canonical = links.find((link) => link.rel?.toLowerCase().split(/\s+/).includes('canonical'))?.href;
+    const title = head.match(/<title>\s*([^<]+?)\s*<\/title>/i)?.[1];
+    const description = named('description');
+    const h1Count = (html.match(/<h1\b/gi) || []).length;
+    if (!title) fail(`Important route is missing a title: ${route}`);
+    if (title && seenTitles.has(title)) fail(`Duplicate important-route title on ${route} and ${seenTitles.get(title)}: ${title}`);
+    if (description && seenDescriptions.has(description)) fail(`Duplicate important-route description on ${route} and ${seenDescriptions.get(description)}`);
+    if (title) seenTitles.set(title, route);
+    if (description) seenDescriptions.set(description, route);
+    for (const name of ['description', 'robots', 'theme-color']) {
+      if (!named(name)) fail(`Important route is missing meta ${name}: ${route}`);
+    }
+    for (const name of ['og:title', 'og:description', 'og:image', 'og:url']) {
+      if (!property(name)) fail(`Important route is missing ${name}: ${route}`);
+    }
+    for (const name of ['twitter:card', 'twitter:title', 'twitter:description', 'twitter:image']) {
+      if (!named(name)) fail(`Important route is missing ${name}: ${route}`);
+    }
+    if (!links.some((link) => link.rel?.toLowerCase().split(/\s+/).includes('icon'))) fail(`Important route is missing a favicon: ${route}`);
+    if (canonical !== `https://the1807.xyz${route}`) fail(`Canonical mismatch on ${route}: ${canonical || 'missing'}`);
+    if (property('og:url') !== `https://the1807.xyz${route}`) fail(`Open Graph URL mismatch on ${route}: ${property('og:url') || 'missing'}`);
+    if (h1Count !== 1) fail(`Important route must have exactly one H1 (${h1Count} found): ${route}`);
+
+    const jsonLdBlocks = Array.from(html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi));
+    for (const block of jsonLdBlocks) {
+      try { JSON.parse(block[1]); } catch (error) { fail(`Invalid JSON-LD on ${route}: ${error.message}`); }
+    }
+  }
+}
+
+async function checkCompletionContracts() {
+  const [home, hydrion, modoroco, clipsense, neonJs, neonCss, entryJs] = await Promise.all([
+    readFile(path.join(rootDir, 'index.html'), 'utf8'),
+    readFile(path.join(rootDir, 'hydrion/index.html'), 'utf8'),
+    readFile(path.join(rootDir, 'modoroco/index.html'), 'utf8'),
+    readFile(path.join(rootDir, 'clipsense/index.html'), 'utf8'),
+    readFile(path.join(rootDir, 'assets/js/effects/neon-net.js'), 'utf8'),
+    readFile(path.join(rootDir, 'assets/css/effects/neon-net.css'), 'utf8'),
+    readFile(path.join(rootDir, 'assets/js/boot.js'), 'utf8'),
+  ]);
+  if (!home.includes('src="/assets/babydev_nobg.svg"')) fail('Homepage does not use the owner-approved portrait asset');
+  if (!home.includes('src="/assets/images/img/logo/logo.png"')) fail('Homepage does not use the official company logo');
+  if (!home.includes('src="/assets/images/img/logo/logooss.png"')) fail('Homepage loader does not use the minimal shark');
+  if (!home.includes('data-expressive-shark="/assets/images/img/logo/logoos.png"')) fail('Puzzle completion does not use the expressive shark');
+  if (/face-nav|face-navigation/i.test(home)) fail('Rejected face navigation remains in the homepage');
+  if (/1807os/i.test(home) || /1807os/i.test(entryJs)) fail('1807OS remains in the production entry flow');
+  for (const product of ['Hydrion', 'Modoroco', 'ClipSense']) {
+    if (!home.includes(`>${product}<`)) fail(`Homepage is missing flagship product: ${product}`);
+  }
+  if (!entryJs.includes('sessionStorage')) fail('Entry flow does not remember completion for the session');
+  if (!entryJs.includes("onSkip: () => revealSite('skipped')")) fail('Puzzle does not provide an accessible skip path');
+  if (!hydrion.includes('https://www.instagram.com/hydrionsharks/')) fail('Hydrion Instagram link is missing');
+  if (!hydrion.includes('aria-label="Follow Hydrion on Instagram"')) fail('Hydrion Instagram link is not accessibly labeled');
+  for (const [name, html] of [['Modoroco', modoroco], ['ClipSense', clipsense]]) {
+    if (/href="#"/.test(html)) fail(`${name} contains a dead href="#" link`);
+  }
+  if (!neonCss.includes('pointer-events: none')) fail('Neon background can intercept pointer input');
+  if (!neonCss.includes('prefers-reduced-motion')) fail('Neon background CSS has no reduced-motion behavior');
+  if (!neonJs.includes("document.addEventListener('visibilitychange'")) fail('Neon background does not pause with document visibility');
+  if (!neonJs.includes('new ResizeObserver')) fail('Neon background is not responsive to viewport changes');
+  if (!neonJs.includes('Math.min(window.devicePixelRatio || 1, 1.5)')) fail('Neon background does not cap device pixel ratio');
+}
+
 async function checkOversizedAssets(files) {
   const thresholds = [
     { ext: new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif']), bytes: 3 * 1024 * 1024, label: 'large image' },
@@ -275,6 +401,9 @@ async function main() {
   await checkCleanRoutes();
   await checkSitemap();
   await checkCertIndex();
+  await checkCertificateManifest();
+  await checkImportantPageSeo();
+  await checkCompletionContracts();
   await checkOversizedAssets(files);
   await checkInnerHtml(jsFiles);
 

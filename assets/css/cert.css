@@ -1025,3 +1025,121 @@
         }
     }
 }
+
+@layer overrides {
+    .certifi8te-page .cert-shell {
+        padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .certifi8te-page .cert-hero {
+        padding-block: clamp(0.5rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.75rem);
+    }
+
+    .certifi8te-page .cert-catalog {
+        width: min(100%, 1180px);
+        margin-inline: auto;
+    }
+
+    .certifi8te-page .cert-catalog__header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .certifi8te-page .cert-catalog__header h2 {
+        margin: 0;
+        color: #fff;
+        font-size: clamp(1.65rem, 4vw, 2.5rem);
+        letter-spacing: 0;
+    }
+
+    .certifi8te-page .cert-catalog__count {
+        flex: 0 0 auto;
+        margin: 0;
+        color: var(--cert-muted);
+    }
+
+    .certifi8te-page .cert-catalog__count strong {
+        color: var(--cert-cyan);
+        font-size: 1.35em;
+    }
+
+    .certifi8te-page .cert-controls {
+        grid-template-columns: minmax(220px, 1.1fr) minmax(0, 2fr);
+        align-items: center;
+        width: 100%;
+        margin: 0 0 1rem;
+    }
+
+    .certifi8te-page .cert-feed-status {
+        margin: 0 0 1rem;
+        color: var(--cert-muted);
+        font-size: 0.9rem;
+    }
+
+    .certifi8te-page .credential-panels {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        align-items: start;
+        gap: clamp(0.9rem, 1.6vw, 1.25rem);
+        margin-top: clamp(2rem, 4vw, 3.25rem);
+    }
+
+    .certifi8te-page .credential-panel {
+        grid-column: span 6;
+        padding: clamp(1rem, 2.3vw, 1.5rem);
+    }
+
+    .certifi8te-page .credential-panel--wide,
+    .certifi8te-page .credential-panel--tools {
+        grid-column: 1 / -1;
+    }
+
+    .certifi8te-page .credential-panel--education,
+    .certifi8te-page .credential-panel--certifications {
+        grid-column: span 4;
+    }
+
+    .certifi8te-page .credential-panel--training,
+    .certifi8te-page .credential-panel--competencies {
+        grid-column: span 8;
+    }
+
+    .certifi8te-page .credential-panel--cta {
+        grid-column: span 6;
+    }
+
+    .certifi8te-page .credential-panel > :last-child,
+    .certifi8te-page .credential-grid > div > :last-child {
+        margin-bottom: 0;
+    }
+
+    .certifi8te-page .credential-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+        gap: 1rem;
+    }
+
+    @media (max-width: 880px) {
+        .certifi8te-page .cert-controls {
+            grid-template-columns: 1fr;
+        }
+
+        .certifi8te-page .credential-panel,
+        .certifi8te-page .credential-panel--education,
+        .certifi8te-page .credential-panel--training,
+        .certifi8te-page .credential-panel--certifications,
+        .certifi8te-page .credential-panel--competencies,
+        .certifi8te-page .credential-panel--tools,
+        .certifi8te-page .credential-panel--cta {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .certifi8te-page .cert-catalog__header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+}

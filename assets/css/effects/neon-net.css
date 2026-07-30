@@ -1,0 +1,27 @@
+@layer components {
+  .neon-net-host {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .neon-net-host > .neon-net-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.72;
+  }
+
+  .neon-net-host > :not(.neon-net-layer) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .neon-net-layer {
+      opacity: 0.42;
+    }
+  }
+}

@@ -12,8 +12,11 @@ const lastmod = new Intl.DateTimeFormat('en-CA', {
 
 export const pages = [
   { source: 'index.html', route: '/', changefreq: 'weekly', priority: '1.00' },
-  { source: 'home.html', route: '/home/', changefreq: 'weekly', priority: '0.95' },
-  { source: 'projects.html', route: '/projects/', changefreq: 'weekly', priority: '0.90' },
+  { source: 'home.html', route: '/home/', changefreq: 'yearly', priority: '0.10', sitemap: false },
+  { source: 'work.html', route: '/work/', changefreq: 'weekly', priority: '0.95' },
+  { source: 'hub.html', route: '/hub/', changefreq: 'weekly', priority: '0.92' },
+  { source: 'products.html', route: '/products/', changefreq: 'yearly', priority: '0.10', sitemap: false },
+  { source: 'projects.html', route: '/projects/', changefreq: 'yearly', priority: '0.10', sitemap: false },
   { source: 'hydrion/index.html', route: '/hydrion/', changefreq: 'weekly', priority: '0.88', static: true },
   { source: 'hydrion/download/index.html', route: '/hydrion/download/', changefreq: 'weekly', priority: '0.84', static: true },
   { source: 'hydrion/docs/index.html', route: '/hydrion/docs/', changefreq: 'monthly', priority: '0.78', static: true },
@@ -25,13 +28,15 @@ export const pages = [
   { source: 'hydrion/releases/index.html', route: '/hydrion/releases/', changefreq: 'weekly', priority: '0.76', static: true },
   { source: 'hydrion/releases/v1.1.0-rc.1/index.html', route: '/hydrion/releases/v1.1.0-rc.1/', changefreq: 'monthly', priority: '0.72', static: true },
   { source: 'hydrion/privacy/index.html', route: '/hydrion/privacy/', changefreq: 'monthly', priority: '0.68', static: true },
-  { source: 'skincradle.html', route: '/skincradle/', changefreq: 'monthly', priority: '0.82' },
+  { source: 'modoroco/index.html', route: '/modoroco/', changefreq: 'monthly', priority: '0.82', static: true },
+  { source: 'clipsense/index.html', route: '/clipsense/', changefreq: 'monthly', priority: '0.82', static: true },
+  { source: 'about.html', route: '/about/', changefreq: 'monthly', priority: '0.78' },
   { source: 'certific8te.html', route: '/certific8te/', changefreq: 'monthly', priority: '0.80' },
   { source: 'resume.html', route: '/resume/', changefreq: 'monthly', priority: '0.76' },
   { source: 'contact.html', route: '/contact/', changefreq: 'monthly', priority: '0.72' },
-  { source: 'links.html', route: '/links/', changefreq: 'monthly', priority: '0.45' },
-  { source: '1807osPort/index.html', route: '/1807osPort/', changefreq: 'monthly', priority: '0.58', static: true },
-  { source: 'elka-0.html', route: '/elka-0/', changefreq: 'monthly', priority: '0.55' },
+  { source: 'skincradle.html', route: '/skincradle/', changefreq: 'yearly', priority: '0.10', sitemap: false },
+  { source: 'links.html', route: '/links/', changefreq: 'yearly', priority: '0.10', sitemap: false },
+  { source: 'elka-0.html', route: '/elka-0/', changefreq: 'yearly', priority: '0.10', sitemap: false },
   { source: 'scroll_paper.html', route: '/scroll_paper/', changefreq: 'yearly', priority: '0.20', sitemap: false },
   { source: 'ai.html', route: '/ai/', changefreq: 'yearly', priority: '0.20', sitemap: false },
   { source: 'robotics.html', route: '/robotics/', changefreq: 'yearly', priority: '0.20', sitemap: false },
@@ -40,14 +45,6 @@ export const pages = [
   { source: 'resumes.html', route: '/resumes/', changefreq: 'yearly', priority: '0.10', sitemap: false },
   { source: 'tdi.html', route: '/tdi/', changefreq: 'yearly', priority: '0.10', sitemap: false },
   { source: '1807-contractor.html', route: '/1807-contractor/', changefreq: 'yearly', priority: '0.20', sitemap: false },
-  { source: '1807osPort/ai/index.html', route: '/1807osPort/ai/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/data/index.html', route: '/1807osPort/data/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/robotics/index.html', route: '/1807osPort/robotics/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/chains/index.html', route: '/1807osPort/chains/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/about/index.html', route: '/1807osPort/about/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/contractor/index.html', route: '/1807osPort/contractor/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/resume/index.html', route: '/1807osPort/resume/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
-  { source: '1807osPort/contact/index.html', route: '/1807osPort/contact/', changefreq: 'yearly', priority: '0.20', static: true, sitemap: false },
 ];
 
 const assetExtensions = new Set([
@@ -66,7 +63,6 @@ function htmlDecode(value = '') {
 }
 
 function inferScope(route) {
-  if (route.startsWith('/1807osPort/')) return 'os';
   if (route === '/' || route === '/home/') return 'core';
   return 'classic';
 }
@@ -76,7 +72,6 @@ function inferFamily(route) {
   const clean = route.replace(/^\//, '').replace(/\/$/, '');
   if (!clean) return 'root';
   const segments = clean.split('/');
-  if (segments[0] === '1807osPort') return segments[1] || 'launcher';
   return segments[0];
 }
 

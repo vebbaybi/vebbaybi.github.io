@@ -492,7 +492,7 @@
         overflow-x: clip;
     }
 
-    .streamline-page > * {
+    .streamline-page > :not(.neon-net-layer) {
         position: relative;
         z-index: 1;
     }

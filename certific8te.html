@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
     <link rel="stylesheet" href="/assets/css/cert.css" />
+    <link rel="stylesheet" href="/assets/css/certificate-feed.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
 
     <script type="application/ld+json">
@@ -85,7 +86,7 @@
   </script>
 </head>
 
-<body class="theme-dark cert-page" data-route="certific8te">
+<body class="theme-dark cert-page certifi8te-page" data-route="certific8te">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header-placeholder></header-placeholder>
@@ -102,60 +103,49 @@
                     "SHA-256 when available. Fallback display IDs when not.",
                     "Verified technical evidence in one focused hub."
                 ]'>
-                    Loading credentials...
+                    Every public certificate in the Certs folder, indexed automatically.
                 </p>
             </header>
 
-            <section class="cert-workspace" aria-label="Certificate carousel">
-                <div class="cert-tunnel" aria-hidden="true">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <section class="cert-catalog" aria-labelledby="certificate-library-heading">
+                <header class="cert-catalog__header">
+                    <div>
+                        <p class="credential-label">Public credential index</p>
+                        <h2 id="certificate-library-heading">Certificate library</h2>
+                    </div>
+                    <p class="cert-catalog__count"><strong data-certificate-count>0</strong> credentials</p>
+                </header>
 
-                <div id="cert-loading" class="matrix-loader" role="status">Indexing certificate assets...</div>
-                <div id="cert-empty" class="matrix-empty" hidden>No certificate assets matched the current filters.</div>
-
-                <div id="deck-wrapper-area" class="cert-deck-viewport" hidden>
-                    <button id="deck-prev-btn" class="carousel-prev" title="Previous" aria-label="Previous certificate"
-                        type="button">&lsaquo;</button>
-                    <div id="cert-deck" class="cert-deck-track" role="region" aria-live="polite"></div>
-                    <button id="deck-next-btn" class="carousel-next" title="Next" aria-label="Next certificate"
-                        type="button">&rsaquo;</button>
-                </div>
-
-                <div id="deck-pagination" class="carousel-pagination" role="tablist" aria-label="Certificate slides">
-                </div>
-            </section>
-
-            <nav class="cert-controls" aria-label="Certificate filters">
+            <div class="cert-controls" role="search" aria-label="Certificate filters">
                 <div class="search-wrapper">
                     <input type="text" id="cert-search" placeholder="Search certificates, issuers, or filenames"
                         aria-label="Search certificates" autocomplete="off" />
                 </div>
                 <div class="filter-wrapper">
-                    <select id="filter-issuer" aria-label="Filter by issuer">
-                        <option value="all">All Issuers</option>
+                    <select id="filter-category" aria-label="Filter by category">
+                        <option value="all">All categories</option>
                     </select>
-                    <select id="filter-year" aria-label="Filter by year">
-                        <option value="all">All Years</option>
+                    <select id="filter-issuer" aria-label="Filter by issuer">
+                        <option value="all">All issuers</option>
                     </select>
                     <select id="sort-order" aria-label="Sort certificates">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
+                        <option value="manifest">Featured first</option>
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
                         <option value="alpha">Alphabetical</option>
                     </select>
                 </div>
-            </nav>
+            </div>
+
+                <p id="cert-feed-status" class="cert-feed-status" role="status" aria-live="polite">Loading credentials…</p>
+                <div id="certificate-feed" class="certificate-feed"
+                    data-certificate-feed
+                    data-status-target="#cert-feed-status"
+                    data-search-target="#cert-search"
+                    data-category-target="#filter-category"
+                    data-issuer-target="#filter-issuer"
+                    data-sort-target="#sort-order"></div>
+            </section>
 
             <section class="credential-panels" aria-label="Technical credential details">
                 <article class="credential-panel credential-panel--wide">
@@ -164,13 +154,13 @@
                     <p>Computer Science graduate with certificate-supported training in Python programming, IBM-authorized DevOps fundamentals, IBM-authorized cloud computing fundamentals, and portfolio-backed practice across software workflows, mobile development, embedded systems concepts, documentation, testing, and creative asset preparation.</p>
                 </article>
 
-                <article class="credential-panel">
+                <article class="credential-panel credential-panel--education">
                     <span class="credential-label">Education</span>
                     <h2>Michael Okpara University of Agriculture Umudike</h2>
                     <p>B.Sc. and Ed., Computer Science. Evidence-supported learning areas include programming, software engineering, data structures, algorithms, database concepts, web development, networking fundamentals, and computer systems.</p>
                 </article>
 
-                <article class="credential-panel">
+                <article class="credential-panel credential-panel--training">
                     <span class="credential-label">Technical training</span>
                     <div class="credential-grid">
                         <div>
@@ -196,7 +186,7 @@
                     </div>
                 </article>
 
-                <article class="credential-panel">
+                <article class="credential-panel credential-panel--certifications">
                     <span class="credential-label">Certifications</span>
                     <ul class="credential-list">
                         <li>General Assembly: Python Programming Short Course, 40 hours.</li>
@@ -206,7 +196,7 @@
                     <p>These are the verified certificate assets currently present in <code>assets/Certs</code>. New supported certificate files added there are picked up by the dynamic carousel.</p>
                 </article>
 
-                <article class="credential-panel">
+                <article class="credential-panel credential-panel--competencies">
                     <span class="credential-label">Technical competencies</span>
                     <div class="credential-grid">
                         <div>
@@ -232,7 +222,7 @@
                     </div>
                 </article>
 
-                <article class="credential-panel">
+                <article class="credential-panel credential-panel--tools">
                     <span class="credential-label">Supporting tools</span>
                     <div class="credential-grid">
                         <div>
@@ -341,7 +331,7 @@
     </noscript>
 
     <script type="module" src="/assets/js/app.js"></script>
-    <script type="module" src="/assets/js/pages/cert.js"></script>
+    <script type="module" src="/assets/js/components/certificate-feed.js"></script>
 </body>
 
 </html>
