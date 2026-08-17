@@ -1,0 +1,16 @@
+# Development-only visual explorations
+/prototype/
+
+# Owner source exports; canonical public copies live in assets/images/products/hydrion/
+/hydrion/hydrion_webpage_photos/
+
+# Unused high-resolution Hydrion character exports
+/assets/images/hydrion/hydrion-mascot.png
+/assets/images/hydrion/*-shark.png
+/assets/images/hydrion/snss.png
+
+# Local editor state
+/.vscode/
+
+# Generated allowlisted GitHub Pages artifact
+/_site/
