@@ -1,0 +1,93 @@
+{
+  "name": "THE-1807 | Uchenna Anozie",
+  "short_name": "THE-1807",
+  "description": "Uchenna Anozie's public systems: Hydrion, Modoroco, ClipSense, and BufferFrames, plus interactive work in 7Playbox. Software engineering, DevOps, and GitOps in practice.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  "orientation": "portrait-primary",
+  "background_color": "#07090f",
+  "theme_color": "#070a0e",
+  "categories": [
+    "technology",
+    "developer",
+    "productivity"
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+
+  "icons": [
+    {
+      "src": "/assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Hydrion",
+      "short_name": "Hydrion",
+      "description": "Personalized hydration companion — released, Android testing.",
+      "url": "/hydrion/"
+    },
+    {
+      "name": "Modoroco",
+      "short_name": "Modoroco",
+      "description": "Native desktop focus app and timing infrastructure — pre-release.",
+      "url": "/modoroco/",
+      "icons": [
+        {
+          "src": "/assets/images/products/modoroco/modicon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "ClipSense",
+      "short_name": "ClipSense",
+      "description": "Pre-editing intelligence for creator footage — active development.",
+      "url": "/clipsense/",
+      "icons": [
+        {
+          "src": "/assets/images/products/clipsense/clipsense.png",
+          "sizes": "1254x1254",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "SkinCradle",
+      "short_name": "SkinCradle",
+      "description": "Browser-based hand and face gesture tracker in 7Playbox.",
+      "url": "/7playbox/skincradle/",
+      "icons": [
+        {
+          "src": "/assets/icons/shortcut-skincradle.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

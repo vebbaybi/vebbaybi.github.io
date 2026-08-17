@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-page="hydrion">
+  <head>
+    <meta charset="utf-8" /><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'"><meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <title>Troubleshooting | Hydrion Documentation | THE-1807</title>
+    <meta
+      name="description"
+      content="Resolve common Hydrion tester-build installation, notification, weather, progress, and tutorial issues."
+    />
+    <meta name="theme-color" content="#0A1118" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link
+      rel="canonical"
+      href="https://the1807.xyz/hydrion/docs/troubleshooting/"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Troubleshooting | Hydrion Documentation"
+    />
+    <meta
+      property="og:description"
+      content="Resolve common Hydrion tester-build installation, notification, weather, progress, and tutorial issues."
+    />
+    <meta
+      property="og:url"
+      content="https://the1807.xyz/hydrion/docs/troubleshooting/"
+    />
+    <meta
+      property="og:image"
+      content="https://the1807.xyz/assets/images/products/hydrion/female_home.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Troubleshooting | Hydrion Documentation"
+    />
+    <meta
+      name="twitter:description"
+      content="Resolve common Hydrion tester-build installation, notification, weather, progress, and tutorial issues."
+    />
+    <meta
+      name="twitter:image"
+      content="https://the1807.xyz/assets/images/products/hydrion/female_home.png"
+    />
+    <link
+      rel="icon"
+      href="/assets/images/img/favicons/favicon.ico"
+      sizes="any"
+    />
+    <link
+      rel="icon"
+      href="/assets/icons/favicon-32x32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="icon" href="/assets/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+    <script src="/assets/js/theme-boot.js"></script>
+    <link rel="stylesheet" href="/assets/css/1807.css" />
+    <!-- Structured data is provided on product and release pages. -->
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div
+      class="route-loader is-active"
+      data-route-loader
+      role="status"
+      aria-live="polite"
+    >
+      <div class="route-loader__core">
+        <span class="meta" data-loader-label>Loading Hydrion</span
+        ><span class="route-loader__line"></span>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="shell site-header__inner">
+        <a class="brand" href="/" aria-label="THE-1807 home"
+          ><span class="brand__mark" aria-hidden="true">18</span
+          ><span>THE-1807</span></a
+        ><button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-nav-toggle
+        >
+          Menu
+        </button>
+        <nav class="site-nav" id="site-nav" data-site-nav>
+          <a href="/#systems">Systems</a><a href="/7store/">7Store</a
+          ><a href="/7playbox/">7Playbox</a><a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="page-hero">
+        <div class="shell">
+          <p class="kicker">
+            <a href="/hydrion/">Hydrion</a> /
+            <a href="/hydrion/docs/">Documentation</a> / Troubleshooting
+          </p>
+          <h1 class="display">Troubleshooting</h1>
+          <p class="lede">
+            Resolve common Hydrion tester-build installation, notification,
+            weather, progress, and tutorial issues.
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="shell prose">
+          <h2 id="install">APK will not install</h2>
+          <p>
+            Confirm the download completed, allow installation from the current
+            browser or file manager if prompted, and verify the file checksum.
+            Ensure the device has available storage.
+          </p>
+          <h2 id="update">An existing Hydrion build will not update</h2>
+          <p>
+            The previous build may use an incompatible signature or application
+            state. Preserve any needed local data before uninstalling. Upgrade
+            installation over an older tester build still requires real-device
+            verification.
+          </p>
+          <h2 id="notifications">Notifications are delayed</h2>
+          <p>
+            Allow notification permission and review manufacturer battery
+            restrictions. Android may defer local reminders during battery
+            optimization, sleep, reboot, or timezone changes. Notification
+            behavior remains part of physical-device testing.
+          </p>
+          <h2 id="weather">Weather is unavailable</h2>
+          <p>
+            Check network access and location permission. Weather assistance
+            uses Open-Meteo and falls back without silently changing a manual
+            goal when data cannot be obtained.
+          </p>
+          <h2 id="refresh">Progress does not refresh</h2>
+          <p>
+            Pull to refresh on supported screens or navigate away and return. If
+            a recent edit or deletion still appears incorrect, restart the app
+            and report the exact sequence.
+          </p>
+          <h2 id="tutorial">Replay the tutorial</h2>
+          <p>
+            Open Help from Settings or Profile and choose the available
+            guided-tour replay option.
+          </p>
+          <h2 id="report">Report a defect</h2>
+          <p>
+            Include phone manufacturer and model, Android version, Hydrion
+            version, theme, unit, relevant profile selection, steps, actual
+            result, expected result, and whether restart changes it. Add a
+            screenshot or screen recording if safe. Do not send personal health
+            information.
+          </p>
+          <div class="actions">
+            <a
+              class="action action--primary"
+              href="https://github.com/The-1807/hydrion/issues"
+              >Open GitHub issues</a
+            ><a
+              class="action"
+              href="https://github.com/The-1807/hydrion/discussions"
+              >Open GitHub Discussions</a
+            >
+          </div>
+          <div class="actions">
+            <a class="action" href="/hydrion/docs/challenges/"
+              >&larr; Goals and challenges</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="shell site-footer__inner">
+        <a class="brand" href="/"
+          ><span class="brand__mark" aria-hidden="true">18</span
+          ><span>THE-1807</span></a
+        >
+        <nav>
+          <a href="/modoroco/">Next: Modoroco</a><a href="/7store/">7Store</a>
+        </nav>
+      </div>
+    </footer>
+    <script type="module" src="/assets/js/1807.js"></script>
+  </body>
+</html>

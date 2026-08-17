@@ -1,0 +1,6 @@
+
+
+User-agent: *
+Allow: /
+
+Sitemap: https://the1807.xyz/sitemap.xml
