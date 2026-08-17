@@ -11,3 +11,6 @@
 
 # Local editor state
 /.vscode/
+
+# Generated allowlisted GitHub Pages artifact
+/_site/

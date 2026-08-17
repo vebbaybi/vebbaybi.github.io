@@ -1,3 +1,11 @@
 {
-    "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.root": "/_site",
+  "liveServer.settings.ignoreFiles": [
+    "**/togo/**"
+  ],
+  "fiveServer.port": 5500,
+  "fiveServer.ignore": [
+    "togo/**"
+  ]
 }
